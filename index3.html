@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terrenos en SALTA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3DA9FC;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #094067;
+    }
+    
+    /* Swiper Customization */
+    .swiper-button-next, .swiper-button-prev {
+      color: #3DA9FC;
+      background: rgba(255,255,255,0.8);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="w-full overflow-x-hidden">
+  
+  <!-- Header -->
+  <header class="max-w-screen-xl mx-auto mb-8">
+    <nav class="px-4 sm:px-5 py-6 flex items-center justify-between space-x-12">
+      <div class="flex items-center space-x-8">
+        <div id="logo" class="flex items-center space-x-2">
+          <!-- Placeholder Icon for Logo -->
+          <div class="w-10 h-10 bg-[#3DA9FC] rounded-lg flex items-center justify-center text-white font-bold text-xl">
+            T
+          </div>
+          <h5 class="text-xl font-bold text-[#094067]">TerrenosSalta</h5>
+        </div>
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center space-x-8 font-medium text-[#5F6C7B]">
+            <a href="#" class="hover:text-[#094067] transition">Inicio</a>
+            <a href="#" class="hover:text-[#094067] transition">Lotes</a>
+            <a href="#" class="hover:text-[#094067] transition">Servicios</a>
+            <a href="#" class="hover:text-[#094067] transition">Contacto</a>
+        </div>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <button class="hidden lg:block px-6 py-3 border border-[#3DA9FC] text-[#3DA9FC] font-semibold rounded-md hover:bg-[#3DA9FC] hover:text-white transition duration-300">
+            Iniciar Sesión
+        </button>
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden">
+            <button class="text-[#094067]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+            </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-screen-xl mx-auto overflow-x-hidden px-4 sm:px-5">
+    
+    <!-- Hero Section -->
+    <section data-aos="fade-up" data-aos-duration="1000" class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20 items-center">
+      <div class="col-span-1 lg:col-span-6 text-center lg:text-left">
+        <span class="inline-block px-3 py-1.5 mb-4 bg-[#3DA9FC] bg-opacity-10 text-[#3DA9FC] font-semibold tracking-wide rounded-full">
+            Preventa Exclusiva
+        </span>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl mb-4 font-extrabold text-[#094067] leading-tight">
+            Invertí en tu futuro, <br> terrenos en <span class="text-[#3DA9FC]">Salta</span>
+        </h1>
+        <p class="mb-6 text-base md:text-lg tracking-wide leading-8 font-medium text-[#5F6C7B] pr-0 md:pr-4 xl:pr-12">
+            Descubrí la paz de vivir rodeado de cerros y naturaleza. Ofrecemos las mejores ubicaciones con financiación propia y escritura inmediata. Tu refugio en el norte te espera.
+        </p>
+        <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 justify-center lg:justify-start">
+          <button class="w-full md:w-fit px-9 py-5 bg-[#3DA9FC] flex items-center justify-center md:justify-start text-white font-semibold rounded-md shadow-[0_6px_30px_rgba(61,169,252,0.6)] hover:bg-[#3498E4] group transition-colors duration-300">
+            <span>Ver Mapa de Lotes</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 icon icon-tabler icon-tabler-arrow-narrow-right group-hover:translate-x-1.5 transition duration-300" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <line x1="15" y1="16" x2="19" y2="12"></line>
+              <line x1="15" y1="8" x2="19" y2="12"></line>
+            </svg>
+          </button>
+          <button class="w-fit px-9 py-5 flex items-center justify-center md:justify-start text-[#3DA9FC] font-semibold space-x-4 hover:scale-105 transition duration-300">
+            <div class="p-3 rounded-full border border-[#3DA9FC] flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M7 4V20L20 12L7 4Z" fill="#3DA9FC"/>
+               </svg>           
+            </div>
+            <span>Ver Video Drone</span>
+          </button>
+        </div>
+      </div>
+      <div class="col-span-1 lg:col-span-6 hidden lg:block relative">
+        <div class="absolute -z-10 top-0 right-0 w-full h-full bg-[#D8EEFE] rounded-full filter blur-3xl opacity-50 transform translate-x-10 translate-y-10"></div>
+        <img src="https://images.unsplash.com/photo-1518182170546-0766ce6fec56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="rounded-2xl shadow-2xl object-cover h-[500px] w-full" alt="Paisaje Salta">
+      </div>
+    </section>
+    
+    <!-- Destinations Section -->
+    <section data-aos="zoom-in" data-aos-duration="1000" class="py-2 mb-16 text-center lg:text-left">
+      <span class="text-[#3DA9FC] inline-block font-semibold leading-tight mb-2">Oportunidades</span>
+      <div class="flex items-center justify-between mb-8 lg:mb-10">
+        <h3 class="text-3xl sm:text-4xl text-[#094067] font-extrabold leading-tight w-full lg:w-fit">Barrios en desarrollo</h3>
+        <button class="hidden font-semibold text-[#3DA9FC] leading-tight lg:flex items-center space-x-2 hover:underline">
+          <span>Ver todos los proyectos</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 6 15 12 9 18"></polyline>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+        <!-- Card 1 -->
+        <div class="flex flex-col rounded-xl hover:shadow-xl transition duration-300 cursor-pointer bg-white group border border-gray-100 pb-4 overflow-hidden">
+          <div class="overflow-hidden rounded-t-xl mb-4 h-64">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" alt="Cerro Varnet">
+          </div>
+          <div class="px-5">
+             <h5 class="text-xl text-[#094067] font-bold mb-2 group-hover:text-[#3DA9FC] transition">Reserva Cerro Varnet</h5>
+             <p class="text-sm text-[#5F6C7B] font-medium mb-4">Ubicado en la zona norte, vistas panorámicas.</p>
+             <div class="flex items-center justify-between">
+                <span class="text-xs font-bold px-2 py-1 bg-green-100 text-green-600 rounded">Desde 500 m²</span>
+                <span class="text-[#094067] font-bold">$15.000 USD</span>
+             </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="flex flex-col rounded-xl hover:shadow-xl transition duration-300 cursor-pointer bg-white group border border-gray-100 pb-4 overflow-hidden">
+          <div class="overflow-hidden rounded-t-xl mb-4 h-64">
+            <img src="https://images.unsplash.com/photo-1444464666168-49d633b86797?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" alt="Refugio Vaquereña">
+          </div>
+          <div class="px-5">
+             <h5 class="text-xl text-[#094067] font-bold mb-2 group-hover:text-[#3DA9FC] transition">Refugio Vaquereña</h5>
+             <p class="text-sm text-[#5F6C7B] font-medium mb-4">Naturaleza pura a minutos del centro.</p>
+             <div class="flex items-center justify-between">
+                <span class="text-xs font-bold px-2 py-1 bg-green-100 text-green-600 rounded">Desde 650 m²</span>
+                <span class="text-[#094067] font-bold">$22.000 USD</span>
+             </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="flex flex-col rounded-xl hover:shadow-xl transition duration-300 cursor-pointer bg-white group border border-gray-100 pb-4 overflow-hidden">
+          <div class="overflow-hidden rounded-t-xl mb-4 h-64">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" alt="Puma Piedra">
+          </div>
+          <div class="px-5">
+             <h5 class="text-xl text-[#094067] font-bold mb-2 group-hover:text-[#3DA9FC] transition">Condominio El Puma</h5>
+             <p class="text-sm text-[#5F6C7B] font-medium mb-4">Exclusividad y seguridad privada 24hs.</p>
+             <div class="flex items-center justify-between">
+                <span class="text-xs font-bold px-2 py-1 bg-green-100 text-green-600 rounded">Desde 1000 m²</span>
+                <span class="text-[#094067] font-bold">$35.000 USD</span>
+             </div>
+          </div>
+        </div>
+      </div>
+      
+      <button class="font-semibold text-[#3DA9FC] leading-tight flex lg:hidden items-center mx-auto space-x-2 border border-[#3DA9FC] px-6 py-3 rounded-full">
+        <span>Ver más lotes</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 6 15 12 9 18"></polyline>
+        </svg>
+      </button>
+    </section>
+
+    <!-- Partners Section (Logos) -->
+    <section data-aos="fade-right" data-aos-delay="500" data-aos-duration="700" class="w-full flex flex-wrap items-center justify-center gap-8 lg:gap-16 py-12 mb-24 opacity-60">
+        <!-- Replaced images with text placeholders for reliability -->
+        <h3 class="text-2xl font-bold text-gray-400 uppercase">Banco Macro</h3>
+        <h3 class="text-2xl font-bold text-gray-400 uppercase">Remax</h3>
+        <h3 class="text-2xl font-bold text-gray-400 uppercase">Zurich</h3>
+        <h3 class="text-2xl font-bold text-gray-400 uppercase">Santander</h3>
+    </section>
+
+    <!-- Promo Section -->
+    <section data-aos="fade-up" data-aos-duration="1000" class="w-full flex flex-col items-center justify-center py-4 mb-40 text-center lg:text-left">
+      <span class="mb-4 text-[#33a353] inline-block font-semibold leading-tight bg-green-50 px-3 py-1 rounded-full">Eco-Friendly</span>
+      <h2 class="mb-4 text-4xl md:text-5xl text-[#094067] font-extrabold leading-tight">Últimos terrenos DISPONIBLES</h2>
+      <p class="mb-8 text-base md:text-lg tracking-wide leading-8 font-medium text-[#5F6C7B] text-center px-0 lg:px-64">
+        Viví rodeado de naturaleza a minutos de la ciudad en el corazón de Vaqueros. Aprovechá los precios de PREVENTA antes del aumento de temporada.
+      </p>
+      <div class="relative w-full h-[400px] mb-8 rounded-2xl overflow-hidden shadow-2xl">
+          <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" class="w-full h-full object-cover" alt="Paisaje Salta">
+          <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+             <!-- Optional Overlay Content -->
+          </div>
+      </div>
+      <button class="px-9 py-5 bg-[#3DA9FC] flex items-center text-white font-semibold rounded-md shadow-[0_6px_30px_rgba(61,169,252,0.6)] hover:bg-[#3498E4] group transition-all duration-300">
+        <span>Agendar Visita</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 icon icon-tabler icon-tabler-arrow-narrow-right group-hover:translate-x-1.5 transition duration-300" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <line x1="15" y1="16" x2="19" y2="12"></line>
+          <line x1="15" y1="8" x2="19" y2="12"></line>
+        </svg>
+      </button>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section data-aos="fade-down" data-aos-delay="100" data-aos-duration="700" class="relative w-[95%] mx-auto min-h-[600px] py-16 flex flex-col items-center bg-[#D8EEFE] bg-opacity-75 rounded-3xl mb-24">
+      <span class="mb-4 text-[#3DA9FC] inline-block font-semibold leading-tight">Testimonios</span>
+      <h2 class="mb-4 text-3xl md:text-5xl text-[#094067] font-extrabold leading-tight text-center">Clientes Felices</h2>
+      <p class="mb-12 text-base md:text-lg tracking-wide leading-8 font-medium text-[#5F6C7B] text-center px-4 lg:px-56">
+        Ellos ya encontraron su lugar en el mundo. Conocé las historias de quienes confiaron en nosotros para construir sus sueños.
+      </p>
+      
+      <div class="relative w-full px-4 md:px-12">
+        <div class="swiper comment-slider pb-12">
+          <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide h-auto p-8 rounded-xl shadow-lg bg-white flex flex-col justify-between">
+              <p class="text-[#5F6C7B] leading-relaxed italic mb-6">“Buscábamos paz y tranquilidad para criar a nuestros hijos. La atención fue excelente desde el primer día y el proceso de escrituración súper rápido.”</p>
+              <div class="flex items-center space-x-4">
+                  <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full" alt="Carlos">
+                <div>
+                  <h6 class="text-[#094067] font-bold">Carlos Méndez</h6>
+                  <p class="text-sm text-[#5F6C7B]">Comprador en Cerro Varnet</p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="swiper-slide h-auto p-8 rounded-xl shadow-lg bg-white flex flex-col justify-between">
+              <p class="text-[#5F6C7B] leading-relaxed italic mb-6">“Inmejorable ubicación. La vista a los cerros es impagable. Recomiendo totalmente invertir aquí, es una zona en constante crecimiento.”</p>
+              <div class="flex items-center space-x-4">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-12 h-12 rounded-full" alt="Ana">
+                <div>
+                  <h6 class="text-[#094067] font-bold">Ana García</h6>
+                  <p class="text-sm text-[#5F6C7B]">Arquitecta</p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="swiper-slide h-auto p-8 rounded-xl shadow-lg bg-white flex flex-col justify-between">
+              <p class="text-[#5F6C7B] leading-relaxed italic mb-6">“La financiación fue clave para poder acceder a mi primer terreno. El equipo de ventas aclaró todas mis dudas con mucha paciencia.”</p>
+              <div class="flex items-center space-x-4">
+                <img src="https://randomuser.me/api/portraits/men/85.jpg" class="w-12 h-12 rounded-full" alt="Roberto">
+                <div>
+                  <h6 class="text-[#094067] font-bold">Roberto Gómez</h6>
+                  <p class="text-sm text-[#5F6C7B]">Empresario</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination !bottom-0"></div>
+          <!-- Navigation buttons moved outside to not overlap text -->
+          <div class="hidden md:block swiper-button-prev !-left-4"></div>
+          <div class="hidden md:block swiper-button-next !-right-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section data-aos="fade-up" data-aos-delay="50" data-aos-duration="500" class="w-full py-12 flex flex-col items-center mb-24 overflow-x-hidden">
+      <span class="mb-4 text-[#3DA9FC] inline-block font-semibold leading-tight">Ayuda</span>
+      <h2 class="mb-4 text-3xl md:text-5xl text-[#094067] font-extrabold leading-tight text-center">Preguntas Frecuentes</h2>
+      <p class="mb-12 text-base md:text-lg text-[#5F6C7B] text-center px-4 lg:px-52">
+        Resolvemos tus dudas antes de que tomes la decisión.
+      </p>
+      <div class="w-full max-w-3xl">
+        <div class="w-full px-7 py-5 border-b border-[rgba(144,180,206,0.25)] flex items-center justify-between text-[#094067] cursor-pointer hover:bg-gray-50">
+          <span class="font-medium text-base sm:text-lg">¿Los terrenos cuentan con servicios de luz y agua?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="w-full px-7 py-5 border-b border-[rgba(144,180,206,0.25)] flex items-center justify-between text-[#094067] cursor-pointer hover:bg-gray-50">
+          <span class="font-medium text-base sm:text-lg">¿Ofrecen financiación propia?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="w-full border-b border-[rgba(144,180,206,0.25)] text-white bg-[#3DA9FC] rounded-md shadow-lg my-2">
+          <div class="px-7 py-5 flex items-center justify-between cursor-pointer">
+            <span class="font-medium text-base sm:text-lg">¿Es posible escriturar inmediatamente?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="rotate-180 w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="px-7 py-5 text-blue-50">
+            <p>Sí, absolutamente. Todos nuestros loteos cuentan con aprobación municipal y planos visados, lo que permite la escrituración inmediata al momento de cancelar el pago.</p>
+          </div>
+        </div>
+        <div class="w-full px-7 py-5 border-b border-[rgba(144,180,206,0.25)] flex items-center justify-between text-[#094067] cursor-pointer hover:bg-gray-50">
+            <span class="font-medium text-base sm:text-lg">¿Puedo visitar los terrenos los fines de semana?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section data-aos="zoom-in" data-aos-delay="50" data-aos-duration="500" class="relative w-full bg-[#094067] py-16 rounded-2xl shadow-xl mb-24 overflow-hidden">
+      <div class="relative z-10 flex flex-col items-center px-4 sm:px-8">
+        <h3 class="text-2xl sm:text-3xl lg:text-4xl text-white text-center font-bold leading-tight px-0 lg:px-24 xl:px-48 mb-9">
+            ¿Querés recibir novedades sobre nuevos loteos? <br> Suscribite a nuestro Newsletter
+        </h3>
+        <div class="w-full flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+          <div class="px-6 py-4 w-full md:w-[450px] bg-white rounded-md flex space-x-2 focus-within:ring-4 focus-within:ring-[#3DA9FC] transition duration-300">
+            <input class="w-full border-none outline-none focus:outline-none text-gray-700" type="email" placeholder="Ingresá tu correo electrónico">
+          </div>
+          <button class="w-full sm:w-fit bg-[#3DA9FC] px-8 py-4 text-white font-bold shadow-lg rounded-md hover:bg-[#2b8cdb] transition-colors duration-300">Suscribirse</button>
+        </div>
+      </div>
+      <!-- Decorative Circles -->
+      <div class="absolute top-[-140%] left-[-27%] w-[500px] h-[680px] border-8 border-white opacity-10 rounded-full pointer-events-none"></div>
+      <div class="absolute bottom-[-190%] right-[-16%] w-[500px] h-[680px] rotate-45 border-8 border-white opacity-10 rounded-full pointer-events-none"></div>
+    </section>
+
+    <!-- Footer Section -->
+    <section data-aos="fade-down" class="bg-white">
+      <div class="py-12 grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-8">
+        <div class="col-span-1 md:col-span-6 lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-2">
+             <div class="w-8 h-8 bg-[#094067] rounded flex items-center justify-center text-white font-bold">T</div>
+             <h5 class="text-xl font-bold text-[#094067]">Terrenos en SALTA</h5>
+          </div>
+          <p class="text-[#5F6C7B] tracking-wide leading-relaxed pr-8">
+            Líderes en desarrollo inmobiliario en el norte argentino. Comprometidos con el crecimiento sustentable y la calidad de vida de nuestros clientes.
+          </p>
+        </div>
+        <div class="col-span-1 md:col-span-2 lg:col-span-2">
+          <h6 class="text-[#094067] text-sm font-bold uppercase tracking-wide mb-5">Navegación</h6>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-[#5F6C7B] hover:text-[#3DA9FC] transition duration-300">Loteos</a></li>
+            <li><a href="#" class="text-[#5F6C7B] hover:text-[#3DA9FC] transition duration-300">Financiación</a></li>
+            <li><a href="#" class="text-[#5F6C7B] hover:text-[#3DA9FC] transition duration-300">Ubicaciones</a></li>
+            <li><a href="#" class="text-[#5F6C7B] hover:text-[#3DA9FC] transition duration-300">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-span-1 md:col-span-2 lg:col-span-2">
+          <h6 class="text-[#094067] text-sm font-bold uppercase tracking-wide mb-5">Legal</h6>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-[#5F6C7B] hover:text-[#3DA9FC] transition duration-300">Términos y Condiciones</a></li>
+            <li><a href="#" class="text-[#5F6C7B] hover:text-[#3DA9FC] transition duration-300">Política de Privacidad</a></li>
+            <li><a href="#" class="text-[#5F6C7B] hover:text-[#3DA9FC] transition duration-300">Defensa del Consumidor</a></li>
+          </ul>
+        </div>
+        <div class="col-span-1 md:col-span-2 lg:col-span-3">
+          <h6 class="text-[#094067] text-sm font-bold uppercase tracking-wide mb-5">Redes Sociales</h6>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-[#5F6C7B] hover:text-[#3DA9FC] transition duration-300">Instagram</a></li>
+            <li><a href="#" class="text-[#5F6C7B] hover:text-[#3DA9FC] transition duration-300">Facebook</a></li>
+            <li><a href="#" class="text-[#5F6C7B] hover:text-[#3DA9FC] transition duration-300">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="py-8 border-t border-gray-100 text-center text-sm font-bold tracking-wide uppercase text-[#5F6C7B]">
+        COPYRIGHT © 2024 — TERRENOS EN SALTA
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    // Initialize Animations
+    AOS.init({
+        once: true, // Animations only happen once
+    });
+
+    // Initialize Swiper
+    const swiper = new Swiper('.comment-slider', {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 30,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      },
+    });
+  </script>
+</body>
+</html>
