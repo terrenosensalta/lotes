@@ -1,365 +1,554 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terrenos en SALTA</title>
-  <link rel="icon" href="assets/img/logo.png">
+  <title>terrenosensalta.AR | Tu lugar en la naturaleza</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="w-full">
-  <header class="max-w-screen-xl mx-auto mb-8">
-    <nav class="px -4 sm:px -5 py-12 flex items-center justify-between space-x-12">
-      <div class="flex items-center space-x-8">
-        <div id="logo" class="flex items-center space-x-2">
-          <img src="assets/img/logo.png" class="w-13 h8-" alt="terrenosensalta.ar">
-          <h5 class="text-xl font-bold text-[#094067]"></h5>
-        </div>
-       
-      </div>
-      <div class="lg:hidden">
-        <button>
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>0
-            <line x1="4" y1="6" x2="20" y2="6"></line>
-            <line x1="4" y1="12" x2="20" y2="12"></line>
-            <line x1="4" y1="18" x2="20" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-    
-    </nav>
-  </header>
-  <main class="max-w-screen-xl mx-auto overflow-x-hidden px-4 sm:px-5">
-    <!-- Hero Section -->
-    <!--<section data-aos="fade-up" data-aos-duration="1000" class="grid grid-cols-6 lg:grid-cols-12 mb-20">
-      <div class="col-span-6 text-center lg:text-left">
-        <span class="inline-block px-3 py-1.5 mb-4 bg-[#3DA9FC] bg-opacity-10 text-[#3DA9FC] font-semibold tracking-wide rounded-full">lotes disponibles
-          
-        </span>
-        <h1 class="text-5xl sm:text-6xl md:text-7xl mb-4 font-extrabold text-[#094067] leading-tight">terrenos <span class="text-[#3DA9FC]"></span> en Salta</h1>
-        <p class="mb-6 text-base md:text-lg tracking-wide leading-8 font-medium text-[#5F6C7B] pr-0 md:pr-4 xl:pr-32">Trippi dapat membantu kamu menikmati perjalanan yang tak terlupakan. Mulailah petualangan baru dan jelajahi destinasi liburan terbaik di seluruh dunia.</p>
-        <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 justify-center lg:justify-start">
-          <button class="w-full md:w-fit px-9 py-5 bg-[#3DA9FC] flex items-center justify-center md:justify-start text-white font-semibold rounded-md shadow-[0_6px_30px_rgba(61,169,252,0.6)] hover:bg-[#3498E4] group transition-colors duration-300">
-            <span>Lihat Destinasi</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-right group-hover:translate-x-1.5 transition duration-300" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <line x1="15" y1="16" x2="19" y2="12"></line>
-              <line x1="15" y1="8" x2="19" y2="12"></line>
-            </svg>
-          </button>
-          <button class="w-fit px-9 py-5 flex items-center justify-center md:justify-start text-[#3DA9FC] font-semibold space-x-4 hover:scale-105 transition duration-300">
-            <div class="p-4 rounded-full border border-[#3DA9FC]">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                 <rect width="24" height="24" fill="#FFFFFE"/>
-                 <path d="M7 4V20L20 12L7 4Z" fill="#3DA9FC"/>
-               </svg>          
-            </div>
-            <span>Galeri Kami</span>
-          </button>
-        </div>
-      </div>
-      <div class="col-span-6 pl-24 hidden lg:block">
-        <img src="assets/img/hero-image.webp" alt="">
-      </div>
-    </section>
-    
-    <section data-aos="zoom-in" data-aos-duration="1000" class="py-2 mb-16 text-center lg:text-left">
-      <!--<span class="text-[#3DA9FC] inline-block font-semibold leading-tight mb-4">Destinasi Favorit</span>
-      <div class="flex items-center justify-between mb-8 lg:mb-5">
-        <h3 class="text-4xl text-[#094067] font-extrabold leading-tight w-full lg:w-fit">Top Destinasi Untuk Anak Muda Healing</h3>
-        <button class="hidden font-semibold text-[#3DA9FC] leading-tight lg:flex items-center space-x-2">
-          Lihat Selengkapnya
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <polyline points="9 6 15 12 9 18"></polyline>
-          </svg>
-        </button>-->
-      </div>
-      <div class="grid grid-cols-4 lg:grid-cols-12 gap-y-12 lg:gap-y-0 lg:gap-x-12 mb-8">
-        <div class="col-span-4 flex flex-col items-center justify-center rounded-xl hover:scale-105 transition duration-300 cursor-pointer">
-          <img src="assets/img/destination/cerrovarnet.jpg" class="h-[100%] aspect-video lg:aspect-auto object-cover object-center mb-4 rounded-xl shadow-[0_9px_40px_rgba(9,64,103,0.20)]" alt="">
-          <h5 class="text-xl text-[#094067] font-bold mb-3.5">Reserva Cerro Varnet</h5>
-          <p class="text-sm text-[#5F6C7B] font-medium">Lotes desde 500 m2</p>
-        </div>
-        <div class="col-span-4 flex flex-col items-center justify-center rounded-xl hover:scale-105 transition duration-300 cursor-pointer">
-          <img src="assets/img/destination/refugio.jpg" class="h-[100%] aspect-video lg:aspect-auto object-cover object-center mb-4 rounded-xl shadow-[0_9px_40px_rgba(9,64,103,0.20)]" alt="">
-          <h5 class="text-xl text-[#094067] font-bold mb-3.5">Refugio Vaquereña</h5>
-          <p class="text-sm text-[#5F6C7B] font-medium">Lotes desde 650 m2</p>
-        </div>
-        <div class="col-span-4 flex flex-col items-center justify-center rounded-xl hover:scale-105 transition duration-300 cursor-pointer">
-          <img src="assets/img/destination/pumapiedra.jpg" class="h-[100%] aspect-video lg:aspect-auto object-cover object-center mb-4 rounded-xl shadow-[0_9px_40px_rgba(9,64,103,0.20)]" alt="">
-          <h5 class="text-xl text-[#094067] font-bold mb-3.5">Condominio Puma Piedra</h5>
-          <p class="text-sm text-[#5F6C7B] font-medium">Lotes desde 1000 m2</p>
-        </div>
-      </div>
-      <button class="font-semibold text-[] leading-tight flex lg:hidden items-center mx-auto space-x-2">
-        Lihat Selengkapnya
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <polyline points="9 6 15 12 9 18"></polyline>
-        </svg>
-      </button>
-    </section>
-    <!-- Booking Hotel Section -->
-    <!-- Partners Section -->
-    <section data-aos="fade-right" data-aos-delay="500" data-aos-duration="700" class="w-full flex flex-col lg:flex-row items-center justify-center space-y-11 lg:space-y-0 lg:space-x-11 py-12 mb-24">
-      <img src="assets/img/partners/cerrovarnet.png" class="h-[56px] lg:h-[35px] grayscale opacity-20 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="">
-      <img src="assets/img/partners/tripadvisor.png" class="h-[56px] lg:h-[35px] grayscale opacity-20 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="">
-      <img src="assets/img/partners/pegipegi.svg" class="h-[56px] lg:h-[35px] grayscale opacity-20 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="">
-      <img src="assets/img/partners/reddorz.png" class="h-[56px] lg:h-[35px] grayscale opacity-20 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="">
-      <img src="assets/img/partners/traveloka.png" class="h-[56px] lg:h-[35px] grayscale opacity-20 hover:grayscale-0 hover:opacity-100 transition duration-500" alt="">
-    </section>
-    <!-- Favorite Section -->
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#059669', // Emerald 600
+            primaryDark: '#064E3B', // Emerald 900
+            secondary: '#10B981', // Emerald 500
+            accent: '#D97706', // Amber 600 (para detalles cálidos)
+            surface: '#F5F5F4', // Stone 100
+            textMain: '#1C1917', // Stone 900
+            textMuted: '#57534E', // Stone 600
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-    <!-- Nearest Destination Section -->
-    <section data-aos="fade-up" data-aos-duration="1000" class="w-full flex flex-col items-center justify-center py-4 mb-40 text-center lg:text-left">
-      <span class="mb-4 text-[#33a353] inline-block font-semibold leading-tight">Animáte a vivir en armonía con la naturaleza</span>
-      <h2 class="mb-4 text-4xl md:text-5xl text-[#094067] font-extrabold leading-tight">Últimos terrenos DISPONIBLES</h2>
-      <p class="mb-8 text-base md:text-lg tracking-wide leading-8 font-medium text-[#5F6C7B] text-center px-0 lg:px-64">Viví rodeado de naturaleza a minutos de la ciudad en el corazon de Vaqueros. Últimos terrenos disponibles en PREVENTA </p>
-      <img src="assets/img/nearest-destination.webp" class="w-full mb-8 shadow-[0_2px_8px_rgba(0,0,0,0.13)]" alt="">
-      <button class="px-9 py-5 bg-[#3DA9FC] flex items-center text-white font-semibold rounded-md shadow-[0_6px_30px_rgba(61,169,252,0.6)] hover:bg-[#3498E4] group transition-all duration-300">
-        <span>Mulai Sekarang</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-right group-hover:translate-x-1.5 transition duration-300" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <line x1="15" y1="16" x2="19" y2="12"></line>
-          <line x1="15" y1="8" x2="19" y2="12"></line>
-        </svg>
-      </button>
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #E7E5E4; /* Stone 200 */
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0cb56c; /* Primary */
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #064E3B;
+    }
+    
+    /* Swiper Customization */
+    .swiper-pagination-bullet-active {
+      background-color: #059669 !important;
+    }
+    .swiper-button-next, .swiper-button-prev {
+      color: #059669;
+      background: rgba(255,255,255,0.9);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+      background: #059669;
+      color: white;
+      transform: scale(1.1);
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    /* Clase base para el contenido del acordeón */
+    .accordion-content {
+      transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    }
+    /* Clase para los elementos de navegación (Menú Móvil) */
+    .mobile-menu-item {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+  </style>
+</head>
+<body class="w-full overflow-x-hidden bg-stone-50 text-textMain selection:bg-primary selection:text-white">
+  
+  <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
+    <nav class="max-w-screen-xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-10">
+        <a href="#" class="flex items-center gap-2 group">
+          <!--<div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:rotate-6 transition-transform duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </div>-->
+            
+          <h5 class="text-xl font-bold text-primaryDark tracking-tight">terrenosensalta<span class="text-primary">.AR</span></h5>
+        </a>
+        
+        <div class="hidden lg:flex items-center gap-8 font-medium text-textMuted text-sm tracking-wide">
+            <a href="#" class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Inicio</a>
+            <a href="#lotes" class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Lotes</a>
+            <a href="#servicios" class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Servicios</a>
+            <a href="#contacto" class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Contacto</a>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-4">
+        <button class="hidden lg:block px-5 py-2.5 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition duration-300 shadow-sm hover:shadow-md">
+            Área Clientes
+        </button>
+        <div class="lg:hidden">
+            <button id="mobile-menu-toggle" class="text-primaryDark p-2">
+            <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+            <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 hidden" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            </button>
+        </div>
+      </div>
+    </nav>
+    
+    <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+        <div class="px-6 py-4 flex flex-col items-center gap-4 font-medium text-textMain text-lg">
+            <a href="#" class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2">Inicio</a>
+            <a href="#lotes" class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-100">Lotes</a>
+            <a href="#servicios" class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-200">Servicios</a>
+            <a href="#contacto" class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-300">Contacto</a>
+            <button class="w-full mt-4 px-5 py-2.5 border-2 border-primary bg-primary text-white font-semibold rounded-lg hover:bg-primaryDark transition duration-300 shadow-md">
+                Área Clientes
+            </button>
+        </div>
+    </div>
+  </header>
+
+  <main class="max-w-screen-xl mx-auto px-4 sm:px-6 pt-28">
+    
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24 items-center min-h-[600px]">
+      <div class="col-span-1 lg:col-span-6 text-center lg:text-left order-2 lg:order-1" data-aos="fade-right" data-aos-duration="1000">
+        <span class="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-emerald-100 text-primaryDark font-semibold text-xs uppercase tracking-wider rounded-full border border-emerald-200">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            PREVENTA EXCLUSIVA 2026
+        </span>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl mb-6 font-extrabold text-primaryDark leading-[1.15]">
+            Construí tu hogar donde <br> respira la <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">naturaleza</span>
+        </h1>
+        <p class="mb-8 text-lg text-textMuted leading-relaxed pr-0 lg:pr-12">
+            Animáte a vivir en armonía con la naturaleza.Lotes disponibles para invertir  desde 300 u$s. 
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+          <button class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-[0_10px_20px_-10px_rgba(5,150,105,0.5)] hover:bg-primaryDark hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+            <span>Agendar visita</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="5" y1="12" x2="19" y2="12" /><line x1="15" y1="16" x2="19" y2="12" /><line x1="15" y1="8" x2="19" y2="12" /></svg>
+          </button>
+          
+          <button class="w-full sm:w-auto px-8 py-4 bg-white text-textMain border border-stone-200 font-semibold rounded-xl hover:border-primary hover:text-primary transition-all duration-300 flex items-center justify-center gap-3 group">
+            <div class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center group-hover:bg-emerald-50 transition-colors">
+                <svg class="w-4 h-4 text-textMain group-hover:text-primary transition-colors ml-0.5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <br>
+            <span>Ver mapa</span>
+          </button>
+        </div>
+      
+      <div class="col-span-1 lg:col-span-6 relative order-1 lg:order-2" data-aos="fade-left" data-aos-duration="1200">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-emerald-100 to-transparent rounded-full filter blur-3xl opacity-60 -z-10"></div>
+        
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white">
+            <img src="assets/img/lotes/anticipo.svg" class="object-cover h-[550px] w-full transform hover:scale-105 transition duration-700" alt="Paisaje Salta">
+            
+            <!--<div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-stone-100 flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-textMuted uppercase font-bold tracking-wider mb-1">Oportunidad</p>
+                    <p class="text-primaryDark font-bold">Lotes en Vaqueros</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs text-textMuted mb-1">Desde</p>
+                    <p class="text-primary font-bold text-lg">USD 15.000</p>
+                </div>
+            </div>-->
+        </div>
+      </div>
     </section>
-    <!-- Testimonial Section -->
-    <section data-aos="fade-down" data-aos-delay="100" data-aos-duration="700" class="relative w-[95%] mx-auto min-h-[742px] py-24 flex flex-col items-center bg-[#D8EEFE] bg-opacity-75 rounded-xl mb-24">
-      <span class="mb-4 text-[#3DA9FC] inline-block font-semibold leading-tight">Testimoni</span>
-      <h2 class="mb-4 text-4xl md:text-5xl text-[#094067] font-extrabold leading-tight text-center lg:text-left">Apa Kata Mereka Tentang Trippi?</h2>
-      <p class="mb-8 text-base md:text-lg tracking-wide leading-8 font-medium text-[#5F6C7B] text-center px-2 lg:px-56">Kalo seandainya kamu belum percaya sama aplikasi ini gapapa, percaya mah sama Tuhan. Tapi setelah baca ulasan-ulasan ini mungkin kamu akan sedikit mempertimbangkan 😏</p>
-      <div class="relative w-full">
-        <div class="absolute top-0 left-[-3%] w-[106%]">
-          <div class="swiper comment-slider px-5 h-[340px]">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-              <!-- Slides -->
-              <div class="swiper-slide w-full max-h-[240px] md:max-h-[215px] xl:max-h-[260px] p-8 sm:px-12 sm:py-8 md:p-6 xl:p-8 rounded-xl shadow-lg bg-white flex flex-col justify-between">
-                <p class="text-sm sm:text-lg md:text-sm xl:text-base text-[#5F6C7B] leading-relaxed">“Aplikasinya sangat membantu, saya bingung mau ngabisin jatah cuti saya untuk apa, tapi dengan aplikasi ini saya menghabiskan jatah cuti saya untuk liburan, Thank you Trippi.”</p>
-                <div class="flex items-center space-x-4">
-                    <img src="assets/img/avatar/sigit-rendang.jpg" class="w-10 xl:w-12 h-10 xl:h-12 rounded-full" alt="">
-                  <div class="flex flex-col justify-between">
-                    <h6 class="text-[#094067] font-medium">Sigit Rendang</h6>
-                    <p class="text-sm text-[#5F6C7B]">Creative Designer</p>
-                  </div>
-                </div>
+    
+    <section id="lotes" class="py-12 mb-20">
+        <div class="flex flex-col lg:flex-row items-end justify-between mb-12 gap-6" data-aos="fade-up">
+            <div class="max-w-2xl">
+                <h3 class="text-3xl sm:text-4xl text-primaryDark font-extrabold leading-tight"> </h3>
+            </div>
+            <a href="#" class="hidden lg:flex items-center gap-2 text-primary font-semibold hover:text-primaryDark transition group">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
+            </a>
+        </div>
+      
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+              <div class="relative h-64 overflow-hidden">
+                <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Entrega Inmediata</span>
+                <img src="assets/img/lotes/cerro.svg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Cerro Varnet">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
               </div>
-              <div class="swiper-slide w-full max-h-[240px] md:max-h-[215px] xl:max-h-[260px] px-12 py-8 md:p-6 xl:p-8 rounded-xl shadow-lg bg-white flex flex-col justify-between">
-                <p class="text-sm sm:text-lg md:text-sm xl:text-base text-[#5F6C7B] leading-relaxed">“Nah ini nih, aplikasi yang cocok banget untuk saya ketika pengen nyentuh rumput, biar ngga nolep terus di rumah, Terima kasih  kepada Ortu saya, teman-teman saya, dan Trippi.”</p>
-                <div class="flex items-center space-x-4">
-                  <img src="assets/img/avatar/ilham-jawir.jpg" class="w-10 xl:w-12 h-10 xl:h-12 rounded-full" alt="">
-                  <div class="flex flex-col justify-between">
-                    <h6 class="text-[#094067] font-medium">Ilham Jawir</h6>
-                    <p class="text-sm text-[#5F6C7B]">Discord Moderator</p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide w-full max-h-[240px] md:max-h-[215px] xl:max-h-[260px] px-12 py-8 md:p-6 xl:p-8 rounded-xl shadow-lg bg-white flex flex-col justify-between">
-                <p class="text-sm sm:text-lg md:text-sm xl:text-base text-[#5F6C7B] leading-relaxed">“All in one aplikasi yang sangat membantu saya dan keluarga saya dikala ingin pergi berlibur, ga cuma bisa cari destinasi wisata, bahkan bisa booking hotel juga.”</p>
-                <div class="flex items-center space-x-4">
-                  <img src="assets/img/avatar/giga-chad.jpg" class="w-10 xl:w-12 h-10 xl:h-12 rounded-full" alt="">
-                  <div class="flex flex-col justify-between">
-                    <h6 class="text-[#094067] font-medium">Giga Chad</h6>
-                    <p class="text-sm text-[#5F6C7B]">CEO PT. Chad Selalu</p>
-                  </div>
-                </div>
+              <div class="p-6">
+                 <div class="flex justify-between items-start mb-2">
+                     <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Condominio Cerro Varnet</h5>
+                     <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">Últimos lotes de 500 m2</span>
+                 </div>
+                 <p class="text-sm text-textMuted font-medium mb-6 line-clamp-2">Barrio abierto con vistas panorámicas a la ciudad. </p>
+                 
+                 <div class="flex items-center justify-between border-t border-stone-100 pt-4">
+                    <div class="flex flex-col">
+                        <span class="text-xs text-textMuted uppercase">Superficie desde</span>
+                        <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
+                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                            500 m²
+                        </span>
+                    </div>
+                    <div class="flex flex-col text-right">
+                        <span class="text-xs text-textMuted uppercase">Precio</span>
+                        <span class="text-lg font-bold text-primary">$12.500 USD</span>
+                    </div>
+                 </div>
               </div>
             </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
     
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <div class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+              <div class="relative h-64 overflow-hidden">
+                <span class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Ùltimos lotes</span>
+                <img src="assets/img/lotes/refugio.svg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="La Caldera">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+              </div>
+              <div class="p-6">
+                 <div class="flex justify-between items-start mb-2">
+                     <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Refugio Vaquereña</h5>
+                     <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">10% OFF CONTADO</span>
+                 </div>
+                 <p class="text-sm text-textMuted font-medium mb-6 line-clamp-2">Naturaleza pura, arroyos y tranquilidad a solo 25 minutos del centro.</p>
+                 
+                 <div class="flex items-center justify-between border-t border-stone-100 pt-4">
+                    <div class="flex flex-col">
+                        <span class="text-xs text-textMuted uppercase">Superficie</span>
+                        <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
+                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                            800 m²
+                        </span>
+                    </div>
+                    <div class="flex flex-col text-right">
+                        <span class="text-xs text-textMuted uppercase">Precio</span>
+                        <span class="text-lg font-bold text-primary">15.000 u$s </span>
+                    </div>
+                 </div>
+              </div>
+            </div>
+    
+            <div class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+              <div class="relative h-64 overflow-hidden">
+                 <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">eco-urbanización</span>
+                <img src="assets/img/lotes/pumapiedra.svg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Club de Campo">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+              </div>
+              <div class="p-6">
+                 <div class="flex justify-between items-start mb-2">
+                     <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Condominio Puma Piedra </h5>
+                     <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">DIQUE CAMPO ALEGRE</span>
+                 </div>
+                 <p class="text-sm text-textMuted font-medium mb-6 line-clamp-2">Vista panorámica hacia el espejo de agua en la zona más privilegiada de La Caldera.</p>
+                 
+                 <div class="flex items-center justify-between border-t border-stone-100 pt-4">
+                    <div class="flex flex-col">
+                        <span class="text-xs text-textMuted uppercase">Superficie</span>
+                        <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
+                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                            1000 m²
+                        </span>
+                    </div>
+                    <div class="flex flex-col text-right">
+                        <span class="text-xs text-textMuted uppercase">Precio</span>
+                        <span class="text-lg font-bold text-primary">17.000 u$s</span>
+                    </div>
+                 </div>
+              </div>
+            </div>
+        
+            <div class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+              <div class="relative h-64 overflow-hidden">
+                 <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">eco-urbanización</span>
+                <img src="assets/img/lotes/aldea.svg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Club de Campo">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+              </div>
+              <div class="p-6">
+                 <div class="flex justify-between items-start mb-2">
+                     <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Aldea Vaquereña </h5>
+                     <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">Vaqueros</span>
+                 </div>
+                 <p class="text-sm text-textMuted font-medium mb-6 line-clamp-2">Lotes en el corazón de un bosque de nogales en Vaqueros, ideal para casa y quincho con piscina.</p>
+                 
+                 <div class="flex items-center justify-between border-t border-stone-100 pt-4">
+                    <div class="flex flex-col">
+                        <span class="text-xs text-textMuted uppercase">Superficie</span>
+                        <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
+                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                            1000 m²
+                        </span>
+                    </div>
+                    <div class="flex flex-col text-right">
+                        <span class="text-xs text-textMuted uppercase">Precio</span>
+                        <span class="text-lg font-bold text-primary">17.000 u$s</span>
+                    </div>
+                 </div>
+              </div>
+            </div>
+        </div>
+      
           </div>
+      
+        
+        <div class="mt-8 text-center lg:hidden">
+            <button class="inline-flex items-center gap-2 px-6 py-3 border border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-white transition">
+              Descargar catálogo en PDF
+            </button>
         </div>
-      </div>
     </section>
-    <!-- FAQ Section -->
-    <section data-aos="fade-up" data-aos-delay="50" data-aos-duration="500" class="w-full py-12 flex flex-col items-center mb-24 overflow-x-hidden">
-      <span class="mb-4 text-[#3DA9FC] inline-block font-semibold leading-tight">Banyak Yang Nanya</span>
-      <h2 class="mb-4 text-4xl md:text-5xl text-[#094067] font-extrabold leading-tight text-center lg:text-left">Pertanyaan Yang Sering Diajukan</h2>
-      <p class="mb-12 text-base md:text-lg tracking-wide leading-8 font-medium text-[#5F6C7B] text-center px-0 lg:px-52">Banyak banget yang sering nanya ginian, jadi biar mimin ga cape nih mimin tulisin aja semuanya di section ini. Kalau masih ada yang nanya kepala kau sini mimin genjreng 🤟🏻</p>
-      <div class="w-full max-w-2xl text-sm sm:text-base">
-        <div class="w-full px-7 py-5 border-b border-[rgba(144,180,206,0.25)] flex items-center justify-between text-[#094067]">
-          <span class="w-full font-medium text-base sm:text-lg">Apakah aplikasi ini sudah mendaftar di Kominfo?</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down w-5 sm:w-6 h-5 sm:h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <polyline points="6 9 12 15 18 9"></polyline>
-         </svg>
+
+    <section id="servicios" class="w-full bg-primaryDark rounded-3xl p-8 md:p-12 mb-24 shadow-2xl relative overflow-hidden" data-aos="fade-up">
+        <svg class="absolute top-0 right-0 opacity-10 w-96 h-96 transform translate-x-1/3 -translate-y-1/3" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FFFFFF" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.2,-19.2,95.8,-5.2C93.4,8.9,81.8,22.1,70.8,33.4C59.8,44.7,49.4,54.1,37.6,60.8C25.8,67.5,12.6,71.5,-0.2,71.8C-13,72.2,-26.3,68.9,-38.6,62.1C-50.9,55.3,-62.2,45,-71.3,32.5C-80.4,20,-87.3,5.3,-84.9,-8.2C-82.5,-21.7,-70.8,-34,-58.9,-43.3C-47,-52.6,-34.9,-58.9,-22.4,-64.7C-9.9,-70.5,3,-75.8,15.6,-78.4L28.2,-81.1Z" transform="translate(100 100)" />
+        </svg>
+
+        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+            <div>
+                <h2 class="text-3xl font-bold text-white mb-2">¿Querés financiar tu terreno?</h2>
+                <p class="text-emerald-100 text-lg">Ofrecemos planes de hasta 36 cuotas fijas y sin interés.</p>
+            </div>
+            <button class="shrink-0 px-8 py-4 bg-white text-primaryDark font-bold rounded-xl hover:bg-emerald-50 hover:scale-105 transition duration-300 shadow-lg">
+                Consultar Financiaciamiento
+            </button>
         </div>
-        <div class="w-full px-7 py-5 border-b border-[rgba(144,180,206,0.25)] flex items-center justify-between text-[#094067]">
-          <span class="w-full font-medium text-base sm:text-lg">Apakah jika saya peduli maka saya lindungi juga?</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down w-5 sm:w-6 h-5 sm:h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <polyline points="6 9 12 15 18 9"></polyline>
-         </svg>
-        </div>
-        <div class="w-full border-b border-[rgba(144,180,206,0.25)] divide-y divide-[rgba(255, 255, 255, 0.1)]  text-white bg-[#3DA9FC] rounded-md shadow-[0_30px_60px_rgba(9,64,103,0.25)]">
-          <div class="px-7 py-5 flex items-center justify-between">
-            <span class="w-full font-medium text-base sm:text-lg">Apakah aplikasi ini gratis?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="rotate-180 icon icon-tabler icon-tabler-chevron-down w-5 sm:w-6 h-5 sm:h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </div>
-          <div class="px-7 py-5">
-            <p>Gratis bang suer, paling ntar ada biaya admin aja pas elu pesen ticket atau booking hotel. Yakali gaada biaya admin, terus adminnya mau dapet duit darimana, masa ngepet 😭</p>
-          </div>
-        </div>
-        <div class="w-full px-7 py-5 border-b border-[rgba(144,180,206,0.25)] flex items-center justify-between text-[#094067]">
-          <span class="w-full font-medium text-base sm:text-lg">Apakah ada tutor supaya saya tetap bisa produk terus?</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down w-5 sm:w-6 h-5 sm:h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <polyline points="6 9 12 15 18 9"></polyline>
-         </svg>
-        </div>
-        <div class="w-full px-7 py-5 border-b border-[rgba(144,180,206,0.25)] flex items-center justify-between text-[#094067]">
-          <span class="w-full font-medium text-base sm:text-lg">Gatau lagi mau nambah pertanyaan apa</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down w-5 sm:w-6 h-5 sm:h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <polyline points="6 9 12 15 18 9"></polyline>
-         </svg>
-        </div>
-        <div class="w-full px-7 py-5 border-b border-[rgba(144,180,206,0.25)] flex items-center justify-between text-[#094067]">
-          <span class="w-full font-medium text-base sm:text-lg">Yodahlah tinggal section CTA sama Footer doang, mending turu</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down w-5 sm:w-6 h-5 sm:h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <polyline points="6 9 12 15 18 9"></polyline>
-         </svg>
-        </div>
-        <div class="w-full px-7 py-5 border-b border-[rgba(144,180,206,0.25)] flex items-center justify-between text-[#094067]">
-          <span class="w-full font-medium text-base sm:text-lg">Cara main lato-lato gimana sih?</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down w-5 sm:w-6 h-5 sm:h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <polyline points="6 9 12 15 18 9"></polyline>
-         </svg>
-        </div>
-      </div>
     </section>
-    <!-- CTA Section -->
-    <section data-aos="zoom-in" data-aos-delay="50" data-aos-duration="500" class="relative w-full bg-[#D8EEFE] py-12 rounded-xl shadow-[0_6px_30px_rgba(9,64,103,0.13)] mb-24 overflow-hidden">
-      <div class="relative z-10 flex flex-col items-center px-4 sm:px-8">
-        <h3 class="text-2xl sm:text-3xl lg:text-4xl text-[#094067] text-center font-bold leading-tight px-0 lg:px-24 xl:px-48 mb-9">Pengen Dapet Info Seputar Destinasi Wisata? Yuk Berlangganan Di Newsletter Kami</h3>
-        <div class="w-full flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4">
-          <div class="px-6 py-4 w-full md:w-[550px] bg-white shadow-md rounded-md flex space-x-2 focus-within:ring-2 focus-within:ring-[#3DA9FC] ring-offset-2 transition duration-300">
-            <input class="w-full border-none outline-none focus:outline-none" type="text" placeholder="Tulis alamat email kamu disini">
-          </div>
-          <button class="w-full sm:w-fit bg-[#EF4565] px-6 py-4 text-white font-bold shadow-md shadow-[rgba(239,69,101,0.25)] rounded-md hover:bg-[#d03753] transition-colors duration-300">Subscribe</button>
-        </div>
+
+    <section class="relative w-full py-16 mb-24" data-aos="fade-up">
+      </section>
+<!--
+    <section class="max-w-3xl mx-auto mb-24" data-aos="fade-up">
+      <div class="text-center mb-10">
+          <h2 class="text-3xl font-bold text-primaryDark">Preguntas Frecuentes</h2>
       </div>
-      <div class="absolute top-[-140%] left-[-27%] w-[500px] h-[680px] border-8 border-[rgba(255,255,255,0.75)] rounded-full"></div>
-      <div class="absolute bottom-[-190%] left-[-25%] w-[500px] h-[680px] rotate-45 border-8 border-[rgba(255,255,255,0.75)] rounded-full"></div>
-      <div class="absolute top-[-140%] right-[-27%] w-[500px] h-[680px] border-8 border-[rgba(255,255,255,0.75)] rounded-full"></div>
-      <div class="absolute bottom-[-190%] right-[-16%] w-[500px] h-[680px] rotate-45 border-8 border-[rgba(255,255,255,0.75)] rounded-full"></div>
+      
+      <div id="faq-accordion" class="space-y-4">
+        
+        <div class="accordion-item bg-white border border-emerald-200 rounded-xl overflow-hidden shadow-sm">
+            <button class="accordion-header w-full px-6 py-4 text-left bg-emerald-50 text-primaryDark font-bold flex justify-between items-center">
+                <span>¿Cuándo puedo empezar a construir?</span>
+                <svg class="accordion-icon w-5 h-5 text-primary transform rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="accordion-content max-h-fit" style="padding: 1rem 1.5rem;">
+                <p class="text-textMuted">Podés empezar a construir inmediatamente después de la firma del boleto de compraventa y la posesión del terreno, siempre que presentes los planos municipales correspondientes. Te asistimos en este proceso.</p>
+            </div>
+        </div>
+        
+        <div class="accordion-item bg-white border border-stone-200 rounded-xl overflow-hidden hover:border-emerald-200 transition">
+            <button class="accordion-header w-full px-6 py-4 text-left text-textMain font-semibold flex justify-between items-center">
+                <span>¿Los lotes tienen servicios de luz y agua?</span>
+                <svg class="accordion-icon w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden" style="padding: 0 1.5rem;">
+                <p class="text-textMuted pb-4">Sí, todos nuestros desarrollos se entregan con infraestructura de servicios completa: red eléctrica, agua potable y en muchos casos, cloacas. La conexión final al lote está garantizada.</p>
+            </div>
+        </div>
+        
+        <div class="accordion-item bg-white border border-stone-200 rounded-xl overflow-hidden hover:border-emerald-200 transition">
+            <button class="accordion-header w-full px-6 py-4 text-left text-textMain font-semibold flex justify-between items-center">
+                <span>¿Qué gastos de escrituración tengo?</span>
+                <svg class="accordion-icon w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden" style="padding: 0 1.5rem;">
+                <p class="text-textMuted pb-4">Los gastos de escrituración incluyen honorarios del escribano, impuestos de sellos y tasas municipales. Te proporcionaremos un presupuesto detallado y sin sorpresas al momento de la reserva.</p>
+            </div>
+        </div>
+
+      </div>-->
     </section>
-    <!-- Footer Section -->
-    <section data-aos="fade-down">
-      <div class="py-12 grid grid-cols-6 lg:grid-cols-12 gap-y-8 lg:gap-y-0 lg:gap-x-8">
-        <div class="col-span-6 space-y-4">
-          <img src="assets/img/logo.png" class="w-9 h-9" alt="">
-          <h5 class="text-xl font-bold text-[#094067]">Terrenos en SALTA</h5>
-          <p class="text-[#5F6C7B] tracking-wide leading-relaxed pr-8">Trippi adalah situs untuk mencari destinasi wisata, termasuk rute pemberangkatan, dan booking penginapan terdekat.</p>
-        </div>
-        <div class="col-span-6 sm:col-span-2">
-          <h6 class="text-[#094067] text-sm font-bold uppercase tracking-wide mb-5">Halaman</h6>
-          <ul class="space-y-2">
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Destinasi Wisata</a>
-            </li>
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Booking Penginapan</a>
-            </li>
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Destinasi Terdekat</a>
-            </li>
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Profil Saya</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-span-6 sm:col-span-2">
-          <h6 class="text-[#094067] text-sm font-bold uppercase tracking-wide mb-5">Tentang</h6>
-          <ul class="space-y-2">
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Tentang Kami</a>
-            </li>
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Kebijakan Privasi</a>
-            </li>
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Galeri</a>
-            </li>
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Bantuan</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-span-6 sm:col-span-2">
-          <h6 class="text-[#094067] text-sm font-bold uppercase tracking-wide mb-5">Sosial Media</h6>
-          <ul class="space-y-2">
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Twitter</a>
-            </li>
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Facebook</a>
-            </li>
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Instagram</a>
-            </li>
-            <li>
-              <a href="#" class="text-[#5F6C7B] hover:text-[#33393f] transition duration-300">Tiktok</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="py-12 border-t border-[rgba(144,180,206,0.25)] text-center text-sm font-bold tracking-wide uppercase text-[#5F6C7B]">
-        COPYRIGHT © 2023 — DESIGN BY RSURYA99
-      </div>
-    </section>
+  
+    
   </main>
+
+  <a href="#" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition duration-300 flex items-center justify-center group">
+    <span class="absolute right-full mr-3 bg-white text-gray-800 text-xs font-bold px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition whitespace-nowrap">¡Consultanos!</span>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848H17.472V14.382Z" />
+    </svg>
+  </a>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
-    AOS.init();
+    // 1. Initialize Animations
+    AOS.init({
+        once: true,
+        offset: 100,
+        duration: 800,
+        easing: 'ease-out-cubic',
+    });
+
+    // 2. Initialize Swiper (Testimonials)
     const swiper = new Swiper('.comment-slider', {
-      // Optional parameters
       loop: true,
       slidesPerView: 1,
       spaceBetween: 30,
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-        },
-        // when window width is >= 1024px
-        1024: {
-          slidesPerView: 3,
-        },
+      centeredSlides: false,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
       },
-
-      // If we need pagination
       pagination: {
         el: '.swiper-pagination',
+        clickable: true,
       },
-
-      // Navigation arrows
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      },
+    });
+
+    // 3. Mobile Menu Toggle Functionality
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+    const menuItems = document.querySelectorAll('.mobile-menu-item');
+    const header = document.querySelector('header');
+
+    menuToggle.addEventListener('click', () => {
+        const isExpanded = mobileMenu.classList.toggle('is-expanded');
+
+        if (isExpanded) {
+            // Expand menu
+            mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+            menuIconOpen.classList.add('hidden');
+            menuIconClose.classList.remove('hidden');
+            header.classList.add('shadow-xl'); // Ensure shadow persists when open
+            
+            // Staggered reveal of menu items
+            menuItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.remove('opacity-0', 'translate-y-2');
+                }, 50 * index); // 50ms delay per item
+            });
+
+        } else {
+            // Collapse menu
+            mobileMenu.style.maxHeight = '0';
+            menuIconOpen.classList.remove('hidden');
+            menuIconClose.classList.add('hidden');
+            header.classList.remove('shadow-xl');
+            
+            // Instant hide for items
+            menuItems.forEach(item => {
+                item.classList.add('opacity-0', 'translate-y-2');
+            });
+        }
+    });
+    
+    // 4. FAQ Accordion Functionality
+    const faqAccordion = document.getElementById('faq-accordion');
+    
+    faqAccordion.addEventListener('click', (event) => {
+        // Find the button (header) that was clicked
+        let header = event.target.closest('.accordion-header');
+        if (!header) return;
+
+        const item = header.parentElement;
+        const content = item.querySelector('.accordion-content');
+        const icon = item.querySelector('.accordion-icon');
+        
+        const isCurrentlyOpen = content.style.maxHeight !== '0px' && content.style.maxHeight !== '';
+
+        // Close all other items (Coherence)
+        document.querySelectorAll('.accordion-item').forEach(otherItem => {
+            if (otherItem !== item) {
+                const otherContent = otherItem.querySelector('.accordion-content');
+                const otherIcon = otherItem.querySelector('.accordion-icon');
+                const otherHeader = otherItem.querySelector('.accordion-header');
+                
+                otherContent.style.maxHeight = '0';
+                otherContent.style.padding = '0 1.5rem';
+                otherIcon.classList.remove('rotate-180');
+                otherHeader.classList.remove('bg-emerald-50', 'text-primaryDark', 'font-bold');
+                otherHeader.classList.add('text-textMain', 'font-semibold');
+                otherItem.classList.remove('border-emerald-200');
+                otherItem.classList.add('border-stone-200');
+            }
+        });
+
+        // Toggle the clicked item
+        if (isCurrentlyOpen) {
+            // Close
+            content.style.maxHeight = '0';
+            content.style.padding = '0 1.5rem';
+            icon.classList.remove('rotate-180');
+            header.classList.remove('bg-emerald-50', 'text-primaryDark', 'font-bold');
+            header.classList.add('text-textMain', 'font-semibold');
+            item.classList.remove('border-emerald-200');
+            item.classList.add('border-stone-200');
+
+        } else {
+            // Open
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.style.padding = '1rem 1.5rem 1rem 1.5rem';
+            icon.classList.add('rotate-180');
+            header.classList.add('bg-emerald-50', 'text-primaryDark', 'font-bold');
+            header.classList.remove('text-textMain', 'font-semibold');
+            item.classList.add('border-emerald-200');
+            item.classList.remove('border-stone-200');
+        }
+    });
+
+    // Adjust initial open state for first FAQ item
+    document.addEventListener('DOMContentLoaded', () => {
+        const firstContent = document.querySelector('.accordion-item:first-child .accordion-content');
+        if(firstContent) {
+            // Set max-height for smooth transition based on content height
+            firstContent.style.maxHeight = firstContent.scrollHeight + "px";
+        }
     });
   </script>
 </body>

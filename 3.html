@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natura Estate | Bienes Raíces Ecológicos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABLES CSS & RESET --- */
+        :root {
+            --primary: #2C5F2D; /* Verde Bosque */
+            --primary-dark: #1F441F;
+            --accent: #97BC62; /* Verde Lima Suave */
+            --sand: #F2EFE9; /* Beige Fondo */
+            --text-dark: #2C3E50;
+            --text-light: #F8F9FA;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--sand);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: rgba(242, 239, 233, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .btn-contact {
+            padding: 0.7rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        .btn-contact:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1449156493391-d2cfa28e468b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-hero {
+            padding: 1rem 2.5rem;
+            background-color: var(--accent);
+            color: var(--primary-dark);
+            font-weight: 700;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-hero:hover {
+            background-color: white;
+            transform: scale(1.05);
+        }
+
+        /* --- FILTERS --- */
+        .filter-container {
+            padding: 4rem 5% 1rem;
+            text-align: center;
+        }
+
+        .filter-title {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .filter-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            color: var(--primary);
+            cursor: pointer;
+            border-radius: 30px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* --- PROPERTIES GRID --- */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 5% 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .card-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .property-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: rgba(44, 95, 45, 0.9);
+            color: white;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .card-details {
+            padding: 1.5rem;
+        }
+
+        .price {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .location {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .features span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content h2 { color: white; margin-bottom: 1rem; }
+        
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* En prod usaríamos un burger menu */
+            .navbar { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-leaf"></i> NATURA ESTATE
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Propiedades</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#" class="btn-contact">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Encuentra tu Refugio en la Naturaleza</h1>
+            <p>Descubre propiedades exclusivas donde el lujo se encuentra con la sostenibilidad. Bosques, lagos y montañas te esperan.</p>
+            <a href="#propiedades" class="btn-hero">Ver Propiedades</a>
+        </div>
+    </section>
+
+    <section id="propiedades">
+        <div class="filter-container">
+            <h2 class="filter-title">Propiedades Destacadas</h2>
+            <div class="filter-btns">
+                <button class="filter-btn active" onclick="filterProperties('all')">Todas</button>
+                <button class="filter-btn" onclick="filterProperties('cabaña')">Cabañas</button>
+                <button class="filter-btn" onclick="filterProperties('terreno')">Terrenos</button>
+                <button class="filter-btn" onclick="filterProperties('lujo')">Eco-Lujo</button>
+            </div>
+        </div>
+        
+        <div class="properties-grid" id="grid"></div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h2>Natura Estate</h2>
+            <p>Conectando personas con el espíritu de la tierra.</p>
+            <br>
+            <p>&copy; 2023 Natura Estate. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simulación de Base de Datos
+        const properties = [
+            {
+                id: 1,
+                title: "Refugio del Bosque",
+                category: "cabaña",
+                price: "U$S 180,000",
+                location: "Patagonia, Argentina",
+                beds: 3,
+                baths: 2,
+                area: "150m²",
+                image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 2,
+                title: "Lote Vista al Lago",
+                category: "terreno",
+                price: "U$S 85,000",
+                location: "Villarrica, Chile",
+                beds: 0,
+                baths: 0,
+                area: "5000m²",
+                image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 3,
+                title: "Eco-Villa Moderna",
+                category: "lujo",
+                price: "U$S 450,000",
+                location: "Tulum, México",
+                beds: 4,
+                baths: 4,
+                area: "320m²",
+                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 4,
+                title: "Cabaña Alpina",
+                category: "cabaña",
+                price: "U$S 120,000",
+                location: "Bariloche, Argentina",
+                beds: 2,
+                baths: 1,
+                area: "90m²",
+                image: "https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 5,
+                title: "Residencia Sustentable",
+                category: "lujo",
+                price: "U$S 620,000",
+                location: "Costa Rica",
+                beds: 5,
+                baths: 5,
+                area: "450m²",
+                image: "https://images.unsplash.com/photo-1600596542815-e32c630bd1ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 6,
+                title: "Hectáreas Vírgenes",
+                category: "terreno",
+                price: "U$S 55,000",
+                location: "Sierras de Córdoba",
+                beds: 0,
+                baths: 0,
+                area: "20000m²",
+                image: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        const grid = document.getElementById('grid');
+        const btns = document.querySelectorAll('.filter-btn');
+
+        // Función para renderizar tarjetas
+        function renderProperties(data) {
+            grid.innerHTML = ''; // Limpiar grid
+            
+            // Animación suave de entrada
+            grid.style.opacity = '0';
+            setTimeout(() => { grid.style.opacity = '1'; }, 200);
+
+            data.forEach(item => {
+                const card = document.createElement('article');
+                card.className = 'property-card';
+                card.innerHTML = `
+                    <div class="card-image">
+                        <span class="card-tag">${item.category}</span>
+                        <img src="${item.image}" alt="${item.title}">
+                    </div>
+                    <div class="card-details">
+                        <span class="price">${item.price}</span>
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> ${item.location}</p>
+                        <div class="features">
+                            ${item.category !== 'terreno' ? `
+                                <span><i class="fas fa-bed"></i> ${item.beds}</span>
+                                <span><i class="fas fa-bath"></i> ${item.baths}</span>
+                            ` : ''}
+                            <span><i class="fas fa-ruler-combined"></i> ${item.area}</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Función de filtrado
+        function filterProperties(category) {
+            // Actualizar estado de botones
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (category === 'all') {
+                renderProperties(properties);
+            } else {
+                const filtered = properties.filter(prop => prop.category === category);
+                renderProperties(filtered);
+            }
+        }
+
+        // Carga inicial
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProperties(properties);
+        });
+
+    </script>
+</body>
+</html>
