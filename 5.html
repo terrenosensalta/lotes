@@ -239,10 +239,11 @@
                     <!-- Mapa de Google My Maps (Visualización Únicamente) -->
                     <!-- Nota: Reemplaza el 'mid' por el ID de tu propio My Maps si lo tienes -->
                     
+                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1hNGZmpvYtX6vHf-j8pjVS_Pa_UiPKZI&ehbc=2E312F" width="640" height="480"></iframe>
                     <iframe 
                         src="https://www.google.com/maps/d/u/0/embed?mid=1hNGZmpvYtX6vHf-j8pjVS_Pa_UiPKZI&ehbc=2E312F" 
                         width="100%" 
-                        height="150%" 
+                        height="100%" 
                         class="map-container absolute inset-0 w-full h-full border-0"
                         style="top: -60px; height: calc(100% + 120px);"
                         loading="lazy">
@@ -261,7 +262,7 @@
 
             <!-- Texto Descriptivo -->
             <div class="reveal order-1 md:order-2">
-                <span class="text-varnet-moss font-bold tracking-widest text-xs uppercase mb-4 block italic">Ubicación Estratégica</span>
+                <span class="text-varnet-moss font-bold tracking-widest ext-xs uppercase mb-4 block italic">Ubicación Estratégica</span>
                 <h2 class="font-serif text-4xl md:text-6xl mb-8 leading-tight">Tu dosis de montaña, <br><span class="text-varnet-mint">sin salir de la ciudad</span></h2>
                 <p class="text-varnet-mint/80 mb-10 text-lg leading-relaxed font-light">
                     Explora nuestros senderos digitalizados. El mapa interactivo te permite conocer los puntos clave, ingresos y recorridos antes de pisar el cerro. El acceso es privado, seguro y extremadamente cercano.
@@ -290,113 +291,6 @@
     </section>
 
 
-
-    <!-- 1. Senderismo Section (El Producto) -->
-    <section id="senderismo" class="py-28 bg-white relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-20 reveal">
-                <span class="text-varnet-moss font-bold tracking-widest text-xs uppercase mb-3 block">Nuestras Rutas</span>
-                <h2 class="font-serif text-4xl md:text-5xl mb-6 text-varnet-forest">Senderos para cada paso</h2>
-                <div class="w-16 h-1 bg-varnet-moss mx-auto rounded-full"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="reveal bg-varnet-sand p-8 rounded-[32px] border border-transparent hover:border-varnet-moss/30 hover:bg-white hover:shadow-xl transition-all duration-300 group">
-                    <div class="w-14 h-14 bg-varnet-forest text-varnet-mint rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition duration-300 shadow-md">
-                        <i class="fa-solid fa-leaf"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-varnet-forest font-serif">Trekking Consciente</h3>
-                    <div class="flex items-center gap-2 mb-4 text-xs font-bold text-varnet-moss uppercase tracking-wider">
-                        <i class="fa-solid fa-circle text-[8px]"></i> Dificultad Baja
-                    </div>
-                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">Caminatas guiadas por el silencio, enfocadas en la observación de la biodiversidad local y la respiración.</p>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="reveal bg-varnet-sand p-8 rounded-[32px] border border-transparent hover:border-varnet-moss/30 hover:bg-white hover:shadow-xl transition-all duration-300 group delay-100">
-                    <div class="w-14 h-14 bg-varnet-forest text-varnet-mint rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition duration-300 shadow-md">
-                        <i class="fa-solid fa-compass"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-varnet-forest font-serif">Exploración Serrana</h3>
-                    <div class="flex items-center gap-2 mb-4 text-xs font-bold text-yellow-600 uppercase tracking-wider">
-                        <i class="fa-solid fa-circle text-[8px]"></i> Dificultad Media
-                    </div>
-                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">Senderos que serpentean el cerro ofreciendo vistas panorámicas de la ciudad de Salta y el valle.</p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="reveal bg-varnet-sand p-8 rounded-[32px] border border-transparent hover:border-varnet-moss/30 hover:bg-white hover:shadow-xl transition-all duration-300 group delay-200">
-                    <div class="w-14 h-14 bg-varnet-forest text-varnet-mint rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition duration-300 shadow-md">
-                        <i class="fa-solid fa-person-running"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-varnet-forest font-serif">Desafío Varnet</h3>
-                    <div class="flex items-center gap-2 mb-4 text-xs font-bold text-red-500 uppercase tracking-wider">
-                        <i class="fa-solid fa-circle text-[8px]"></i> Dificultad Alta
-                    </div>
-                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">Rutas con desnivel positivo diseñadas para quienes buscan un entrenamiento físico intenso en la montaña.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2. Galería Section (La Prueba Visual) - Mejorada con Lightbox -->
-    <section id="galeria" class="py-24 bg-varnet-deep text-varnet-sand overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
-                <div class="max-w-xl">
-                    <span class="text-varnet-moss font-bold tracking-widest text-xs uppercase mb-3 block">Galería</span>
-                    <h2 class="font-serif text-4xl md:text-5xl mb-6 text-white">Varnet en imágenes</h2>
-                    <p class="text-varnet-mint/80 font-medium leading-relaxed">Haz clic en las imágenes para sumergirte en la experiencia visual de nuestra reserva.</p>
-                </div>
-                <div class="mt-8 md:mt-0">
-                    <button class="text-varnet-mint font-bold text-xs uppercase tracking-widest border-b border-varnet-mint pb-1 hover:text-white hover:border-white transition">Ver todo en Instagram</button>
-                </div>
-            </div>
-
-            <!-- Grid Asimétrico Mejorado -->
-            <div class="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4 h-[600px] md:h-[700px] reveal">
-                <!-- Imagen Principal Grande -->
-                <div class="gallery-item col-span-2 row-span-2 group" onclick="openLightbox(this.querySelector('img').src)">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=90" alt="Vista Panorámica Salta">
-                    <div class="gallery-overlay absolute inset-0 bg-black/40 flex items-center justify-center">
-                        <i class="fa-solid fa-expand text-white text-3xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition duration-300"></i>
-                    </div>
-                    <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/80 to-transparent w-full">
-                        <p class="text-xs font-bold uppercase tracking-widest text-varnet-moss">Cumbre</p>
-                        <p class="text-white font-serif text-xl">Vistas Panorámicas</p>
-                    </div>
-                </div>
-                
-                <!-- Imagen Pequeña 1 -->
-                <div class="gallery-item group" onclick="openLightbox(this.querySelector('img').src)">
-                    <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=90" alt="Flora Nativa">
-                    <div class="gallery-overlay absolute inset-0 bg-black/30 flex items-center justify-center">
-                        <i class="fa-solid fa-expand text-white text-2xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition duration-300"></i>
-                    </div>
-                </div>
-                
-                <!-- Imagen Pequeña 2 -->
-                <div class="gallery-item group" onclick="openLightbox(this.querySelector('img').src)">
-                    <img src="https://images.unsplash.com/photo-1596333522248-1014621813d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=90" alt="Senderismo Grupal">
-                    <div class="gallery-overlay absolute inset-0 bg-black/30 flex items-center justify-center">
-                        <i class="fa-solid fa-expand text-white text-2xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition duration-300"></i>
-                    </div>
-                </div>
-                
-                <!-- Imagen Mediana Horizontal -->
-                <div class="gallery-item col-span-2 group" onclick="openLightbox(this.querySelector('img').src)">
-                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90" alt="Bosque de Yungas">
-                    <div class="gallery-overlay absolute inset-0 bg-black/30 flex items-center justify-center">
-                        <i class="fa-solid fa-expand text-white text-3xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition duration-300"></i>
-                    </div>
-                    <div class="absolute bottom-4 left-6">
-                         <p class="text-xs font-bold uppercase tracking-widest text-white/90">Bosque de Yungas</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- 3. Educación Section (Los Valores) -->
     <section id="conservacion" class="py-24 bg-varnet-sand overflow-hidden">
@@ -466,6 +360,123 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+    <!-- 2. Galería Section (La Prueba Visual) - Mejorada con Lightbox -->
+    <section id="galeria" class="py-24 bg-varnet-deep text-varnet-sand overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
+                <div class="max-w-xl">
+                    <span class="text-varnet-moss font-bold tracking-widest text-xs uppercase mb-3 block">Galería</span>
+                    <h2 class="font-serif text-4xl md:text-5xl mb-6 text-white">Varnet en imágenes</h2>
+                    <p class="text-varnet-mint/80 font-medium leading-relaxed">Haz clic en las imágenes para sumergirte en la experiencia visual de nuestra reserva.</p>
+                </div>
+                <div class="mt-8 md:mt-0">
+                    <button class="text-varnet-mint font-bold text-xs uppercase tracking-widest border-b border-varnet-mint pb-1 hover:text-white hover:border-white transition">Ver todo en Instagram</button>
+                </div>
+            </div>
+
+            <!-- Grid Asimétrico Mejorado -->
+            <div class="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4 h-[600px] md:h-[700px] reveal">
+                <!-- Imagen Principal Grande -->
+                <div class="gallery-item col-span-2 row-span-2 group" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=90" alt="Vista Panorámica Salta">
+                    <div class="gallery-overlay absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <i class="fa-solid fa-expand text-white text-3xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition duration-300"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/80 to-transparent w-full">
+                        <p class="text-xs font-bold uppercase tracking-widest text-varnet-moss">Cumbre</p>
+                        <p class="text-white font-serif text-xl">Vistas Panorámicas</p>
+                    </div>
+                </div>
+                
+                <!-- Imagen Pequeña 1 -->
+                <div class="gallery-item group" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=90" alt="Flora Nativa">
+                    <div class="gallery-overlay absolute inset-0 bg-black/30 flex items-center justify-center">
+                        <i class="fa-solid fa-expand text-white text-2xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition duration-300"></i>
+                    </div>
+                </div>
+                
+                <!-- Imagen Pequeña 2 -->
+                <div class="gallery-item group" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1596333522248-1014621813d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=90" alt="Senderismo Grupal">
+                    <div class="gallery-overlay absolute inset-0 bg-black/30 flex items-center justify-center">
+                        <i class="fa-solid fa-expand text-white text-2xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition duration-300"></i>
+                    </div>
+                </div>
+                
+                <!-- Imagen Mediana Horizontal -->
+                <div class="gallery-item col-span-2 group" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90" alt="Bosque de Yungas">
+                    <div class="gallery-overlay absolute inset-0 bg-black/30 flex items-center justify-center">
+                        <i class="fa-solid fa-expand text-white text-3xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition duration-300"></i>
+                    </div>
+                    <div class="absolute bottom-4 left-6">
+                         <p class="text-xs font-bold uppercase tracking-widest text-white/90">Bosque de Yungas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. Senderismo Section (El Producto) -->
+    <section id="senderismo" class="py-28 bg-white relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <span class="text-varnet-moss font-bold tracking-widest text-xs uppercase mb-3 block">Nuestras Rutas</span>
+                <h2 class="font-serif text-4xl md:text-5xl mb-6 text-varnet-forest">Senderos para cada paso</h2>
+                <div class="w-16 h-1 bg-varnet-moss mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="reveal bg-varnet-sand p-8 rounded-[32px] border border-transparent hover:border-varnet-moss/30 hover:bg-white hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-varnet-forest text-varnet-mint rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition duration-300 shadow-md">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-varnet-forest font-serif">Trekking Consciente</h3>
+                    <div class="flex items-center gap-2 mb-4 text-xs font-bold text-varnet-moss uppercase tracking-wider">
+                        <i class="fa-solid fa-circle text-[8px]"></i> Dificultad Baja
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">Caminatas guiadas por el silencio, enfocadas en la observación de la biodiversidad local y la respiración.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="reveal bg-varnet-sand p-8 rounded-[32px] border border-transparent hover:border-varnet-moss/30 hover:bg-white hover:shadow-xl transition-all duration-300 group delay-100">
+                    <div class="w-14 h-14 bg-varnet-forest text-varnet-mint rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition duration-300 shadow-md">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-varnet-forest font-serif">Exploración Serrana</h3>
+                    <div class="flex items-center gap-2 mb-4 text-xs font-bold text-yellow-600 uppercase tracking-wider">
+                        <i class="fa-solid fa-circle text-[8px]"></i> Dificultad Media
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">Senderos que serpentean el cerro ofreciendo vistas panorámicas de la ciudad de Salta y el valle.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="reveal bg-varnet-sand p-8 rounded-[32px] border border-transparent hover:border-varnet-moss/30 hover:bg-white hover:shadow-xl transition-all duration-300 group delay-200">
+                    <div class="w-14 h-14 bg-varnet-forest text-varnet-mint rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition duration-300 shadow-md">
+                        <i class="fa-solid fa-person-running"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-varnet-forest font-serif">Desafío Varnet</h3>
+                    <div class="flex items-center gap-2 mb-4 text-xs font-bold text-red-500 uppercase tracking-wider">
+                        <i class="fa-solid fa-circle text-[8px]"></i> Dificultad Alta
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">Rutas con desnivel positivo diseñadas para quienes buscan un entrenamiento físico intenso en la montaña.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- 4. Godomar Section (El Guía) -->
     <section id="godomar" class="py-24 bg-white overflow-hidden relative border-t border-varnet-forest/5">
