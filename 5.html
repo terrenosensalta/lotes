@@ -159,7 +159,7 @@
 
             <div class="flex items-center gap-4">
                 <button class="bg-varnet-forest text-varnet-mint px-6 py-2.5 rounded-full text-xs font-black tracking-widest hover:bg-varnet-leaf transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hidden sm:block uppercase">
-                    Explorar reserva
+                    <a href="https://www.google.com/maps/d/u/0/edit?mid=1hNGZmpvYtX6vHf-j8pjVS_Pa_UiPKZI&usp=sharing">Explorar reserva</a> 
                 </button>
                 <!-- Mobile Toggle -->
                 <button id="menu-toggle" class="lg:hidden text-varnet-forest text-2xl focus:outline-none p-2">
@@ -225,6 +225,71 @@
             </div>
         </div>
     </header>
+
+    
+    <!-- Ubicación con Google My Maps -->
+    <section id="cercania" class="py-24 bg-gradient-forest text-white relative overflow-hidden">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            
+            <!-- Contenedor del Mapa -->
+            <div class="reveal relative h-[500px] w-full order-2 md:order-1">
+                <div class="absolute inset-0 bg-varnet-moss/10 blur-3xl rounded-full"></div>
+                
+                <div class="relative z-10 w-full h-full rounded-[40px] overflow-hidden shadow-2xl border-4 border-varnet-leaf/30 bg-varnet-deep">
+                    <!-- Mapa de Google My Maps (Visualización Únicamente) -->
+                    <!-- Nota: Reemplaza el 'mid' por el ID de tu propio My Maps si lo tienes -->
+                    
+                    <iframe 
+                        src="https://www.google.com/maps/d/u/0/embed?mid=1hNGZmpvYtX6vHf-j8pjVS_Pa_UiPKZI&ehbc=2E312F" 
+                        width="100%" 
+                        height="150%" 
+                        class="map-container absolute inset-0 w-full h-full border-0"
+                        style="top: -60px; height: calc(100% + 120px);"
+                        loading="lazy">
+                    </iframe>
+                    
+                    <!-- Overlay de protección para evitar scroll accidental en móviles -->
+                    <div class="absolute inset-0 bg-transparent pointer-events-none md:pointer-events-auto"></div>
+                </div>
+
+                <!-- Etiqueta Flotante -->
+                <div class="absolute -bottom-6 -right-6 bg-varnet-moss text-varnet-deep p-6 rounded-3xl z-20 font-bold shadow-xl border-4 border-varnet-deep hidden sm:block">
+                    <p class="text-3xl font-serif">5 Min</p>
+                    <p class="text-xs uppercase opacity-80 tracking-widest">del centro de Salta</p>
+                </div>
+            </div>
+
+            <!-- Texto Descriptivo -->
+            <div class="reveal order-1 md:order-2">
+                <span class="text-varnet-moss font-bold tracking-widest text-xs uppercase mb-4 block italic">Ubicación Estratégica</span>
+                <h2 class="font-serif text-4xl md:text-6xl mb-8 leading-tight">Tu dosis de montaña, <br><span class="text-varnet-mint">sin salir de la ciudad</span></h2>
+                <p class="text-varnet-mint/80 mb-10 text-lg leading-relaxed font-light">
+                    Explora nuestros senderos digitalizados. El mapa interactivo te permite conocer los puntos clave, ingresos y recorridos antes de pisar el cerro. El acceso es privado, seguro y extremadamente cercano.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl border border-white/10 backdrop-blur-sm">
+                        <i class="fa-solid fa-location-dot text-varnet-moss text-xl"></i>
+                        <div>
+                            <span class="block font-bold text-sm">Ubicación Exacta</span>
+                            <span class="text-xs text-white/60">Ver en Google Maps</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl border border-white/10 backdrop-blur-sm">
+                        <i class="fa-solid fa-car text-varnet-moss text-xl"></i>
+                        <div>
+                            <span class="block font-bold text-sm">Fácil Acceso</span>
+                            <span class="text-xs text-white/60">Camino pavimentado</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-10">
+                    <a href="https://maps.app.goo.gl/TuMapaEspecifico" target="_blank" class="text-varnet-mint font-bold uppercase tracking-widest text-xs border-b border-varnet-mint pb-2 hover:text-white hover:border-white transition">Cómo llegar con GPS <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <!-- 1. Senderismo Section (El Producto) -->
     <section id="senderismo" class="py-28 bg-white relative">
