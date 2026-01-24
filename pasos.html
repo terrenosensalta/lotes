@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrucciones de Preparación | Good Food</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair para elegancia, Montserrat para lectura -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS para animaciones de revelado -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['"Playfair Display"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                    },
+                    colors: {
+                        gold: '#C5A059',
+                        paper: '#FDFCF8',
+                        ink: '#1A1A1A'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .paper-bg {
+            background-color: #FDFCF8;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        .luxury-border {
+            position: relative;
+            border: 1px solid #C5A059;
+        }
+        .luxury-border::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            pointer-events: none;
+        }
+        .step-icon-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #C5A059;
+            background: #1A1A1A;
+            color: #C5A059;
+            transition: all 0.5s ease;
+        }
+        .step-card:hover .step-icon-container {
+            background: #C5A059;
+            color: #1A1A1A;
+            transform: scale(1.1) rotate(360deg);
+        }
+    </style>
+</head>
+<body class="bg-stone-900 py-12 px-4 font-sans">
+
+    <!-- SECCIÓN DE INSTRUCCIONES ESTILO CARTA -->
+    <section class="max-w-5xl mx-auto paper-bg luxury-border shadow-2xl overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
+        <div class="p-8 md:p-20">
+            
+            <!-- Encabezado de la Sección -->
+            <div class="text-center mb-16">
+                <span class="font-script text-gold text-4xl block mb-2" data-aos="fade-down" data-aos-delay="200">Experiencia Gourmet</span>
+                <h2 class="text-4xl md:text-6xl font-heading font-black text-ink uppercase tracking-tighter mb-6" data-aos="fade-up" data-aos-delay="400">
+                    Guía de Preparación
+                </h2>
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="h-px w-12 bg-gold/50"></div>
+                    <i class="fa-solid fa-utensils text-gold text-xs"></i>
+                    <div class="h-px w-12 bg-gold/50"></div>
+                </div>
+                <p class="text-lg text-stone-600 italic font-light max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="600">
+                    "Nuestra cocina, sellada al vacío para preservar la pureza del sabor. Siga estos pasos para un emplatado impecable en su hogar."
+                </p>
+            </div>
+
+            <!-- Imagen Inspiracional (Opcional, estilo banner) -->
+            <div class="mb-20 rounded-sm overflow-hidden shadow-xl" data-aos="zoom-in" data-aos-delay="400">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
+                     alt="" 
+                     class="w-full h-64 object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-1000">
+            </div>
+
+            <!-- Contenedor de los 3 Pasos -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 relative">
+                
+                <!-- PASO 1: Calentar -->
+                <div class="step-card group text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative mb-8">
+                        <span class="absolute -top-10 left-1/2 -translate-x-1/2 text-7xl font-heading text-stone-100 -z-10 group-hover:text-gold/10 transition-colors">I</span>
+                        <div class="step-icon-container mx-auto">
+                            <i class="fa-solid fa-temperature-three-quarters text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-ink mb-4 uppercase tracking-widest">La Temperatura</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed font-light">
+                        Sumerja la pieza en agua a punto de ebullición por <span class="text-gold font-bold">12-15 minutos</span>. Este método regenera los jugos sin alterar la textura original.
+                    </p>
+                </div>
+
+                <!-- PASO 2: Abrir -->
+                <div class="step-card group text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative mb-8">
+                        <span class="absolute -top-10 left-1/2 -translate-x-1/2 text-7xl font-heading text-stone-100 -z-10 group-hover:text-gold/10 transition-colors">II</span>
+                        <div class="step-icon-container mx-auto">
+                            <i class="fa-solid fa-scissors text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-ink mb-4 uppercase tracking-widest">El Despertar</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed font-light">
+                        Retire con cautela. Realice un corte firme en el borde superior para liberar los <span class="italic">aromas concentrados</span> que definen nuestra gastronomía.
+                    </p>
+                </div>
+
+                <!-- PASO 3: Degustar -->
+                <div class="step-card group text-center" data-aos="fade-up" data-aos-delay="600">
+                    <div class="relative mb-8">
+                        <span class="absolute -top-10 left-1/2 -translate-x-1/2 text-7xl font-heading text-stone-100 -z-10 group-hover:text-gold/10 transition-colors">III</span>
+                        <div class="step-icon-container mx-auto">
+                            <i class="fa-solid fa-plate-wheat text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-ink mb-4 uppercase tracking-widest">La Degustación</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed font-light">
+                        Emplate sobre porcelana tibia. La técnica de vacío garantiza una <span class="text-gold font-bold">textura idéntica</span> a la de nuestra cocina profesional.
+                    </p>
+                </div>
+
+            </div>
+            
+            <!-- Pie de la Carta -->
+            <div class="text-center mt-24 border-t border-gold/20 pt-12">
+                <p class="font-script text-gold text-5xl mb-6" data-aos="zoom-in">Buen provecho</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-[10px] tracking-[0.3em] text-stone-400 uppercase font-semibold">
+                    <span class="flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-gold"></i>
+                        Pedidos: 3875398476
+                    </span>
+                    <span class="hidden md:inline">|</span>
+                    <span>Envasados al vacío de alta cocina</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Scripts para Animación -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
