@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerro Varnet | Reserva Natural Privada - Salta</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'varnet-deep': '#081c15',
+                        'varnet-forest': '#1b4332',
+                        'varnet-leaf': '#2d6a4f',
+                        'varnet-moss': '#52b788',
+                        'varnet-mint': '#b7e4c7',
+                        'varnet-earth': '#4a3728',
+                        'varnet-sand': '#f4f7f5',
+                    },
+                    fontFamily: {
+                        'sans': ['Plus Jakarta Sans', 'sans-serif'],
+                        'serif': ['Fraunces', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .glass-nav {
+            background: rgba(244, 247, 245, 0.95);
+            backdrop-filter: blur(12px);
+        }
+        .hero-pattern {
+            background-color: #f4f7f5;
+            background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+            background-blend-mode: overlay;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .godomar-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+        .organic-border {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        .bg-gradient-forest {
+            background: linear-gradient(135deg, #1b4332 0%, #081c15 100%);
+        }
+        .logo-container img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        /* Galería e Interacciones */
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+            border-radius: 24px;
+        }
+        .gallery-item img {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Lightbox */
+        #lightbox {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #lightbox.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Mapa Personalizado */
+        .map-container {
+            filter: sepia(20%) contrast(1.1) saturate(0.9);
+            transition: filter 0.5s ease;
+        }
+        .map-container:hover {
+            filter: none;
+        }
+    </style>
+</head>
+<body class="bg-varnet-sand font-sans text-varnet-deep overflow-x-hidden">
+
+    <!-- Navegación -->
+    <nav class="fixed top-0 w-full z-[100] glass-nav border-b border-varnet-forest/10 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <a href="#" class="logo-container block transform hover:scale-105 transition">
+                    <img src="https://i.ibb.co/db6c62/logo-varnet.png" alt="Logo Cerro Varnet" onerror="this.src='https://placehold.co/180x60/1b4332/b7e4c7?text=Cerro+Varnet'">
+                </a>
+            </div>
+            
+            <div class="hidden lg:flex gap-8 text-xs font-bold uppercase tracking-[0.2em]">
+                <a href="#senderismo" class="text-varnet-forest hover:text-varnet-moss transition relative group py-2">Senderos</a>
+                <a href="#galeria" class="text-varnet-forest hover:text-varnet-moss transition relative group py-2">Galería</a>
+                <a href="#conservacion" class="text-varnet-forest hover:text-varnet-moss transition relative group py-2">Educación</a>
+                <a href="#godomar" class="text-varnet-forest hover:text-varnet-moss transition relative group py-2">Godomar</a>
+                <a href="#cercania" class="text-varnet-forest hover:text-varnet-moss transition relative group py-2">Ubicación</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button class="bg-varnet-forest text-varnet-mint px-6 py-2.5 rounded-full text-xs font-black tracking-widest hover:bg-varnet-leaf transition shadow-lg hidden sm:block uppercase">Reservar</button>
+                <button id="menu-toggle" class="lg:hidden text-varnet-forest text-2xl p-2"><i class="fa-solid fa-bars-staggered"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menú Móvil -->
+    <div id="mobile-menu" class="fixed inset-0 z-[150] bg-varnet-deep lg:hidden p-8 flex flex-col justify-center items-center backdrop-blur-md bg-opacity-95">
+        <button id="menu-close" class="absolute top-6 right-6 text-varnet-mint text-4xl p-2"><i class="fa-solid fa-xmark"></i></button>
+        <div class="flex flex-col gap-8 text-center w-full max-w-sm">
+            <a href="#senderismo" class="mobile-link text-3xl font-serif text-varnet-sand">Senderos</a>
+            <a href="#galeria" class="mobile-link text-3xl font-serif text-varnet-sand">Galería</a>
+            <a href="#conservacion" class="mobile-link text-3xl font-serif text-varnet-sand">Educación</a>
+            <a href="#godomar" class="mobile-link text-3xl font-serif text-varnet-sand">Godomar</a>
+            <a href="#cercania" class="mobile-link text-3xl font-serif text-varnet-sand">Ubicación</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <header class="relative min-h-screen flex items-center hero-pattern pt-20 overflow-hidden">
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="reveal active">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-varnet-forest/10 mb-8">
+                    <span class="w-2 h-2 bg-varnet-moss rounded-full animate-pulse"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-varnet-forest">A 5' de Salta Capital</span>
+                </div>
+                <h1 class="font-serif text-5xl md:text-8xl text-varnet-forest leading-[1] mb-8">Conectá con tu <br><span class="italic text-varnet-leaf">naturaleza</span></h1>
+                <p class="text-lg text-varnet-earth/80 max-w-lg mb-10 leading-relaxed font-medium">Cerro Varnet es una reserva privada diseñada para el senderismo consciente. Un refugio de aire puro tan cerca de la ciudad que podés venir todos los días.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#senderismo" class="bg-varnet-forest text-white px-8 py-4 rounded-full font-bold shadow-xl flex items-center gap-3">Ver Senderos <i class="fa-solid fa-arrow-right-long"></i></a>
+                    <a href="#godomar" class="bg-white text-varnet-forest px-8 py-4 rounded-full font-bold border border-varnet-forest/20 flex items-center gap-3"><i class="fa-brands fa-whatsapp text-xl text-varnet-moss"></i> Guía Digital</a>
+                </div>
+            </div>
+            <div class="relative flex justify-center reveal active">
+                <div class="relative z-10 organic-border w-72 h-72 md:w-[520px] md:h-[520px] overflow-hidden shadow-2xl border-[6px] border-white group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1551632432-c735e8299521?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Senderismo en Salta" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Senderismo -->
+    <section id="senderismo" class="py-28 bg-white relative">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-20 reveal">
+                <span class="text-varnet-moss font-bold tracking-widest text-xs uppercase mb-3 block">Nuestras Rutas</span>
+                <h2 class="font-serif text-4xl md:text-5xl mb-6 text-varnet-forest">Senderos para cada paso</h2>
+                <div class="w-16 h-1 bg-varnet-moss mx-auto rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="reveal bg-varnet-sand p-8 rounded-[32px] group transition-all">
+                    <div class="w-14 h-14 bg-varnet-forest text-varnet-mint rounded-2xl flex items-center justify-center text-2xl mb-8 shadow-md mx-auto"><i class="fa-solid fa-leaf"></i></div>
+                    <h3 class="text-2xl font-bold mb-3 text-varnet-forest font-serif">Trekking Consciente</h3>
+                    <p class="text-gray-600 text-sm">Enfocado en la observación de la biodiversidad local y la respiración profunda.</p>
+                </div>
+                <div class="reveal bg-varnet-sand p-8 rounded-[32px] group transition-all delay-100">
+                    <div class="w-14 h-14 bg-varnet-forest text-varnet-mint rounded-2xl flex items-center justify-center text-2xl mb-8 shadow-md mx-auto"><i class="fa-solid fa-compass"></i></div>
+                    <h3 class="text-2xl font-bold mb-3 text-varnet-forest font-serif">Exploración Serrana</h3>
+                    <p class="text-gray-600 text-sm">Rutas que serpentean el cerro ofreciendo las mejores vistas del Valle de Lerma.</p>
+                </div>
+                <div class="reveal bg-varnet-sand p-8 rounded-[32px] group transition-all delay-200">
+                    <div class="w-14 h-14 bg-varnet-forest text-varnet-mint rounded-2xl flex items-center justify-center text-2xl mb-8 shadow-md mx-auto"><i class="fa-solid fa-person-running"></i></div>
+                    <h3 class="text-2xl font-bold mb-3 text-varnet-forest font-serif">Desafío Varnet</h3>
+                    <p class="text-gray-600 text-sm">Rutas con desnivel diseñadas para el entrenamiento físico intenso en montaña.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación con Google My Maps -->
+    <section id="cercania" class="py-24 bg-gradient-forest text-white relative overflow-hidden">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            
+            <!-- Contenedor del Mapa -->
+            <div class="reveal relative h-[500px] w-full order-2 md:order-1">
+                <div class="absolute inset-0 bg-varnet-moss/10 blur-3xl rounded-full"></div>
+                
+                <div class="relative z-10 w-full h-full rounded-[40px] overflow-hidden shadow-2xl border-4 border-varnet-leaf/30 bg-varnet-deep">
+                    <!-- Mapa de Google My Maps (Visualización Únicamente) -->
+                    <!-- Nota: Reemplaza el 'mid' por el ID de tu propio My Maps si lo tienes -->
+                    <iframe 
+                        src="https://www.google.com/maps/d/embed?mid=1_K0i3mYd5U8kH_k6Y6XyO2_UvI7x4e8&ehbc=2E312F" 
+                        width="100%" 
+                        height="100%" 
+                        class="map-container absolute inset-0 w-full h-full border-0"
+                        style="top: -60px; height: calc(100% + 120px);"
+                        loading="lazy">
+                    </iframe>
+                    
+                    <!-- Overlay de protección para evitar scroll accidental en móviles -->
+                    <div class="absolute inset-0 bg-transparent pointer-events-none md:pointer-events-auto"></div>
+                </div>
+
+                <!-- Etiqueta Flotante -->
+                <div class="absolute -bottom-6 -right-6 bg-varnet-moss text-varnet-deep p-6 rounded-3xl z-20 font-bold shadow-xl border-4 border-varnet-deep hidden sm:block">
+                    <p class="text-3xl font-serif">5 Min</p>
+                    <p class="text-xs uppercase opacity-80 tracking-widest">del centro de Salta</p>
+                </div>
+            </div>
+
+            <!-- Texto Descriptivo -->
+            <div class="reveal order-1 md:order-2">
+                <span class="text-varnet-moss font-bold tracking-widest text-xs uppercase mb-4 block italic">Ubicación Estratégica</span>
+                <h2 class="font-serif text-4xl md:text-6xl mb-8 leading-tight">Tu dosis de montaña, <br><span class="text-varnet-mint">sin salir de la ciudad</span></h2>
+                <p class="text-varnet-mint/80 mb-10 text-lg leading-relaxed font-light">
+                    Explora nuestros senderos digitalizados. El mapa interactivo te permite conocer los puntos clave, ingresos y recorridos antes de pisar el cerro. El acceso es privado, seguro y extremadamente cercano.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl border border-white/10 backdrop-blur-sm">
+                        <i class="fa-solid fa-location-dot text-varnet-moss text-xl"></i>
+                        <div>
+                            <span class="block font-bold text-sm">Ubicación Exacta</span>
+                            <span class="text-xs text-white/60">Ver en Google Maps</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl border border-white/10 backdrop-blur-sm">
+                        <i class="fa-solid fa-car text-varnet-moss text-xl"></i>
+                        <div>
+                            <span class="block font-bold text-sm">Fácil Acceso</span>
+                            <span class="text-xs text-white/60">Camino pavimentado</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-10">
+                    <a href="https://maps.app.goo.gl/TuMapaEspecifico" target="_blank" class="text-varnet-mint font-bold uppercase tracking-widest text-xs border-b border-varnet-mint pb-2 hover:text-white hover:border-white transition">Cómo llegar con GPS <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Godomar -->
+    <section id="godomar" class="py-24 bg-white overflow-hidden relative">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="flex justify-center reveal">
+                <div class="relative godomar-float">
+                    <div class="w-72 h-72 md:w-96 md:h-96 bg-varnet-forest rounded-[40%] flex flex-col items-center justify-center p-10 shadow-2xl rotate-3 relative overflow-hidden">
+                        <i class="fa-solid fa-mountain text-6xl text-varnet-moss mb-6 relative z-20"></i>
+                        <h3 class="font-serif text-4xl font-bold text-varnet-mint tracking-wider relative z-20 uppercase">Godomar</h3>
+                        <p class="text-xs font-bold text-varnet-moss uppercase tracking-[0.3em] mt-4 z-20">Guía y Guardián</p>
+                    </div>
+                    <div class="absolute -top-6 -right-8 bg-varnet-sand text-varnet-forest p-6 rounded-3xl rounded-bl-none shadow-xl max-w-[220px] text-sm font-bold italic border border-varnet-forest/10 z-20">
+                        "El cerro tiene su ritmo, yo te ayudo a encontrarlo."
+                    </div>
+                </div>
+            </div>
+            <div class="reveal">
+                <span class="text-varnet-moss font-bold tracking-widest text-xs uppercase mb-3 block">Asistencia Digital</span>
+                <h2 class="font-serif text-4xl md:text-5xl mb-6 text-varnet-forest">Tu guía inteligente <br>en WhatsApp</h2>
+                <p class="text-varnet-earth font-medium mb-8 leading-relaxed">Godomar te brinda información sobre el estado de senderos, el clima y las normas de convivencia de la reserva en tiempo real.</p>
+                <a href="#" class="inline-flex items-center gap-4 bg-varnet-forest text-varnet-mint px-10 py-5 rounded-full font-bold shadow-xl">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    <div class="text-left">
+                        <span class="block text-xs opacity-70 uppercase tracking-wider">Chatear ahora</span>
+                        <span class="block text-lg">Hablar con Godomar</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-varnet-sand border-t border-varnet-forest/10 py-20">
+        <div class="container mx-auto px-6 text-center">
+            <img src="https://i.ibb.co/db6c62/logo-varnet.png" alt="Cerro Varnet" class="h-16 mx-auto mb-8 opacity-80 grayscale">
+            <p class="text-varnet-earth/60 text-sm max-w-md mx-auto mb-10">Cerro Varnet es una Reserva Natural Privada en Salta, dedicada a la conservación y el turismo sostenible.</p>
+            <div class="flex justify-center gap-8 mb-16 font-bold text-xs uppercase tracking-widest text-varnet-forest">
+                <a href="#senderismo">Senderos</a>
+                <a href="#galeria">Galería</a>
+                <a href="#cercania">Ubicación</a>
+                <a href="#godomar">Godomar</a>
+            </div>
+            <p class="text-[10px] text-varnet-leaf uppercase tracking-[0.2em] opacity-40">&copy; 2024 Cerro Varnet - Salta, Argentina</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 120) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuToggle.addEventListener('click', () => mobileMenu.classList.add('open'));
+        menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+        window.addEventListener('scroll', reveal);
+        document.addEventListener("DOMContentLoaded", reveal);
+    </script>
+</body>
+</html>
