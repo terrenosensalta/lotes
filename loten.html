@@ -26,7 +26,7 @@
             align-items: flex-start;
             min-height: 100vh;
             margin: 0;
-            padding: 16px; /* Reducido para móviles */
+            padding: 16px; 
         }
 
         @media (min-width: 768px) {
@@ -41,7 +41,7 @@
             box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
             max-width: 680px;
             width: 100%;
-            padding: 1.5rem; /* Menos padding en móvil */
+            padding: 1.5rem; 
             border: 1px solid #e5e7eb;
         }
 
@@ -54,7 +54,7 @@
 
         .map-container {
             width: 100%;
-            height: 250px;
+            height: 450px;
             border-radius: 1rem;
             overflow: hidden;
             margin-top: 2rem;
@@ -71,7 +71,7 @@
             width: 100%;
             height: 100%;
             border: 0;
-            filter: sepia(10%) hue-rotate(40deg) saturate(90%);
+            filter: none;
         }
 
         .status-badge {
@@ -150,7 +150,6 @@
             }
         }
 
-        /* Galería Deslizable */
         .gallery-wrapper {
             margin-bottom: 1.5rem;
             position: relative;
@@ -163,6 +162,7 @@
             gap: 0.75rem;
             padding-bottom: 0.5rem;
             scrollbar-width: none;
+            -ms-overflow-style: none;
         }
         
         .gallery-scroll::-webkit-scrollbar {
@@ -170,7 +170,7 @@
         }
 
         .gallery-item {
-            flex: 0 0 85%; /* Muestra un poco de la siguiente imagen en móvil */
+            flex: 0 0 85%; 
             scroll-snap-align: center;
             border-radius: 0.75rem;
             overflow: hidden;
@@ -210,7 +210,6 @@
             background-color: var(--nature-green);
         }
 
-        /* Botón de WhatsApp */
         .whatsapp-btn {
             background-color: #25D366;
             color: white;
@@ -225,6 +224,7 @@
             width: 100%;
             margin-top: 1.5rem;
             font-size: 0.95rem;
+            text-decoration: none;
         }
 
         @media (min-width: 768px) {
@@ -248,17 +248,12 @@
         <!-- Encabezado -->
         <div class="flex flex-col sm:flex-row justify-between items-start gap-3 mb-4">
             <div>
-                <div class="logo">
-            <img src="assets/img/png/logo.png" class="object-cover h-[50px] w-50% transform hover:scale-105 transition duration-700" alt="logo">
-            
-        </div>
-          
                 <div class="flex items-center gap-2 mb-1">
-                    
- <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Lote E16 bis </h1>
+                    <i data-lucide="mountain-snow" class="text-green-800 w-6 h-6 sm:w-8 sm:h-8"></i>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Lote Cerro Varnet</h1>
                 </div>
                 <p class="text-slate-500 font-medium flex items-center gap-2 text-xs sm:text-sm">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-slate-400"></i> Condominio Cerro Varnet
+                    <i data-lucide="map-pin" class="w-4 h-4 text-slate-400"></i> Cerro Varnet, Zona Exclusiva
                 </p>
             </div>
             <span class="status-badge">Disponible</span>
@@ -348,18 +343,12 @@
             </div>
         </div>
 
-        <!-- Botón de WhatsApp -->
-        <a href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20información%20sobre%20el%20lote%20en%20Cerro%20Varnet" 
-           target="_blank" 
-           class="whatsapp-btn">
-            <i data-lucide="message-circle" class="w-5 h-5 sm:w-6 sm:h-6"></i>
-            <span>Consultar por Cerro Varnet</span>
-        </a>
+
 
         <!-- Mapa -->
         <div class="map-container">
             <iframe 
-                src="https://www.google.com/maps/d/u/0/embed?mid=1oW2wWH1N_YRaCESJobSlMWfw09OqI_c&ehbc=2E312F" 
+                src="https://www.google.com/maps/d/u/0/embed?mid=1irNwDTvr2T0zVOxVRPN3bymJVi1Lyrs&ehbc=2E312F" 
                 allowfullscreen="" 
                 loading="lazy">
             </iframe>
@@ -374,7 +363,7 @@
             
             <div class="rounded-xl overflow-hidden border border-gray-200">
                 <iframe 
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSfD_T76XwT-pA67vXl9pYk4-XQpM-Ue8lPz5pE1pPz5pE1pPz/viewform?embedded=true" 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSc89W4MI9Eq1MfG7OlGFF9gq1jr7wUHjn7q27RZnzhECCckjg/viewform?embedded=true" 
                     width="100%" 
                     height="450" 
                     frameborder="0" 
@@ -384,10 +373,23 @@
                 </iframe>
             </div>
         </div>
+                <!-- Botón de WhatsApp -->
+        <a href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20información%20sobre%20el%20lote%20en%20Cerro%20Varnet" 
+           target="_blank" 
+           class="whatsapp-btn">
+            <i data-lucide="message-circle" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+            <span>Consultar</span>
+        </a>
     </div>
 
+    
     <script>
-        lucide.createIcons();
+        // Inicialización segura de iconos
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
     </script>
 </body>
 </html>
