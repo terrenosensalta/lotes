@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lote Residencial - Conexión Natural</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --nature-green: #2d4f1e;
+            --earth-brown: #5d4037;
+            --soft-leaf: #8da672;
+            --cream-bg: #fdfcf8;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f3ee; /* Gris verdoso muy suave */
+            background-image: radial-gradient(#d1d8c5 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background-color: var(--cream-bg);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(45, 79, 30, 0.08);
+            max-width: 680px;
+            width: 100%;
+            padding: 3rem;
+            border: 1px solid #e2e8d8;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 280px;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            margin-top: 2rem;
+            border: 4px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: sepia(20%) hue-rotate(40deg) saturate(80%); /* Tono natural al mapa */
+        }
+
+        .status-badge {
+            background-color: #ecf3e9;
+            color: var(--nature-green);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid #d9e4d3;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 1.8rem;
+            margin-bottom: 0.6rem;
+            color: var(--nature-green);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eef2e8;
+        }
+
+        .detail-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #5c6b53;
+            font-size: 0.95rem;
+        }
+
+        .value {
+            color: var(--earth-brown);
+            font-weight: 700;
+        }
+
+        .description {
+            color: #6a7a5f;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--nature-green);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Botón de WhatsApp Estilizado */
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            font-weight: 700;
+            padding: 14px 24px;
+            border-radius: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+            width: 100%;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(37, 211, 102, 0.3);
+            background-color: #20ba5a;
+        }
+
+        .form-section {
+            margin-top: 3.5rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f1f3ee;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Encabezado -->
+        <div class="flex justify-between items-start mb-4">
+            <div>
+                <div class="flex items-center gap-3 mb-1">
+                    <i data-lucide="trees" class="text-green-700 w-8 h-8"></i>
+                    <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Eco-Lote Bosque Alto</h1>
+                </div>
+                <p class="text-stone-500 font-medium flex items-center gap-2">
+                    <i data-lucide="map" class="w-4 h-4"></i> Reserva Natural El Oasis
+                </p>
+            </div>
+            <span class="status-badge">Última Unidad</span>
+        </div>
+
+        <div class="price-tag">$98,000 USD</div>
+
+        <p class="description">
+            Descubra el lugar perfecto para construir sus sueños. Este lote de 1,200m² ofrece una integración total con la flora local, vistas panorámicas a la montaña y un compromiso con la preservación del entorno natural.
+        </p>
+
+        <!-- Especificaciones -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+            <div>
+                <div class="section-header">
+                    <i data-lucide="mountain-snow" class="w-5 h-5"></i>
+                    <span>Entorno</span>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label"><span>Vistas</span></div>
+                    <span class="value">Montaña</span>
+                </div>
+            </div>
+            <div>
+                <div class="section-header">
+                    <i data-lucide="maximize" class="w-5 h-5"></i>
+                    <span>Espacio</span>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label"><span>Área</span></div>
+                    <span class="value">1,200 m²</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Servicios Eco -->
+        <div class="mt-4">
+            <div class="section-header">
+                <i data-lucide="leaf" class="w-5 h-5"></i>
+                <span>Sostenibilidad</span>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">
+                    <i data-lucide="sun" class="w-4 h-4 opacity-40"></i>
+                    <span>Energía Solar</span>
+                </div>
+                <span class="value">Factible</span>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">
+                    <i data-lucide="droplets" class="w-4 h-4 opacity-40"></i>
+                    <span>Recogida Aguas</span>
+                </div>
+                <span class="value">Instalado</span>
+            </div>
+        </div>
+
+        <!-- Botón de WhatsApp -->
+        <a href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20el%20Eco-Lote%20Bosque%20Alto" 
+           target="_blank" 
+           class="whatsapp-btn">
+            <i data-lucide="message-circle"></i>
+            Compartir o Consultar por WhatsApp
+        </a>
+
+        <!-- Mapa -->
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.6!2d-74.0!3d4.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwNDInMDAuMCJOIDc0wrAwMCcwMC4wIlc!5e0!3m2!1ses!2s!4v1700000000000" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- Formulario -->
+        <div class="form-section">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-stone-800">Agendar una Visita</h2>
+                <p class="text-stone-500 mt-2">Déjanos tus datos para coordinar un recorrido guiado por el terreno.</p>
+            </div>
+            
+            <div class="rounded-2xl overflow-hidden border-2 border-stone-100">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSfD_T76XwT-pA67vXl9pYk4-XQpM-Ue8lPz5pE1pPz5pE1pPz/viewform?embedded=true" 
+                    width="100%" 
+                    height="500" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    Cargando formulario...
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
