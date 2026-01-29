@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lote en Venta - Cerro Varnet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --nature-green: #2d4f1e;
+            --earth-brown: #5d4037;
+            --soft-leaf: #8da672;
+            --bg-white: #ffffff;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-white);
+            background-image: radial-gradient(#e5e7eb 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 16px; 
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.25rem;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+            max-width: 680px;
+            width: 100%;
+            padding: 1.5rem; 
+            border: 1px solid #e5e7eb;
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                border-radius: 1.5rem;
+                padding: 3rem;
+            }
+        }
+
+        .map-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 1rem;
+            overflow: hidden;
+            margin-top: 2rem;
+            border: 1px solid #f3f4f6;
+        }
+
+        @media (min-width: 768px) {
+            .map-container {
+                height: 300px;
+            }
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: none;
+        }
+
+        .status-badge {
+            background-color: #f0fdf4;
+            color: #15803d;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid #dcfce7;
+            white-space: nowrap;
+        }
+        .status-badge2 {
+            background-color: #f0fdf4;
+            color: #f90000;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid #dcfce7;
+            white-space: nowrap;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--nature-green);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .detail-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .value {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-align: right;
+        }
+
+        .description {
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .description {
+                font-size: 1rem;
+                line-height: 1.8;
+                margin-bottom: 2rem;
+            }
+        }
+
+        .price-tag {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--nature-green);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        @media (min-width: 768px) {
+            .price-tag {
+                font-size: 2.25rem;
+            }
+        }
+
+        .gallery-wrapper {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .gallery-scroll {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 0.75rem;
+            padding-bottom: 0.5rem;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .gallery-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-item {
+            flex: 0 0 85%; 
+            scroll-snap-align: center;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            height: 200px;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-item {
+                flex: 0 0 100%;
+                height: 300px;
+                border-radius: 1rem;
+            }
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .gallery-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #cbd5e1;
+            border-radius: 50%;
+        }
+
+        .gallery-dot.active {
+            background-color: var(--nature-green);
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            font-weight: 700;
+            padding: 14px 20px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        @media (min-width: 768px) {
+            .whatsapp-btn {
+                padding: 16px 24px;
+                border-radius: 1rem;
+                font-size: 1rem;
+            }
+        }
+
+        .form-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px dashed #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Encabezado -->
+        <div class="flex flex-col sm:flex-row justify-between items-start gap-3 mb-4">
+            <div>
+                <div class="flex items-center gap-2 mb-1">
+              
+                <div class="logo">
+            <img src="assets/img/png/logo.png" class="object-cover h-[50px] w-50% transform hover:scale-105 transition duration-700" alt="logo">
+            
+        </div>
+                </div>
+                <p class="text-slate-500 font-medium flex items-center gap-2 text-xs sm:text-sm">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-slate-400"></i> Cerro Varnet, Vaqueros - La Caldera   
+                </p>
+            </div>
+            <span class="status-badge2">RESERVADO</span>
+        </div>
+
+<!--        <div class="price-tag">$45,000 USD</div>
+
+        <p class="description">
+            Oportunidad única en Cerro Varnet. Terreno de 500 m² con excelente ubicación y vistas panorámicas. Ideal para desarrollo residencial, rodeado de naturaleza y tranquilidad, a pocos minutos de la ciudad.
+        </p>-->
+
+        
+
+        <!-- Especificaciones -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 mt-4">
+            <div>
+                <div class="section-header">
+                    <i data-lucide="mountain" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                    <span>Características</span>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label"><span>Urbanización</span></div>
+                    <span class="value">Condominio Cerro Varnet</span>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label"><span>Lote</span></div>
+                    <span class="value">E69 bis</span>
+                </div>
+            </div>
+                <div class="detail-item">
+                    <div class="detail-label"><span>Vistas</span></div>
+                    <span class="value">Panorámicas a la ciudad</span>
+                </div>
+            <div class="detail-item">
+                    <div class="detail-label"><span>Superficie Total</span></div>
+                    <span class="value">500 m²</span>
+                </div>
+                <div>
+                
+            </div>
+        </div>
+
+        <!-- Servicios -->
+        <div class="mt-4">
+            <div class="section-header">
+                <i data-lucide="leaf" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                <span>Servicios</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="detail-item border-none bg-gray-50 rounded-lg px-4 py-2 flex-row justify-between items-center">
+                    <div class="flex items-center gap-2 text-xs text-gray-600">
+                        <i data-lucide="solar-panel" class="w-3 h-3 text-yellow-500"></i> Energía Solar
+                    </div>
+                    <span class="font-bold text-gray-800 text-xs"></span>
+                </div>
+                <div class="detail-item border-none bg-gray-50 rounded-lg px-4 py-2 flex-row justify-between items-center">
+                    <div class="flex items-center gap-2 text-xs text-gray-600">
+                        <i data-lucide="droplets" class="w-3 h-3 text-blue-500"></i> Red de Agua
+                    </div>
+                    <span class="font-bold text-red-800 text-xs"></span>
+                </div>
+                                <div class="detail-item border-none bg-gray-50 rounded-lg px-4 py-2 flex-row justify-between items-center">
+                    <div class="flex items-center gap-2 text-xs text-gray-600">
+                        <i data-lucide="cctv" class="w-3 h-3 text-yellow-500"></i>Cámaras de seguridad
+                    </div>
+                </div>
+                    <div class="detail-item border-none bg-gray-50 rounded-lg px-4 py-2 flex-row justify-between items-center">
+                    <div class="flex items-center gap-2 text-xs text-gray-600">
+                        <i data-lucide="file" class="w-3 h-3 text-yellow-500"></i> Posesión inmediata 
+                    <span class="font-bold text-gray-800 text-xs"></span>
+                </div>
+
+                    <span class="font-bold text-gray-800 text-xs"></span>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!-- Mapa -->
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/d/u/0/embed?mid=1irNwDTvr2T0zVOxVRPN3bymJVi1Lyrs&ehbc=2E312F" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- Formulario 
+        <div class="form-section">
+            <div class="text-center mb-6">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Agenda tu Visita</h2>
+                <p class="text-gray-500 mt-2 text-xs sm:text-sm">Déjanos tus datos para coordinar un recorrido.</p>
+            </div>
+            
+            <div class="rounded-xl overflow-hidden border border-gray-200">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSc89W4MI9Eq1MfG7OlGFF9gq1jr7wUHjn7q27RZnzhECCckjg/viewform?embedded=true" 
+                    width="100%" 
+                    height="450" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    Cargando formulario...
+                </iframe>
+            </div>
+        </div>-->
+                <!-- Botón de WhatsApp -->
+        <a href="https://wa.me/+543875363429?text=Hola,%20me%20interesa%20realizar%20una%20visita%20al%20lote%20de%20650m2" 
+           target="_blank" 
+           class="whatsapp-btn">
+            <i data-lucide="message-circle" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+            <span>Consultar</span>
+        </a>
+    </div>
+
+    
+    <script>
+        // Inicialización segura de iconos
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>
