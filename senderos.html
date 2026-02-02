@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Interactivo | Cerro Varnet</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'varnet-deep': '#081c15',
+                        'varnet-forest': '#1b4332',
+                        'varnet-leaf': '#2d6a4f',
+                        'varnet-moss': '#52b788',
+                        'varnet-mint': '#b7e4c7',
+                        'varnet-earth': '#4a3728',
+                        'varnet-sand': '#f4f7f5',
+                    },
+                    fontFamily: {
+                        'sans': ['Plus Jakarta Sans', 'sans-serif'],
+                        'serif': ['Fraunces', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos base */
+        html, body {
+            height: 100%;
+            overflow: hidden; /* Evita doble scrollbar */
+        }
+        
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(27, 67, 50, 0.1);
+        }
+
+        /* Ajustes específicos para el mapa */
+        .map-wrapper {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 80px); /* Resta la altura del navbar */
+            overflow: hidden;
+            background-color: #e5e7eb; /* Color de fondo mientras carga */
+        }
+
+        .map-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Animaciones */
+        .slide-in {
+            animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+
+        @keyframes slideIn {
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 768px) {
+            html, body {
+                overflow-y: auto; /* Permite scroll en móvil si es necesario */
+            }
+            .map-wrapper {
+                height: 75vh; /* En móvil, dejamos espacio para el contenido inferior */
+                border-radius: 0 0 32px 32px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-varnet-sand font-sans text-varnet-deep flex flex-col">
+
+    <!-- Navegación Compacta -->
+    <nav class="h-20 w-full z-[50] glass-panel flex-shrink-0 relative shadow-sm">
+        <div class="container mx-auto px-6 h-full flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-varnet-forest text-varnet-mint rounded-full flex items-center justify-center transition group-hover:scale-110">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+                <div>
+                    <span class="block text-[10px] uppercase font-bold tracking-widest text-varnet-moss">Volver al inicio</span>
+                    <span class="font-serif font-bold text-varnet-deep text-lg leading-none">Cerro Varnet</span>
+                </div>
+            </a>
+            
+            <a href="https://maps.app.goo.gl/TU_ENLACE_AQUI" target="_blank" class="hidden sm:flex items-center gap-2 bg-varnet-forest text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-varnet-leaf transition">
+                <i class="fa-solid fa-location-arrow"></i>
+                Cómo llegar
+            </a>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal (Flex Layout) -->
+    <main class="flex-grow relative flex flex-col md:flex-row overflow-hidden">
+        
+        <!-- Sidebar / Panel Flotante (Sobre el mapa en Desktop, debajo en Mobile) -->
+        <div class="order-2 md:order-1 md:absolute md:top-6 md:left-6 md:w-96 md:z-20 md:h-auto pointer-events-none p-4 md:p-0">
+            <!-- Tarjeta de Contenido -->
+            <div class="glass-panel p-6 rounded-[24px] shadow-2xl pointer-events-auto slide-in">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <h1 class="font-serif text-2xl font-bold text-varnet-forest">Mapa de Senderos</h1>
+                        <p class="text-xs text-varnet-leaf uppercase tracking-wider font-bold mt-1">Navegación Digital</p>
+                    </div>
+                    <div class="bg-varnet-mint/30 p-2 rounded-lg text-varnet-forest">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                </div>
+
+                <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+                    Utiliza este mapa para localizar los puntos de inicio, las zonas de descanso y las rutas habilitadas. 
+                </p>
+
+                <!-- Leyenda Interactiva -->
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-center gap-3 p-2 hover:bg-black/5 rounded-lg transition cursor-pointer">
+                        <span class="w-3 h-3 rounded-full bg-blue-500 shadow-sm ring-2 ring-white"></span>
+                        <span class="text-sm font-medium">Puntos de Agua</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-2 hover:bg-black/5 rounded-lg transition cursor-pointer">
+                        <span class="w-3 h-3 rounded-full bg-green-600 shadow-sm ring-2 ring-white"></span>
+                        <span class="text-sm font-medium">Senderos Habilitados</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-2 hover:bg-black/5 rounded-lg transition cursor-pointer">
+                        <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm ring-2 ring-white"></span>
+                        <span class="text-sm font-medium">Zonas Restringidas</span>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="alert('Funcionalidad de centrar próximamente')" class="flex items-center justify-center gap-2 border border-gray-200 py-3 rounded-xl hover:bg-gray-50 transition text-sm font-bold text-gray-600">
+                        <i class="fa-solid fa-crosshairs"></i> Centrar
+                    </button>
+                    <a href="https://www.google.com/maps/d/u/0/viewer?mid=1hNGZmpvYtX6vHf-j8pjVS_Pa_UiPKZI" target="_blank" class="flex items-center justify-center gap-2 bg-varnet-forest text-white py-3 rounded-xl hover:bg-varnet-deep transition text-sm font-bold shadow-lg hover:shadow-xl">
+                        <i class="fa-solid fa-expand"></i> Pantalla Completa
+                    </a>
+                </div>
+            </div>
+
+            <!-- Godomar Tip (Solo Desktop) -->
+            <div class="mt-4 hidden md:flex items-center gap-3 glass-panel p-4 rounded-2xl pointer-events-auto slide-in" style="animation-delay: 0.2s">
+                <div class="w-10 h-10 rounded-full bg-varnet-mint flex items-center justify-center text-varnet-forest flex-shrink-0">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <p class="text-xs font-medium text-varnet-deep">
+                    <span class="font-bold block text-varnet-forest">Tip de Godomar:</span>
+                    Descarga el mapa offline antes de subir.
+                </p>
+            </div>
+        </div>
+
+        <!-- Área del Mapa -->
+        <div class="order-1 md:order-2 map-wrapper bg-gray-200">
+            <!-- Spinner de carga (visible brevemente) -->
+            <div class="absolute inset-0 flex items-center justify-center text-varnet-moss z-0">
+                <i class="fa-solid fa-circle-notch fa-spin text-4xl opacity-50"></i>
+            </div>
+            
+            <!-- Google My Maps Embed -->
+            <iframe 
+                src="https://www.google.com/maps/d/u/0/embed?mid=1hNGZmpvYtX6vHf-j8pjVS_Pa_UiPKZI&ehbc=2E312F&z=14" 
+                class="map-iframe z-10"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+    </main>
+
+</body>
+</html>
