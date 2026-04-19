@@ -35,13 +35,40 @@ body {
   background-color: #0ed159;
 }
 
-@media (max-width: 768px){
+/* Responsive improvements */
+@media (max-width: 640px){
+  .swiper-button-next, .swiper-button-prev {
+    width: 44px;
+    height: 44px;
+    top: 40%;
+  }
+
   .swiper-button-next {
-    right: -7%;
+    right: -1.5%;
   }
 
   .swiper-button-prev {
-    left: -7%;
+    left: -1.5%;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    content: '';
+    background-size: contain;
+  }
+}
+
+@media (max-width: 768px){
+  .swiper-button-next {
+    width: 60px;
+    height: 60px;
+    right: -3%;
+  }
+
+  .swiper-button-prev {
+    width: 60px;
+    height: 60px;
+    left: -3%;
   }
 }
 
@@ -62,5 +89,28 @@ body {
 
   .swiper-button-prev {
     left: -3%;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Better mobile text sizing */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.875rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.25rem !important;
   }
 }
