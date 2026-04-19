@@ -175,13 +175,26 @@
         }
         .back-link:hover { color: white; }
 
-        /* === CAROUSEL === */
-        .carousel-container { position: relative; border-radius: 20px; overflow: hidden; background: #0f172a; height: 280px; }
-        @media (min-width: 768px) { .carousel-container { height: 360px; } }
-        .carousel-track { display: flex; height: 100%; width: 100%; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+        /* === CAROUSEL – fully responsive === */
+        .carousel-container {
+            position: relative; border-radius: 20px; overflow: hidden;
+            background: #0f172a; width: 100%;
+            aspect-ratio: 3/2;
+        }
+        @media (min-width: 480px) { .carousel-container { aspect-ratio: 16/9; } }
+        @media (min-width: 768px) { .carousel-container { aspect-ratio: 16/9; max-height: 420px; } }
+        .carousel-track { display: flex; width: 100%; height: 100%; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
         .carousel-slide { min-width: 100%; flex-shrink: 0; height: 100%; position: relative; }
-        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
-        .slide-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.65), transparent); padding: 36px 16px 14px; pointer-events: none; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .slide-caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+            padding: clamp(16px,5vw,36px) clamp(10px,3vw,16px) clamp(8px,2vw,14px);
+            pointer-events: none;
+        }
+        .slide-caption p { font-size: clamp(0.7rem, 2.5vw, 0.875rem); font-weight: 600; color: rgba(255,255,255,0.95); }
+        .stat-card p:first-child { font-size: clamp(1rem, 5vw, 1.875rem) !important; }
+        .stat-card p:last-child  { font-size: clamp(0.6rem, 1.8vw, 0.75rem) !important; }
         .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.92); border: 1px solid rgba(255,255,255,0.6); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; z-index: 10; box-shadow: 0 4px 16px rgba(0,0,0,0.2); backdrop-filter: blur(4px); color: #1e293b; }
         .carousel-btn:hover { background: white; border-color: #059669; color: #059669; box-shadow: 0 4px 16px rgba(5,150,105,0.25); transform: translateY(-50%) scale(1.08); }
         .carousel-btn-prev { left: 12px; }
@@ -427,11 +440,35 @@
 
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-brandDark text-white py-8 px-4 sm:px-6 text-center">
-        <img src="assets/img/png/logo.png" alt="terrenosensalta" class="h-8 object-contain mx-auto mb-3 opacity-70">
-        <p class="text-emerald-200/60 text-xs font-medium">© 2026 terrenosensalta.AR · Todos los derechos reservados</p>
-        <a href="index.html" class="text-emerald-300 text-xs mt-2 inline-block hover:text-white transition">← Ver todos los desarrollos</a>
+    <!-- FOOTER UNIFICADO -->
+    <footer style="background:#021a0f;box-shadow:0 -1px 0 rgba(255,255,255,0.04),0 -8px 32px rgba(0,0,0,0.2);">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 pt-10 pb-6">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <img src="assets/img/png/logo.png" alt="terrenosensalta" class="h-9 object-contain mb-3 opacity-80">
+                    <p class="text-sm leading-relaxed" style="color:rgba(209,250,229,0.55)">Lotes en Salta.<br>Tu lugar en la naturaleza.</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color:rgba(209,250,229,0.35)">Desarrollos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="cerrovarnet-lotes.html" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">Cerro Varnet</a></li>
+                        <li><a href="pumapiedra.html" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">Puma Piedra</a></li>
+                        <li><a href="aldea.html" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">Aldea Vaquereña</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color:rgba(209,250,229,0.35)">Contacto</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://wa.link/1m4jlo" target="_blank" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">WhatsApp</a></li>
+                        <li><a href="https://calendar.app.google/KCe8GPatZ7YXgx358" target="_blank" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">Agendar visita</a></li>
+                        <li><a href="index.html" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">← Todos los desarrollos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-5 text-center text-xs border-t" style="border-color:rgba(16,185,129,0.12);color:rgba(209,250,229,0.3)">
+                © 2026 terrenosensalta.AR · Todos los derechos reservados
+            </div>
+        </div>
     </footer>
 
     <!-- Lightbox -->
@@ -455,8 +492,18 @@
             carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
             carouselDots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
         }
-        function prevSlide() { goToSlide(currentSlide - 1); }
-        function nextSlide() { goToSlide(currentSlide + 1); }
+        // Autoplay
+        let _apTimer = null;
+        function startAP() { _apTimer = setInterval(() => goToSlide(currentSlide + 1), 5000); }
+        function stopAP()  { clearInterval(_apTimer); }
+        function resetAP() { stopAP(); startAP(); }
+        function prevSlide() { goToSlide(currentSlide - 1); resetAP(); }
+        function nextSlide() { goToSlide(currentSlide + 1); resetAP(); }
+        // Pausa al hover
+        const _cc = document.querySelector('.carousel-container');
+        _cc?.addEventListener('mouseenter', stopAP);
+        _cc?.addEventListener('mouseleave', startAP);
+        startAP();
         let touchStartX = 0;
         if (carouselTrack) {
             carouselTrack.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
