@@ -8,7 +8,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="preload" as="image" href="assets/img/lotes/cerro.svg">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -222,23 +225,215 @@
         #lightbox-caption { color: rgba(255,255,255,0.7); font-size: 0.8rem; font-weight: 600; margin-top: 14px; text-align: center; letter-spacing: 0.05em; text-transform: uppercase; }
         .lightbox-back { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; padding: 10px 24px; border-radius: 9999px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s ease; }
         .lightbox-back:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.4); }
+    /* ===== SITE FOOTER ===== */
+    .site-footer {
+      background: #021a0f;
+      color: rgba(209, 250, 229, 0.65);
+      margin-top: 80px;
+      box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.04), 0 -12px 40px rgba(0, 0, 0, 0.28);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 56px 24px 40px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    @media (min-width: 640px) {
+      .footer-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .footer-inner {
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 64px;
+      }
+    }
+
+    .footer-logo {
+      height: 36px;
+      object-fit: contain;
+      opacity: 0.72;
+      margin-bottom: 14px;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: rgba(209, 250, 229, 0.45);
+      margin-bottom: 22px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(209, 250, 229, 0.7);
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .footer-social-btn:hover {
+      background: #25D366;
+      border-color: #25D366;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+    }
+
+    .footer-heading {
+      font-size: 0.63rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(209, 250, 229, 0.32);
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(209, 250, 229, 0.58);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-links a svg {
+      opacity: 0.65;
+      flex-shrink: 0;
+    }
+
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: rgba(209, 250, 229, 0.32);
+    }
+
+    .footer-bottom strong {
+      color: rgba(209, 250, 229, 0.55);
+    }
+
+    .footer-pdf-link {
+      color: rgba(209, 250, 229, 0.45);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .footer-pdf-link:hover {
+      color: #6ee7b7;
+    }
     </style>
 </head>
 <body class="font-sans bg-slate-50 text-slate-900 overflow-x-hidden">
 
     <!-- NAV -->
-    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-            <a href="index.html">
-                <img src="assets/img/png/logo.png" alt="terrenosensalta" class="h-10 object-contain">
-            </a>
-            <a href="https://wa.link/1m4jlo" target="_blank"
-               class="flex items-center gap-2 bg-[#25D366] text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-[#1da851] transition">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z"/></svg>
-                Consultar
-            </a>
+    <header class="main-nav-header fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
+        <nav class="max-w-screen-xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-10">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="logo">
+                        <img src="assets/img/png/logo.png" loading="eager" fetchpriority="high" decoding="sync"
+                            class="object-cover h-[50px] w-full transform hover:scale-105 transition duration-700" alt="logo">
+                    </div>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-8 font-medium text-slate-500 text-sm tracking-wide">
+                    <a href="index.html"
+                        class="hover:text-emerald-600 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-300 hover:after:w-full">Inicio</a>
+                    <a href="index.html#lotes"
+                        class="hover:text-emerald-600 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-300 hover:after:w-full">Desarrollos</a>
+                    <a href="index.html#servicios"
+                        class="hover:text-emerald-600 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-300 hover:after:w-full">Calcular Financiamiento</a>
+                    <a href="index.html#contacto"
+                        class="hover:text-emerald-600 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-300 hover:after:w-full">Contacto</a>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="https://wa.link/1m4jlo" target="_blank"
+                    class="hidden lg:flex px-5 py-2.5 border-2 border-emerald-600 text-emerald-600 font-semibold rounded-lg hover:bg-emerald-600 hover:text-white transition duration-300 shadow-sm hover:shadow-md">
+                    Consultar
+                </a>
+                <div class="lg:hidden">
+                    <button id="mobile-menu-toggle" class="text-slate-800 p-2">
+                        <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="4" y1="6" x2="20" y2="6"></line>
+                            <line x1="4" y1="12" x2="20" y2="12"></line>
+                            <line x1="4" y1="18" x2="20" y2="18"></line>
+                        </svg>
+                        <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 hidden" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div id="mobile-menu"
+            class="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+            <div class="px-6 py-4 flex flex-col items-center gap-4 font-medium text-slate-800 text-lg">
+                <a href="index.html"
+                    class="mobile-menu-item block w-full text-center py-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2">Inicio</a>
+                <a href="index.html#lotes"
+                    class="mobile-menu-item block w-full text-center py-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-100">Desarrollos</a>
+                <a href="index.html#servicios"
+                    class="mobile-menu-item block w-full text-center py-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-200">Calcular Financiamiento</a>
+                <a href="index.html#contacto"
+                    class="mobile-menu-item block w-full text-center py-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-300">Contacto</a>
+                <a href="https://wa.link/1m4jlo" target="_blank"
+                    class="w-full mt-4 flex items-center justify-center gap-2 px-5 py-2.5 border-2 border-emerald-600 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition duration-300 shadow-md">
+                    Consultar
+                </a>
+            </div>
         </div>
-    </nav>
+    </header>
 
     <!-- HERO -->
     <header class="hero-bg pt-28 pb-12 px-4 sm:px-6 relative overflow-hidden">
@@ -296,7 +491,7 @@
             <div class="carousel-container">
                 <div class="carousel-track" id="carouselTrack">
                     <div class="carousel-slide">
-                        <img src="assets/img/lotes/cerro.svg" alt="Plano Cerro Varnet" loading="lazy">
+                        <img src="assets/img/lotes/cerro.svg" alt="Plano Cerro Varnet" loading="eager" fetchpriority="high" decoding="sync">
                         <div class="slide-caption"><p class="text-white text-sm font-semibold">Plano del desarrollo</p></div>
                     </div>
                     <div class="carousel-slide">
@@ -521,36 +716,102 @@
 
     </main>
 
-    <!-- FOOTER UNIFICADO -->
-    <footer style="background:#021a0f;box-shadow:0 -1px 0 rgba(255,255,255,0.04),0 -8px 32px rgba(0,0,0,0.2);">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 pt-10 pb-6">
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <img src="assets/img/png/logo.png" alt="terrenosensalta" class="h-9 object-contain mb-3 opacity-80">
-                    <p class="text-sm leading-relaxed" style="color:rgba(209,250,229,0.55)">Lotes en Salta.<br>Tu lugar en la naturaleza.</p>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color:rgba(209,250,229,0.35)">Desarrollos</h4>
-                    <ul class="space-y-2">
-                        <li><a href="cerrovarnet-lotes.html" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">Cerro Varnet</a></li>
-                        <li><a href="pumapiedra.html" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">Puma Piedra</a></li>
-                        <li><a href="aldea.html" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">Aldea Vaquereña</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color:rgba(209,250,229,0.35)">Contacto</h4>
-                    <ul class="space-y-2">
-                        <li><a href="https://wa.link/1m4jlo" target="_blank" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">WhatsApp</a></li>
-                        <li><a href="https://calendar.app.google/KCe8GPatZ7YXgx358" target="_blank" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">Agendar visita</a></li>
-                        <li><a href="index.html" class="text-sm hover:text-white transition-colors" style="color:rgba(209,250,229,0.65)">← Todos los desarrollos</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="pt-5 text-center text-xs border-t" style="border-color:rgba(16,185,129,0.12);color:rgba(209,250,229,0.3)">
-                © 2026 terrenosensalta.AR · Todos los derechos reservados
-            </div>
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <!-- Columna 1: Brand -->
+      <div class="footer-col">
+        <img src="assets/img/png/logo.png" alt="terrenosensalta" class="footer-logo">
+        <p class="footer-tagline">Tu lugar en la naturaleza.<br>Lotes en Salta, Argentina.<br>Preventa exclusiva 2026.
+        </p>
+        <div class="footer-social">
+          <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener" aria-label="Consultanos por WhatsApp"
+            class="footer-social-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z" />
+            </svg>
+          </a>
         </div>
-    </footer>
+      </div>
+
+      <!-- Columna 2: Desarrollos -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Desarrollos</h3>
+        <ul class="footer-links">
+          <li>
+            <a href="condominiocerrovarnet.html">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              Condominio Cerro Varnet
+            </a>
+          </li>
+          <li>
+            <a href="pumapiedra.html">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              Condominio Puma Piedra
+            </a>
+          </li>
+          <li>
+            <a href="aldea.html">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              Aldea Vaquereña
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Contacto -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Contacto</h3>
+        <ul class="footer-links">
+          <li>
+            <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z" />
+              </svg>
+              WhatsApp
+            </a>
+          </li>
+          <li>
+            <a href="https://calendar.app.google/KCe8GPatZ7YXgx358" target="_blank" rel="noopener">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Agendar visita
+            </a>
+          </li>
+          <li>
+            <a href="https://www.google.com/maps/d/u/0/edit?mid=15-CgHwD2YCjIVTsguJQQFhvZzyYc8jU&usp=sharing"
+              target="_blank" rel="noopener">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Ver en el mapa
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    <!-- Barra inferior -->
+    <div class="footer-bottom">
+      <p>© 2026 <strong>terrenosensalta.AR</strong> · Todos los derechos reservados</p>
+      <a href="https://drive.google.com/file/d/1MCiLKgGpTcFY0U1kgTfgW-cQ0ij1qxaZ/view?usp=sharing" target="_blank"
+        rel="noopener" class="footer-pdf-link">Descargar catálogo PDF →</a>
+    </div>
+  </footer>
 
     <!-- Lightbox -->
     <div id="lightbox">
@@ -622,6 +883,35 @@
             if (e.key === 'ArrowLeft') prevSlide();
             if (e.key === 'ArrowRight') nextSlide();
         });
+
+        // Mobile Menu Toggle Functionality
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+        const menuItems = document.querySelectorAll('.mobile-menu-item');
+        const mainNavHeader = document.querySelector('.main-nav-header');
+
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenu.classList.toggle('is-expanded');
+                if (isExpanded) {
+                    mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+                    menuIconOpen.classList.add('hidden');
+                    menuIconClose.classList.remove('hidden');
+                    if(mainNavHeader) mainNavHeader.classList.add('shadow-xl');
+                    menuItems.forEach((item, index) => {
+                        setTimeout(() => item.classList.remove('opacity-0', 'translate-y-2'), 50 * index);
+                    });
+                } else {
+                    mobileMenu.style.maxHeight = '0';
+                    menuIconOpen.classList.remove('hidden');
+                    menuIconClose.classList.add('hidden');
+                    if(mainNavHeader) mainNavHeader.classList.remove('shadow-xl');
+                    menuItems.forEach(item => item.classList.add('opacity-0', 'translate-y-2'));
+                }
+            });
+        }
     </script>
 </body>
 </html>

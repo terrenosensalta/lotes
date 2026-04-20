@@ -9,8 +9,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
+
+  <link rel="preload" as="image" href="assets/img/png/logo.png">
+  <link rel="preload" as="image" href="assets/img/lotes/anticipo.svg">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -108,9 +112,15 @@
 
     /* ===== SKELETON LOADERS (cards) ===== */
     @keyframes shimmer {
-      0%   { background-position: -200% 0; }
-      100% { background-position:  200% 0; }
+      0% {
+        background-position: -200% 0;
+      }
+
+      100% {
+        background-position: 200% 0;
+      }
     }
+
     .skeleton-img {
       position: absolute;
       inset: 0;
@@ -120,16 +130,21 @@
       animation: shimmer 1.5s infinite;
       transition: opacity 0.4s ease;
     }
-    .skeleton-img.fade-out { opacity: 0; pointer-events: none; }
+
+    .skeleton-img.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
 
     /* ===== SITE FOOTER ===== */
     .site-footer {
       background: #021a0f;
-      color: rgba(209,250,229,0.65);
+      color: rgba(209, 250, 229, 0.65);
       margin-top: 80px;
-      box-shadow: 0 -1px 0 rgba(255,255,255,0.04), 0 -12px 40px rgba(0,0,0,0.28);
+      box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.04), 0 -12px 40px rgba(0, 0, 0, 0.28);
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
+
     .footer-inner {
       max-width: 1280px;
       margin: 0 auto;
@@ -138,8 +153,20 @@
       grid-template-columns: 1fr;
       gap: 40px;
     }
-    @media (min-width: 640px)  { .footer-inner { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .footer-inner { grid-template-columns: 2fr 1fr 1fr; gap: 64px; } }
+
+    @media (min-width: 640px) {
+      .footer-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .footer-inner {
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 64px;
+      }
+    }
+
     .footer-logo {
       height: 36px;
       object-fit: contain;
@@ -147,71 +174,113 @@
       margin-bottom: 14px;
       filter: brightness(0) invert(1);
     }
+
     .footer-tagline {
       font-size: 0.85rem;
       line-height: 1.75;
-      color: rgba(209,250,229,0.45);
+      color: rgba(209, 250, 229, 0.45);
       margin-bottom: 22px;
     }
-    .footer-social { display: flex; gap: 10px; }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+
     .footer-social-btn {
-      display: flex; align-items: center; justify-content: center;
-      width: 38px; height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: rgba(209,250,229,0.7);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(209, 250, 229, 0.7);
       transition: all 0.25s ease;
       text-decoration: none;
     }
+
     .footer-social-btn:hover {
-      background: #25D366; border-color: #25D366; color: white;
+      background: #25D366;
+      border-color: #25D366;
+      color: white;
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(37,211,102,0.35);
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
     }
+
     .footer-heading {
       font-size: 0.63rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: rgba(209,250,229,0.32);
+      color: rgba(209, 250, 229, 0.32);
       margin-bottom: 18px;
     }
-    .footer-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 13px; }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
     .footer-links a {
       font-size: 0.875rem;
       font-weight: 500;
-      color: rgba(209,250,229,0.58);
+      color: rgba(209, 250, 229, 0.58);
       text-decoration: none;
-      display: flex; align-items: center; gap: 7px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
       transition: color 0.2s ease;
     }
-    .footer-links a:hover { color: #fff; }
-    .footer-links a svg { opacity: 0.65; flex-shrink: 0; }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-links a svg {
+      opacity: 0.65;
+      flex-shrink: 0;
+    }
+
     .footer-bottom {
       max-width: 1280px;
       margin: 0 auto;
       padding: 20px 24px;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       font-size: 0.78rem;
-      color: rgba(209,250,229,0.32);
+      color: rgba(209, 250, 229, 0.32);
     }
-    .footer-bottom strong { color: rgba(209,250,229,0.55); }
+
+    .footer-bottom strong {
+      color: rgba(209, 250, 229, 0.55);
+    }
+
     .footer-pdf-link {
-      color: rgba(209,250,229,0.45);
+      color: rgba(209, 250, 229, 0.45);
       text-decoration: none;
       font-weight: 600;
       transition: color 0.2s;
     }
-    .footer-pdf-link:hover { color: #6ee7b7; }
+
+    .footer-pdf-link:hover {
+      color: #6ee7b7;
+    }
 
     /* ===== BUTTON ACTIVE PRESS ===== */
-    .btn-press:active { transform: scale(0.96) !important; transition: transform 0.1s !important; }
+    .btn-press:active {
+      transform: scale(0.96) !important;
+      transition: transform 0.1s !important;
+    }
   </style>
 </head>
 
@@ -224,7 +293,7 @@
 
 
           <div class="logo">
-            <img src="assets/img/png/logo.png"
+            <img src="assets/img/png/logo.png" loading="eager" fetchpriority="high" decoding="sync"
               class="object-cover h-[50px] w-full transform hover:scale-105 transition duration-700" alt="logo">
 
           </div>
@@ -235,9 +304,10 @@
           <a href="#"
             class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Inicio</a>
           <a href="#lotes"
-            class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Lotes</a>
+            class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Desarrollos</a>
           <a href="#servicios"
-            class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Servicios</a>
+            class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Calcular
+            Financiamiento</a>
           <a href="#contacto"
             class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Contacto</a>
         </div>
@@ -246,7 +316,7 @@
       <div class="flex items-center gap-4">
         <button
           class="hidden lg:block px-5 py-2.5 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition duration-300 shadow-sm hover:shadow-md">
-          Área Clientes
+          Consultar
         </button>
         <div class="lg:hidden">
           <button id="mobile-menu-toggle" class="text-primaryDark p-2">
@@ -274,9 +344,10 @@
         <a href="#"
           class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2">Inicio</a>
         <a href="#lotes"
-          class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-100">Lotes</a>
+          class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-100">Desarrollos</a>
         <a href="#servicios"
-          class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-200">Servicios</a>
+          class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-200">Calcular
+          Financiamiento</a>
         <a href="#contacto"
           class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-300">Contacto</a>
         <button
@@ -303,7 +374,7 @@
         </h1>
         <p class="mb-8 text-lg text-textMuted leading-relaxed pr-0 lg:pr-12">
           Animáte a vivir en armonía con la naturaleza.
-          <br>Lotes disponibles para invertir desde 300 u$s.
+          <br>Lotes en VAQUEROS & LA CALDERA desde 500 m2<br>
         </p>
 
         <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
@@ -341,7 +412,7 @@
         </div>
 
         <div class="relative rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white">
-          <img src="assets/img/lotes/anticipo.svg"
+          <img src="assets/img/lotes/anticipo.svg" loading="eager" fetchpriority="high" decoding="sync"
             class="object-cover h-[550px] w-full transform hover:scale-105 transition duration-700" alt="Paisaje Salta">
         </div>
       </div>
@@ -357,249 +428,6 @@
         </button>
 
       </div>
-    </section>
-
-
-
-    <section id="lotes" class="py-12 mb-20">
-      <div class="flex flex-col lg:flex-row items-end justify-between mb-12 gap-6" data-aos="fade-up">
-        <div class="max-w-2xl">
-          <h3 class="text-3xl sm:text-4xl text-primaryDark font-extrabold leading-tight"> </h3>
-        </div>
-        <a href="#"
-          class="hidden lg:flex items-center gap-2 text-primary font-semibold hover:text-primaryDark transition group">
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:translate-x-1 transition-transform"
-            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-            stroke-linejoin="round">
-            <polyline points="9 6 15 12 9 18"></polyline>
-          </svg>
-        </a>
-      </div>
-
-
-
-
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <a href="cerrovarnet-lotes.html"
-          class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer block"
-          data-aos="fade-up" data-aos-delay="100">
-          <div class="relative h-64 overflow-hidden">
-            <span
-              class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Entrega
-              Inmediata</span>
-            <div class="skeleton-img" id="skelCerro"></div>
-            <img src="assets/img/lotes/cerro.svg"
-              loading="lazy" decoding="async"
-              class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Cerro Varnet">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity">
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Condominio Cerro Varnet
-              </h5>
-              <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">Últimos lotes de 500
-                m2</span>
-            </div>
-            <p class="text-sm text-textMuted font-medium mb-4 line-clamp-2">Barrio abierto con vistas panorámicas a la
-              ciudad. </p>
-
-            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
-              <div class="flex flex-col">
-                <span class="text-xs text-textMuted uppercase">Superficie desde</span>
-                <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
-                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
-                    </path>
-                  </svg>
-                  500 m²
-                </span>
-              </div>
-              <div class="flex flex-col text-right">
-                <span class="text-xs text-textMuted uppercase">Precio</span>
-                <span class="text-lg font-bold text-primary">$12.500 USD</span>
-              </div>
-            </div>
-            <div
-              class="flex items-center justify-center gap-2 w-full py-2.5 bg-primary text-white text-sm font-bold rounded-xl group-hover:bg-primaryDark transition-colors duration-300">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              Ver más información
-            </div>
-          </div>
-        </a>
-
-        <div
-          class="relative group bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-lg opacity-75 cursor-not-allowed"
-          data-aos="fade-up" data-aos-delay="200">
-          <!-- Sold-out overlay -->
-          <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-            <div class="bg-stone-800/80 backdrop-blur-sm px-6 py-3 rounded-2xl rotate-[-6deg] shadow-2xl">
-              <span class="text-white font-extrabold text-xl tracking-widest uppercase">Vendido</span>
-            </div>
-          </div>
-          <div class="relative h-64 overflow-hidden">
-            <span
-              class="absolute top-4 left-4 bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Sin
-              stock</span>
-            <div class="skeleton-img" id="skelRefugio"></div>
-            <img src="assets/img/lotes/refugio.svg"
-              loading="lazy" decoding="async"
-              class="card-img-lazy w-full h-full object-cover grayscale transition duration-700"
-              alt="Refugio Vaquereña">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-70"></div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h5 class="text-xl text-stone-400 font-bold">Refugio Vaquereña</h5>
-              <span class="text-stone-400 bg-stone-100 px-2 py-1 rounded text-xs font-bold line-through">10% OFF
-                CONTADO</span>
-            </div>
-            <p class="text-sm text-stone-400 font-medium mb-4 line-clamp-2">Naturaleza pura, arroyos y tranquilidad a
-              solo 25 minutos del centro.</p>
-
-            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
-              <div class="flex flex-col">
-                <span class="text-xs text-stone-400 uppercase">Superficie</span>
-                <span class="text-sm font-bold text-stone-400 flex items-center gap-1">
-                  <svg class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
-                    </path>
-                  </svg>
-                  650 m²
-                </span>
-              </div>
-              <div class="flex flex-col text-right">
-                <span class="text-xs text-stone-400 uppercase">Precio</span>
-                <span class="text-lg font-bold text-stone-400 line-through">15.000 u$s</span>
-              </div>
-            </div>
-            <div
-              class="flex items-center justify-center gap-2 w-full py-2.5 bg-stone-200 text-stone-400 text-sm font-bold rounded-xl">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-              </svg>
-              Vendido
-            </div>
-          </div>
-        </div>
-
-        <a href="pumapiedra.html"
-          class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer block"
-          data-aos="fade-up" data-aos-delay="300">
-          <div class="relative h-64 overflow-hidden">
-            <span
-              class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">eco-urbanización</span>
-            <div class="skeleton-img" id="skelPuma"></div>
-            <img src="assets/img/lotes/pumapiedra.svg"
-              loading="lazy" decoding="async"
-              class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Condominio Puma Piedra">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity">
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Condominio Puma Piedra
-              </h5>
-              <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">DIQUE CAMPO ALEGRE</span>
-            </div>
-            <p class="text-sm text-textMuted font-medium mb-4 line-clamp-2">Vista panorámica hacia el espejo de agua en
-              la zona más privilegiada de La Caldera.</p>
-
-            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
-              <div class="flex flex-col">
-                <span class="text-xs text-textMuted uppercase">Superficie</span>
-                <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
-                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
-                    </path>
-                  </svg>
-                  1000 m²
-                </span>
-              </div>
-              <div class="flex flex-col text-right">
-                <span class="text-xs text-textMuted uppercase">Precio</span>
-                <span class="text-lg font-bold text-primary">17.000 u$s</span>
-              </div>
-            </div>
-            <div
-              class="flex items-center justify-center gap-2 w-full py-2.5 bg-primary text-white text-sm font-bold rounded-xl group-hover:bg-primaryDark transition-colors duration-300">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              Ver más información
-            </div>
-          </div>
-        </a>
-
-        <a href="aldea.html"
-          class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer block"
-          data-aos="fade-up" data-aos-delay="300">
-          <div class="relative h-64 overflow-hidden">
-            <span
-              class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">eco-urbanización</span>
-            <div class="skeleton-img" id="skelAldea"></div>
-            <img src="assets/img/lotes/aldea.svg"
-              loading="lazy" decoding="async"
-              class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Aldea Vaquereña">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity">
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Aldea Vaquereña </h5>
-              <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">Vaqueros</span>
-            </div>
-            <p class="text-sm text-textMuted font-medium mb-4 line-clamp-2">Lotes en el corazón de un bosque de nogales
-              en Vaqueros, ideal para casa y quincho con piscina.</p>
-
-            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
-              <div class="flex flex-col">
-                <span class="text-xs text-textMuted uppercase">Superficie</span>
-                <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
-                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
-                    </path>
-                  </svg>
-                  1000 m²
-                </span>
-              </div>
-              <div class="flex flex-col text-right">
-                <span class="text-xs text-textMuted uppercase">Precio</span>
-                <span class="text-lg font-bold text-primary">17.000 u$s</span>
-              </div>
-            </div>
-            <div
-              class="flex items-center justify-center gap-2 w-full py-2.5 bg-primary text-white text-sm font-bold rounded-xl group-hover:bg-primaryDark transition-colors duration-300">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              Ver más información
-            </div>
-          </div>
-        </a>
-      </div>
-
     </section>
 
     <section id="servicios" class="w-full mb-24" data-aos="fade-up">
@@ -709,18 +537,247 @@
               class="hidden text-xs text-amber-300 bg-amber-400/10 border border-amber-400/20 rounded-lg px-3 py-2 text-center">
             </div>
 
-            <a href="https://wa.link/1m4jlo" target="_blank"
-              class="flex items-center justify-center gap-2 w-full py-3 bg-[#25D366] text-white font-bold rounded-xl hover:bg-[#1da851] transition text-sm shadow-lg">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z" />
-              </svg>
-              Consultar este plan por WhatsApp
-            </a>
           </div>
         </div>
       </div>
     </section>
+
+
+    <section id="lotes">
+      <div class="flex flex-col items-center justify-center text-center mb-12" data-aos="fade-up">
+        <div class="max-w-2xl mx-auto">
+          <h3
+            class="text-3xl sm:text-4xl lg:text-5xl text-primaryDark font-extrabold leading-tight tracking-tight uppercase">
+            Desarrollos disponibles</h3>
+          <div class="h-1.5 w-20 bg-emerald-500 rounded-full mx-auto mt-6 opacity-80 shadow-sm"></div>
+        </div>
+      </div>
+
+
+
+
+
+      <div id="developments-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <a href="condominiocerrovarnet.html"
+          class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer block"
+          data-aos="fade-up" data-aos-delay="100">
+          <div class="relative h-64 overflow-hidden">
+            <span
+              class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Entrega
+              Inmediata</span>
+            <div class="skeleton-img" id="skelCerro"></div>
+            <img src="assets/img/lotes/cerro.svg" loading="lazy" decoding="async"
+              class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700"
+              alt="Cerro Varnet">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity">
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Condominio Cerro Varnet
+              </h5>
+              <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">Últimos lotes de 500
+                m2</span>
+            </div>
+            <p class="text-sm text-textMuted font-medium mb-4 line-clamp-2">Barrio abierto con vistas panorámicas a la
+              ciudad. </p>
+
+            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
+              <div class="flex flex-col">
+                <span class="text-xs text-textMuted uppercase">Superficie desde</span>
+                <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
+                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
+                    </path>
+                  </svg>
+                  500 m²
+                </span>
+              </div>
+              <div class="flex flex-col text-right">
+                <span class="text-xs text-textMuted uppercase">Precio</span>
+                <span class="text-lg font-bold text-primary">$12.500 USD</span>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-center gap-2 w-full py-2.5 bg-primary text-white text-sm font-bold rounded-xl group-hover:bg-primaryDark transition-colors duration-300">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              Ver más información
+            </div>
+          </div>
+        </a>
+
+        <div
+          class="relative group bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-lg opacity-75 cursor-not-allowed"
+          data-aos="fade-up" data-aos-delay="200">
+          <!-- Sold-out overlay -->
+          <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+            <div class="bg-stone-800/80 backdrop-blur-sm px-6 py-3 rounded-2xl rotate-[-6deg] shadow-2xl">
+              <span class="text-white font-extrabold text-xl tracking-widest uppercase">Vendido</span>
+            </div>
+          </div>
+          <div class="relative h-64 overflow-hidden">
+            <span
+              class="absolute top-4 left-4 bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Sin
+              stock</span>
+            <div class="skeleton-img" id="skelRefugio"></div>
+            <img src="assets/img/lotes/refugio.svg" loading="lazy" decoding="async"
+              class="card-img-lazy w-full h-full object-cover grayscale transition duration-700"
+              alt="Refugio Vaquereña">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-70"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h5 class="text-xl text-stone-400 font-bold">Refugio Vaquereña</h5>
+              <span class="text-stone-400 bg-stone-100 px-2 py-1 rounded text-xs font-bold line-through">10% OFF
+                CONTADO</span>
+            </div>
+            <p class="text-sm text-stone-400 font-medium mb-4 line-clamp-2">Naturaleza pura, arroyos y tranquilidad a
+              solo 25 minutos del centro.</p>
+
+            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
+              <div class="flex flex-col">
+                <span class="text-xs text-stone-400 uppercase">Superficie</span>
+                <span class="text-sm font-bold text-stone-400 flex items-center gap-1">
+                  <svg class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
+                    </path>
+                  </svg>
+                  650 m²
+                </span>
+              </div>
+              <div class="flex flex-col text-right">
+                <span class="text-xs text-stone-400 uppercase">Precio</span>
+                <span class="text-lg font-bold text-stone-400 line-through">15.000 u$s</span>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-center gap-2 w-full py-2.5 bg-stone-200 text-stone-400 text-sm font-bold rounded-xl">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+              </svg>
+              Vendido
+            </div>
+          </div>
+        </div>
+
+        <a href="pumapiedra.html"
+          class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer block"
+          data-aos="fade-up" data-aos-delay="300">
+          <div class="relative h-64 overflow-hidden">
+            <span
+              class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">eco-urbanización</span>
+            <div class="skeleton-img" id="skelPuma"></div>
+            <img src="assets/img/lotes/pumapiedra.svg" loading="lazy" decoding="async"
+              class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700"
+              alt="Condominio Puma Piedra">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity">
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Condominio Puma Piedra
+              </h5>
+              <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">DIQUE CAMPO ALEGRE</span>
+            </div>
+            <p class="text-sm text-textMuted font-medium mb-4 line-clamp-2">Vista panorámica hacia el espejo de agua en
+              la zona más privilegiada de La Caldera.</p>
+
+            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
+              <div class="flex flex-col">
+                <span class="text-xs text-textMuted uppercase">Superficie</span>
+                <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
+                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
+                    </path>
+                  </svg>
+                  1000 m²
+                </span>
+              </div>
+              <div class="flex flex-col text-right">
+                <span class="text-xs text-textMuted uppercase">Precio</span>
+                <span class="text-lg font-bold text-primary">17.000 u$s</span>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-center gap-2 w-full py-2.5 bg-primary text-white text-sm font-bold rounded-xl group-hover:bg-primaryDark transition-colors duration-300">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              Ver más información
+            </div>
+          </div>
+        </a>
+
+        <a href="aldea.html"
+          class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer block"
+          data-aos="fade-up" data-aos-delay="300">
+          <div class="relative h-64 overflow-hidden">
+            <span
+              class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">eco-urbanización</span>
+            <div class="skeleton-img" id="skelAldea"></div>
+            <img src="assets/img/lotes/aldea.svg" loading="lazy" decoding="async"
+              class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700"
+              alt="Aldea Vaquereña">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity">
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Aldea Vaquereña </h5>
+              <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">Vaqueros</span>
+            </div>
+            <p class="text-sm text-textMuted font-medium mb-4 line-clamp-2">Lotes en el corazón de un bosque de nogales
+              en Vaqueros, ideal para casa y quincho con piscina.</p>
+
+            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
+              <div class="flex flex-col">
+                <span class="text-xs text-textMuted uppercase">Superficie</span>
+                <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
+                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
+                    </path>
+                  </svg>
+                  1000 m²
+                </span>
+              </div>
+              <div class="flex flex-col text-right">
+                <span class="text-xs text-textMuted uppercase">Precio</span>
+                <span class="text-lg font-bold text-primary">17.000 u$s</span>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-center gap-2 w-full py-2.5 bg-primary text-white text-sm font-bold rounded-xl group-hover:bg-primaryDark transition-colors duration-300">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              Ver más información
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </section>
+
+
 
     <style>
       #calc-property:focus,
@@ -818,10 +875,15 @@
       <!-- Columna 1: Brand -->
       <div class="footer-col">
         <img src="assets/img/png/logo.png" alt="terrenosensalta" class="footer-logo">
-        <p class="footer-tagline">Tu lugar en la naturaleza.<br>Lotes en Salta, Argentina.<br>Preventa exclusiva 2026.</p>
+        <p class="footer-tagline">Tu lugar en la naturaleza.<br>Lotes en Salta, Argentina.<br>Preventa exclusiva 2026.
+        </p>
         <div class="footer-social">
-          <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener" aria-label="Consultanos por WhatsApp" class="footer-social-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z"/></svg>
+          <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener" aria-label="Consultanos por WhatsApp"
+            class="footer-social-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z" />
+            </svg>
           </a>
         </div>
       </div>
@@ -831,20 +893,26 @@
         <h3 class="footer-heading">Desarrollos</h3>
         <ul class="footer-links">
           <li>
-            <a href="cerrovarnet-lotes.html">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <a href="condominiocerrovarnet.html">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
               Condominio Cerro Varnet
             </a>
           </li>
           <li>
             <a href="pumapiedra.html">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
               Condominio Puma Piedra
             </a>
           </li>
           <li>
             <a href="aldea.html">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
               Aldea Vaquereña
             </a>
           </li>
@@ -857,19 +925,31 @@
         <ul class="footer-links">
           <li>
             <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z" />
+              </svg>
               WhatsApp
             </a>
           </li>
           <li>
             <a href="https://calendar.app.google/KCe8GPatZ7YXgx358" target="_blank" rel="noopener">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
               Agendar visita
             </a>
           </li>
           <li>
-            <a href="https://www.google.com/maps/d/u/0/edit?mid=15-CgHwD2YCjIVTsguJQQFhvZzyYc8jU&usp=sharing" target="_blank" rel="noopener">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <a href="https://www.google.com/maps/d/u/0/edit?mid=15-CgHwD2YCjIVTsguJQQFhvZzyYc8jU&usp=sharing"
+              target="_blank" rel="noopener">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
               Ver en el mapa
             </a>
           </li>
@@ -880,8 +960,8 @@
     <!-- Barra inferior -->
     <div class="footer-bottom">
       <p>© 2026 <strong>terrenosensalta.AR</strong> · Todos los derechos reservados</p>
-      <a href="https://drive.google.com/file/d/1MCiLKgGpTcFY0U1kgTfgW-cQ0ij1qxaZ/view?usp=sharing"
-        target="_blank" rel="noopener" class="footer-pdf-link">Descargar catálogo PDF →</a>
+      <a href="https://drive.google.com/file/d/1MCiLKgGpTcFY0U1kgTfgW-cQ0ij1qxaZ/view?usp=sharing" target="_blank"
+        rel="noopener" class="footer-pdf-link">Descargar catálogo PDF →</a>
     </div>
   </footer>
 
@@ -1035,6 +1115,19 @@
       if (firstContent) {
         // Set max-height for smooth transition based on content height
         firstContent.style.maxHeight = firstContent.scrollHeight + "px";
+      }
+
+      // Randomize developments grid if viewport is large (lg: >= 1024px)
+      if (window.innerWidth >= 1024) {
+        const grid = document.getElementById('developments-grid');
+        if (grid) {
+          const cards = Array.from(grid.children);
+          for (let i = cards.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [cards[i], cards[j]] = [cards[j], cards[i]];
+          }
+          cards.forEach(card => grid.appendChild(card));
+        }
       }
     });
   </script>
