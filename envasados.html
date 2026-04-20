@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnvasadosGourmet.AR — Alta cocina en tu freezer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream:   '#FAF9F7',
+            stone:   '#F2EFE9',
+            warm:    '#E8E3DB',
+            mink:    '#C4BAB0',
+            charcoal:'#1A1A1A',
+            ink:     '#2C2C2C',
+            gold:    '#B89A6A',
+            'gold-light': '#D4BA8A',
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans:  ['DM Sans', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #FAF9F7;
+      color: #1A1A1A;
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── Grain overlay ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ─── Scroll reveal ─── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .22s; }
+    .reveal-delay-3 { transition-delay: .34s; }
+    .reveal-delay-4 { transition-delay: .46s; }
+
+    /* ─── Header ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,249,247,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(196,186,176,.25);
+      transition: box-shadow .3s;
+    }
+
+    /* ─── Logo mark ─── */
+    .logo-mark {
+      width: 32px; height: 32px;
+      border: 1.5px solid #B89A6A;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-mark span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: #B89A6A;
+      font-weight: 500;
+      letter-spacing: .03em;
+    }
+
+    /* ─── CTA button ─── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #1A1A1A;
+      color: #FAF9F7;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .8rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .6rem 1.4rem;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background .25s, color .25s, border-color .25s, transform .15s;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: #1A1A1A;
+      border-color: #1A1A1A;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: #1A1A1A;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .8rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .6rem 1.4rem;
+      border: 1px solid #1A1A1A;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background .25s, color .25s, transform .15s;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-ghost:hover {
+      background: #1A1A1A;
+      color: #FAF9F7;
+      transform: translateY(-1px);
+    }
+
+    /* ─── Hero ─── */
+    .hero-img-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .hero-img-placeholder {
+      aspect-ratio: 4/5;
+      background: linear-gradient(145deg, #E8E3DB 0%, #D4C9BC 40%, #C4BAB0 100%);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-img-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(184,154,106,.18) 0%, transparent 60%);
+    }
+    .plate-icon {
+      width: 80px; height: 80px;
+      border: 1.5px solid rgba(26,26,26,.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .plate-icon svg { opacity: .45; }
+
+    .hero-tag {
+      position: absolute;
+      bottom: 20px; left: 20px;
+      background: rgba(250,249,247,.9);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(196,186,176,.4);
+      padding: 10px 16px;
+      border-radius: 2px;
+    }
+
+    /* ─── Section divider ─── */
+    .divider {
+      width: 40px; height: 1px;
+      background: #B89A6A;
+      margin: 0 auto;
+    }
+
+    /* ─── Step cards ─── */
+    .step-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      line-height: 1;
+      font-weight: 300;
+      color: #E8E3DB;
+      letter-spacing: -.02em;
+      user-select: none;
+      transition: color .3s;
+    }
+    .step-card:hover .step-number { color: #B89A6A; }
+    .step-card {
+      position: relative;
+      padding: 2rem 1.5rem 2rem;
+      border: 1px solid #E8E3DB;
+      border-radius: 2px;
+      background: #FAF9F7;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+      cursor: default;
+    }
+    .step-card:hover {
+      border-color: rgba(184,154,106,.45);
+      box-shadow: 0 8px 40px rgba(26,26,26,.06);
+      transform: translateY(-4px);
+    }
+    .step-connector {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, #E8E3DB, transparent);
+      margin: 0 auto;
+    }
+
+    /* ─── Product cards ─── */
+    .product-card {
+      border: 1px solid #E8E3DB;
+      border-radius: 2px;
+      overflow: hidden;
+      background: #FAF9F7;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      border-color: rgba(184,154,106,.5);
+      box-shadow: 0 12px 48px rgba(26,26,26,.08);
+      transform: translateY(-6px);
+    }
+    .product-img {
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(26,26,26,.08) 100%);
+    }
+
+    .arabic-bg  { background: linear-gradient(135deg, #E8DDD0 0%, #D4C4B0 100%); }
+    .pasta-bg   { background: linear-gradient(135deg, #EDE3D4 0%, #D9CBB4 100%); }
+    .veggie-bg  { background: linear-gradient(135deg, #DDE8D8 0%, #C4D4BC 100%); }
+
+    .tag-badge {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border: 1px solid currentColor;
+      border-radius: 2px;
+    }
+
+    /* ─── WhatsApp float ─── */
+    .wa-float {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      z-index: 200;
+      width: 52px; height: 52px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,.35);
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      text-decoration: none;
+    }
+    .wa-float:hover {
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 8px 28px rgba(37,211,102,.4);
+    }
+
+    /* ─── Marquee band ─── */
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── Testimonial ─── */
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      line-height: .6;
+      color: #B89A6A;
+      opacity: .35;
+    }
+
+    /* ─── Footer ─── */
+    footer a { transition: color .2s; }
+    footer a:hover { color: #B89A6A; }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #FAF9F7; }
+    ::-webkit-scrollbar-thumb { background: #C4BAB0; border-radius: 2px; }
+
+    /* ─── Selection ─── */
+    ::selection { background: rgba(184,154,106,.2); color: #1A1A1A; }
+  </style>
+</head>
+<body class="bg-cream">
+
+  <!-- ═══════════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════════════ -->
+  <header>
+    <div class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 no-underline group">
+        <div class="logo-mark">
+          <span>EG</span>
+        </div>
+        <div class="leading-none">
+          <span class="block font-serif text-lg font-light tracking-wider text-charcoal" style="letter-spacing:.12em">
+            Envasados<span class="text-gold">Gourmet</span>
+          </span>
+          <span class="block font-sans text-[9px] tracking-[.25em] text-mink uppercase mt-px">Argentina</span>
+        </div>
+      </a>
+
+      <!-- Nav links desktop -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#proceso" class="font-sans text-xs tracking-widest uppercase text-ink/60 hover:text-gold transition-colors">Cómo funciona</a>
+        <a href="#boxes" class="font-sans text-xs tracking-widest uppercase text-ink/60 hover:text-gold transition-colors">Boxes</a>
+      </nav>
+
+      <!-- CTA -->
+      <a href="#boxes" class="btn-primary text-[.72rem]">Ver Boxes</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════ -->
+  <section class="min-h-screen flex items-center pt-20 pb-16 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-5 w-full">
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+        <!-- Text column -->
+        <div class="order-2 md:order-1">
+          <p class="reveal font-sans text-xs tracking-[.3em] uppercase text-gold mb-6">Gastronomía Premium · Delivery Semanal</p>
+
+          <h1 class="reveal reveal-delay-1 font-serif font-light leading-[1.05] mb-8" style="font-size:clamp(3rem,6vw,5.2rem)">
+            Alta cocina<br/>
+            <em style="font-style:italic; color:#B89A6A">en tu freezer.</em>
+          </h1>
+
+          <p class="reveal reveal-delay-2 font-sans font-light text-ink/65 leading-relaxed mb-10 max-w-sm text-base">
+            Recibí platos elaborados por chefs, listos para calentar en 8 minutos. Sin ollas. Sin recetas. Solo sabor auténtico cuando vos querés.
+          </p>
+
+          <div class="reveal reveal-delay-3 flex flex-wrap gap-4 items-center">
+            <a href="#boxes" class="btn-primary">Quiero mi Box</a>
+            <a href="#proceso" class="btn-ghost">¿Cómo funciona?</a>
+          </div>
+
+          <!-- Trust signals -->
+          <div class="reveal reveal-delay-4 flex items-center gap-6 mt-10 pt-8 border-t border-warm">
+            <div class="text-center">
+              <p class="font-serif text-2xl font-light text-charcoal">8'</p>
+              <p class="font-sans text-[10px] tracking-widest uppercase text-mink mt-1">De calor</p>
+            </div>
+            <div class="w-px h-8 bg-warm"></div>
+            <div class="text-center">
+              <p class="font-serif text-2xl font-light text-charcoal">0</p>
+              <p class="font-sans text-[10px] tracking-widest uppercase text-mink mt-1">Ollas</p>
+            </div>
+            <div class="w-px h-8 bg-warm"></div>
+            <div class="text-center">
+              <p class="font-serif text-2xl font-light text-charcoal">100%</p>
+              <p class="font-sans text-[10px] tracking-widest uppercase text-mink mt-1">Artesanal</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image column -->
+        <div class="order-1 md:order-2">
+          <div class="hero-img-wrapper reveal reveal-delay-1">
+            <div class="hero-img-placeholder rounded">
+              <!-- Decorative circles -->
+              <div class="absolute inset-0 flex items-center justify-center" style="z-index:0">
+                <div style="width:260px;height:260px;border-radius:50%;border:1px solid rgba(26,26,26,.08);"></div>
+              </div>
+              <div class="absolute inset-0 flex items-center justify-center" style="z-index:0">
+                <div style="width:180px;height:180px;border-radius:50%;border:1px solid rgba(26,26,26,.1);"></div>
+              </div>
+
+              <div class="plate-icon" style="z-index:2">
+                <!-- Plate icon -->
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="20" cy="20" r="14" stroke="#1A1A1A" stroke-width="1.2"/>
+                  <circle cx="20" cy="20" r="9"  stroke="#1A1A1A" stroke-width="1.2"/>
+                  <path d="M20 6 V4" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round"/>
+                  <path d="M25 7.5 L26.5 5.8" stroke="#1A1A1A" stroke-width="1" stroke-linecap="round"/>
+                  <path d="M28.5 11 L30.5 9.5" stroke="#1A1A1A" stroke-width="1" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <p class="font-serif italic text-ink/30 text-sm mt-3" style="z-index:2;position:relative">Tu fotografía aquí</p>
+            </div>
+
+            <!-- Floating tag -->
+            <div class="hero-tag">
+              <p class="font-sans text-[10px] tracking-[.2em] uppercase text-mink">Plato de la semana</p>
+              <p class="font-serif text-base font-light text-charcoal mt-0.5">Kabab Árabe · Salsa Tahini</p>
+            </div>
+
+            <!-- Decorative gold line -->
+            <div class="absolute -top-4 -right-4 w-16 h-16 border-t border-r border-gold opacity-40 rounded-tr-sm hidden md:block"></div>
+            <div class="absolute -bottom-4 -left-4 w-16 h-16 border-b border-l border-gold opacity-40 rounded-bl-sm hidden md:block"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       MARQUEE BAND
+  ══════════════════════════════════════════════ -->
+  <div class="bg-charcoal py-3 overflow-hidden select-none">
+    <div class="marquee-track">
+      <span class="font-serif italic text-gold/70 text-sm px-10">Cocina de autor</span>
+      <span class="font-sans text-white/20 text-[10px] tracking-widest uppercase px-10">·</span>
+      <span class="font-serif italic text-gold/70 text-sm px-10">Baño María · Técnica profesional</span>
+      <span class="font-sans text-white/20 text-[10px] tracking-widest uppercase px-10">·</span>
+      <span class="font-serif italic text-gold/70 text-sm px-10">Sin freezer burn · Textura intacta</span>
+      <span class="font-sans text-white/20 text-[10px] tracking-widest uppercase px-10">·</span>
+      <span class="font-serif italic text-gold/70 text-sm px-10">Ingredientes seleccionados</span>
+      <span class="font-sans text-white/20 text-[10px] tracking-widest uppercase px-10">·</span>
+      <span class="font-serif italic text-gold/70 text-sm px-10">Delivery semanal AMBA</span>
+      <span class="font-sans text-white/20 text-[10px] tracking-widest uppercase px-10">·</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="font-serif italic text-gold/70 text-sm px-10">Cocina de autor</span>
+      <span class="font-sans text-white/20 text-[10px] tracking-widest uppercase px-10">·</span>
+      <span class="font-serif italic text-gold/70 text-sm px-10">Baño María · Técnica profesional</span>
+      <span class="font-sans text-white/20 text-[10px] tracking-widest uppercase px-10">·</span>
+      <span class="font-serif italic text-gold/70 text-sm px-10">Sin freezer burn · Textura intacta</span>
+      <span class="font-sans text-white/20 text-[10px] tracking-widest uppercase px-10">·</span>
+      <span class="font-serif italic text-gold/70 text-sm px-10">Ingredientes seleccionados</span>
+      <span class="font-sans text-white/20 text-[10px] tracking-widest uppercase px-10">·</span>
+      <span class="font-serif italic text-gold/70 text-sm px-10">Delivery semanal AMBA</span>
+      <span class="font-sans text-white/20 text-[10px] tracking-widest uppercase px-10">·</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PROCESO — 3 PASOS
+  ══════════════════════════════════════════════ -->
+  <section id="proceso" class="py-24 lg:py-36">
+    <div class="max-w-6xl mx-auto px-5">
+
+      <!-- Section header -->
+      <div class="text-center mb-20 reveal">
+        <p class="font-sans text-xs tracking-[.3em] uppercase text-gold mb-4">El ritual</p>
+        <h2 class="font-serif font-light text-charcoal" style="font-size:clamp(2.2rem,4vw,3.6rem)">
+          Tres pasos.<br/><em style="font-style:italic">Un resultado extraordinario.</em>
+        </h2>
+        <div class="divider mt-8"></div>
+      </div>
+
+      <!-- Steps -->
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Step 01 -->
+        <div class="step-card reveal reveal-delay-1">
+          <p class="step-number">01</p>
+          <div class="mt-4 mb-3">
+            <span class="tag-badge text-gold border-gold/40 font-sans text-[.6rem]">Directo del freezer</span>
+          </div>
+          <h3 class="font-serif text-xl font-light text-charcoal mb-3 leading-snug">
+            Sacá el envase<br/>cuando quieras
+          </h3>
+          <p class="font-sans text-sm font-light text-ink/55 leading-relaxed">
+            Nuestros envasados al vacío conservan textura, aroma y nutrientes por hasta 90 días. Sin planificación previa. Sin descongelar de antemano.
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <!-- Snowflake mini icon -->
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B89A6A" stroke-width="1.5" stroke-linecap="round">
+              <line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/>
+              <line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/>
+            </svg>
+            <p class="font-sans text-[10px] tracking-widest uppercase text-mink">Conservado al vacío</p>
+          </div>
+        </div>
+
+        <!-- Step 02 -->
+        <div class="step-card reveal reveal-delay-2">
+          <p class="step-number">02</p>
+          <div class="mt-4 mb-3">
+            <span class="tag-badge text-gold border-gold/40 font-sans text-[.6rem]">8 minutos · Baño maría</span>
+          </div>
+          <h3 class="font-serif text-xl font-light text-charcoal mb-3 leading-snug">
+            Calor suave,<br/>sabor intacto
+          </h3>
+          <p class="font-sans text-sm font-light text-ink/55 leading-relaxed">
+            Sumerge el envase en agua caliente (no hirviendo) durante 8 minutos. El baño maría es la técnica que usan los chefs: preserva jugosidad, textura y aromas que el microondas destruye.
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B89A6A" stroke-width="1.5" stroke-linecap="round">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83"/>
+              <circle cx="12" cy="12" r="5"/>
+            </svg>
+            <p class="font-sans text-[10px] tracking-widest uppercase text-mink">Técnica profesional</p>
+          </div>
+        </div>
+
+        <!-- Step 03 -->
+        <div class="step-card reveal reveal-delay-3">
+          <p class="step-number">03</p>
+          <div class="mt-4 mb-3">
+            <span class="tag-badge text-gold border-gold/40 font-sans text-[.6rem]">Al plato · A disfrutar</span>
+          </div>
+          <h3 class="font-serif text-xl font-light text-charcoal mb-3 leading-snug">
+            Emplata.<br/>Sé tu propio chef.
+          </h3>
+          <p class="font-sans text-sm font-light text-ink/55 leading-relaxed">
+            Volcá el contenido en tu plato favorito. Sumá una hoja fresca, un hilo de aceite de oliva, y listo. Experiencia de restaurante en tu mesa, sin haberla ensuciado.
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B89A6A" stroke-width="1.5" stroke-linecap="round">
+              <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+            </svg>
+            <p class="font-sans text-[10px] tracking-widest uppercase text-mink">Experiencia restaurante</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Visual timeline (mobile hidden) -->
+      <div class="hidden md:flex items-center justify-center gap-0 mt-12 reveal">
+        <div class="flex items-center gap-0">
+          <div class="w-2 h-2 rounded-full bg-gold"></div>
+          <div class="w-40 h-px bg-gradient-to-r from-gold to-warm"></div>
+          <div class="w-2 h-2 rounded-full bg-gold/50"></div>
+          <div class="w-40 h-px bg-gradient-to-r from-warm to-gold/30"></div>
+          <div class="w-2 h-2 rounded-full bg-gold/30"></div>
+        </div>
+      </div>
+      <p class="text-center font-serif italic text-mink text-sm mt-4 reveal">Del freezer al plato, sin ensuciar nada.</p>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PRODUCTS / BOXES
+  ══════════════════════════════════════════════ -->
+  <section id="boxes" class="py-24 lg:py-36 bg-stone">
+    <div class="max-w-6xl mx-auto px-5">
+
+      <!-- Section header -->
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
+        <div class="reveal">
+          <p class="font-sans text-xs tracking-[.3em] uppercase text-gold mb-4">Nuestra selección</p>
+          <h2 class="font-serif font-light text-charcoal" style="font-size:clamp(2.2rem,4vw,3.4rem)">
+            Los Boxes<br/><em style="font-style:italic">de la semana.</em>
+          </h2>
+        </div>
+        <p class="reveal font-sans text-sm font-light text-ink/55 max-w-xs leading-relaxed">
+          Cada box rinde para 3–4 personas. Armado con ingredientes frescos los lunes. Pedí antes del domingo.
+        </p>
+      </div>
+
+      <!-- Cards grid -->
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Box Árabe -->
+        <div class="product-card reveal reveal-delay-1">
+          <div class="product-img arabic-bg">
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-3" style="z-index:1">
+              <div style="width:64px;height:64px;border-radius:50%;border:1px solid rgba(26,26,26,.2);display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:1.8rem">🫙</span>
+              </div>
+              <p class="font-sans text-[10px] tracking-widest uppercase text-ink/40">Tu foto aquí</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <p class="font-sans text-[10px] tracking-widest uppercase text-gold mb-1">Sabores del medio oriente</p>
+                <h3 class="font-serif text-2xl font-light text-charcoal">Box Árabe</h3>
+              </div>
+              <span class="tag-badge text-mink border-warm text-[.6rem] mt-1">Clásico</span>
+            </div>
+            <p class="font-sans text-sm font-light text-ink/55 leading-relaxed mb-5">
+              Sfijas crujientes, Yabrak en hoja de parra y Kabab jugoso con salsa de tahini artesanal. Un viaje al Líbano sin salir de casa.
+            </p>
+            <!-- Contenido -->
+            <div class="border-t border-warm pt-4 mb-6">
+              <p class="font-sans text-[10px] tracking-widest uppercase text-mink mb-3">Incluye</p>
+              <div class="flex flex-col gap-1.5">
+                <div class="flex items-center gap-2">
+                  <div class="w-1 h-1 rounded-full bg-gold flex-shrink-0"></div>
+                  <p class="font-sans text-xs text-ink/65">Sfijas (12 unidades)</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1 h-1 rounded-full bg-gold flex-shrink-0"></div>
+                  <p class="font-sans text-xs text-ink/65">Yabrak en hoja de parra (8 unid.)</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1 h-1 rounded-full bg-gold flex-shrink-0"></div>
+                  <p class="font-sans text-xs text-ink/65">Kabab con salsa Tahini (400g)</p>
+                </div>
+              </div>
+            </div>
+            <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20pedir%20el%20Box%20%C3%81rabe%20de%20esta%20semana%20%F0%9F%AB%99" target="_blank" class="btn-primary w-full justify-center">
+              Pedir para la semana
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Box Pastas -->
+        <div class="product-card reveal reveal-delay-2" style="border-color:rgba(184,154,106,.3)">
+          <div class="product-img pasta-bg relative">
+            <!-- Featured badge -->
+            <div class="absolute top-4 right-4 z-10 bg-charcoal text-cream font-sans text-[9px] tracking-widest uppercase px-3 py-1.5">
+              Más pedido
+            </div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-3" style="z-index:1">
+              <div style="width:64px;height:64px;border-radius:50%;border:1px solid rgba(26,26,26,.2);display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:1.8rem">🍝</span>
+              </div>
+              <p class="font-sans text-[10px] tracking-widest uppercase text-ink/40">Tu foto aquí</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <p class="font-sans text-[10px] tracking-widest uppercase text-gold mb-1">Pasta fresca artesanal</p>
+                <h3 class="font-serif text-2xl font-light text-charcoal">Box Pastas</h3>
+              </div>
+              <span class="tag-badge text-gold border-gold/40 text-[.6rem] mt-1">Premium</span>
+            </div>
+            <p class="font-sans text-sm font-light text-ink/55 leading-relaxed mb-5">
+              Sorrentinos rellenos de ricota y albahaca, con dos salsas artesanales: fileto de tomates asados y salsa blanca trufada. Pasta italiana, corazón argentino.
+            </p>
+            <div class="border-t border-warm pt-4 mb-6">
+              <p class="font-sans text-[10px] tracking-widest uppercase text-mink mb-3">Incluye</p>
+              <div class="flex flex-col gap-1.5">
+                <div class="flex items-center gap-2">
+                  <div class="w-1 h-1 rounded-full bg-gold flex-shrink-0"></div>
+                  <p class="font-sans text-xs text-ink/65">Sorrentinos ricota & albahaca (500g)</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1 h-1 rounded-full bg-gold flex-shrink-0"></div>
+                  <p class="font-sans text-xs text-ink/65">Fileto de tomates asados (350g)</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1 h-1 rounded-full bg-gold flex-shrink-0"></div>
+                  <p class="font-sans text-xs text-ink/65">Salsa blanca trufada (250ml)</p>
+                </div>
+              </div>
+            </div>
+            <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20pedir%20el%20Box%20Pastas%20de%20esta%20semana%20%F0%9F%8D%9D" target="_blank" class="btn-primary w-full justify-center">
+              Pedir para la semana
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Box Veggie -->
+        <div class="product-card reveal reveal-delay-3">
+          <div class="product-img veggie-bg">
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-3" style="z-index:1">
+              <div style="width:64px;height:64px;border-radius:50%;border:1px solid rgba(26,26,26,.2);display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:1.8rem">🌿</span>
+              </div>
+              <p class="font-sans text-[10px] tracking-widest uppercase text-ink/40">Tu foto aquí</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <p class="font-sans text-[10px] tracking-widest uppercase text-gold mb-1">100% plant based</p>
+                <h3 class="font-serif text-2xl font-light text-charcoal">Box Veggie</h3>
+              </div>
+              <span class="tag-badge text-mink border-warm text-[.6rem] mt-1">Vegano</span>
+            </div>
+            <p class="font-sans text-sm font-light text-ink/55 leading-relaxed mb-5">
+              Opciones de base vegetal con la misma elaboración que el resto. Curry de garbanzos, hummus premium y wok de verduras de estación. Sabroso sin concesiones.
+            </p>
+            <div class="border-t border-warm pt-4 mb-6">
+              <p class="font-sans text-[10px] tracking-widest uppercase text-mink mb-3">Incluye</p>
+              <div class="flex flex-col gap-1.5">
+                <div class="flex items-center gap-2">
+                  <div class="w-1 h-1 rounded-full bg-gold flex-shrink-0"></div>
+                  <p class="font-sans text-xs text-ink/65">Curry de garbanzos & coco (400g)</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1 h-1 rounded-full bg-gold flex-shrink-0"></div>
+                  <p class="font-sans text-xs text-ink/65">Hummus de palta premium (300g)</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1 h-1 rounded-full bg-gold flex-shrink-0"></div>
+                  <p class="font-sans text-xs text-ink/65">Wok de estación & jengibre (380g)</p>
+                </div>
+              </div>
+            </div>
+            <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20pedir%20el%20Box%20Veggie%20de%20esta%20semana%20%F0%9F%8C%BF" target="_blank" class="btn-primary w-full justify-center">
+              Pedir para la semana
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom note -->
+      <p class="text-center font-sans text-xs text-mink mt-10 reveal">
+        ¿Querés armar un box personalizado? Escribinos por WhatsApp y lo resolvemos.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TESTIMONIAL / QUOTE
+  ══════════════════════════════════════════════ -->
+  <section class="py-24 lg:py-32 bg-charcoal overflow-hidden relative">
+    <!-- Background texture -->
+    <div class="absolute inset-0 opacity-5" style="background-image:radial-gradient(circle at 20% 50%, #B89A6A 0%, transparent 50%), radial-gradient(circle at 80% 20%, #B89A6A 0%, transparent 40%);"></div>
+
+    <div class="max-w-3xl mx-auto px-5 text-center relative z-10">
+      <div class="quote-mark reveal">"</div>
+      <blockquote class="reveal reveal-delay-1 font-serif font-light text-cream/90 leading-relaxed mt-2 mb-8" style="font-size:clamp(1.4rem,3vw,2.1rem); font-style:italic;">
+        Tardé más en elegir la serie de Netflix que en tener la cena lista. Esto cambió mis miércoles para siempre.
+      </blockquote>
+      <div class="divider mb-6 reveal reveal-delay-2"></div>
+      <p class="font-sans text-xs tracking-widest uppercase text-gold/70 reveal reveal-delay-2">— María V., Buenos Aires</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       HOW TO ORDER / FINAL CTA
+  ══════════════════════════════════════════════ -->
+  <section class="py-24 lg:py-36">
+    <div class="max-w-5xl mx-auto px-5 text-center">
+      <p class="font-sans text-xs tracking-[.3em] uppercase text-gold mb-4 reveal">Empezá esta semana</p>
+      <h2 class="font-serif font-light text-charcoal mb-6 reveal reveal-delay-1" style="font-size:clamp(2.2rem,4.5vw,3.8rem)">
+        Tu primera semana<br/><em style="font-style:italic; color:#B89A6A">te está esperando.</em>
+      </h2>
+      <p class="font-sans font-light text-ink/55 max-w-md mx-auto leading-relaxed mb-12 reveal reveal-delay-2">
+        Pedidos abiertos hasta el domingo a medianoche. Entrega los lunes en AMBA. Pago por transferencia o en efectivo al recibir.
+      </p>
+
+      <!-- Steps to order -->
+      <div class="grid md:grid-cols-3 gap-8 mb-14 text-left">
+        <div class="reveal reveal-delay-1">
+          <p class="font-serif text-5xl font-light text-warm mb-4">1</p>
+          <h4 class="font-sans text-sm font-medium text-charcoal mb-2">Elegí tu box</h4>
+          <p class="font-sans text-xs font-light text-ink/50 leading-relaxed">Árabe, Pastas o Veggie. O pedí una combinación.</p>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <p class="font-serif text-5xl font-light text-warm mb-4">2</p>
+          <h4 class="font-sans text-sm font-medium text-charcoal mb-2">Escribí por WhatsApp</h4>
+          <p class="font-sans text-xs font-light text-ink/50 leading-relaxed">Coordinamos dirección y forma de pago en 2 minutos.</p>
+        </div>
+        <div class="reveal reveal-delay-3">
+          <p class="font-serif text-5xl font-light text-warm mb-4">3</p>
+          <h4 class="font-sans text-sm font-medium text-charcoal mb-2">Recibí el lunes</h4>
+          <p class="font-sans text-xs font-light text-ink/50 leading-relaxed">Tu box listo para la semana entera. Hasta 5 cenas.</p>
+        </div>
+      </div>
+
+      <a href="https://wa.me/5491100000000?text=Hola%21+Quer%C3%ADa+pedir+info+sobre+los+boxes+de+esta+semana+%F0%9F%8D%BD" target="_blank" class="btn-primary inline-flex text-base py-4 px-10 reveal reveal-delay-2" style="font-size:.85rem; letter-spacing:.15em">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="opacity:.8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.557 4.117 1.532 5.845L.057 23.63a.75.75 0 00.919.92l5.89-1.463A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.73 9.73 0 01-4.95-1.354l-.355-.21-3.677.913.944-3.579-.232-.371A9.718 9.718 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+        Hablar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer class="bg-charcoal py-16">
+    <div class="max-w-6xl mx-auto px-5">
+
+      <div class="grid md:grid-cols-3 gap-10 pb-10 border-b border-white/10">
+
+        <!-- Brand -->
+        <div>
+          <div class="flex items-center gap-3 mb-5">
+            <div class="logo-mark" style="border-color:rgba(184,154,106,.5)">
+              <span class="text-gold">EG</span>
+            </div>
+            <div>
+              <span class="block font-serif text-base tracking-wider text-cream/80">Envasados<span class="text-gold">Gourmet</span></span>
+              <span class="block font-sans text-[9px] tracking-[.25em] text-white/30 uppercase mt-px">Argentina</span>
+            </div>
+          </div>
+          <p class="font-sans text-xs font-light text-white/40 leading-relaxed max-w-xs">
+            Cocina de autor envasada al vacío, lista para disfrutar en minutos. Delivery semanal en AMBA.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <p class="font-sans text-[10px] tracking-widest uppercase text-gold/70 mb-5">Explorar</p>
+          <ul class="flex flex-col gap-3">
+            <li><a href="#proceso" class="font-sans text-xs text-white/50 no-underline">Cómo funciona</a></li>
+            <li><a href="#boxes" class="font-sans text-xs text-white/50 no-underline">Nuestros Boxes</a></li>
+            <li><a href="https://wa.me/5491100000000" target="_blank" class="font-sans text-xs text-white/50 no-underline">Pedir por WhatsApp</a></li>
+          </ul>
+        </div>
+
+        <!-- Social & contact -->
+        <div>
+          <p class="font-sans text-[10px] tracking-widest uppercase text-gold/70 mb-5">Contacto</p>
+          <div class="flex flex-col gap-3">
+            <a href="https://wa.me/5491100000000" target="_blank" class="flex items-center gap-3 group no-underline">
+              <div class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center group-hover:border-gold/50 transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.557 4.117 1.532 5.845L.057 23.63a.75.75 0 00.919.92l5.89-1.463A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.73 9.73 0 01-4.95-1.354l-.355-.21-3.677.913.944-3.579-.232-.371A9.718 9.718 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+              </div>
+              <span class="font-sans text-xs text-white/50">WhatsApp pedidos</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="flex items-center gap-3 group no-underline">
+              <div class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center group-hover:border-gold/50 transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" opacity=".5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+              </div>
+              <span class="font-sans text-xs text-white/50">@envasadosgourmet.ar</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
+        <p class="font-sans text-[10px] tracking-wider text-white/25">© 2025 EnvasadosGourmet.AR · Todos los derechos reservados</p>
+        <p class="font-serif italic text-white/20 text-xs">Hecho con cuidado en Buenos Aires.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       WHATSAPP FLOAT BUTTON
+  ══════════════════════════════════════════════ -->
+  <a href="https://wa.me/5491100000000?text=Hola%21+Quer%C3%ADa+consultar+por+los+boxes+de+esta+semana+%F0%9F%8D%BD" target="_blank" class="wa-float" aria-label="Pedir por WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.557 4.117 1.532 5.845L.057 23.63a.75.75 0 00.919.92l5.89-1.463A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.73 9.73 0 01-4.95-1.354l-.355-.21-3.677.913.944-3.579-.232-.371A9.718 9.718 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+  </a>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════════ -->
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Header shadow on scroll
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      header.style.boxShadow = window.scrollY > 20
+        ? '0 2px 30px rgba(26,26,26,.08)'
+        : 'none';
+    }, { passive: true });
+
+    // Trigger initial reveals in viewport
+    window.dispatchEvent(new Event('scroll'));
+  </script>
+</body>
+</html>
