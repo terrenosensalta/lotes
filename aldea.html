@@ -256,6 +256,7 @@
             background: #0f172a;
             width: 100%;
             aspect-ratio: 3/2;
+            touch-action: pan-y;
             /* cómodo en móvil */
         }
 
@@ -292,6 +293,9 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            -webkit-user-drag: none;
+            user-select: none;
+            pointer-events: none;
         }
 
         .slide-caption {
@@ -328,7 +332,7 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.92);
             border: 1px solid rgba(255, 255, 255, 0.6);
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             cursor: pointer;
@@ -337,6 +341,12 @@
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(4px);
             color: #1e293b;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-btn {
+                display: flex;
+            }
         }
 
         .carousel-btn:hover {
