@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Condominio Cerro Varnet | Lotes con Vista Panorámica – Salta</title>
-    <meta name="description" content="Lotes de 500 m² con vistas panorámicas a la ciudad de Salta. Barrio abierto, entrega inmediata. Desde $12.500 USD. Condominio Cerro Varnet.">
+    <meta name="description"
+        content="Lotes de 500 m² con vistas panorámicas a la ciudad de Salta. Barrio abierto, entrega inmediata. Desde $12.500 USD. Condominio Cerro Varnet.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <link rel="preload" as="image" href="assets/img/lotes/cerro.svg">
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -32,15 +35,27 @@
     </script>
 
     <style>
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #059669; border-radius: 3px; }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #059669;
+            border-radius: 3px;
+        }
 
         .hero-bg {
             background: linear-gradient(135deg, #064E3B 0%, #065f46 60%, #047857 100%);
         }
+
         .badge-pill {
             display: inline-flex;
             align-items: center;
@@ -52,19 +67,22 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
         }
+
         .stat-card {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border-radius: 16px;
             padding: 20px;
             text-align: center;
             transition: all 0.3s ease;
         }
+
         .stat-card:hover {
-            background: rgba(255,255,255,0.14);
+            background: rgba(255, 255, 255, 0.14);
             transform: translateY(-2px);
         }
+
         .feature-icon {
             width: 48px;
             height: 48px;
@@ -74,6 +92,7 @@
             justify-content: center;
             flex-shrink: 0;
         }
+
         .gallery-scroll {
             display: flex;
             overflow-x: auto;
@@ -83,7 +102,11 @@
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
-        .gallery-scroll::-webkit-scrollbar { display: none; }
+
+        .gallery-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
         .gallery-item {
             flex: 0 0 80%;
             scroll-snap-align: start;
@@ -92,16 +115,38 @@
             height: 220px;
             position: relative;
         }
+
         @media (min-width: 768px) {
-            .gallery-item { flex: 0 0 45%; height: 280px; }
+            .gallery-item {
+                flex: 0 0 45%;
+                height: 280px;
+            }
         }
+
         .gallery-item img {
-            width: 100%; height: 100%; object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
-        .gallery-item:hover img { transform: scale(1.06); }
-        .dot { width: 7px; height: 7px; border-radius: 50%; background: #cbd5e1; transition: all 0.3s; }
-        .dot.active { background: #059669; width: 20px; border-radius: 4px; }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: #059669;
+            width: 20px;
+            border-radius: 4px;
+        }
 
         .wabtn {
             display: flex;
@@ -118,11 +163,13 @@
             transition: all 0.3s ease;
             text-decoration: none;
         }
+
         .wabtn:hover {
             background: #1da851;
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px -5px rgba(37,211,102,0.4);
+            box-shadow: 0 10px 30px -5px rgba(37, 211, 102, 0.4);
         }
+
         .calendar-btn {
             display: flex;
             align-items: center;
@@ -138,10 +185,11 @@
             transition: all 0.3s ease;
             text-decoration: none;
         }
+
         .calendar-btn:hover {
             background: #065f46;
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px -5px rgba(6,78,59,0.4);
+            box-shadow: 0 10px 30px -5px rgba(6, 78, 59, 0.4);
         }
 
         .map-frame {
@@ -151,16 +199,43 @@
             overflow: hidden;
             border: 1px solid #e2e8f0;
         }
-        .map-frame iframe { width: 100%; height: 100%; border: 0; }
+
+        .map-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
 
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .fade-up { animation: fadeUp 0.7s ease forwards; }
-        .delay-1 { animation-delay: 0.15s; opacity: 0; }
-        .delay-2 { animation-delay: 0.3s; opacity: 0; }
-        .delay-3 { animation-delay: 0.45s; opacity: 0; }
+
+        .fade-up {
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.15s;
+            opacity: 0;
+        }
+
+        .delay-2 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+
+        .delay-3 {
+            animation-delay: 0.45s;
+            opacity: 0;
+        }
 
         .back-link {
             display: inline-flex;
@@ -168,12 +243,15 @@
             gap: 6px;
             font-size: 0.8rem;
             font-weight: 600;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             margin-bottom: 28px;
             transition: color 0.2s;
         }
-        .back-link:hover { color: white; }
+
+        .back-link:hover {
+            color: white;
+        }
 
         .use-card {
             border: 1px solid #e2e8f0;
@@ -185,9 +263,10 @@
             transition: all 0.2s ease;
             background: white;
         }
+
         .use-card:hover {
             border-color: #059669;
-            box-shadow: 0 4px 12px -2px rgba(5,150,105,0.15);
+            box-shadow: 0 4px 12px -2px rgba(5, 150, 105, 0.15);
             transform: translateY(-2px);
         }
 
@@ -200,7 +279,7 @@
         @media (min-width: 480px) { .carousel-container { height: 320px; } }
         @media (min-width: 768px) { .carousel-container { height: 420px; } }
         .carousel-track { display: flex; width: 100%; height: 100%; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
-        .carousel-slide { min-width: 100%; flex-shrink: 0; height: 100%; position: relative; }
+        .carousel-slide { flex: 0 0 100%; min-width: 100%; max-width: 100%; width: 100%; height: 100%; position: relative; }
         .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; -webkit-user-drag: none; user-select: none; }
         .slide-caption {
             position: absolute; bottom: 0; left: 0; right: 0;
@@ -215,168 +294,255 @@
         .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.92); border: 1px solid rgba(255,255,255,0.6); display: none; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; z-index: 10; box-shadow: 0 4px 16px rgba(0,0,0,0.2); backdrop-filter: blur(4px); color: #1e293b; }
         @media (min-width: 768px) { .carousel-btn { display: flex; } }
         .carousel-btn:hover { background: white; border-color: #059669; color: #059669; box-shadow: 0 4px 16px rgba(5,150,105,0.25); transform: translateY(-50%) scale(1.08); }
-        .carousel-btn-prev { left: 12px; }
-        .carousel-btn-next { right: 12px; }
-        .expand-btn { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.88); border: 1px solid rgba(255,255,255,0.5); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; z-index: 10; backdrop-filter: blur(6px); color: #1e293b; }
-        .expand-btn:hover { background: white; border-color: #059669; color: #059669; transform: scale(1.1); }
+
+        .carousel-btn-prev {
+            left: 12px;
+        }
+
+        .carousel-btn-next {
+            right: 12px;
+        }
+
+        .expand-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+            backdrop-filter: blur(6px);
+            color: #1e293b;
+        }
+
+        .expand-btn:hover {
+            background: white;
+            border-color: #059669;
+            color: #059669;
+            transform: scale(1.1);
+        }
+
         /* Lightbox */
-        #lightbox { position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.97); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-        #lightbox.open { opacity: 1; pointer-events: auto; }
-        #lightbox-img { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
-        #lightbox-caption { color: rgba(255,255,255,0.7); font-size: 0.8rem; font-weight: 600; margin-top: 14px; text-align: center; letter-spacing: 0.05em; text-transform: uppercase; }
-        .lightbox-back { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; padding: 10px 24px; border-radius: 9999px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s ease; }
-        .lightbox-back:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.4); }
-    /* ===== SITE FOOTER ===== */
-    .site-footer {
-      background: #021a0f;
-      color: rgba(209, 250, 229, 0.65);
-      margin-top: 80px;
-      box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.04), 0 -12px 40px rgba(0, 0, 0, 0.28);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.97);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
 
-    .footer-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 56px 24px 40px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
+        #lightbox.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-    @media (min-width: 640px) {
-      .footer-inner {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+        #lightbox-img {
+            max-width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+        }
 
-    @media (min-width: 1024px) {
-      .footer-inner {
-        grid-template-columns: 2fr 1fr 1fr;
-        gap: 64px;
-      }
-    }
+        #lightbox-caption {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 14px;
+            text-align: center;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
 
-    .footer-logo {
-      height: 36px;
-      object-fit: contain;
-      opacity: 0.72;
-      margin-bottom: 14px;
-      filter: brightness(0) invert(1);
-    }
+        .lightbox-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
-    .footer-tagline {
-      font-size: 0.85rem;
-      line-height: 1.75;
-      color: rgba(209, 250, 229, 0.45);
-      margin-bottom: 22px;
-    }
+        .lightbox-back:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
 
-    .footer-social {
-      display: flex;
-      gap: 10px;
-    }
+        /* ===== SITE FOOTER ===== */
+        .site-footer {
+            background: #021a0f;
+            color: rgba(209, 250, 229, 0.65);
+            margin-top: 80px;
+            box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.04), 0 -12px 40px rgba(0, 0, 0, 0.28);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
-    .footer-social-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: rgba(209, 250, 229, 0.7);
-      transition: all 0.25s ease;
-      text-decoration: none;
-    }
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 56px 24px 40px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
 
-    .footer-social-btn:hover {
-      background: #25D366;
-      border-color: #25D366;
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
-    }
+        @media (min-width: 640px) {
+            .footer-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
-    .footer-heading {
-      font-size: 0.63rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(209, 250, 229, 0.32);
-      margin-bottom: 18px;
-    }
+        @media (min-width: 1024px) {
+            .footer-inner {
+                grid-template-columns: 2fr 1fr 1fr;
+                gap: 64px;
+            }
+        }
 
-    .footer-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
-    }
+        .footer-logo {
+            height: 36px;
+            object-fit: contain;
+            opacity: 0.72;
+            margin-bottom: 14px;
+            filter: brightness(0) invert(1);
+        }
 
-    .footer-links a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: rgba(209, 250, 229, 0.58);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      transition: color 0.2s ease;
-    }
+        .footer-tagline {
+            font-size: 0.85rem;
+            line-height: 1.75;
+            color: rgba(209, 250, 229, 0.45);
+            margin-bottom: 22px;
+        }
 
-    .footer-links a:hover {
-      color: #fff;
-    }
+        .footer-social {
+            display: flex;
+            gap: 10px;
+        }
 
-    .footer-links a svg {
-      opacity: 0.65;
-      flex-shrink: 0;
-    }
+        .footer-social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(209, 250, 229, 0.7);
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
 
-    .footer-bottom {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 20px 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.78rem;
-      color: rgba(209, 250, 229, 0.32);
-    }
+        .footer-social-btn:hover {
+            background: #25D366;
+            border-color: #25D366;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+        }
 
-    .footer-bottom strong {
-      color: rgba(209, 250, 229, 0.55);
-    }
+        .footer-heading {
+            font-size: 0.63rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(209, 250, 229, 0.32);
+            margin-bottom: 18px;
+        }
 
-    .footer-pdf-link {
-      color: rgba(209, 250, 229, 0.45);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s;
-    }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
 
-    .footer-pdf-link:hover {
-      color: #6ee7b7;
-    }
+        .footer-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(209, 250, 229, 0.58);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-links a svg {
+            opacity: 0.65;
+            flex-shrink: 0;
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 20px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 0.78rem;
+            color: rgba(209, 250, 229, 0.32);
+        }
+
+        .footer-bottom strong {
+            color: rgba(209, 250, 229, 0.55);
+        }
+
+        .footer-pdf-link {
+            color: rgba(209, 250, 229, 0.45);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer-pdf-link:hover {
+            color: #6ee7b7;
+        }
     </style>
 </head>
+
 <body class="font-sans bg-slate-50 text-slate-900 overflow-x-hidden">
 
     <!-- NAV -->
-    <header class="main-nav-header fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
+    <header
+        class="main-nav-header fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
         <nav class="max-w-screen-xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
             <div class="flex items-center gap-10">
                 <a href="index.html" class="flex items-center gap-2 group">
                     <div class="logo">
                         <img src="assets/img/png/logo.png" loading="eager" fetchpriority="high" decoding="sync"
-                            class="object-cover h-[50px] w-full transform hover:scale-105 transition duration-700" alt="logo">
+                            class="object-cover h-[50px] w-full transform hover:scale-105 transition duration-700"
+                            alt="logo">
                     </div>
                 </a>
 
@@ -386,7 +552,8 @@
                     <a href="index.html#lotes"
                         class="hover:text-emerald-600 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-300 hover:after:w-full">Desarrollos</a>
                     <a href="index.html#servicios"
-                        class="hover:text-emerald-600 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-300 hover:after:w-full">Calcular Financiamiento</a>
+                        class="hover:text-emerald-600 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-300 hover:after:w-full">Calcular
+                        Financiamiento</a>
                     <a href="index.html#contacto"
                         class="hover:text-emerald-600 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-300 hover:after:w-full">Contacto</a>
                 </div>
@@ -400,14 +567,16 @@
                 <div class="lg:hidden">
                     <button id="mobile-menu-toggle" class="text-slate-800 p-2">
                         <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24"
-                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <line x1="4" y1="6" x2="20" y2="6"></line>
                             <line x1="4" y1="12" x2="20" y2="12"></line>
                             <line x1="4" y1="18" x2="20" y2="18"></line>
                         </svg>
-                        <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 hidden" viewBox="0 0 24 24"
-                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 hidden"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -425,7 +594,8 @@
                 <a href="index.html#lotes"
                     class="mobile-menu-item block w-full text-center py-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-100">Desarrollos</a>
                 <a href="index.html#servicios"
-                    class="mobile-menu-item block w-full text-center py-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-200">Calcular Financiamiento</a>
+                    class="mobile-menu-item block w-full text-center py-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-200">Calcular
+                    Financiamiento</a>
                 <a href="index.html#contacto"
                     class="mobile-menu-item block w-full text-center py-2 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-300">Contacto</a>
                 <a href="https://wa.link/1m4jlo" target="_blank"
@@ -438,10 +608,13 @@
 
     <!-- HERO -->
     <header class="hero-bg pt-28 pb-12 px-4 sm:px-6 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10" style="background-image:url('https://www.transparenttextures.com/patterns/cubes.png')"></div>
+        <div class="absolute inset-0 opacity-10"
+            style="background-image:url('https://www.transparenttextures.com/patterns/cubes.png')"></div>
         <div class="max-w-3xl mx-auto relative z-10">
             <a href="index.html" class="back-link">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
                 Volver a todos los lotes
             </a>
 
@@ -457,7 +630,8 @@
                 Condominio<br><span class="text-emerald-300">Cerro Varnet</span>
             </h1>
             <p class="text-emerald-100/80 text-lg mb-8 max-w-xl fade-up delay-2">
-                Barrio abierto con vistas panorámicas a la ciudad de Salta. Lotes de 500 m² listos para construir, a solo 15 minutos del centro.
+                Barrio abierto con vistas panorámicas a la ciudad de Salta. Lotes de 500 m² listos para construir, a
+                solo 15 minutos del centro.
             </p>
 
             <!-- Stats -->
@@ -485,34 +659,51 @@
         <section>
             <h2 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                 <div class="w-8 h-8 bg-emerald-50 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
                 </div>
                 Galería
             </h2>
             <div class="carousel-container">
                 <div class="carousel-track" id="carouselTrack">
                     <div class="carousel-slide">
-                        <img src="assets/img/lotes/cerro.svg" alt="Plano Cerro Varnet" loading="eager" fetchpriority="high" decoding="sync">
-                        <div class="slide-caption"><p class="text-white text-sm font-semibold">Plano del desarrollo</p></div>
+                        <img src="assets/img/lotes/cerro.svg" alt="Plano Cerro Varnet" loading="eager"
+                            fetchpriority="high" decoding="sync">
+                        <div class="slide-caption">
+                            <p class="text-white text-sm font-semibold">Plano del desarrollo</p>
+                        </div>
                     </div>
                     <div class="carousel-slide">
                         <img src="assets/img/vista.jpeg" alt="Vista panorámica" loading="lazy">
-                        <div class="slide-caption"><p class="text-white text-sm font-semibold">Vista panorámica</p></div>
+                        <div class="slide-caption">
+                            <p class="text-white text-sm font-semibold">Vista panorámica</p>
+                        </div>
                     </div>
                     <div class="carousel-slide">
                         <img src="assets/img/02.jpeg" alt="Entorno natural" loading="lazy">
-                        <div class="slide-caption"><p class="text-white text-sm font-semibold">Entorno natural</p></div>
+                        <div class="slide-caption">
+                            <p class="text-white text-sm font-semibold">Entorno natural</p>
+                        </div>
                     </div>
                 </div>
                 <!-- Expand button (outside slides to avoid overflow clip) -->
                 <button class="expand-btn" id="expandBtn" onclick="openLightbox(currentSlide)" aria-label="Expandir">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
                 </button>
                 <button class="carousel-btn carousel-btn-prev" onclick="prevSlide()" aria-label="Anterior">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+                    </svg>
                 </button>
                 <button class="carousel-btn carousel-btn-next" onclick="nextSlide()" aria-label="Siguiente">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                    </svg>
                 </button>
             </div>
             <div class="flex items-center justify-center gap-2 mt-3" id="galleryDots">
@@ -525,13 +716,19 @@
         <!-- IDEAL USES -->
         <section>
             <h2 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
                 Usos ideales
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div class="use-card">
                     <div class="w-10 h-10 bg-emerald-50 rounded-full flex-shrink-0 flex items-center justify-center">
-                        <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
                     </div>
                     <div>
                         <p class="font-bold text-slate-800 text-sm">Casa con vista</p>
@@ -540,7 +737,12 @@
                 </div>
                 <div class="use-card">
                     <div class="w-10 h-10 bg-sky-50 rounded-full flex-shrink-0 flex items-center justify-center">
-                        <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                        <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
                     </div>
                     <div>
                         <p class="font-bold text-slate-800 text-sm">Miradores y terrazas</p>
@@ -549,7 +751,10 @@
                 </div>
                 <div class="use-card">
                     <div class="w-10 h-10 bg-amber-50 rounded-full flex-shrink-0 flex items-center justify-center">
-                        <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                     </div>
                     <div>
                         <p class="font-bold text-slate-800 text-sm">Inversión segura</p>
@@ -562,13 +767,19 @@
         <!-- FEATURES -->
         <section class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
             <h2 class="text-lg font-bold text-slate-800 mb-5 flex items-center gap-2">
-                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
                 Características del desarrollo
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="flex items-start gap-3">
                     <div class="feature-icon bg-emerald-50">
-                        <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                        <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                        </svg>
                     </div>
                     <div>
                         <p class="font-bold text-slate-800 text-sm">Superficie</p>
@@ -577,7 +788,12 @@
                 </div>
                 <div class="flex items-start gap-3">
                     <div class="feature-icon bg-emerald-50">
-                        <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                        <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
                     </div>
                     <div>
                         <p class="font-bold text-slate-800 text-sm">Vistas</p>
@@ -586,7 +802,10 @@
                 </div>
                 <div class="flex items-start gap-3">
                     <div class="feature-icon bg-emerald-50">
-                        <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
                     </div>
                     <div>
                         <p class="font-bold text-slate-800 text-sm">Tipo</p>
@@ -595,7 +814,10 @@
                 </div>
                 <div class="flex items-start gap-3">
                     <div class="feature-icon bg-emerald-50">
-                        <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                     </div>
                     <div>
                         <p class="font-bold text-slate-800 text-sm">Entrega</p>
@@ -608,29 +830,51 @@
         <!-- SERVICES -->
         <section class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
             <h2 class="text-lg font-bold text-slate-800 mb-5 flex items-center gap-2">
-                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
                 Servicios disponibles
             </h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
 
                 <div class="flex items-center gap-2 bg-slate-50 rounded-xl px-4 py-3">
-                    <svg class="w-4 h-4 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                    <svg class="w-4 h-4 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
                     <span class="text-sm text-slate-700 font-semibold">Agua potable</span>
                 </div>
                 <div class="flex items-center gap-2 bg-slate-50 rounded-xl px-4 py-3">
-                    <svg class="w-4 h-4 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                    <svg class="w-4 h-4 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    </svg>
                     <span class="text-sm text-slate-700 font-semibold">Calles internas</span>
                 </div>
                 <div class="flex items-center gap-2 bg-slate-50 rounded-xl px-4 py-3">
-                    <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                    <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
                     <span class="text-sm text-slate-700 font-semibold">Áreas verdes</span>
                 </div>
                 <div class="flex items-center gap-2 bg-slate-50 rounded-xl px-4 py-3">
-                    <svg class="w-4 h-4 text-brand flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    <svg class="w-4 h-4 text-brand flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
                     <span class="text-sm text-slate-700 font-semibold">Acceso seguro</span>
                 </div>
                 <div class="flex items-center gap-2 bg-slate-50 rounded-xl px-4 py-3">
-                    <svg class="w-4 h-4 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                    <svg class="w-4 h-4 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
                     <span class="text-sm text-slate-700 font-semibold">Título de propiedad</span>
                 </div>
             </div>
@@ -641,7 +885,8 @@
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl font-extrabold mb-1">Financiación flexible</h2>
-                    <p class="text-emerald-100 text-sm">Hasta 36 cuotas fijas en pesos o dólares. Sin interés. Sin banco.</p>
+                    <p class="text-emerald-100 text-sm">Hasta 36 cuotas fijas en pesos o dólares. Sin interés. Sin
+                        banco.</p>
                 </div>
                 <div class="text-right shrink-0">
                     <p class="text-3xl font-extrabold">$12.500</p>
@@ -654,14 +899,25 @@
         <!-- MAP -->
         <section>
             <h2 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
                 Ubicación
             </h2>
             <div class="map-frame">
-                <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1oW2wWH1N_YRaCESJobSlMWfw09OqI_c&ehbc=2E312F" loading="lazy" allowfullscreen></iframe>
+                <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1oW2wWH1N_YRaCESJobSlMWfw09OqI_c&ehbc=2E312F"
+                    loading="lazy" allowfullscreen></iframe>
             </div>
             <div class="flex items-center gap-3 mt-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
-                <svg class="w-4 h-4 text-brand flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <svg class="w-4 h-4 text-brand flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
                 <p class="text-sm text-slate-600 font-medium">Cerro Varnet · A 15 min del centro de Salta</p>
             </div>
         </section>
@@ -669,33 +925,59 @@
         <!-- OTHER DEVELOPMENTS -->
         <section class="bg-slate-50 rounded-2xl border border-slate-100 p-6">
             <h2 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
                 Otros desarrollos disponibles
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                <a href="pumapiedra.html" class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 border border-slate-100 hover:border-brand hover:shadow-md transition-all group">
+                <a href="pumapiedra.html"
+                    class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 border border-slate-100 hover:border-brand hover:shadow-md transition-all group">
                     <div class="w-10 h-10 bg-sky-50 rounded-full flex-shrink-0 flex items-center justify-center">
-                        <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p class="font-bold text-slate-800 text-sm group-hover:text-brand transition">Condominio Puma Piedra</p>
+                        <p class="font-bold text-slate-800 text-sm group-hover:text-brand transition">Condominio Puma
+                            Piedra</p>
                         <p class="text-slate-400 text-xs">1.000 m² · Vista al Dique · La Caldera</p>
                     </div>
-                    <svg class="w-4 h-4 text-slate-300 group-hover:text-brand group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-4 h-4 text-slate-300 group-hover:text-brand group-hover:translate-x-1 transition-all"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
                 </a>
-                <a href="aldea.html" class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 border border-slate-100 hover:border-brand hover:shadow-md transition-all group">
+                <a href="aldea.html"
+                    class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 border border-slate-100 hover:border-brand hover:shadow-md transition-all group">
                     <div class="w-10 h-10 bg-lime-50 rounded-full flex-shrink-0 flex items-center justify-center">
-                        <svg class="w-5 h-5 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <svg class="w-5 h-5 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p class="font-bold text-slate-800 text-sm group-hover:text-brand transition">Aldea Vaquereña</p>
+                        <p class="font-bold text-slate-800 text-sm group-hover:text-brand transition">Aldea Vaquereña
+                        </p>
                         <p class="text-slate-400 text-xs">1.000 m² · Bosque de Nogales · Vaqueros</p>
                     </div>
-                    <svg class="w-4 h-4 text-slate-300 group-hover:text-brand group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-4 h-4 text-slate-300 group-hover:text-brand group-hover:translate-x-1 transition-all"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
                 </a>
             </div>
-            <a href="index.html" class="flex items-center justify-center gap-2 w-full py-3 border-2 border-slate-200 text-slate-600 font-bold rounded-xl hover:border-brand hover:text-brand transition-all text-sm">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            <a href="index.html"
+                class="flex items-center justify-center gap-2 w-full py-3 border-2 border-slate-200 text-slate-600 font-bold rounded-xl hover:border-brand hover:text-brand transition-all text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
                 Ver todos los desarrollos
             </a>
         </section>
@@ -705,11 +987,17 @@
             <h2 class="text-lg font-bold text-slate-800 mb-4 text-center">¿Te interesa? Contactanos hoy</h2>
             <div class="flex flex-col sm:flex-row gap-3">
                 <a href="https://wa.link/1m4jlo" target="_blank" class="wabtn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z"/></svg>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z" />
+                    </svg>
                     Consultar por WhatsApp
                 </a>
                 <a href="https://calendar.app.google/KCe8GPatZ7YXgx358" target="_blank" class="calendar-btn">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
                     Agendar visita
                 </a>
             </div>
@@ -717,109 +1005,115 @@
 
     </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="site-footer">
-    <div class="footer-inner">
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
 
-      <!-- Columna 1: Brand -->
-      <div class="footer-col">
-        <img src="assets/img/png/logo.png" alt="terrenosensalta" class="footer-logo">
-        <p class="footer-tagline">Tu lugar en la naturaleza.<br>Lotes en Salta, Argentina.<br>Preventa exclusiva 2026.
-        </p>
-        <div class="footer-social">
-          <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener" aria-label="Consultanos por WhatsApp"
-            class="footer-social-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z" />
-            </svg>
-          </a>
+            <!-- Columna 1: Brand -->
+            <div class="footer-col">
+                <img src="assets/img/png/logo.png" alt="terrenosensalta" class="footer-logo">
+                <p class="footer-tagline">Tu lugar en la naturaleza.<br>Lotes en Salta, Argentina.<br>Preventa exclusiva
+                    2026.
+                </p>
+                <div class="footer-social">
+                    <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener"
+                        aria-label="Consultanos por WhatsApp" class="footer-social-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Columna 2: Desarrollos -->
+            <div class="footer-col">
+                <h3 class="footer-heading">Desarrollos</h3>
+                <ul class="footer-links">
+                    <li>
+                        <a href="condominiocerrovarnet.html">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                            Condominio Cerro Varnet
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pumapiedra.html">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                            Condominio Puma Piedra
+                        </a>
+                    </li>
+                    <li>
+                        <a href="aldea.html">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                            Aldea Vaquereña
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Contacto -->
+            <div class="footer-col">
+                <h3 class="footer-heading">Contacto</h3>
+                <ul class="footer-links">
+                    <li>
+                        <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z" />
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://calendar.app.google/KCe8GPatZ7YXgx358" target="_blank" rel="noopener">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            Agendar visita
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.google.com/maps/d/u/0/edit?mid=15-CgHwD2YCjIVTsguJQQFhvZzyYc8jU&usp=sharing"
+                            target="_blank" rel="noopener">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Ver en el mapa
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
-      </div>
-
-      <!-- Columna 2: Desarrollos -->
-      <div class="footer-col">
-        <h3 class="footer-heading">Desarrollos</h3>
-        <ul class="footer-links">
-          <li>
-            <a href="condominiocerrovarnet.html">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-              Condominio Cerro Varnet
-            </a>
-          </li>
-          <li>
-            <a href="pumapiedra.html">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-              Condominio Puma Piedra
-            </a>
-          </li>
-          <li>
-            <a href="aldea.html">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-              Aldea Vaquereña
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Columna 3: Contacto -->
-      <div class="footer-col">
-        <h3 class="footer-heading">Contacto</h3>
-        <ul class="footer-links">
-          <li>
-            <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848Z" />
-              </svg>
-              WhatsApp
-            </a>
-          </li>
-          <li>
-            <a href="https://calendar.app.google/KCe8GPatZ7YXgx358" target="_blank" rel="noopener">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              Agendar visita
-            </a>
-          </li>
-          <li>
-            <a href="https://www.google.com/maps/d/u/0/edit?mid=15-CgHwD2YCjIVTsguJQQFhvZzyYc8jU&usp=sharing"
-              target="_blank" rel="noopener">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              Ver en el mapa
-            </a>
-          </li>
-        </ul>
-      </div>
-
-    </div>
-    <!-- Barra inferior -->
-    <div class="footer-bottom">
-      <p>© 2026 <strong>terrenosensalta.AR</strong> · Todos los derechos reservados</p>
-      <a href="https://drive.google.com/file/d/1MCiLKgGpTcFY0U1kgTfgW-cQ0ij1qxaZ/view?usp=sharing" target="_blank"
-        rel="noopener" class="footer-pdf-link">Descargar catálogo PDF →</a>
-    </div>
-  </footer>
+        <!-- Barra inferior -->
+        <div class="footer-bottom">
+            <p>© 2026 <strong>terrenosensalta.AR</strong> · Todos los derechos reservados</p>
+            <a href="https://drive.google.com/file/d/1MCiLKgGpTcFY0U1kgTfgW-cQ0ij1qxaZ/view?usp=sharing" target="_blank"
+                rel="noopener" class="footer-pdf-link">Descargar catálogo PDF →</a>
+        </div>
+    </footer>
 
     <!-- Lightbox -->
     <div id="lightbox">
         <img id="lightbox-img" src="" alt="Imagen ampliada">
         <p id="lightbox-caption"></p>
         <button class="lightbox-back" onclick="closeLightbox()">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
             Volver
         </button>
     </div>
@@ -840,7 +1134,7 @@
         // Autoplay
         let _apTimer = null;
         function startAP() { _apTimer = setInterval(() => goToSlide(currentSlide + 1), 5000); }
-        function stopAP()  { clearInterval(_apTimer); }
+        function stopAP() { clearInterval(_apTimer); }
         function resetAP() { stopAP(); startAP(); }
         function prevSlide() { goToSlide(currentSlide - 1); resetAP(); }
         function nextSlide() { goToSlide(currentSlide + 1); resetAP(); }
@@ -900,7 +1194,7 @@
                     mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
                     menuIconOpen.classList.add('hidden');
                     menuIconClose.classList.remove('hidden');
-                    if(mainNavHeader) mainNavHeader.classList.add('shadow-xl');
+                    if (mainNavHeader) mainNavHeader.classList.add('shadow-xl');
                     menuItems.forEach((item, index) => {
                         setTimeout(() => item.classList.remove('opacity-0', 'translate-y-2'), 50 * index);
                     });
@@ -908,11 +1202,12 @@
                     mobileMenu.style.maxHeight = '0';
                     menuIconOpen.classList.remove('hidden');
                     menuIconClose.classList.add('hidden');
-                    if(mainNavHeader) mainNavHeader.classList.remove('shadow-xl');
+                    if (mainNavHeader) mainNavHeader.classList.remove('shadow-xl');
                     menuItems.forEach(item => item.classList.add('opacity-0', 'translate-y-2'));
                 }
             });
         }
     </script>
 </body>
+
 </html>
