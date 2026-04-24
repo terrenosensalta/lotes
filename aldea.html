@@ -255,21 +255,20 @@
             overflow: hidden;
             background: #0f172a;
             width: 100%;
-            aspect-ratio: 3/2;
+            height: 260px;
             touch-action: pan-y;
             /* cómodo en móvil */
         }
 
         @media (min-width: 480px) {
             .carousel-container {
-                aspect-ratio: 16/9;
+                height: 320px;
             }
         }
 
         @media (min-width: 768px) {
             .carousel-container {
-                aspect-ratio: 16/9;
-                max-height: 420px;
+                height: 420px;
             }
         }
 
@@ -295,7 +294,6 @@
             display: block;
             -webkit-user-drag: none;
             user-select: none;
-            pointer-events: none;
         }
 
         .slide-caption {
