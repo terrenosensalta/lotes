@@ -21,6 +21,7 @@
 
   <link rel="preload" as="image" href="assets/img/png/logo.png">
   <link rel="preload" as="image" href="assets/img/lotes/anticipo.svg">
+  <link rel="preload" as="image" href="assets/img/anuncio.JPG" fetchpriority="high">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -105,10 +106,6 @@
     .swiper-button-prev:after {
       font-size: 20px;
       font-weight: bold;
-    }
-
-    .accordion-content {
-      transition: max-height 0.4s ease-out, padding 0.4s ease-out;
     }
 
     .mobile-menu-item {
@@ -385,10 +382,9 @@
         </p>
 
         <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-          <button
+          <a href="https://calendar.app.google/KCe8GPatZ7YXgx358"
             class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-[0_10px_20px_-10px_rgba(5,150,105,0.5)] hover:bg-primaryDark hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
-            <a href="https://calendar.app.google/KCe8GPatZ7YXgx358">Agendar visita</a>
-
+            Agendar visita
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" stroke-width="2"
               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -396,7 +392,7 @@
               <line x1="15" y1="16" x2="19" y2="12" />
               <line x1="15" y1="8" x2="19" y2="12" />
             </svg>
-          </button>
+          </a>
 
 
         </div>
@@ -442,7 +438,7 @@
               class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Entrega
               Inmediata</span>
             <div class="skeleton-img" id="skelCerro"></div>
-            <img src="assets/img/lotes/cerro.svg" loading="lazy" decoding="async" width="400" height="250"
+            <img src="assets/img/lotes/cerro.webp" loading="lazy" decoding="async" width="400" height="250"
               class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700"
               alt="Cerro Varnet">
             <div
@@ -503,7 +499,7 @@
               class="absolute top-4 left-4 bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Sin
               stock</span>
             <div class="skeleton-img" id="skelRefugio"></div>
-            <img src="assets/img/lotes/refugio.svg" loading="lazy" decoding="async" width="400" height="250"
+            <img src="assets/img/lotes/refugio.webp" loading="lazy" decoding="async" width="400" height="250"
               class="card-img-lazy w-full h-full object-cover grayscale transition duration-700"
               alt="Refugio Vaquereña">
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-70"></div>
@@ -815,46 +811,6 @@
       // Init
       recalcular();
     </script>
-    <!--
-    <section class="max-w-3xl mx-auto mb-24" data-aos="fade-up">
-      <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-primaryDark">Preguntas Frecuentes</h2>
-      </div>
-      
-      <div id="faq-accordion" class="space-y-4">
-        
-        <div class="accordion-item bg-white border border-emerald-200 rounded-xl overflow-hidden shadow-sm">
-            <button class="accordion-header w-full px-6 py-4 text-left bg-emerald-50 text-primaryDark font-bold flex justify-between items-center">
-                <span>¿Cuándo puedo empezar a construir?</span>
-                <svg class="accordion-icon w-5 h-5 text-primary transform rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </button>
-            <div class="accordion-content max-h-fit" style="padding: 1rem 1.5rem;">
-                <p class="text-textMuted">Podés empezar a construir inmediatamente después de la firma del boleto de compraventa y la posesión del terreno, siempre que presentes los planos municipales correspondientes. Te asistimos en este proceso.</p>
-            </div>
-        </div>
-        
-        <div class="accordion-item bg-white border border-stone-200 rounded-xl overflow-hidden hover:border-emerald-200 transition">
-            <button class="accordion-header w-full px-6 py-4 text-left text-textMain font-semibold flex justify-between items-center">
-                <span>¿Los lotes tienen servicios de luz y agua?</span>
-                <svg class="accordion-icon w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </button>
-            <div class="accordion-content max-h-0 overflow-hidden" style="padding: 0 1.5rem;">
-                <p class="text-textMuted pb-4">Sí, todos nuestros desarrollos se entregan con infraestructura de servicios completa: red eléctrica, agua potable y en muchos casos, cloacas. La conexión final al lote está garantizada.</p>
-            </div>
-        </div>
-        
-        <div class="accordion-item bg-white border border-stone-200 rounded-xl overflow-hidden hover:border-emerald-200 transition">
-            <button class="accordion-header w-full px-6 py-4 text-left text-textMain font-semibold flex justify-between items-center">
-                <span>¿Qué gastos de escrituración tengo?</span>
-                <svg class="accordion-icon w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </button>
-            <div class="accordion-content max-h-0 overflow-hidden" style="padding: 0 1.5rem;">
-                <p class="text-textMuted pb-4">Los gastos de escrituración incluyen honorarios del escribano, impuestos de sellos y tasas municipales. Te proporcionaremos un presupuesto detallado y sin sorpresas al momento de la reserva.</p>
-            </div>
-        </div>
-
-      </div>-->
-    </section>
 
   </main>
 
@@ -965,149 +921,93 @@
     </svg>
   </a>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" defer></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
   <script>
-    // 1. Initialize Animations
-    AOS.init({
-      once: true,
-      offset: 100,
-      duration: 800,
-      easing: 'ease-out-cubic',
-    });
-
-    // ===== CARD SKELETON LOADERS =====
-    document.querySelectorAll('.card-img-lazy').forEach(img => {
-      const skel = img.previousElementSibling;
-      if (!skel || !skel.classList.contains('skeleton-img')) return;
-      if (img.complete && img.naturalWidth > 0) { skel.classList.add('fade-out'); }
-      else { img.addEventListener('load', () => skel.classList.add('fade-out')); }
-    });
-
-    // 2. Initialize Swiper (Testimonials)
-    const swiper = new Swiper('.comment-slider', {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 30,
-      centeredSlides: false,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-        },
-        1024: {
-          slidesPerView: 3,
-        },
-      },
-    });
-
-    // 3. Mobile Menu Toggle Functionality
-    const menuToggle = document.getElementById('mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIconOpen = document.getElementById('menu-icon-open');
-    const menuIconClose = document.getElementById('menu-icon-close');
-    const menuItems = document.querySelectorAll('.mobile-menu-item');
-    const header = document.querySelector('header');
-
-    menuToggle.addEventListener('click', () => {
-      const isExpanded = mobileMenu.classList.toggle('is-expanded');
-
-      if (isExpanded) {
-        // Expand menu
-        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
-        menuIconOpen.classList.add('hidden');
-        menuIconClose.classList.remove('hidden');
-        header.classList.add('shadow-xl'); // Ensure shadow persists when open
-
-        // Staggered reveal of menu items
-        menuItems.forEach((item, index) => {
-          setTimeout(() => {
-            item.classList.remove('opacity-0', 'translate-y-2');
-          }, 50 * index); // 50ms delay per item
-        });
-
-      } else {
-        // Collapse menu
-        mobileMenu.style.maxHeight = '0';
-        menuIconOpen.classList.remove('hidden');
-        menuIconClose.classList.add('hidden');
-        header.classList.remove('shadow-xl');
-
-        // Instant hide for items
-        menuItems.forEach(item => {
-          item.classList.add('opacity-0', 'translate-y-2');
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initialize Animations
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          once: true,
+          offset: 100,
+          duration: 800,
+          easing: 'ease-out-cubic',
         });
       }
-    });
 
-    // 4. FAQ Accordion Functionality (only if section exists)
-    const faqAccordion = document.getElementById('faq-accordion');
-    if (faqAccordion) {
-      faqAccordion.addEventListener('click', (event) => {
-        let header = event.target.closest('.accordion-header');
-        if (!header) return;
+      // ===== CARD SKELETON LOADERS =====
+      document.querySelectorAll('.card-img-lazy').forEach(img => {
+        const skel = img.previousElementSibling;
+        if (!skel || !skel.classList.contains('skeleton-img')) return;
+        if (img.complete && img.naturalWidth > 0) { skel.classList.add('fade-out'); }
+        else { img.addEventListener('load', () => skel.classList.add('fade-out')); }
+      });
 
-        const item = header.parentElement;
-        const content = item.querySelector('.accordion-content');
-        const icon = item.querySelector('.accordion-icon');
+      // 2. Initialize Swiper (Testimonials)
+      const swiperEl = document.querySelector('.comment-slider');
+      if (swiperEl && typeof Swiper !== 'undefined') {
+        const swiper = new Swiper('.comment-slider', {
+          loop: true,
+          slidesPerView: 1,
+          spaceBetween: 30,
+          centeredSlides: false,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          breakpoints: {
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          },
+        });
+      }
 
-        const isCurrentlyOpen = content.style.maxHeight !== '0px' && content.style.maxHeight !== '';
+      // 3. Mobile Menu Toggle Functionality
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIconOpen = document.getElementById('menu-icon-open');
+      const menuIconClose = document.getElementById('menu-icon-close');
+      const menuItems = document.querySelectorAll('.mobile-menu-item');
+      const header = document.querySelector('header');
 
-        document.querySelectorAll('.accordion-item').forEach(otherItem => {
-          if (otherItem !== item) {
-            const otherContent = otherItem.querySelector('.accordion-content');
-            const otherIcon = otherItem.querySelector('.accordion-icon');
-            const otherHeader = otherItem.querySelector('.accordion-header');
-            otherContent.style.maxHeight = '0';
-            otherContent.style.padding = '0 1.5rem';
-            otherIcon.classList.remove('rotate-180');
-            otherHeader.classList.remove('bg-emerald-50', 'text-primaryDark', 'font-bold');
-            otherHeader.classList.add('text-textMain', 'font-semibold');
-            otherItem.classList.remove('border-emerald-200');
-            otherItem.classList.add('border-stone-200');
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+          const isExpanded = mobileMenu.classList.toggle('is-expanded');
+          if (isExpanded) {
+            mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+            menuIconOpen.classList.add('hidden');
+            menuIconClose.classList.remove('hidden');
+            header.classList.add('shadow-xl');
+            menuItems.forEach((item, index) => {
+              setTimeout(() => {
+                item.classList.remove('opacity-0', 'translate-y-2');
+              }, 50 * index);
+            });
+          } else {
+            mobileMenu.style.maxHeight = '0';
+            menuIconOpen.classList.remove('hidden');
+            menuIconClose.classList.add('hidden');
+            header.classList.remove('shadow-xl');
+            menuItems.forEach(item => {
+              item.classList.add('opacity-0', 'translate-y-2');
+            });
           }
         });
-
-        if (isCurrentlyOpen) {
-          content.style.maxHeight = '0';
-          content.style.padding = '0 1.5rem';
-          icon.classList.remove('rotate-180');
-          header.classList.remove('bg-emerald-50', 'text-primaryDark', 'font-bold');
-          header.classList.add('text-textMain', 'font-semibold');
-          item.classList.remove('border-emerald-200');
-          item.classList.add('border-stone-200');
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.style.padding = '1rem 1.5rem 1rem 1.5rem';
-          icon.classList.add('rotate-180');
-          header.classList.add('bg-emerald-50', 'text-primaryDark', 'font-bold');
-          header.classList.remove('text-textMain', 'font-semibold');
-          item.classList.add('border-emerald-200');
-          item.classList.remove('border-stone-200');
-        }
-      });
-    }
-
-    // Adjust initial open state for first FAQ item
-    document.addEventListener('DOMContentLoaded', () => {
-      const firstContent = document.querySelector('.accordion-item:first-child .accordion-content');
-      if (firstContent) {
-        // Set max-height for smooth transition based on content height
-        firstContent.style.maxHeight = firstContent.scrollHeight + "px";
       }
 
-      // Randomize developments grid if viewport is large (lg: >= 1024px)
+      // 4. Randomize developments grid if viewport is large (lg: >= 1024px)
       if (window.innerWidth >= 1024) {
         const grid = document.getElementById('developments-grid');
         if (grid) {
