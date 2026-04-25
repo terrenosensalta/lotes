@@ -12,7 +12,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet">
+    </noscript>
 
     <link rel="preload" as="image" href="assets/img/lotes/cerro.svg">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -624,7 +629,8 @@
                 <a href="index.html" class="flex items-center gap-2 group">
                     <div class="logo">
                         <img src="assets/img/png/logo.png" loading="eager" fetchpriority="high" decoding="sync"
-                            class="object-cover h-[50px] w-full transform hover:scale-105 transition duration-700"
+                            width="200" height="50"
+                            class="object-cover h-[50px] w-auto transform hover:scale-105 transition duration-700"
                             alt="logo">
                     </div>
                 </a>
@@ -720,12 +726,12 @@
             <!-- Stats -->
             <div class="grid grid-cols-3 gap-3 fade-up delay-3">
                 <div class="stat-card">
-                    <p class="text-2xl sm:text-3xl font-extrabold text-white">500</p>
-                    <p class="text-emerald-300 text-xs font-semibold mt-1">m² por lote</p>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-white">500 m²</p>
+                    <p class="text-emerald-300 text-xs font-semibold mt-1">lotes desde </p>
                 </div>
                 <div class="stat-card">
-                    <p class="text-2xl sm:text-3xl font-extrabold text-white">$12.500</p>
-                    <p class="text-emerald-300 text-xs font-semibold mt-1">USD desde</p>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-white">U$S 12.500</p>
+                    <p class="text-emerald-300 text-xs font-semibold mt-1">desde</p>
                 </div>
                 <div class="stat-card">
                     <p class="text-2xl sm:text-3xl font-extrabold text-white">15'</p>
@@ -821,21 +827,38 @@
                 <div class="carousel-track" id="carouselTrack">
                     <div class="carousel-slide">
                         <img src="assets/img/lotes/cerro.svg" alt="Plano Cerro Varnet" loading="eager"
-                            fetchpriority="high" decoding="sync">
+                            fetchpriority="high" decoding="sync" width="800" height="420">
                         <div class="slide-caption">
                             <p class="text-white text-sm font-semibold">Condominio Cerro Varnet</p>
                         </div>
                     </div>
+
                     <div class="carousel-slide">
-                        <img src="assets/img/vista.jpeg" alt="Vista panorámica" loading="lazy">
+                        <img src="assets/img/condominio/01.jpg" alt="Pórtico de Acceso " loading="lazy" width="800"
+                            height="420">
                         <div class="slide-caption">
-                            <p class="text-white text-sm font-semibold">Vista panorámica</p>
+                            <p class="text-white text-sm font-semibold">Pórtico de Acceso</p>
                         </div>
                     </div>
                     <div class="carousel-slide">
-                        <img src="assets/img/02.jpeg" alt="Entorno natural" loading="lazy">
+                        <img src="assets/img/condominio/02.jpg" alt="Acceso sobre RN9" loading="eager"
+                            fetchpriority="high" decoding="sync" width="800" height="420">
+                        <div class="slide-caption">
+                            <p class="text-white text-sm font-semibold">Acceso sobre RN9</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/img/condominio/03.jpg" alt="Entorno natural" loading="lazy" width="800"
+                            height="420">
                         <div class="slide-caption">
                             <p class="text-white text-sm font-semibold">Entorno natural</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/img/condominio/04.jpg" alt="Acceso sobre RN9" loading="eager"
+                            fetchpriority="high" decoding="sync" width="800" height="420">
+                        <div class="slide-caption">
+                            <p class="text-white text-sm font-semibold">Acceso sobre RN9</p>
                         </div>
                     </div>
                 </div>
@@ -884,7 +907,7 @@
                     </div>
                     <div>
                         <p class="font-bold text-slate-800 text-sm">Superficie</p>
-                        <p class="text-slate-500 text-sm">500 m² por lote (últimos disponibles)</p>
+                        <p class="text-slate-500 text-sm">lotes desde 500 m² (últimos disponibles)</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-3">
@@ -1184,7 +1207,7 @@
 
             <!-- Columna 1: Brand -->
             <div class="footer-col">
-                <img src="assets/img/png/logo.png" alt="terrenosensalta" class="footer-logo">
+                <img src="assets/img/png/logo.png" alt="terrenosensalta" class="footer-logo" width="144" height="36">
                 <p class="footer-tagline">Tu lugar en la naturaleza.<br>Lotes en Salta, Argentina.<br>Preventa exclusiva
                     2026.
                 </p>

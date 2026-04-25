@@ -10,8 +10,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
+  </noscript>
 
   <link rel="preload" as="image" href="assets/img/png/logo.png">
   <link rel="preload" as="image" href="assets/img/lotes/anticipo.svg">
@@ -293,8 +299,9 @@
 
 
           <div class="logo">
-            <img src="assets/img/png/logo.png" loading="eager" fetchpriority="high" decoding="sync"
-              class="object-cover h-[50px] w-full transform hover:scale-105 transition duration-700" alt="logo">
+            <img src="assets/img/png/logo.png" loading="eager" fetchpriority="high" decoding="sync" width="200"
+              height="50" class="object-cover h-[50px] w-auto transform hover:scale-105 transition duration-700"
+              alt="logo">
 
           </div>
 
@@ -402,8 +409,9 @@
         </div>
 
         <div class="relative rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white">
-          <img src="assets/img/lotes/anticipo.svg" loading="eager" fetchpriority="high" decoding="sync"
-            class="object-cover h-[550px] w-full transform hover:scale-105 transition duration-700" alt="Paisaje Salta">
+          <img src="assets/img/anuncio.JPG" loading="eager" fetchpriority="high" decoding="sync" width="600"
+            height="550" class="object-cover h-[550px] w-full transform hover:scale-105 transition duration-700"
+            alt="Paisaje Salta">
         </div>
       </div>
 
@@ -434,7 +442,7 @@
               class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Entrega
               Inmediata</span>
             <div class="skeleton-img" id="skelCerro"></div>
-            <img src="assets/img/lotes/cerro.svg" loading="lazy" decoding="async"
+            <img src="assets/img/lotes/cerro.svg" loading="lazy" decoding="async" width="400" height="250"
               class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700"
               alt="Cerro Varnet">
             <div
@@ -495,7 +503,7 @@
               class="absolute top-4 left-4 bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Sin
               stock</span>
             <div class="skeleton-img" id="skelRefugio"></div>
-            <img src="assets/img/lotes/refugio.svg" loading="lazy" decoding="async"
+            <img src="assets/img/lotes/refugio.svg" loading="lazy" decoding="async" width="400" height="250"
               class="card-img-lazy w-full h-full object-cover grayscale transition duration-700"
               alt="Refugio Vaquereña">
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-70"></div>
@@ -544,7 +552,7 @@
             <span
               class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">eco-urbanización</span>
             <div class="skeleton-img" id="skelPuma"></div>
-            <img src="assets/img/lotes/pumapiedra.svg" loading="lazy" decoding="async"
+            <img src="assets/img/lotes/pumapiedra.svg" loading="lazy" decoding="async" width="400" height="250"
               class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700"
               alt="Condominio Puma Piedra">
             <div
@@ -597,7 +605,7 @@
             <span
               class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">eco-urbanización</span>
             <div class="skeleton-img" id="skelAldea"></div>
-            <img src="assets/img/lotes/aldea.svg" loading="lazy" decoding="async"
+            <img src="assets/img/lotes/aldea.svg" loading="lazy" decoding="async" width="400" height="250"
               class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700"
               alt="Aldea Vaquereña">
             <div
@@ -856,7 +864,7 @@
 
       <!-- Columna 1: Brand -->
       <div class="footer-col">
-        <img src="assets/img/png/logo.png" alt="terrenosensalta" class="footer-logo">
+        <img src="assets/img/png/logo.png" alt="terrenosensalta" class="footer-logo" width="144" height="36">
         <p class="footer-tagline">Tu lugar en la naturaleza.<br>Lotes en Salta, Argentina.<br>Preventa exclusiva 2026.
         </p>
         <div class="footer-social">

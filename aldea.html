@@ -12,7 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
     <link rel="preload" as="image" href="assets/img/lotes/aldea.svg">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -601,8 +602,8 @@
             <div class="flex items-center gap-10">
                 <a href="index.html" class="flex items-center gap-2 group">
                     <div class="logo">
-                        <img src="assets/img/png/logo.png" loading="eager" fetchpriority="high" decoding="sync"
-                            class="object-cover h-[50px] w-full transform hover:scale-105 transition duration-700"
+                        <img src="assets/img/png/logo.png" loading="eager" fetchpriority="high" decoding="sync" width="200" height="50"
+                            class="object-cover h-[50px] w-auto transform hover:scale-105 transition duration-700"
                             alt="logo">
                     </div>
                 </a>
@@ -786,19 +787,19 @@
                 <div class="carousel-track" id="carouselTrack">
                     <div class="carousel-slide">
                         <img src="assets/img/lotes/aldea.svg" alt="eco-urbanizacion" loading="eager"
-                            fetchpriority="high" decoding="sync">
+                            fetchpriority="high" decoding="sync" width="800" height="420">
                         <div class="slide-caption">
                             <p class="text-white text-sm font-semibold">Eco-urbanización</p>
                         </div>
                     </div>
                     <div class="carousel-slide">
-                        <img src="assets/img/03.jpg" alt="Plano del desarrollo" loading="lazy">
+                        <img src="assets/img/03.jpg" alt="Plano del desarrollo" loading="lazy" width="800" height="420">
                         <div class="slide-caption">
                             <p class="text-white text-sm font-semibold">Plano del desarrollo</p>
                         </div>
                     </div>
                     <div class="carousel-slide">
-                        <img src="assets/img/02.jpeg" alt="Entorno Natural" loading="lazy">
+                        <img src="assets/img/02.jpeg" alt="Entorno Natural" loading="lazy" width="800" height="420">
                         <div class="slide-caption">
                             <p class="text-white text-sm font-semibold">Entorno Natural</p>
                         </div>
@@ -1115,7 +1116,7 @@
 
             <!-- Columna 1: Brand -->
             <div class="footer-col">
-                <img src="assets/img/png/logo.png" alt="terrenosensalta" class="footer-logo">
+                <img src="assets/img/png/logo.png" alt="terrenosensalta" class="footer-logo" width="144" height="36">
                 <p class="footer-tagline">Tu lugar en la naturaleza.<br>Lotes en Salta, Argentina.<br>Preventa exclusiva
                     2026.
                 </p>
