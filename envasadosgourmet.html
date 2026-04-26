@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envasados Gourmet Salta | Práctico, Fresco y Gourmet</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#00b853',
+                            dark: '#1a1a1a',
+                            light: '#f8fdfa'
+                        }
+                    },
+                    animation: {
+                        'float-slow': 'float 6s ease-in-out infinite',
+                        'float-medium': 'float 4s ease-in-out infinite',
+                        'float-fast': 'float 3s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Círculo verde de fondo a la derecha */
+        .bg-shape {
+            position: absolute;
+            top: -10%;
+            right: -15%;
+            width: 50vw;
+            height: 120vh;
+            background-color: #00b853;
+            border-radius: 500px 0 0 500px;
+            z-index: -1;
+            opacity: 0.9;
+        }
+
+        /* Ingredientes flotantes simulados con emojis/CSS para asegurar carga rápida y transparencia perfecta */
+        .floating-item {
+            position: absolute;
+            font-size: 2rem;
+            user-select: none;
+            z-index: 0;
+            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #00b853;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .hero-img-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-img {
+            filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.2));
+            border-radius: 50%;
+            object-fit: cover;
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            border: 8px solid white;
+        }
+
+        /* Animación en cascada para el texto */
+        .delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+
+        .delay-400 {
+            animation-delay: 400ms;
+        }
+
+        @media (max-width: 768px) {
+            .bg-shape {
+                top: 50%;
+                right: -20%;
+                width: 100vw;
+                height: 50vh;
+                border-radius: 200px 200px 0 0;
+            }
+
+            .hero-img {
+                height: 300px;
+                width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-brand-dark font-sans relative min-h-screen flex flex-col">
+
+    <!-- Fondo decorativo -->
+    <div class="bg-shape transition-all duration-1000"></div>
+
+    <!-- Elementos Flotantes (Ingredientes) -->
+    <div class="floating-item animate-float-slow" style="top: 25%; left: 5%;">🌿</div>
+    <div class="floating-item animate-float-fast"
+        style="top: 15%; left: 35%; font-size: 1.5rem; transform: rotate(45deg);">🌶️</div>
+    <div class="floating-item animate-float-medium" style="bottom: 20%; left: 15%; font-size: 2.5rem;">🧅</div>
+    <div class="floating-item animate-float-slow" style="bottom: 10%; right: 45%; font-size: 2rem;">🍅</div>
+    <div class="floating-item animate-float-medium" style="top: 20%; right: 10%; font-size: 3rem;">🥬</div>
+    <div class="floating-item animate-float-fast" style="bottom: 30%; right: 5%;">🍃</div>
+
+    <!-- Navegación -->
+    <nav class="container mx-auto px-6 py-6 flex justify-between items-center z-20 relative">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2 text-2xl font-bold text-brand-dark">
+            <i class="ph-fill ph-package text-brand-green text-3xl"></i>
+            <span>Envasados<span class="text-brand-green">Gourmet Salta</span></span>
+        </a>
+
+        <!-- Enlaces (Desktop) -->
+        <div class="hidden md:flex space-x-8 font-medium">
+            <a href="#" class="nav-link active text-brand-dark">Inicio</a>
+            <a href="#" class="nav-link text-gray-500 hover:text-brand-dark">Menú</a>
+            <a href="#" class="nav-link text-gray-500 hover:text-brand-dark">Práctico al Vacío</a>
+            <a href="#" class="nav-link text-gray-500 hover:text-brand-dark">Nosotros</a>
+            <a href="#"
+                class="bg-brand-green text-white px-4 py-1 rounded-md hover:bg-green-600 transition-colors">Contacto</a>
+        </div>
+
+        <!-- Iconos de Acción -->
+        <div class="hidden md:flex items-center space-x-6">
+            <a href="#" class="font-medium hover:text-brand-green transition-colors">Ingresar</a>
+            <button class="text-gray-700 hover:text-brand-green transition-colors"><i
+                    class="ph ph-magnifying-glass text-2xl"></i></button>
+            <button class="text-gray-700 hover:text-brand-green transition-colors relative">
+                <i class="ph ph-shopping-bag text-2xl"></i>
+                <span
+                    class="absolute -top-2 -right-2 bg-brand-green text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">2</span>
+            </button>
+        </div>
+
+        <!-- Botón Menú Móvil -->
+        <button class="md:hidden text-3xl text-brand-dark">
+            <i class="ph ph-list"></i>
+        </button>
+    </nav>
+
+    <!-- Sección Principal (Hero) -->
+    <main
+        class="container mx-auto px-6 flex-grow flex flex-col md:flex-row items-center justify-between relative z-10 pt-10 pb-20">
+
+        <!-- Texto Izquierda -->
+        <div class="md:w-1/2 mt-10 md:mt-0 z-20">
+            <div
+                class="opacity-0 animate-fade-in-up delay-100 inline-block bg-green-100 text-brand-green px-4 py-2 rounded-full font-semibold text-sm mb-6 flex items-center w-max gap-2">
+                <i class="ph-fill ph-check-circle"></i> Sabor real de Salta
+            </div>
+
+            <h1
+                class="opacity-0 animate-fade-in-up delay-200 text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+                Comé gourmet <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-green to-green-400">sin cocinar ni
+                    ensuciar</span>
+            </h1>
+
+            <p
+                class="opacity-0 animate-fade-in-up delay-300 text-gray-600 text-lg md:text-xl mb-10 max-w-lg leading-relaxed">
+                Descubrí lo práctico de nuestro <strong>envasado al vacío</strong>. Platos listos en 10 minutos, con la frescura intacta y sin lavar una sola olla.
+                <strong>Llevá la experiencia gourmet a tu mesa todos los días.</strong>
+            </p>
+
+            <div class="opacity-0 animate-fade-in-up delay-400 flex flex-wrap gap-4">
+                <button
+                    class="bg-brand-green text-white font-semibold py-4 px-8 rounded-full shadow-lg shadow-green-500/30 hover:-translate-y-1 hover:shadow-green-500/50 transition-all duration-300 flex items-center gap-2">
+                    VER MENÚ SEMANAL
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+                <button
+                    class="bg-white text-brand-dark border-2 border-gray-200 font-semibold py-4 px-8 rounded-full hover:border-brand-green hover:text-brand-green transition-all duration-300 flex items-center gap-2">
+                    <i class="ph ph-play-circle text-2xl"></i>
+                    ¿Cómo funciona?
+                </button>
+            </div>
+
+            <!-- Beneficios rápidos -->
+            <div class="opacity-0 animate-fade-in-up delay-400 flex gap-6 mt-12 pt-8 border-t border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-brand-green text-2xl">
+                        <i class="ph-fill ph-clock"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-gray-700">Listo en<br>10 min</div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-brand-green text-2xl">
+                        <i class="ph-fill ph-broom"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-gray-700">Cero<br>Desorden</div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-brand-green text-2xl">
+                        <i class="ph-fill ph-calendar-check"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-gray-700">Frescura<br>Extendida</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Imagen Derecha -->
+        <div
+            class="md:w-1/2 w-full mt-16 md:mt-0 flex justify-center md:justify-end hero-img-container opacity-0 animate-fade-in-up delay-300">
+            <!-- Imagen de alta calidad de comida (Usamos una imagen de Unsplash orientada a carne/gourmet) -->
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Plato Gourmet Envasado al Vacío" class="hero-img">
+
+                <!-- Etiqueta flotante de descuento/info -->
+                <div
+                    class="absolute bottom-10 -left-10 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-float-medium">
+                    <div
+                        class="bg-yellow-100 text-yellow-600 w-12 h-12 rounded-full flex items-center justify-center text-2xl">
+                        <i class="ph-fill ph-lightning"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 font-semibold uppercase">Práctico y Rápido</p>
+                        <p class="font-bold text-lg text-brand-dark">Ideal para tu semana</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
