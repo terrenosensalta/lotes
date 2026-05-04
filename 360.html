@@ -9,7 +9,7 @@
     <title>Vista 360° — Terrenos en Salta</title>
 
     <!-- Preload crítico de la imagen 360 -->
-    <link rel="preload" href="/assets/img/360a.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="./assets/img/360.jpg" as="image" fetchpriority="high">
 
     <!-- A-Frame 1.6 (última versión estable) -->
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
@@ -462,7 +462,7 @@
         background="color: #0a0a0f">
 
         <!-- Sky equirectangular DJI Mini 2 — URL directa, sin intermediario de assets -->
-        <a-sky id="sky" src="/assets/img/360.jpg" rotation="0 -90 0" material="shader: flat; side: back">
+        <a-sky id="sky" src="./assets/img/360.jpg" rotation="0 -90 0" material="shader: flat; side: back">
         </a-sky>
 
         <!-- Cámara con controles de rotación y look -->
@@ -560,7 +560,7 @@
             /* ── Carga: Image() nativo, sin CORS, compatible Chrome ── */
             (function trackProgress() {
                 let pct = 0;
-                const IMG_SRC = '/assets/img/360.jpg';
+                const IMG_SRC = './assets/img/360.jpg';
                 const probe = new Image();
 
                 function advance(target, speed) {
