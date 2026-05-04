@@ -1,108 +1,734 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="es-AR">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <title>Visualizador de Foto 360</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Vista panorámica 360° capturada con DJI Mini 2 — Terrenos en Salta">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Vista 360° — Terrenos en Salta</title>
+
+    <!-- Preload crítico de la imagen 360 -->
+    <link rel="preload" href="/assets/img/360a.jpg" as="image" fetchpriority="high">
+
+    <!-- A-Frame 1.6 (última versión estable) -->
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+
     <style>
+        /* ── Variables ── */
+        :root {
+            --bg: #0a0a0f;
+            --surface: rgba(255, 255, 255, 0.06);
+            --surface-hover: rgba(255, 255, 255, 0.12);
+            --border: rgba(255, 255, 255, 0.1);
+            --accent: #f59e0b;
+            --accent-glow: rgba(245, 158, 11, 0.35);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --radius: 12px;
+            --blur: blur(16px);
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            overflow: hidden;
+            height: 100dvh;
+            width: 100dvw;
+        }
+
+        /* ── Loader ── */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .loader-logo svg {
+            width: 28px;
+            height: 28px;
+            color: var(--accent);
+        }
+
+        .loader-spinner {
+            width: 56px;
+            height: 56px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loader-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .loader-progress {
+            width: 200px;
+            height: 2px;
+            background: var(--border);
+            border-radius: 99px;
             overflow: hidden;
         }
 
-        #uploadBtn {
-            opacity: 0.5;
-            transition: opacity 0.3s;
+        .loader-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), #fbbf24);
+            border-radius: 99px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-glow);
         }
 
-        #uploadBtn:hover {
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ── Escena ── */
+        a-scene {
+            position: fixed;
+            inset: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* ── UI HUD ── */
+        #hud {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* Header */
+        #header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+            pointer-events: auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .brand-text {
+            line-height: 1.2;
+        }
+
+        .brand-title {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: var(--text);
+        }
+
+        .brand-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* Badge DJI */
+        .dji-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--surface);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border: 1px solid var(--border);
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .dji-badge .dot {
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #22c55e;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(0.85);
+            }
+        }
+
+        /* Footer info */
+        #footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+            gap: 12px;
+            pointer-events: none;
+        }
+
+        .info-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            background: var(--surface);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .footer-chips {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            pointer-events: none;
+        }
+
+        /* Controls panel */
+        #controls {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: auto;
+        }
+
+        .ctrl-btn {
+            width: 44px;
+            height: 44px;
+            background: var(--surface);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition), border-color var(--transition), transform var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        .ctrl-btn:hover {
+            background: var(--surface-hover);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .ctrl-btn:active {
+            transform: scale(0.95);
+        }
+
+        .ctrl-btn.active {
+            background: var(--accent-glow);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .ctrl-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 2px 6px;
+        }
+
+        /* Tooltip */
+        .ctrl-btn[data-tip] {
+            position: relative;
+        }
+
+        .ctrl-btn[data-tip]::before {
+            content: attr(data-tip);
+            position: absolute;
+            right: calc(100% + 10px);
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: var(--text);
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+        }
+
+        .ctrl-btn[data-tip]:hover::before {
             opacity: 1;
+        }
+
+        /* VR Hint */
+        #vr-hint {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--surface);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border: 1px solid var(--border);
+            border-radius: 99px;
+            font-size: 12px;
+            color: var(--text-muted);
+            animation: fadeInUp 0.5s 2s both;
+            pointer-events: none;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        /* Crosshair center */
+        #crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        #crosshair::before,
+        #crosshair::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 1px;
+        }
+
+        #crosshair::before {
+            width: 2px;
+            height: 16px;
+            left: 7px;
+            top: 0;
+        }
+
+        #crosshair::after {
+            width: 16px;
+            height: 2px;
+            top: 7px;
+            left: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            #controls {
+                right: 10px;
+                gap: 6px;
+            }
+
+            .ctrl-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .footer-chips .info-chip:nth-child(n+4) {
+                display: none;
+            }
+
+            #header {
+                padding: 12px 14px;
+            }
+
+            .brand-title {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
 
-<body class="dark">
-    <div class="flex justify-center items-center h-screen bg-gray-900">
-        <a-scene embedded background="color: #111">
-            <a-sky id="sky" src="/assets/img/360.jpg" rotation="0 -130 0"></a-sky>
-            <a-camera id="camera" position="0 0 3.8" fov="80">
-                <!--  <a-cursor></a-cursor>-->
+<body>
+
+    <!-- ── Loader ── -->
+    <div id="loader">
+        <div class="loader-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h4M18 12h4M12 2v4M12 18v4" />
+            </svg>
+            Terrenos en Salta
+        </div>
+        <div class="loader-spinner"></div>
+        <div class="loader-progress">
+            <div class="loader-progress-bar" id="progressBar"></div>
+        </div>
+        <div class="loader-text" id="loaderText">Cargando vista panorámica…</div>
+    </div>
+
+    <!-- ── Escena A-Frame ── -->
+    <!-- src directo en a-sky: evita bloqueo CORS de Chrome con crossorigin en a-assets -->
+    <a-scene id="scene" embedded vr-mode-ui="enabled: true" loading-screen="enabled: false"
+        renderer="antialias: true; colorManagement: true; physicallyCorrectLights: false; maxCanvasWidth: 2048; maxCanvasHeight: 2048"
+        background="color: #0a0a0f">
+
+        <!-- Sky equirectangular DJI Mini 2 — URL directa, sin intermediario de assets -->
+        <a-sky id="sky" src="/assets/img/360.jpg" rotation="0 -90 0" material="shader: flat; side: back">
+        </a-sky>
+
+        <!-- Cámara con controles de rotación y look -->
+        <a-entity id="rig" position="0 0 0">
+            <a-camera id="camera" look-controls="pointerLockEnabled: false; reverseMouseDrag: false; touchEnabled: true"
+                wasd-controls="enabled: false" position="0 0 0" fov="75">
             </a-camera>
-        </a-scene>
+        </a-entity>
+    </a-scene>
+
+    <!-- ── HUD ── -->
+    <div id="hud">
+
+        <!-- Header -->
+        <div id="header">
+            <div class="brand">
+                <div class="brand-icon">🏔</div>
+                <div class="brand-text">
+                    <div class="brand-title">Vista Panorámica 360°</div>
+                    <div class="brand-sub">Terrenos en Salta · Argentina</div>
+                </div>
+            </div>
+            <div class="dji-badge">
+                <span class="dot"></span>
+                DJI Mini 2
+            </div>
+        </div>
+
+        <!-- Controles laterales -->
+        <div id="controls">
+            <button class="ctrl-btn" id="btnZoomIn" data-tip="Acercar" aria-label="Acercar">+</button>
+            <button class="ctrl-btn" id="btnZoomOut" data-tip="Alejar" aria-label="Alejar">−</button>
+            <div class="ctrl-divider"></div>
+            <button class="ctrl-btn" id="btnAuto" data-tip="Auto-rotación" aria-label="Auto-rotación">⟳</button>
+            <button class="ctrl-btn" id="btnFullscreen" data-tip="Pantalla completa"
+                aria-label="Pantalla completa">⛶</button>
+            <div class="ctrl-divider"></div>
+            <button class="ctrl-btn" id="btnVR" data-tip="Modo VR" aria-label="Modo VR">👓</button>
+        </div>
+
+        <!-- Crosshair -->
+        <div id="crosshair"></div>
+
+        <!-- Hint mobile -->
+        <div id="vr-hint">📱 Girá el teléfono para explorar</div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <div class="footer-chips">
+                <span class="info-chip">📐 Equirectangular</span>
+                <span class="info-chip">🚁 DJI Mini 2</span>
+                <span class="info-chip">🌄 Salta, Argentina</span>
+                <span class="info-chip" id="chipFOV">🔭 FOV: 75°</span>
+            </div>
+        </div>
     </div>
-
-    <div class="absolute top-4 left-4">
-        <button id="themeToggle" class="bg-gray-700 text-white px-4 py-2 rounded">Mudar Tema</button>
-        <input type="file" id="uploadBtn" class="bg-gray-700 text-white px-4 py-2 rounded" accept="image/*">
-    </div>
-
-
 
     <script>
-        function setSkyImage(file) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                const scene = document.querySelector('a-scene');
-                const oldSky = document.getElementById('sky');
-                if (oldSky) {
-                    scene.removeChild(oldSky);
+        (function () {
+            'use strict';
+
+            /* ── Referencias DOM ── */
+            const scene = document.getElementById('scene');
+            const camera = document.getElementById('camera');
+            const loader = document.getElementById('loader');
+            const progressBar = document.getElementById('progressBar');
+            const loaderText = document.getElementById('loaderText');
+            const chipFOV = document.getElementById('chipFOV');
+            const btnZoomIn = document.getElementById('btnZoomIn');
+            const btnZoomOut = document.getElementById('btnZoomOut');
+            const btnAuto = document.getElementById('btnAuto');
+            const btnFS = document.getElementById('btnFullscreen');
+            const btnVR = document.getElementById('btnVR');
+            const vrHint = document.getElementById('vr-hint');
+
+            /* ── Estado ── */
+            let fov = 75;
+            const FOV_MIN = 30;
+            const FOV_MAX = 100;
+            const FOV_STEP = 5;
+
+            let autoRotate = false;
+            let autoRotateRAF = null;
+            let autoYaw = 0;
+
+            /* ── Utilidades ── */
+            function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
+
+            function setFOV(newFov) {
+                fov = clamp(newFov, FOV_MIN, FOV_MAX);
+                camera.setAttribute('fov', fov);
+                chipFOV.textContent = `🔭 FOV: ${Math.round(fov)}°`;
+            }
+
+            /* ── Carga: Image() nativo, sin CORS, compatible Chrome ── */
+            (function trackProgress() {
+                let pct = 0;
+                const IMG_SRC = '/assets/img/360.jpg';
+                const probe = new Image();
+
+                function advance(target, speed) {
+                    if (pct >= target) return;
+                    pct = Math.min(pct + speed, target);
+                    progressBar.style.width = pct + '%';
+                    requestAnimationFrame(() => advance(target, speed));
                 }
 
-                const newSky = document.createElement('a-sky');
-                newSky.setAttribute('id', 'sky');
-                newSky.setAttribute('src', event.target.result);
-                scene.appendChild(newSky);
+                // Avance inicial mientras descarga
+                advance(40, 0.8);
 
-                console.log('Imagem definida como: ', event.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
+                // Image() nativo: no necesita CORS headers, funciona en Chrome/Firefox/Safari
+                probe.onload = function () {
+                    advance(100, 3);
+                    setTimeout(hideLoader, 400);
+                };
 
+                probe.onerror = function () {
+                    loaderText.textContent = '⚠ No se pudo cargar /assets/img/360.jpg';
+                    progressBar.style.background = '#ef4444';
+                };
 
-        document.getElementById('themeToggle').addEventListener('click', () => {
-            document.body.classList.toggle('dark');
-            const scene = document.querySelector('a-scene');
-            scene.setAttribute('background', scene.getAttribute('background').color === '#111' ? 'color: #fff' : 'color: #111');
-        });
+                probe.src = IMG_SRC; // dispara la carga
 
-        document.querySelector('a-scene').addEventListener('wheel', (event) => {
-            const camera = document.getElementById('camera');
-            let fov = camera.getAttribute('fov') - event.deltaY * 0.05;
-            fov = fov < 20 ? 20 : fov;
-            fov = fov > 80 ? 80 : fov;
-            camera.setAttribute('fov', fov);
-        });
+                // Fallback: A-Frame indica que terminó de renderizar
+                scene.addEventListener('loaded', function () {
+                    if (pct < 100) {
+                        advance(100, 3);
+                        setTimeout(hideLoader, 300);
+                    }
+                });
+            })();
 
-        document.body.addEventListener('dragover', (event) => {
-            event.preventDefault();
-        });
-
-        document.body.addEventListener('drop', (event) => {
-            event.preventDefault();
-            console.log('Evento drop detectado');
-            const files = event.dataTransfer.files;
-            if (files.length > 0) {
-                const file = files[0];
-                setSkyImage(file);
-            } else {
-                console.log('Nenhum arquivo dropado');
+            function hideLoader() {
+                loader.classList.add('hidden');
             }
-        });
 
+            /* ── Zoom con rueda ── */
+            document.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                setFOV(fov + e.deltaY * 0.04);
+            }, { passive: false });
 
-        document.getElementById('uploadBtn').addEventListener('change', (event) => {
-            console.log('Evento change detectado');
-            const files = event.target.files;
-            if (files.length > 0) {
-                const file = files[0];
-                setSkyImage(file);
-            } else {
-                console.log('Nenhum arquivo selecionado');
+            /* ── Zoom Pinch (touch) ── */
+            let lastPinchDist = null;
+
+            document.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 2) {
+                    lastPinchDist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                }
+            }, { passive: true });
+
+            document.addEventListener('touchmove', (e) => {
+                if (e.touches.length !== 2 || lastPinchDist === null) return;
+                const dist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                const delta = lastPinchDist - dist;
+                setFOV(fov + delta * 0.12);
+                lastPinchDist = dist;
+            }, { passive: true });
+
+            document.addEventListener('touchend', () => { lastPinchDist = null; }, { passive: true });
+
+            /* ── Botones Zoom ── */
+            btnZoomIn.addEventListener('click', () => setFOV(fov - FOV_STEP));
+            btnZoomOut.addEventListener('click', () => setFOV(fov + FOV_STEP));
+
+            /* ── Auto-rotación ── */
+            function startAutoRotate() {
+                autoRotate = true;
+                btnAuto.classList.add('active');
+                const sky = document.getElementById('sky');
+                let last = null;
+
+                function tick(ts) {
+                    if (!autoRotate) return;
+                    if (last !== null) {
+                        autoYaw += (ts - last) * 0.008; // grados/ms × dt
+                        sky.setAttribute('rotation', `0 ${autoYaw - 90} 0`);
+                    }
+                    last = ts;
+                    autoRotateRAF = requestAnimationFrame(tick);
+                }
+                autoRotateRAF = requestAnimationFrame(tick);
             }
-        });
+
+            function stopAutoRotate() {
+                autoRotate = false;
+                btnAuto.classList.remove('active');
+                cancelAnimationFrame(autoRotateRAF);
+            }
+
+            btnAuto.addEventListener('click', () => {
+                autoRotate ? stopAutoRotate() : startAutoRotate();
+            });
+
+            // Detener auto-rotación al interactuar con la escena
+            scene.addEventListener('mousedown', stopAutoRotate);
+            scene.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) stopAutoRotate();
+            }, { passive: true });
+
+            /* ── Pantalla completa ── */
+            btnFS.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen?.();
+                    btnFS.textContent = '✕';
+                } else {
+                    document.exitFullscreen?.();
+                    btnFS.textContent = '⛶';
+                }
+            });
+
+            document.addEventListener('fullscreenchange', () => {
+                if (!document.fullscreenElement) btnFS.textContent = '⛶';
+            });
+
+            /* ── Modo VR ── */
+            btnVR.addEventListener('click', () => {
+                if (scene.is('vr-mode')) {
+                    scene.exitVR();
+                } else {
+                    scene.enterVR();
+                }
+            });
+
+            /* ── Giroscopio en mobile ── */
+            function isMobile() {
+                return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            }
+
+            if (isMobile()) {
+                vrHint.style.display = 'flex';
+
+                // Pedir permiso giroscopio en iOS 13+
+                if (typeof DeviceOrientationEvent !== 'undefined' &&
+                    typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    document.addEventListener('click', function askGyro() {
+                        DeviceOrientationEvent.requestPermission()
+                            .then(state => {
+                                if (state === 'granted') {
+                                    enableLookControls();
+                                }
+                            })
+                            .catch(console.warn);
+                        document.removeEventListener('click', askGyro);
+                    }, { once: true });
+                }
+            } else {
+                vrHint.style.display = 'none';
+            }
+
+            function enableLookControls() {
+                camera.setAttribute('look-controls', 'pointerLockEnabled: false; magicWindowTrackingEnabled: true; touchEnabled: true');
+            }
+
+            /* ── Drag para detener scroll nativo en iOS ── */
+            document.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1) e.preventDefault();
+            }, { passive: false });
+
+        })();
     </script>
 
 </body>
