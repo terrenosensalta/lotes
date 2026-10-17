@@ -6,112 +6,452 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>terrenosensalta.AR | Tu lugar en la naturaleza</title>
+  <meta name="theme-color" content="#ffffff" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://unpkg.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" media="print" onload="this.media='all'">
   <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet">
   </noscript>
 
   <link rel="preload" as="image" href="assets/img/png/logo.png">
-  <link rel="preload" as="image" href="assets/img/lotes/anticipo.svg">
-  <link rel="preload" as="image" href="assets/img/anuncio.JPG" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/hero-01.jpg" fetchpriority="high">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" media="print" onload="this.media='all'" />
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: '#059669', // Emerald 600
-            primaryDark: '#064E3B', // Emerald 900
-            secondary: '#10B981', // Emerald 500
-            accent: '#D97706', // Amber 600 (para detalles cálidos)
-            surface: '#F5F5F4', // Stone 100
-            textMain: '#1C1917', // Stone 900
-            textMuted: '#57534E', // Stone 600
+            primary: '#243229',      // Verde bosque principal
+            primaryDark: '#16231b',  // Verde bosque profundo
+            secondary: '#53624c',    // Verde salvia secundario
+            accent: '#059669',       // Esmeralda vivo
+            stoneMuted: '#6b7280',   // Gris neutro
+            surface: '#ffffff',      // Blanco puro
+            surfaceWarm: '#ffffff',  // Blanco puro
+            ivory: '#ffffff',        // Blanco puro
+            textMain: '#243229',
+            textMuted: '#4b5563',
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
           },
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-20px)' },
-            }
-          }
         }
       }
     }
   </script>
 
   <style>
+    :root {
+      --green: #243229;
+      --green-deep: #16231b;
+      --green-2: #53624c;
+      --white: #ffffff;
+      --black: #161817;
+      --line: rgba(36, 50, 41, 0.12);
+      --line-light: rgba(255, 255, 255, 0.16);
+      --ease: cubic-bezier(0.23, 0.32, 0.23, 1);
+      --gutter: clamp(20px, 4.6vw, 76px);
+      --section-space: clamp(88px, 11vw, 160px);
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--green);
+      background: #ffffff;
+      font-family: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+      overflow-x: hidden;
+      font-weight: 400;
+    }
+
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
 
     ::-webkit-scrollbar-track {
-      background: #E7E5E4;
-      /* Stone 200 */
+      background: #f3f4f6;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #0cb56c;
-      /* Primary */
+      background: #243229;
       border-radius: 4px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: #064E3B;
+      background: #16231b;
     }
 
-    /* Swiper Customization */
-    .swiper-pagination-bullet-active {
-      background-color: #059669 !important;
+    /* Floating Glass Header en Blanco */
+    .site-header {
+      position: fixed;
+      top: 16px;
+      left: var(--gutter);
+      right: var(--gutter);
+      z-index: 50;
+      min-height: 58px;
+      padding: 8px 12px 8px 18px;
+      color: var(--green);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(36, 50, 41, 0.12);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: all 0.4s var(--ease);
     }
 
-    .swiper-button-next,
-    .swiper-button-prev {
-      color: #059669;
-      background: rgba(255, 255, 255, 0.9);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+    .anchor-nav a {
+      position: relative;
+      padding: 10px 0;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      transition: color 0.35s var(--ease);
     }
 
-    .swiper-button-next:hover,
-    .swiper-button-prev:hover {
-      background: #059669;
-      color: white;
-      transform: scale(1.1);
+    .anchor-nav a::after {
+      position: absolute;
+      left: 0;
+      bottom: 6px;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s var(--ease);
     }
 
-    .swiper-button-next:after,
-    .swiper-button-prev:after {
-      font-size: 20px;
-      font-weight: bold;
+    .anchor-nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Buttons (Estilo Editorial Limpio sin beige) */
+    .pn-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 0 18px;
+      border: 1px solid currentColor;
+      border-radius: var(--radius);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      transition: color 0.45s var(--ease), background 0.45s var(--ease), border-color 0.45s var(--ease), transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+    }
+
+    .pn-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .pn-btn--outline {
+      color: var(--green);
+      border-color: rgba(36, 50, 41, 0.25);
+      background: #ffffff;
+    }
+
+    .pn-btn--outline:hover {
+      color: var(--white);
+      border-color: var(--green);
+      background: var(--green);
+      box-shadow: 0 10px 24px rgba(36, 50, 41, 0.18);
+    }
+
+    .pn-btn--green {
+      color: var(--white);
+      border-color: var(--green);
+      background: var(--green);
+      box-shadow: 0 8px 20px rgba(36, 50, 41, 0.16);
+    }
+
+    .pn-btn--green:hover {
+      color: var(--white);
+      border-color: var(--green-deep);
+      background: var(--green-deep);
+      box-shadow: 0 12px 28px rgba(22, 35, 27, 0.28);
+    }
+
+    .pn-btn--white {
+      min-height: 48px;
+      padding: 0 24px;
+      color: var(--green-deep);
+      background: #ffffff;
+      border-color: #ffffff;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .pn-btn--white:hover {
+      color: #ffffff;
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    /* Hero Section con 3 imágenes en slide automático */
+    .hero-section {
+      position: relative;
+      min-height: 100svh;
+      overflow: hidden;
+      color: var(--white);
+      background: var(--green-deep);
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      transform: scale(1.03);
+    }
+
+    .hero-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      will-change: transform, opacity;
+    }
+
+    .hero-slide--one {
+      opacity: 1;
+      animation: heroZoomBase 12s ease-in-out infinite alternate;
+    }
+
+    .hero-slide--two {
+      opacity: 0;
+      animation: heroSlideTwo 12s ease-in-out infinite;
+    }
+
+    @keyframes heroZoomBase {
+      0% {
+        transform: scale(1.01);
+      }
+      100% {
+        transform: scale(1.08);
+      }
+    }
+
+    @keyframes heroSlideTwo {
+      0%, 42% {
+        opacity: 0;
+        transform: scale(1.01);
+      }
+      50%, 92% {
+        opacity: 1;
+        transform: scale(1.06);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+    }
+
+    /* ===== CARRUSEL AUTOMÁTICO "NATURALEZA Y CIUDAD" (Estilo Punta Norte) ===== */
+    .gallery-section {
+      overflow: hidden;
+      padding: var(--section-space) var(--gutter);
+      background: #16231b;
+      color: #eadfca;
+    }
+
+    .gallery-heading {
+      max-width: 760px;
+      margin: 0 0 clamp(44px, 6vw, 72px);
+      font-size: clamp(30px, 3.8vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      font-weight: 500;
+      color: #eadfca;
+    }
+
+    .gallery-rail {
+      overflow: hidden;
+      margin-inline: calc(var(--gutter) * -1);
+      padding-inline: var(--gutter);
+    }
+
+    .gallery-track {
+      display: flex;
+      gap: clamp(16px, 2vw, 28px);
+      width: max-content;
+      animation: galleryLoop 44s linear infinite;
+      will-change: transform;
+    }
+
+    .gallery-rail:hover .gallery-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes galleryLoop {
+      to {
+        transform: translateX(calc(-50% - clamp(8px, 1vw, 14px)));
+      }
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      border-radius: 10px;
+      flex: 0 0 clamp(300px, 36vw, 520px);
+      height: clamp(290px, 34vw, 440px);
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.9s var(--ease), filter 0.9s var(--ease);
+      will-change: transform;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      filter: saturate(1.08) brightness(1.04);
+    }
+
+    .gallery-item::after {
+      position: absolute;
+      inset: auto 0 0;
+      height: 40%;
+      content: "";
+      background: linear-gradient(0deg, rgba(13, 22, 17, 0.65), transparent);
+      opacity: 0;
+      transition: opacity 0.45s var(--ease);
+      pointer-events: none;
+    }
+
+    .gallery-item figcaption {
+      position: absolute;
+      right: 18px;
+      bottom: 16px;
+      left: 18px;
+      z-index: 2;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+      pointer-events: none;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    .gallery-item:hover figcaption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #lotes,
+    #galeria,
+    #servicios,
+    #contacto {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 800px;
+    }
+
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(13, 22, 17, 0.44), rgba(13, 22, 17, 0.12) 56%, rgba(13, 22, 17, 0.22)),
+        linear-gradient(0deg, rgba(13, 22, 17, 0.38), rgba(13, 22, 17, 0.04) 52%, rgba(13, 22, 17, 0.14));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 100svh;
+      max-width: 1040px;
+      padding: 24vh var(--gutter) 14vh;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+    }
+
+    .eyebrow,
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 20px;
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker--dark {
+      color: var(--green-2);
+    }
+
+    .editorial-h1 {
+      max-width: 880px;
+      margin-bottom: 28px;
+      font-size: clamp(38px, 6vw, 80px);
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .editorial-h2 {
+      font-size: clamp(30px, 4.2vw, 56px);
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      font-weight: 500;
+    }
+
+    .hero-text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 42px;
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .hero-text-link span {
+      transition: transform 0.35s var(--ease);
+    }
+
+    .hero-text-link:hover span {
+      transform: translateY(4px);
     }
 
     .mobile-menu-item {
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
-
 
     /* ===== SKELETON LOADERS (cards) ===== */
     @keyframes shimmer {
@@ -128,7 +468,7 @@
       position: absolute;
       inset: 0;
       z-index: 3;
-      background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 45%, #e5e7eb 100%);
+      background: linear-gradient(90deg, #e5e7eb 0%, #f9fafb 45%, #e5e7eb 100%);
       background-size: 200% 100%;
       animation: shimmer 1.5s infinite;
       transition: opacity 0.4s ease;
@@ -139,22 +479,48 @@
       pointer-events: none;
     }
 
+    /* ===== DEVELOPMENT CARDS (Fondo Blanco Puro) ===== */
+    .dev-card {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+    }
+
+    .dev-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(36, 50, 41, 0.35);
+      box-shadow: 0 24px 60px rgba(22, 35, 27, 0.1);
+    }
+
+    .dev-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
     /* ===== SITE FOOTER ===== */
     .site-footer {
-      background: #021a0f;
-      color: rgba(209, 250, 229, 0.65);
-      margin-top: 80px;
-      box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.04), 0 -12px 40px rgba(0, 0, 0, 0.28);
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      position: relative;
+      background: var(--green-deep);
+      color: var(--white);
+      border-top: 1px solid var(--line-light);
+      overflow: hidden;
     }
 
     .footer-inner {
-      max-width: 1280px;
+      position: relative;
+      z-index: 2;
+      max-width: 1360px;
       margin: 0 auto;
-      padding: 56px 24px 40px;
+      padding: 72px var(--gutter) 48px;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 44px;
     }
 
     @media (min-width: 640px) {
@@ -171,18 +537,18 @@
     }
 
     .footer-logo {
-      height: 36px;
+      height: 40px;
       object-fit: contain;
-      opacity: 0.72;
-      margin-bottom: 14px;
+      opacity: 0.92;
+      margin-bottom: 18px;
       filter: brightness(0) invert(1);
     }
 
     .footer-tagline {
-      font-size: 0.85rem;
-      line-height: 1.75;
-      color: rgba(209, 250, 229, 0.45);
-      margin-bottom: 22px;
+      font-size: 0.9rem;
+      line-height: 1.78;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 24px;
     }
 
     .footer-social {
@@ -194,31 +560,30 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
       background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: rgba(209, 250, 229, 0.7);
-      transition: all 0.25s ease;
+      border: 1px solid var(--line-light);
+      color: var(--white);
+      transition: all 0.35s var(--ease);
       text-decoration: none;
     }
 
     .footer-social-btn:hover {
-      background: #25D366;
-      border-color: #25D366;
-      color: white;
+      background: #ffffff;
+      border-color: #ffffff;
+      color: var(--green-deep);
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
     }
 
     .footer-heading {
-      font-size: 0.63rem;
-      font-weight: 800;
+      font-size: 10px;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(209, 250, 229, 0.32);
-      margin-bottom: 18px;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 20px;
     }
 
     .footer-links {
@@ -227,112 +592,112 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 13px;
+      gap: 14px;
     }
 
     .footer-links a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: rgba(209, 250, 229, 0.58);
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 7px;
-      transition: color 0.2s ease;
+      gap: 8px;
+      transition: color 0.25s ease, transform 0.25s ease;
     }
 
     .footer-links a:hover {
-      color: #fff;
+      color: var(--white);
+      transform: translateX(3px);
     }
 
     .footer-links a svg {
       opacity: 0.65;
       flex-shrink: 0;
+      color: var(--white);
     }
 
     .footer-bottom {
-      max-width: 1280px;
+      position: relative;
+      z-index: 2;
+      max-width: 1360px;
       margin: 0 auto;
-      padding: 20px 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 24px var(--gutter);
+      border-top: 1px solid var(--line-light);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       font-size: 0.78rem;
-      color: rgba(209, 250, 229, 0.32);
+      color: rgba(255, 255, 255, 0.55);
     }
 
     .footer-bottom strong {
-      color: rgba(209, 250, 229, 0.55);
+      color: var(--white);
+      font-weight: 500;
     }
 
     .footer-pdf-link {
-      color: rgba(209, 250, 229, 0.45);
+      color: var(--white);
       text-decoration: none;
+      font-size: 11px;
       font-weight: 600;
-      transition: color 0.2s;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: opacity 0.25s;
     }
 
     .footer-pdf-link:hover {
-      color: #6ee7b7;
+      opacity: 0.75;
     }
 
-    /* ===== BUTTON ACTIVE PRESS ===== */
-    .btn-press:active {
-      transform: scale(0.96) !important;
-      transition: transform 0.1s !important;
+    #calc-property:focus,
+    #calc-cuota:focus {
+      border-color: #243229;
+      box-shadow: 0 0 0 3px rgba(36, 50, 41, 0.12);
     }
   </style>
 </head>
 
-<body class="w-full overflow-x-hidden bg-stone-50 text-textMain selection:bg-primary selection:text-white">
+<body class="w-full overflow-x-hidden bg-white text-primary selection:bg-primary selection:text-white">
 
-  <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
-    <nav class="max-w-screen-xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-10">
-        <a href="#" class="flex items-center gap-2 group">
+  <!-- FLOATING GLASS HEADER (Blanco) -->
+  <header class="site-header">
+    <nav class="flex items-center justify-between gap-4">
+      <a href="#" class="brand flex items-center gap-2 shrink-0" aria-label="terrenosensalta.AR inicio">
+        <img src="assets/img/png/logo.png" loading="eager" fetchpriority="high" decoding="sync" width="180"
+          height="44" class="object-contain h-[42px] w-auto transition duration-500" alt="terrenosensalta.AR">
+      </a>
 
-
-          <div class="logo">
-            <img src="assets/img/png/logo.png" loading="eager" fetchpriority="high" decoding="sync" width="200"
-              height="50" class="object-cover h-[50px] w-auto transform hover:scale-105 transition duration-700"
-              alt="logo">
-
-          </div>
-
-        </a>
-
-        <div class="hidden lg:flex items-center gap-8 font-medium text-textMuted text-sm tracking-wide">
-          <a href="#"
-            class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Inicio</a>
-          <a href="#lotes"
-            class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Desarrollos</a>
-          <a href="#servicios"
-            class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Calcular
-            Financiamiento</a>
-          <a href="#contacto"
-            class="hover:text-primary transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Contacto</a>
-        </div>
+      <div class="hidden lg:flex items-center justify-center gap-8 anchor-nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#lotes">Desarrollos</a>
+        <a href="#servicios">Calcular Financiamiento</a>
+        <a href="#contacto">Contacto</a>
       </div>
 
-      <div class="flex items-center gap-4">
-        <a href="https://invoice.zohosecure.com/portal/terrenosensaltaar1" target="_blank"
-          class="hidden lg:block px-5 py-2.5 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition duration-300 shadow-sm hover:shadow-md">
+      <div class="flex items-center gap-2.5">
+        <a href="https://invoice.zohosecure.com/portal/terrenosensaltaar1" target="_blank" rel="noopener noreferrer"
+          class="hidden sm:inline-flex pn-btn pn-btn--outline">
           Área Clientes
         </a>
+        <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener noreferrer"
+          class="hidden lg:inline-flex pn-btn pn-btn--green">
+          <span>WhatsApp</span>
+        </a>
         <div class="lg:hidden">
-          <button id="mobile-menu-toggle" class="text-primaryDark p-2">
-            <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24"
-              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <button id="mobile-menu-toggle"
+            class="w-[42px] h-[42px] flex items-center justify-center border border-primary/25 rounded-[10px] text-primary"
+            aria-label="Abrir menú">
+            <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24"
+              stroke-width="1.75" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <line x1="4" y1="6" x2="20" y2="6"></line>
-              <line x1="4" y1="12" x2="20" y2="12"></line>
-              <line x1="4" y1="18" x2="20" y2="18"></line>
+              <line x1="4" y1="8" x2="20" y2="8"></line>
+              <line x1="4" y1="16" x2="20" y2="16"></line>
             </svg>
-            <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 hidden" viewBox="0 0 24 24"
-              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" viewBox="0 0 24 24"
+              stroke-width="1.75" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -342,50 +707,63 @@
       </div>
     </nav>
 
+    <!-- Mobile Menu -->
     <div id="mobile-menu"
-      class="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-      <div class="px-6 py-4 flex flex-col items-center gap-4 font-medium text-textMain text-lg">
-        <a href="#"
-          class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2">Inicio</a>
+      class="lg:hidden max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+      <div class="pt-4 pb-3 mt-2 border-t border-primary/10 flex flex-col items-stretch gap-2">
+        <a href="#inicio"
+          class="mobile-menu-item block w-full text-center py-2.5 text-xs uppercase tracking-[0.14em] font-semibold text-primary hover:bg-primary/5 rounded-lg opacity-0 transform translate-y-2">Inicio</a>
         <a href="#lotes"
-          class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-100">Desarrollos</a>
+          class="mobile-menu-item block w-full text-center py-2.5 text-xs uppercase tracking-[0.14em] font-semibold text-primary hover:bg-primary/5 rounded-lg opacity-0 transform translate-y-2 delay-100">Desarrollos</a>
         <a href="#servicios"
-          class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-200">Calcular
+          class="mobile-menu-item block w-full text-center py-2.5 text-xs uppercase tracking-[0.14em] font-semibold text-primary hover:bg-primary/5 rounded-lg opacity-0 transform translate-y-2 delay-200">Calcular
           Financiamiento</a>
         <a href="#contacto"
-          class="mobile-menu-item block w-full text-center py-2 hover:text-primary hover:bg-emerald-50 rounded-lg opacity-0 transform translate-y-2 delay-300">Contacto</a>
-        <a href="https://invoice.zohosecure.com/portal/terrenosensaltaar1" target="_blank"
-          class="mobile-menu-item w-full mt-4 px-5 py-2.5 border-2 border-primary bg-primary text-white font-semibold rounded-lg hover:bg-primaryDark transition duration-300 shadow-md text-center">
-          Área Clientes
-        </a>
+          class="mobile-menu-item block w-full text-center py-2.5 text-xs uppercase tracking-[0.14em] font-semibold text-primary hover:bg-primary/5 rounded-lg opacity-0 transform translate-y-2 delay-300">Contacto</a>
+        <div class="flex flex-col sm:flex-row gap-2 mt-2">
+          <a href="https://invoice.zohosecure.com/portal/terrenosensaltaar1" target="_blank"
+            class="mobile-menu-item flex-1 pn-btn pn-btn--outline text-center">
+            Área Clientes
+          </a>
+          <a href="https://wa.link/1m4jlo" target="_blank"
+            class="mobile-menu-item flex-1 pn-btn pn-btn--green text-center">
+            WhatsApp
+          </a>
+        </div>
       </div>
     </div>
   </header>
 
-  <main class="max-w-screen-xl mx-auto px-4 sm:px-6 pt-28">
+  <main class="bg-white">
 
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24 items-center min-h-[600px]">
-      <div class="col-span-1 lg:col-span-6 text-center lg:text-left order-2 lg:order-1" data-aos="fade-right"
-        data-aos-duration="1000">
-        <span
-          class="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-emerald-100 text-primaryDark font-semibold text-xs uppercase tracking-wider rounded-full border border-emerald-200">
-          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          PREVENTA EXCLUSIVA 2026
-        </span>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl mb-6 font-extrabold text-primaryDark leading-[1.15]">
-          Construí tu hogar donde <br> respira la <span
-            class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">naturaleza</span>
+    <!-- ===== HERO SECTION (2 imágenes optimizadas en slide automático) ===== -->
+    <section id="inicio" class="hero-section">
+      <div class="hero-media hero-slider" aria-hidden="true">
+        <img class="hero-slide hero-slide--one" src="assets/img/hero-01.jpg" loading="eager" fetchpriority="high"
+          decoding="sync" width="1366" height="768" alt="Hogar moderno rodeado de naturaleza en Salta">
+        <img class="hero-slide hero-slide--two" src="assets/img/hero-02.jpg" loading="lazy" fetchpriority="low"
+          decoding="async" width="1366" height="768" alt="Vida familiar en el bosque de Salta">
+      </div>
+      <div class="hero-shade"></div>
+
+      <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+        <p class="eyebrow">
+          <span class="w-2 h-2 rounded-full bg-white inline-block animate-pulse"></span>
+          Preventa Exclusiva 2026 · Salta
+        </p>
+        <h1 class="editorial-h1">
+          Construí tu hogar donde<br>
+          respira la <span class="italic font-normal">naturaleza</span>
         </h1>
-        <p class="mb-8 text-lg text-textMuted leading-relaxed pr-0 lg:pr-12">
-          Animáte a vivir en armonía con la naturaleza.
-
+        <p class="max-w-xl text-base sm:text-lg text-white/95 leading-relaxed mb-0">
+          Animáte a vivir en armonía con el entorno natural de Salta. Desarrollos urbanísticos pensados para conectar, invertir y disfrutar el tiempo de otra manera.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-          <a href="https://calendar.app.google/KCe8GPatZ7YXgx358"
-            class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-[0_10px_20px_-10px_rgba(5,150,105,0.5)] hover:bg-primaryDark hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+        <div class="flex flex-wrap items-center gap-5 mt-9">
+          <a href="https://calendar.app.google/KCe8GPatZ7YXgx358" target="_blank" rel="noopener"
+            class="pn-btn pn-btn--white">
             Agendar visita
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" stroke-width="2"
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" stroke-width="2"
               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <line x1="5" y1="12" x2="19" y2="12" />
@@ -393,74 +771,61 @@
               <line x1="15" y1="8" x2="19" y2="12" />
             </svg>
           </a>
-
-
-        </div>
-
-      </div>
-      <div class="col-span-1 lg:col-span-6 relative order-1 lg:order-2 !hidden lg:!block" data-aos="fade-left"
-        data-aos-duration="1200">
-        <div
-          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-emerald-100 to-transparent rounded-full filter blur-3xl opacity-60 -z-10">
-        </div>
-
-        <div class="relative rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white">
-          <img src="assets/img/anuncio.JPG" loading="eager" fetchpriority="high" decoding="sync" width="600"
-            height="550" class="object-cover h-[550px] w-full transform hover:scale-105 transition duration-700"
-            alt="Paisaje Salta">
+          <a href="#lotes" class="hero-text-link">
+            Explorar desarrollos <span aria-hidden="true">↓</span>
+          </a>
         </div>
       </div>
-
     </section>
 
-
-
-    <section id="lotes">
-      <div class="flex flex-col items-center justify-center text-center mb-12" data-aos="fade-up">
-        <div class="max-w-2xl mx-auto">
-          <h3
-            class="text-3xl sm:text-4xl lg:text-5xl text-primaryDark font-extrabold leading-tight tracking-tight uppercase">
-            Desarrollos disponibles</h3>
-          <div class="h-1.5 w-20 bg-emerald-500 rounded-full mx-auto mt-6 opacity-80 shadow-sm"></div>
+    <!-- ===== DESARROLLOS DISPONIBLES (Fondo Blanco Puro) ===== -->
+    <section id="lotes" class="bg-white py-24 lg:py-36 px-5 sm:px-10 lg:px-16 max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 lg:mb-20 border-b border-primary/15 pb-10"
+        data-aos="fade-up">
+        <div class="lg:col-span-7">
+          <span class="section-kicker section-kicker--dark">01 / Masterplan & Territorio</span>
+          <h2 class="editorial-h2 text-primary mb-0">
+            Desarrollos disponibles
+          </h2>
+        </div>
+        <div class="lg:col-span-5">
+          <p class="text-textMuted text-sm sm:text-base leading-relaxed mb-0">
+            Seleccioná el entorno ideal para tu proyecto de vida o inversión en las zonas con mayor proyección paisajística y residencial de Salta.
+          </p>
         </div>
       </div>
 
-
-
-
-
-      <div id="developments-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-        <a href="cerrovarnet.html"
-          class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer block"
-          data-aos="fade-up" data-aos-delay="100">
-          <div class="relative h-64 overflow-hidden">
-            <span
-              class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Entrega
-              Inmediata</span>
+      <div id="developments-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        <!-- Card 1: Cerro Varnet -->
+        <a href="cerrovarnet.html" class="group dev-card block cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+          <div class="relative h-72 overflow-hidden">
+            <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-md text-primary dev-badge z-10 shadow-sm">
+              Entrega Inmediata
+            </span>
             <div class="skeleton-img" id="skelCerro"></div>
-            <img src="assets/img/lotes/cerro.webp" loading="lazy" decoding="async" width="400" height="250"
-              class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700"
+            <img src="assets/img/lotes/cerro.webp" loading="lazy" decoding="async" width="600" height="380"
+              class="card-img-lazy w-full h-full object-cover group-hover:scale-105 transition duration-700"
               alt="Cerro Varnet">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity">
-            </div>
           </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Condominio Cerro Varnet
-              </h5>
-              <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">Últimos lotes de 500
-                m2</span>
+          <div class="p-7 sm:p-8">
+            <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+              <h3 class="text-2xl text-primary font-medium tracking-tight group-hover:text-secondary transition">
+                Condominio Cerro Varnet
+              </h3>
+              <span class="dev-badge bg-primary/5 text-primary border border-primary/15">
+                Últimos lotes de 500 m²
+              </span>
             </div>
-            <p class="text-sm text-textMuted font-medium mb-4 line-clamp-2">Barrio abierto con vistas panorámicas a la
-              ciudad. </p>
+            <p class="text-sm text-textMuted leading-relaxed mb-6 line-clamp-2">
+              Barrio abierto con vistas panorámicas a la ciudad.
+            </p>
 
-            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
+            <div class="flex items-center justify-between border-t border-primary/10 pt-5 mb-6">
               <div class="flex flex-col">
-                <span class="text-xs text-textMuted uppercase">Superficie desde</span>
-                <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
+                <span class="text-[10px] uppercase tracking-[0.14em] text-stoneMuted font-semibold mb-1">Superficie desde</span>
+                <span class="text-sm font-semibold text-primary flex items-center gap-1.5">
                   <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"
                       d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
                     </path>
                   </svg>
@@ -468,57 +833,48 @@
                 </span>
               </div>
               <div class="flex flex-col text-right">
-                <span class="text-xs text-textMuted uppercase">Precio</span>
-                <span class="text-lg font-bold text-primary">$12.500 USD</span>
+                <span class="text-[10px] uppercase tracking-[0.14em] text-stoneMuted font-semibold mb-1">Precio</span>
+                <span class="text-xl font-semibold text-primary tracking-tight">$12.500 USD</span>
               </div>
             </div>
-            <div
-              class="flex items-center justify-center gap-2 w-full py-2.5 bg-primary text-white text-sm font-bold rounded-xl group-hover:bg-primaryDark transition-colors duration-300">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              Ver más información
+            <div class="pn-btn pn-btn--green w-full">
+              <span>Ver más información</span>
+              <span aria-hidden="true">→</span>
             </div>
           </div>
         </a>
 
-        <div
-          class="relative group bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-lg opacity-75 cursor-not-allowed"
-          data-aos="fade-up" data-aos-delay="200">
-          <!-- Sold-out overlay -->
+        <!-- Card 2: Refugio Vaquereña (Vendido) -->
+        <div class="relative group dev-card opacity-75 cursor-not-allowed" data-aos="fade-up" data-aos-delay="200">
           <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-            <div class="bg-stone-800/80 backdrop-blur-sm px-6 py-3 rounded-2xl rotate-[-6deg] shadow-2xl">
-              <span class="text-white font-extrabold text-xl tracking-widest uppercase">Vendido</span>
+            <div class="bg-primaryDark/90 backdrop-blur-md px-7 py-3 rounded-[10px] border border-white/20 rotate-[-5deg] shadow-2xl">
+              <span class="text-white font-semibold text-sm tracking-[0.22em] uppercase">Vendido</span>
             </div>
           </div>
-          <div class="relative h-64 overflow-hidden">
-            <span
-              class="absolute top-4 left-4 bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">Sin
-              stock</span>
+          <div class="relative h-72 overflow-hidden">
+            <span class="absolute top-4 left-4 bg-stoneMuted text-white dev-badge z-10">
+              Sin stock
+            </span>
             <div class="skeleton-img" id="skelRefugio"></div>
-            <img src="assets/img/lotes/refugio.webp" loading="lazy" decoding="async" width="400" height="250"
+            <img src="assets/img/lotes/refugio.webp" loading="lazy" decoding="async" width="600" height="380"
               class="card-img-lazy w-full h-full object-cover grayscale transition duration-700"
               alt="Refugio Vaquereña">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-70"></div>
           </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h5 class="text-xl text-stone-400 font-bold">Refugio Vaquereña</h5>
-              <span class="text-stone-400 bg-stone-100 px-2 py-1 rounded text-xs font-bold line-through">10% OFF
-                CONTADO</span>
+          <div class="p-7 sm:p-8">
+            <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+              <h3 class="text-2xl text-stoneMuted font-medium tracking-tight">Refugio Vaquereña</h3>
+              <span class="dev-badge bg-gray-100 text-stoneMuted line-through">10% OFF CONTADO</span>
             </div>
-            <p class="text-sm text-stone-400 font-medium mb-4 line-clamp-2">Naturaleza pura, arroyos y tranquilidad a
-              solo 25 minutos del centro.</p>
+            <p class="text-sm text-stoneMuted leading-relaxed mb-6 line-clamp-2">
+              Naturaleza pura, arroyos y tranquilidad a solo 25 minutos del centro.
+            </p>
 
-            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
+            <div class="flex items-center justify-between border-t border-gray-200 pt-5 mb-6">
               <div class="flex flex-col">
-                <span class="text-xs text-stone-400 uppercase">Superficie</span>
-                <span class="text-sm font-bold text-stone-400 flex items-center gap-1">
-                  <svg class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                <span class="text-[10px] uppercase tracking-[0.14em] text-stoneMuted font-semibold mb-1">Superficie</span>
+                <span class="text-sm font-semibold text-stoneMuted flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-stoneMuted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"
                       d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
                     </path>
                   </svg>
@@ -526,50 +882,46 @@
                 </span>
               </div>
               <div class="flex flex-col text-right">
-                <span class="text-xs text-stone-400 uppercase">Precio</span>
-                <span class="text-lg font-bold text-stone-400 line-through">15.000 u$s</span>
+                <span class="text-[10px] uppercase tracking-[0.14em] text-stoneMuted font-semibold mb-1">Precio</span>
+                <span class="text-xl font-semibold text-stoneMuted line-through">15.000 u$s</span>
               </div>
             </div>
-            <div
-              class="flex items-center justify-center gap-2 w-full py-2.5 bg-stone-200 text-stone-400 text-sm font-bold rounded-xl">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-              </svg>
-              Vendido
+            <div class="pn-btn w-full border-gray-200 bg-gray-100 text-stoneMuted pointer-events-none">
+              <span>Vendido</span>
             </div>
           </div>
         </div>
 
-        <a href="pumapiedra.html"
-          class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer block"
-          data-aos="fade-up" data-aos-delay="300">
-          <div class="relative h-64 overflow-hidden">
-            <span
-              class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">eco-urbanización</span>
+        <!-- Card 3: Condominio Puma Piedra -->
+        <a href="pumapiedra.html" class="group dev-card block cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+          <div class="relative h-72 overflow-hidden">
+            <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-md text-primary dev-badge z-10 shadow-sm">
+              Eco-urbanización
+            </span>
             <div class="skeleton-img" id="skelPuma"></div>
-            <img src="assets/img/lotes/pumapiedra.svg" loading="lazy" decoding="async" width="400" height="250"
-              class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700"
+            <img src="assets/img/lotes/pumapiedra.svg" loading="lazy" decoding="async" width="600" height="380"
+              class="card-img-lazy w-full h-full object-cover group-hover:scale-105 transition duration-700"
               alt="Condominio Puma Piedra">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity">
-            </div>
           </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Condominio Puma Piedra
-              </h5>
-              <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">DIQUE CAMPO ALEGRE</span>
+          <div class="p-7 sm:p-8">
+            <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+              <h3 class="text-2xl text-primary font-medium tracking-tight group-hover:text-secondary transition">
+                Condominio Puma Piedra
+              </h3>
+              <span class="dev-badge bg-primary/5 text-primary border border-primary/15">
+                Dique Campo Alegre
+              </span>
             </div>
-            <p class="text-sm text-textMuted font-medium mb-4 line-clamp-2">Vista panorámica hacia el espejo de agua en
-              la zona más privilegiada de La Caldera.</p>
+            <p class="text-sm text-textMuted leading-relaxed mb-6 line-clamp-2">
+              Vista panorámica hacia el espejo de agua en la zona más privilegiada de La Caldera.
+            </p>
 
-            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
+            <div class="flex items-center justify-between border-t border-primary/10 pt-5 mb-6">
               <div class="flex flex-col">
-                <span class="text-xs text-textMuted uppercase">Superficie</span>
-                <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
+                <span class="text-[10px] uppercase tracking-[0.14em] text-stoneMuted font-semibold mb-1">Superficie</span>
+                <span class="text-sm font-semibold text-primary flex items-center gap-1.5">
                   <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"
                       d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
                     </path>
                   </svg>
@@ -577,51 +929,47 @@
                 </span>
               </div>
               <div class="flex flex-col text-right">
-                <span class="text-xs text-textMuted uppercase">Precio</span>
-                <span class="text-lg font-bold text-primary">17.000 u$s</span>
+                <span class="text-[10px] uppercase tracking-[0.14em] text-stoneMuted font-semibold mb-1">Precio</span>
+                <span class="text-xl font-semibold text-primary tracking-tight">17.000 u$s</span>
               </div>
             </div>
-            <div
-              class="flex items-center justify-center gap-2 w-full py-2.5 bg-primary text-white text-sm font-bold rounded-xl group-hover:bg-primaryDark transition-colors duration-300">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              Ver más información
+            <div class="pn-btn pn-btn--green w-full">
+              <span>Ver más información</span>
+              <span aria-hidden="true">→</span>
             </div>
           </div>
         </a>
 
-        <a href="aldea.html"
-          class="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer block"
-          data-aos="fade-up" data-aos-delay="300">
-          <div class="relative h-64 overflow-hidden">
-            <span
-              class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primaryDark text-xs font-bold px-3 py-1.5 rounded-lg z-10 shadow-sm">eco-urbanización</span>
+        <!-- Card 4: Aldea Vaquereña -->
+        <a href="aldea.html" class="group dev-card block cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+          <div class="relative h-72 overflow-hidden">
+            <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-md text-primary dev-badge z-10 shadow-sm">
+              Eco-urbanización
+            </span>
             <div class="skeleton-img" id="skelAldea"></div>
-            <img src="assets/img/aldea/01.JPG" loading="lazy" decoding="async" width="400" height="250"
-              class="card-img-lazy w-full h-full object-cover group-hover:scale-110 transition duration-700"
+            <img src="assets/img/aldea/01.JPG" loading="lazy" decoding="async" width="600" height="380"
+              class="card-img-lazy w-full h-full object-cover group-hover:scale-105 transition duration-700"
               alt="Aldea Vaquereña">
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity">
-            </div>
           </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h5 class="text-xl text-primaryDark font-bold group-hover:text-primary transition">Aldea Vaquereña </h5>
-              <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded text-xs font-bold">Vaqueros</span>
+          <div class="p-7 sm:p-8">
+            <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+              <h3 class="text-2xl text-primary font-medium tracking-tight group-hover:text-secondary transition">
+                Aldea Vaquereña
+              </h3>
+              <span class="dev-badge bg-primary/5 text-primary border border-primary/15">
+                Vaqueros
+              </span>
             </div>
-            <p class="text-sm text-textMuted font-medium mb-4 line-clamp-2">Lotes en el corazón de un bosque de nogales
-              en Vaqueros, ideal para casa y quincho con piscina.</p>
+            <p class="text-sm text-textMuted leading-relaxed mb-6 line-clamp-2">
+              Lotes en el corazón de un bosque de nogales en Vaqueros, ideal para casa y quincho con piscina.
+            </p>
 
-            <div class="flex items-center justify-between border-t border-stone-100 pt-4 mb-4">
+            <div class="flex items-center justify-between border-t border-primary/10 pt-5 mb-6">
               <div class="flex flex-col">
-                <span class="text-xs text-textMuted uppercase">Superficie</span>
-                <span class="text-sm font-bold text-primaryDark flex items-center gap-1">
+                <span class="text-[10px] uppercase tracking-[0.14em] text-stoneMuted font-semibold mb-1">Superficie</span>
+                <span class="text-sm font-semibold text-primary flex items-center gap-1.5">
                   <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"
                       d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
                     </path>
                   </svg>
@@ -629,159 +977,206 @@
                 </span>
               </div>
               <div class="flex flex-col text-right">
-                <span class="text-xs text-textMuted uppercase">Precio</span>
-                <span class="text-lg font-bold text-primary">13.000 u$s</span>
+                <span class="text-[10px] uppercase tracking-[0.14em] text-stoneMuted font-semibold mb-1">Precio</span>
+                <span class="text-xl font-semibold text-primary tracking-tight">13.000 u$s</span>
               </div>
             </div>
-            <div
-              class="flex items-center justify-center gap-2 w-full py-2.5 bg-primary text-white text-sm font-bold rounded-xl group-hover:bg-primaryDark transition-colors duration-300">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              Ver más información
+            <div class="pn-btn pn-btn--green w-full">
+              <span>Ver más información</span>
+              <span aria-hidden="true">→</span>
             </div>
           </div>
         </a>
       </div>
-
     </section>
 
+    <!-- ===== CARRUSEL AUTOMÁTICO: NATURALEZA Y CIUDAD EN UN MISMO LUGAR ===== -->
+    <section id="galeria" class="gallery-section" aria-label="Galería de entorno y naturaleza en Salta">
+      <div class="max-w-[1400px] mx-auto" data-aos="fade-up">
+        <h3 class="gallery-heading">
+          Naturaleza y ciudad<br>en un mismo lugar
+        </h3>
+      </div>
 
+      <div class="gallery-rail">
+        <div class="gallery-track">
+          <!-- Set 1 -->
+          <figure class="gallery-item">
+            <img src="assets/img/gallery/gal-01.jpg" alt="Portal de ingreso Condominio Cerro Varnet" loading="lazy" decoding="async" width="900" height="506">
+            <figcaption>Portal de ingreso · Cerro Varnet</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/img/gallery/gal-02.jpg" alt="Accesos consolidados en entorno arbolado" loading="lazy" decoding="async" width="900" height="506">
+            <figcaption>Accesos consolidados</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/img/gallery/gal-03.jpg" alt="Vistas panorámicas del valle en Salta" loading="lazy" decoding="async" width="900" height="506">
+            <figcaption>Vistas panorámicas del valle</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/img/gallery/gal-04.jpg" alt="Entorno natural y espejo de agua" loading="lazy" decoding="async" width="900" height="506">
+            <figcaption>Entorno natural privilegiado</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/img/gallery/gal-05.jpg" alt="Caminos internos entre cerros y quebradas" loading="lazy" decoding="async" width="900" height="506">
+            <figcaption>Caminos internos y montaña</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/img/gallery/gal-06.jpg" alt="Mirador natural hacia el río en Salta" loading="lazy" decoding="async" width="900" height="675">
+            <figcaption>Mirador natural</figcaption>
+          </figure>
 
-    <section id="servicios" class="w-full mb-24" data-aos="fade-up">
-      <!-- Header -->
-      <div class="w-full bg-primaryDark rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden mb-8">
-        <svg class="absolute top-0 right-0 opacity-10 w-96 h-96 transform translate-x-1/3 -translate-y-1/3"
-          viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path fill="#FFFFFF"
-            d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.2,-19.2,95.8,-5.2C93.4,8.9,81.8,22.1,70.8,33.4C59.8,44.7,49.4,54.1,37.6,60.8C25.8,67.5,12.6,71.5,-0.2,71.8C-13,72.2,-26.3,68.9,-38.6,62.1C-50.9,55.3,-62.2,45,-71.3,32.5C-80.4,20,-87.3,5.3,-84.9,-8.2C-82.5,-21.7,-70.8,-34,-58.9,-43.3C-47,-52.6,-34.9,-58.9,-22.4,-64.7C-9.9,-70.5,3,-75.8,15.6,-78.4L28.2,-81.1Z"
-            transform="translate(100 100)" />
-        </svg>
-        <div class="relative z-10 flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
-          <div>
-            <h2 class="text-3xl font-bold text-white mb-2">¿Querés financiar tu terreno?</h2>
-            <p class="text-emerald-100 text-lg">Calculá tu plan en segundos. Hasta 36 cuotas fijas y sin interés.</p>
-          </div>
-          <span
-            class="md:ml-auto shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-emerald-400/20 border border-emerald-400/40 text-emerald-200 text-xs font-bold rounded-full">
-            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 110-16 8 8 0 010 16zm-1-11h2v6h-2zm0-4h2v2h-2z" />
-            </svg>
+          <!-- Set 2 (Duplicado para loop infinito continuo) -->
+          <figure class="gallery-item" aria-hidden="true">
+            <img src="assets/img/gallery/gal-01.jpg" alt="" loading="lazy" decoding="async" width="900" height="506">
+            <figcaption>Portal de ingreso · Cerro Varnet</figcaption>
+          </figure>
+          <figure class="gallery-item" aria-hidden="true">
+            <img src="assets/img/gallery/gal-02.jpg" alt="" loading="lazy" decoding="async" width="900" height="506">
+            <figcaption>Accesos consolidados</figcaption>
+          </figure>
+          <figure class="gallery-item" aria-hidden="true">
+            <img src="assets/img/gallery/gal-03.jpg" alt="" loading="lazy" decoding="async" width="900" height="506">
+            <figcaption>Vistas panorámicas del valle</figcaption>
+          </figure>
+          <figure class="gallery-item" aria-hidden="true">
+            <img src="assets/img/gallery/gal-04.jpg" alt="" loading="lazy" decoding="async" width="900" height="506">
+            <figcaption>Entorno natural privilegiado</figcaption>
+          </figure>
+          <figure class="gallery-item" aria-hidden="true">
+            <img src="assets/img/gallery/gal-05.jpg" alt="" loading="lazy" decoding="async" width="900" height="506">
+            <figcaption>Caminos internos y montaña</figcaption>
+          </figure>
+          <figure class="gallery-item" aria-hidden="true">
+            <img src="assets/img/gallery/gal-06.jpg" alt="" loading="lazy" decoding="async" width="900" height="675">
+            <figcaption>Mirador natural</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FINANCIAMIENTO (Fondo Blanco Puro) ===== -->
+    <section id="servicios" class="bg-white text-primary py-20 lg:py-32 px-5 sm:px-10 lg:px-16 max-w-[1400px] mx-auto" data-aos="fade-up">
+
+      <!-- Encabezado Editorial -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-14 lg:mb-16 border-b border-primary/15 pb-10">
+        <div class="lg:col-span-7">
+          <span class="section-kicker section-kicker--dark">02 / Financiación Propia</span>
+          <h2 class="editorial-h2 text-primary mb-0">
+            ¿Querés financiar tu terreno?
+          </h2>
+        </div>
+        <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col items-start sm:items-center lg:items-end justify-between gap-4">
+          <p class="text-textMuted text-sm sm:text-base leading-relaxed mb-0 lg:text-right">
+            Calculá tu plan a medida en segundos. Hasta 36 cuotas fijas y sin interés.
+          </p>
+          <span class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary/5 border border-primary/15 text-primary text-[10px] uppercase tracking-[0.16em] font-semibold rounded-[8px]">
             Sin banco · Sin interés
           </span>
         </div>
       </div>
 
-      <!-- Calculator Card -->
-      <div class="bg-white rounded-3xl border border-stone-100 shadow-xl p-6 md:p-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <!-- Calculator Panel -->
+      <div class="bg-white rounded-[14px] border border-primary/15 p-6 sm:p-10 lg:p-12 shadow-[0_20px_50px_rgba(22,35,27,0.06)]">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
           <!-- Inputs -->
-          <div class="space-y-6">
+          <div class="lg:col-span-7 space-y-7">
             <div>
-              <label class="block text-sm font-bold text-textMain mb-2" for="calc-property">
-                🏡 Precio del terreno (USD)
+              <label class="block text-[11px] uppercase tracking-[0.15em] font-semibold text-primary mb-3" for="calc-property">
+                Precio del terreno (USD)
               </label>
               <div class="relative">
-                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-textMuted font-bold text-lg">$</span>
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-stoneMuted font-semibold text-lg">$</span>
                 <input id="calc-property" type="number" min="1000" value="12500" step="500"
-                  class="w-full pl-9 pr-4 py-3.5 border-2 border-stone-200 rounded-xl text-textMain font-semibold text-lg focus:outline-none focus:border-primary transition">
+                  class="w-full pl-9 pr-4 py-3.5 bg-white border border-primary/20 rounded-[10px] text-primary font-medium text-lg focus:outline-none transition">
               </div>
             </div>
 
             <div>
-              <label class="block text-sm font-bold text-textMain mb-3">
-                💰 Porcentaje de anticipo
+              <label class="block text-[11px] uppercase tracking-[0.15em] font-semibold text-primary mb-3">
+                Porcentaje de anticipo
               </label>
               <div class="flex gap-3" id="anticipo-selector">
                 <button id="btn-30" onclick="setAnticipo(30)"
-                  class="flex-1 py-3.5 rounded-xl border-2 border-primary bg-primary text-white font-bold text-base transition-all duration-200 shadow-sm"
+                  class="flex-1 py-3.5 rounded-[10px] border border-primary bg-primary text-white font-semibold text-sm tracking-wider uppercase transition-all duration-300"
                   type="button">
-                  30%
+                  30% Anticipo
                 </button>
                 <button id="btn-40" onclick="setAnticipo(40)"
-                  class="flex-1 py-3.5 rounded-xl border-2 border-stone-200 bg-white text-textMuted font-bold text-base hover:border-primary hover:text-primary transition-all duration-200"
+                  class="flex-1 py-3.5 rounded-[10px] border border-primary/20 bg-white text-primary font-semibold text-sm tracking-wider uppercase hover:border-primary transition-all duration-300"
                   type="button">
-                  40%
+                  40% Anticipo
                 </button>
               </div>
             </div>
 
             <div>
-              <label class="block text-sm font-bold text-textMain mb-2" for="calc-cuota">
-                📅 Cuota mensual que querés pagar (USD)
+              <label class="block text-[11px] uppercase tracking-[0.15em] font-semibold text-primary mb-3" for="calc-cuota">
+                Cuota mensual que querés pagar (USD)
               </label>
               <div class="relative">
-                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-textMuted font-bold text-lg">$</span>
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-stoneMuted font-semibold text-lg">$</span>
                 <input id="calc-cuota" type="number" min="50" value="300" step="50"
-                  class="w-full pl-9 pr-4 py-3.5 border-2 border-stone-200 rounded-xl text-textMain font-semibold text-lg focus:outline-none focus:border-primary transition">
+                  class="w-full pl-9 pr-4 py-3.5 bg-white border border-primary/20 rounded-[10px] text-primary font-medium text-lg focus:outline-none transition">
               </div>
             </div>
-            <div>
-              <button onclick="recalcular()"
-                class="w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg hover:bg-primaryDark transition-all duration-300 transform hover:-translate-y-1">
+
+            <div class="pt-2">
+              <button onclick="recalcular()" type="button"
+                class="pn-btn pn-btn--green w-full !min-h-[48px]">
                 Calcular Plan de Financiamiento
               </button>
             </div>
           </div>
 
           <!-- Result Panel -->
-          <div
-            class="bg-gradient-to-br from-primaryDark to-emerald-700 rounded-2xl p-6 md:p-8 text-white flex flex-col gap-5">
-            <h3 class="text-lg font-bold text-emerald-200 uppercase tracking-wide">Tu plan de financiamiento</h3>
+          <div class="lg:col-span-5 bg-primaryDark text-white rounded-[12px] p-7 sm:p-9 flex flex-col gap-6">
+            <div class="flex items-center justify-between border-b border-white/15 pb-4">
+              <h3 class="text-xs font-semibold text-white uppercase tracking-[0.18em] mb-0">Tu plan estimado</h3>
+              <span class="text-[11px] text-white/60">Valores en USD</span>
+            </div>
 
             <div class="grid grid-cols-2 gap-4">
-              <div class="bg-white/10 rounded-xl p-4 border border-white/15">
-                <p class="text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-1">Anticipo</p>
-                <p id="res-anticipo" class="text-2xl font-extrabold text-white">$3.750</p>
-                <p class="text-emerald-200 text-xs mt-0.5">USD al firmar</p>
+              <div class="bg-white/[0.06] rounded-[10px] p-4 border border-white/10">
+                <p class="text-white/70 text-[10px] font-semibold uppercase tracking-[0.15em] mb-1">Anticipo</p>
+                <p id="res-anticipo" class="text-2xl font-semibold text-white tracking-tight">$3.750</p>
+                <p class="text-white/60 text-xs mt-1 mb-0">USD al firmar</p>
               </div>
-              <div class="bg-white/10 rounded-xl p-4 border border-white/15">
-                <p class="text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-1">Saldo a financiar</p>
-                <p id="res-saldo" class="text-2xl font-extrabold text-white">$8.750</p>
-                <p class="text-emerald-200 text-xs mt-0.5">USD en cuotas</p>
+              <div class="bg-white/[0.06] rounded-[10px] p-4 border border-white/10">
+                <p class="text-white/70 text-[10px] font-semibold uppercase tracking-[0.15em] mb-1">Saldo a financiar</p>
+                <p id="res-saldo" class="text-2xl font-semibold text-white tracking-tight">$8.750</p>
+                <p class="text-white/60 text-xs mt-1 mb-0">USD en cuotas</p>
               </div>
             </div>
 
-            <div class="bg-emerald-400/20 border border-emerald-400/30 rounded-xl p-5 text-center">
-              <p class="text-emerald-200 text-sm font-semibold mb-1">Cantidad de cuotas estimadas</p>
-              <p id="res-cuotas" class="text-5xl font-black text-white">30</p>
-              <p id="res-cuota-label" class="text-emerald-200 text-sm mt-1">de <span id="res-cuota-val"
-                  class="font-bold text-white">$300</span> USD/mes</p>
+            <div class="bg-white/10 border border-white/20 rounded-[10px] p-6 text-center">
+              <p class="text-white/80 text-xs uppercase tracking-[0.14em] font-semibold mb-2">Cantidad de cuotas estimadas</p>
+              <p id="res-cuotas" class="text-5xl font-semibold text-white tracking-tight mb-1">30</p>
+              <p id="res-cuota-label" class="text-white/80 text-sm mb-0">
+                de <span id="res-cuota-val" class="font-semibold text-white">$300</span> USD / mes
+              </p>
             </div>
 
             <div id="res-warning"
-              class="hidden text-xs text-amber-300 bg-amber-400/10 border border-amber-400/20 rounded-lg px-3 py-2 text-center">
+              class="hidden text-xs text-white bg-white/10 border border-white/25 rounded-[8px] px-3.5 py-2.5 text-center">
             </div>
-
           </div>
+
         </div>
       </div>
     </section>
 
-
-
-    <style>
-      #calc-property:focus,
-      #calc-cuota:focus {
-        border-color: #059669;
-        box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
-      }
-    </style>
     <script>
       let anticipoActual = 30;
       function setAnticipo(pct) {
         anticipoActual = pct;
         document.getElementById('btn-30').className = pct === 30
-          ? 'flex-1 py-3.5 rounded-xl border-2 border-primary bg-primary text-white font-bold text-base transition-all duration-200 shadow-sm'
-          : 'flex-1 py-3.5 rounded-xl border-2 border-stone-200 bg-white text-textMuted font-bold text-base hover:border-primary hover:text-primary transition-all duration-200';
+          ? 'flex-1 py-3.5 rounded-[10px] border border-primary bg-primary text-white font-semibold text-sm tracking-wider uppercase transition-all duration-300'
+          : 'flex-1 py-3.5 rounded-[10px] border border-primary/20 bg-white text-primary font-semibold text-sm tracking-wider uppercase hover:border-primary transition-all duration-300';
         document.getElementById('btn-40').className = pct === 40
-          ? 'flex-1 py-3.5 rounded-xl border-2 border-primary bg-primary text-white font-bold text-base transition-all duration-200 shadow-sm'
-          : 'flex-1 py-3.5 rounded-xl border-2 border-stone-200 bg-white text-textMuted font-bold text-base hover:border-primary hover:text-primary transition-all duration-200';
+          ? 'flex-1 py-3.5 rounded-[10px] border border-primary bg-primary text-white font-semibold text-sm tracking-wider uppercase transition-all duration-300'
+          : 'flex-1 py-3.5 rounded-[10px] border border-primary/20 bg-white text-primary font-semibold text-sm tracking-wider uppercase hover:border-primary transition-all duration-300';
       }
       function fmt(n) { return '$' + n.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 0 }); }
       function recalcular() {
@@ -814,8 +1209,35 @@
 
   </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="site-footer">
+  <!-- ===== FOOTER & CONTACTO ===== -->
+  <footer id="contacto" class="site-footer">
+    <!-- Bloque Editorial de Cierre / CTA -->
+    <div class="relative z-10 max-w-[1360px] mx-auto pt-20 pb-12 px-6 sm:px-12 border-b border-white/15">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-7">
+          <span class="section-kicker">03 / Contacto</span>
+          <h2 class="editorial-h2 text-white mb-0">
+            La naturaleza dejó de ser paseo.<br>
+            <strong class="font-semibold text-white">Ahora es tu hogar.</strong>
+          </h2>
+        </div>
+        <div class="lg:col-span-5 flex flex-col items-start lg:items-end gap-4">
+          <p class="text-white/75 text-sm sm:text-base lg:text-right mb-0">
+            Si querés conocer más sobre nuestros loteos y planes de financiación, escribinos o agendá tu visita.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener" class="pn-btn pn-btn--white">
+              Contactar por WhatsApp
+            </a>
+            <a href="https://drive.google.com/file/d/1MCiLKgGpTcFY0U1kgTfgW-cQ0ij1qxaZ/view?usp=sharing"
+              target="_blank" rel="noopener" class="pn-btn border-white/40 text-white hover:bg-white hover:text-primaryDark">
+              Descargar catálogo <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="footer-inner">
 
       <!-- Columna 1: Brand -->
@@ -911,17 +1333,18 @@
     </div>
   </footer>
 
-  <a href="https://wa.link/1m4jlo"
-    class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition duration-300 flex items-center justify-center group">
+  <!-- Botón Flotante WhatsApp -->
+  <a href="https://wa.link/1m4jlo" target="_blank" rel="noopener"
+    class="fixed bottom-6 right-6 z-50 bg-primary text-white border border-white/20 p-4 rounded-[10px] shadow-2xl hover:bg-primaryDark hover:-translate-y-1 transition duration-300 flex items-center justify-center group"
+    aria-label="Consultanos por WhatsApp">
     <span
-      class="absolute right-full mr-3 bg-white text-gray-800 text-xs font-bold px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition whitespace-nowrap">¡Consultanos!</span>
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      class="absolute right-full mr-3 bg-primaryDark text-white text-[10px] uppercase tracking-[0.14em] font-semibold px-3 py-1.5 rounded-[6px] shadow-lg opacity-0 group-hover:opacity-100 transition whitespace-nowrap">¡Consultanos!</span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M17.472 14.382C17.111 14.201 15.336 13.328 15.003 13.237C14.67 13.146 14.429 13.146 14.188 13.507C13.947 13.868 13.256 14.679 13.045 14.92C12.834 15.161 12.624 15.191 12.263 15.011C11.902 14.83 10.738 14.449 9.356 13.22C8.243 12.23 7.491 11.007 7.28 10.646C7.07 10.285 7.258 10.091 7.439 9.911C7.6 9.75 7.796 9.489 7.977 9.279C8.157 9.068 8.217 8.918 8.337 8.677C8.458 8.436 8.398 8.226 8.307 8.045C8.217 7.865 7.495 6.09 7.194 5.368C6.903 4.666 6.602 4.756 6.381 4.756C6.181 4.756 5.95 4.756 5.719 4.756C5.488 4.756 5.117 4.846 4.806 5.187C4.495 5.528 3.612 6.35 3.612 8.025C3.612 9.7 4.836 11.304 5.017 11.545C5.197 11.786 7.464 15.295 11.023 16.739C13.439 17.721 13.91 17.521 14.441 17.431C15.424 17.26 17.111 16.358 17.472 15.365C17.833 14.372 17.833 13.52 17.712 13.319C17.592 13.119 17.351 13.028 16.99 12.848H17.472V14.382Z" />
     </svg>
   </a>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" defer></script>
   <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -940,39 +1363,16 @@
         const skel = img.previousElementSibling;
         if (!skel || !skel.classList.contains('skeleton-img')) return;
         if (img.complete && img.naturalWidth > 0) { skel.classList.add('fade-out'); }
-        else { img.addEventListener('load', () => skel.classList.add('fade-out')); }
+        else { img.addEventListener('load', () => skel.classList.add('fade-out'), { once: true }); }
       });
 
-      // 2. Initialize Swiper (Testimonials)
-      const swiperEl = document.querySelector('.comment-slider');
-      if (swiperEl && typeof Swiper !== 'undefined') {
-        const swiper = new Swiper('.comment-slider', {
-          loop: true,
-          slidesPerView: 1,
-          spaceBetween: 30,
-          centeredSlides: false,
-          autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-          },
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-          breakpoints: {
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
-          },
+      // 2. Pre-decode secondary hero slides after initial paint so transitions are instant
+      window.addEventListener('load', () => {
+        document.querySelectorAll('.hero-slide--two, .hero-slide--three').forEach(img => {
+          img.loading = 'eager';
+          if (img.decode) img.decode().catch(() => {});
         });
-      }
+      }, { once: true });
 
       // 3. Mobile Menu Toggle Functionality
       const menuToggle = document.getElementById('mobile-menu-toggle');
