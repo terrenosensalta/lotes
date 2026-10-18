@@ -233,12 +233,17 @@
 
     .hero-slide--one {
       opacity: 1;
-      animation: heroZoomBase 12s ease-in-out infinite alternate;
+      animation: heroZoomBase 18s ease-in-out infinite alternate;
     }
 
     .hero-slide--two {
       opacity: 0;
-      animation: heroSlideTwo 12s ease-in-out infinite;
+      animation: heroSlideTwo 18s ease-in-out infinite;
+    }
+
+    .hero-slide--three {
+      opacity: 0;
+      animation: heroSlideThree 18s ease-in-out infinite;
     }
 
     @keyframes heroZoomBase {
@@ -251,11 +256,26 @@
     }
 
     @keyframes heroSlideTwo {
-      0%, 42% {
+      0%, 28% {
         opacity: 0;
         transform: scale(1.01);
       }
-      50%, 92% {
+      33%, 66% {
+        opacity: 1;
+        transform: scale(1.06);
+      }
+      71%, 100% {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+    }
+
+    @keyframes heroSlideThree {
+      0%, 61% {
+        opacity: 0;
+        transform: scale(1.01);
+      }
+      66%, 95% {
         opacity: 1;
         transform: scale(1.06);
       }
@@ -736,13 +756,15 @@
 
   <main class="bg-white">
 
-    <!-- ===== HERO SECTION (2 imágenes optimizadas en slide automático) ===== -->
+    <!-- ===== HERO SECTION (3 imágenes optimizadas en slide automático) ===== -->
     <section id="inicio" class="hero-section">
       <div class="hero-media hero-slider" aria-hidden="true">
         <img class="hero-slide hero-slide--one" src="assets/img/hero-01.jpg" loading="eager" fetchpriority="high"
           decoding="sync" width="1366" height="768" alt="Hogar moderno rodeado de naturaleza en Salta">
         <img class="hero-slide hero-slide--two" src="assets/img/hero-02.jpg" loading="lazy" fetchpriority="low"
           decoding="async" width="1366" height="768" alt="Vida familiar en el bosque de Salta">
+        <img class="hero-slide hero-slide--three" src="assets/img/hero-03.jpg" loading="lazy" fetchpriority="low"
+          decoding="async" width="1366" height="768" alt="Trabajar y disfrutar con vista a la montaña en Salta">
       </div>
       <div class="hero-shade"></div>
 
