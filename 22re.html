@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual Interactivo de Restauración Toyota 22R-E (1995)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            toyota: {
+              red: '#d90429',
+              darkRed: '#9b001a',
+              black: '#111827',
+              gray: '#f8fafc',
+              accent: '#2563eb'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes pulse-cel {
+      0%, 100% { opacity: 0.25; transform: scale(0.97); }
+      50% { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 12px #d97706); }
+    }
+    .cel-blinking {
+      animation: pulse-cel 0.6s infinite ease-in-out;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .diagram-hotspot {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .diagram-hotspot:hover {
+      filter: drop-shadow(0 0 8px #d90429);
+      stroke-width: 3px;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800 min-h-screen font-sans antialiased custom-scroll">
+
+  <!-- TOP HEADER & BRANDING (WHITE THEME) -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center font-black text-white text-xl shadow-md shadow-red-500/20 border border-red-500">
+          22RE
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-extrabold text-lg sm:text-xl text-slate-900 tracking-tight">Toyota 22R-E (1995)</h1>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200">FSM Interactivo</span>
+          </div>
+          <p class="text-xs text-slate-500 font-medium">Guía de Restauración Total para Principiantes Cero-Mecánica</p>
+        </div>
+      </div>
+
+      <!-- Quick Global Search Input -->
+      <div class="relative flex-1 max-w-md hidden md:block">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <input 
+          id="globalSearchInput"
+          type="text" 
+          placeholder="Buscar: 'calibrar válvulas', 'código 14', 'no enciende', 'torque culata'..."
+          class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-600 focus:bg-white focus:ring-2 focus:ring-red-100 transition-all shadow-inner"
+          oninput="handleSearch(this.value)"
+        />
+        <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600">✕</button>
+      </div>
+
+      <!-- Quick Action Badges -->
+      <div class="flex items-center gap-2">
+        <button onclick="scrollToSection('asistente')" class="bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm">
+          <span class="inline-block w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+          Asistente Rápido
+        </button>
+        <button onclick="scrollToSection('checklist')" class="bg-red-600 hover:bg-red-700 text-white px-3.5 py-2 rounded-xl text-xs font-semibold shadow-sm transition-all flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Mi Progreso
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs (Light) -->
+    <div class="bg-slate-50/80 border-t border-slate-200 px-4 sm:px-8">
+      <nav class="max-w-7xl mx-auto flex gap-1 sm:gap-2 overflow-x-auto py-2 custom-scroll text-xs sm:text-sm font-medium">
+        <button onclick="setTab('inicio')" class="nav-tab active px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 transition-all" data-tab="inicio">🏁 Primeros Pasos</button>
+        <button onclick="setTab('diagramas')" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 transition-all" data-tab="diagramas">📐 Diagramas Interactivos</button>
+        <button onclick="setTab('asistente')" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 transition-all" data-tab="asistente">🩺 Asistente de Síntomas</button>
+        <button onclick="setTab('obd1')" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 transition-all" data-tab="obd1">⚡ Escáner con Clip (DLC1)</button>
+        <button onclick="setTab('especificaciones')" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 transition-all" data-tab="especificaciones">🔧 Torques y Ajustes</button>
+        <button onclick="setTab('fases')" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 transition-all" data-tab="fases">📖 Fases de Restauración</button>
+        <button onclick="setTab('glosario')" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 transition-all" data-tab="glosario">💡 Glosario Novato</button>
+        <button onclick="setTab('checklist')" class="nav-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 transition-all" data-tab="checklist">✅ Checklist Proyecto</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Search Bar -->
+  <div class="p-3 bg-slate-100 border-b border-slate-200 md:hidden">
+    <div class="relative">
+      <input 
+        type="text" 
+        placeholder="Buscar cualquier falla, torque o pieza..."
+        class="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-4 py-2 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-600"
+        oninput="handleSearch(this.value)"
+      />
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH OVERLAY / RESULTS MODAL -->
+  <div id="searchResultsOverlay" class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm p-4 overflow-y-auto">
+    <div class="max-w-3xl mx-auto bg-white border border-slate-200 rounded-2xl shadow-2xl p-6 mt-12">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span>Resultados de búsqueda</span>
+            <span id="searchResultCount" class="text-xs bg-red-100 text-red-700 px-2.5 py-0.5 rounded-full font-bold">0</span>
+          </h3>
+          <p class="text-xs text-slate-500">Haz clic en cualquier resultado para saltar directamente a la explicación</p>
+        </div>
+        <button onclick="closeSearchResults()" class="text-slate-400 hover:text-slate-700 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 transition-all">✕ Cerrar</button>
+      </div>
+      <div id="searchResultsList" class="mt-4 space-y-3 max-h-[65vh] overflow-y-auto custom-scroll pr-1">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN WRAPPER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-white">
+
+    <!-- HERO ALERT: LA REGLA DE ORO DE UN 22RE (LIGHT THEME) -->
+    <div class="mb-8 rounded-2xl p-5 bg-gradient-to-r from-red-50 via-rose-50/40 to-amber-50/50 border border-red-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div class="flex items-start gap-3.5">
+        <div class="p-2.5 bg-red-100 text-red-600 rounded-xl border border-red-200 mt-0.5">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        </div>
+        <div>
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">¡Bienvenido al mundo del legendario motor Toyota 22R-E!</h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+            El <strong>Toyota 22R-E (2.4L SOHC Inyección Electrónica)</strong> es uno de los motores más duraderos jamás fabricados. Sin embargo, tiene un <em>Talón de Aquiles</em> crítico: las <strong>guías de plástico de la cadena de distribución</strong>. Si tu camioneta ha estado parada, lee las precauciones antes de intentar arrancarla.
+          </p>
+        </div>
+      </div>
+      <div class="flex gap-2 w-full md:w-auto">
+        <button onclick="setTab('fases'); scrollToSection('fase-cadena')" class="w-full md:w-auto whitespace-nowrap bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-4 py-2.5 rounded-xl shadow-sm transition-all text-center">
+          Ver Peligro de Cadena
+        </button>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 1: INICIO & PRIMEROS PASOS         -->
+    <!-- ========================================== -->
+    <div id="section-inicio" class="tab-content block space-y-8">
+      
+      <!-- Quick Specs Card Grid (Light) -->
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-600"></span>
+            Ficha Técnica Vital: Toyota 22R-E (Año 1995)
+          </h2>
+          <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">Toyota FSM Oficial</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+          <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 hover:border-slate-300 hover:shadow-sm transition-all">
+            <span class="text-[11px] font-bold text-slate-500 block uppercase">Desplazamiento</span>
+            <span class="text-lg font-black text-slate-900">2,366 cc</span>
+            <span class="text-[11px] text-slate-500 block">4 Cilindros en Línea</span>
+          </div>
+          <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 hover:border-slate-300 hover:shadow-sm transition-all">
+            <span class="text-[11px] font-bold text-slate-500 block uppercase">Potencia OEM</span>
+            <span class="text-lg font-black text-slate-900">113 HP</span>
+            <span class="text-[11px] text-slate-500 block">@ 4,800 RPM (140 lb-ft)</span>
+          </div>
+          <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 hover:border-slate-300 hover:shadow-sm transition-all">
+            <span class="text-[11px] font-bold text-slate-500 block uppercase">Orden de Encendido</span>
+            <span class="text-lg font-black text-amber-700">1 - 3 - 4 - 2</span>
+            <span class="text-[11px] text-slate-500 block">Sentido Horario (CW)</span>
+          </div>
+          <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 hover:border-slate-300 hover:shadow-sm transition-all">
+            <span class="text-[11px] font-bold text-slate-500 block uppercase">Calibración Válvulas</span>
+            <span class="text-lg font-black text-emerald-700">.008" / .012"</span>
+            <span class="text-[11px] text-slate-500 block">Adm: 0.20mm / Esc: 0.30mm</span>
+          </div>
+          <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 hover:border-slate-300 hover:shadow-sm transition-all">
+            <span class="text-[11px] font-bold text-slate-500 block uppercase">Tiempo de Ignición</span>
+            <span class="text-lg font-black text-blue-700">10° BTDC</span>
+            <span class="text-[11px] text-slate-500 block">Con TE1 y E1 puenteados</span>
+          </div>
+          <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 hover:border-slate-300 hover:shadow-sm transition-all">
+            <span class="text-[11px] font-bold text-slate-500 block uppercase">Aceite Motor</span>
+            <span class="text-lg font-black text-slate-900">4.5 - 4.8 Qt</span>
+            <span class="text-[11px] text-slate-500 block">10W-30 / 10W-40 (4.3 Litros)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ZERO MECHANICS SURVIVAL GUIDE -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="p-2 bg-emerald-100 text-emerald-700 rounded-lg">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900">¿No sabes nada de mecánica? Empieza por aquí</h3>
+              <p class="text-xs text-slate-500">Las 4 reglas fundamentales para no romper nada ni gastar de más</p>
+            </div>
+          </div>
+
+          <div class="space-y-4 text-sm text-slate-700">
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
+              <span class="w-6 h-6 rounded-full bg-red-100 text-red-700 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5 border border-red-200">1</span>
+              <div>
+                <strong class="text-slate-900">NO intentes encender el motor de golpe si lleva meses parado.</strong>
+                <p class="text-xs text-slate-600 mt-1">La gasolina vieja se descompone en barniz pegajoso que obstruye la bomba y los inyectores. Además, los cilindros secos pueden rayarse. Retira las bujías, vierte una cucharadita de lubricante ligero en cada cilindro y gira el motor a mano con una llave en la polea del cigüeñal (19mm).</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
+              <span class="w-6 h-6 rounded-full bg-amber-100 text-amber-800 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5 border border-amber-200">2</span>
+              <div>
+                <strong class="text-slate-900">Usa el sistema 'Foto antes de tocar' y cinta adhesiva de etiquetas.</strong>
+                <p class="text-xs text-slate-600 mt-1">El motor 22RE tiene decenas de mangueras de vacío delgadas. Toma fotos en alta resolución desde varios ángulos antes de desconectar nada. Numera cada conector y su manguera gemela.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
+              <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5 border border-blue-200">3</span>
+              <div>
+                <strong class="text-slate-900">Consigue un torquímetro (llave dinamométrica) desde el día 1.</strong>
+                <p class="text-xs text-slate-600 mt-1">La culata y la tapa de distribución del 22RE son de aluminio. Si aprietas tornillos 'a ojo', trasroscarás el aluminio o doblarás la culata causando fugas. Respeta los valores en libras-pie de este manual.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
+              <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5 border border-emerald-200">4</span>
+              <div>
+                <strong class="text-slate-900">Este motor no requiere escáner computarizado OBD-2 costoso.</strong>
+                <p class="text-xs text-slate-600 mt-1">Es OBD-1 Toyota original. Con un clip de oficina ordinario introducido en dos patitas de la cajita de diagnóstico, el tablero te dirá exactamente qué sensor está fallando. (Pruébalo en la pestaña 'Escáner con Clip').</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tool kit advice for beginner -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+              🧰 Caja de Herramientas Mínima
+            </h3>
+            <p class="text-xs text-slate-500 mb-4">Todo lo que necesitas para desarmar y restaurar el 90% de este motor:</p>
+            <ul class="text-xs text-slate-700 space-y-2.5">
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> <strong>Juego de dados métricos</strong> (10mm, 12mm, 14mm, 17mm, 19mm son los indispensables en Toyota).
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> <strong>Torquímetro</strong> con rango de 10 a 100 ft-lbs (3/8" o 1/2").
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> <strong>Galga de espesores (Feeler Gauge)</strong> métrica y pulgadas para válvulas.
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> <strong>Lámpara estroboscópica (Timing Light)</strong> para regular el tiempo de encendido.
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> <strong>Multímetro digital</strong> económico para probar sensores y continuidad.
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> <strong>Un clip metálico para papel</strong> (para diagnósticos en puerto DLC1).
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-200">
+            <button onclick="setTab('asistente')" class="w-full bg-white hover:bg-slate-100 text-slate-800 font-semibold text-xs py-3 px-4 rounded-xl transition-all border border-slate-300 shadow-sm flex items-center justify-center gap-2">
+              <span>🩺 Probar el Asistente de Fallas Ahora</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 2: DIAGRAMAS INTERACTIVOS          -->
+    <!-- ========================================== -->
+    <div id="section-diagramas" class="tab-content hidden space-y-8">
+      
+      <!-- SUB NAV FOR DIAGRAMS (LIGHT) -->
+      <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-4">
+        <button onclick="switchDiagram('motor-bay')" class="diagram-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-red-600 text-white transition-all shadow-sm" data-diag="motor-bay">1. Bahía del Motor (Componentes Clave)</button>
+        <button onclick="switchDiagram('distribuidor')" class="diagram-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all" data-diag="distribuidor">2. Distribuidor y Orden de Encendido</button>
+        <button onclick="switchDiagram('cadena-tiempo')" class="diagram-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all" data-diag="cadena-tiempo">3. Cadena de Tiempo y Guías</button>
+        <button onclick="switchDiagram('torque-culata')" class="diagram-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all" data-diag="torque-culata">4. Secuencia de Pernos de Culata</button>
+        <button onclick="switchDiagram('valvulas')" class="diagram-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all" data-diag="valvulas">5. Calibración de Balancines / Válvulas</button>
+      </div>
+
+      <!-- DIAGRAM 1: MOTOR BAY COMPONENT MAP (LIGHT DESIGN) -->
+      <div id="diag-motor-bay" class="diagram-panel block bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between pb-4 border-b border-slate-200 gap-2">
+          <div>
+            <h3 class="text-lg font-bold text-slate-900">Mapa Interactivo de Componentes del Motor 22R-E</h3>
+            <p class="text-xs text-slate-500">Haz clic sobre cualquier círculo numerado en el motor para ver qué es, qué hace y cómo probarlo si eres novato</p>
+          </div>
+          <span class="text-xs bg-white text-slate-700 font-medium px-3 py-1 rounded-lg border border-slate-200 shadow-sm">Vista Superior / Frontal</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6 items-start">
+          <!-- Interactive SVG Blueprint (Clean Light Styling) -->
+          <div class="lg:col-span-7 bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-center overflow-hidden">
+            <svg viewBox="0 0 700 500" class="w-full max-h-[440px] select-none">
+              <!-- Engine Block Outline -->
+              <rect x="220" y="80" width="220" height="340" rx="20" fill="#f8fafc" stroke="#64748b" stroke-width="3" />
+              <text x="330" y="70" fill="#64748b" font-size="12" font-weight="bold" text-anchor="middle">FRENTE DEL VEHÍCULO (RADIADOR)</text>
+              <path d="M330,40 L330,60 M320,50 L330,40 L340,50" stroke="#dc2626" stroke-width="2.5" fill="none"/>
+
+              <!-- Valve Cover Ribs -->
+              <rect x="245" y="100" width="170" height="300" rx="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" />
+              <line x1="260" y1="140" x2="400" y2="140" stroke="#cbd5e1" stroke-width="2"/>
+              <line x1="260" y1="210" x2="400" y2="210" stroke="#cbd5e1" stroke-width="2"/>
+              <line x1="260" y1="280" x2="400" y2="280" stroke="#cbd5e1" stroke-width="2"/>
+              <line x1="260" y1="350" x2="400" y2="350" stroke="#cbd5e1" stroke-width="2"/>
+
+              <!-- Cylinders (1 at front, 4 at back) -->
+              <circle cx="330" cy="140" r="22" fill="#ffffff" stroke="#64748b" stroke-width="2"/>
+              <text x="330" y="145" fill="#1e293b" font-size="13" font-weight="bold" text-anchor="middle">Cil 1</text>
+              <circle cx="330" cy="210" r="22" fill="#ffffff" stroke="#64748b" stroke-width="2"/>
+              <text x="330" y="215" fill="#1e293b" font-size="13" font-weight="bold" text-anchor="middle">Cil 2</text>
+              <circle cx="330" cy="280" r="22" fill="#ffffff" stroke="#64748b" stroke-width="2"/>
+              <text x="330" y="285" fill="#1e293b" font-size="13" font-weight="bold" text-anchor="middle">Cil 3</text>
+              <circle cx="330" cy="350" r="22" fill="#ffffff" stroke="#64748b" stroke-width="2"/>
+              <text x="330" y="355" fill="#1e293b" font-size="13" font-weight="bold" text-anchor="middle">Cil 4</text>
+
+              <!-- Intake Plenum (Right side in SVG, Driver side LHD) -->
+              <rect x="460" y="130" width="120" height="230" rx="15" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
+              <text x="520" y="240" fill="#0369a1" font-size="12" font-weight="bold" text-anchor="middle">PLÉNUM ADMISIÓN</text>
+
+              <!-- Throttle Body & AFM / Air Filter -->
+              <rect x="480" y="375" width="80" height="70" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+              <text x="520" y="415" fill="#334155" font-size="11" font-weight="bold" text-anchor="middle">Cuerpo Acel.</text>
+
+              <!-- AFM / Airbox -->
+              <rect x="540" y="20" width="130" height="85" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+              <text x="605" y="60" fill="#b45309" font-size="11" font-weight="bold" text-anchor="middle">Filtro de Aire + AFM</text>
+
+              <!-- Exhaust Manifold (Left side) -->
+              <path d="M220,130 L140,150 L140,320 L220,340 Z" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+              <text x="175" y="240" fill="#c2410c" font-size="11" font-weight="bold" text-anchor="middle">ESCAPE</text>
+
+              <!-- Distributor (Front Right of engine) -->
+              <circle cx="455" cy="100" r="28" fill="#fef2f2" stroke="#dc2626" stroke-width="3"/>
+              <text x="455" y="104" fill="#dc2626" font-size="10" font-weight="bold" text-anchor="middle">DISTRIB</text>
+
+              <!-- Thermostat Housing (Front Center-Left) -->
+              <circle cx="270" cy="80" r="18" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+
+              <!-- DLC1 Diagnostic Connector (Inner Fender) -->
+              <rect x="30" y="60" width="60" height="45" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+              <text x="60" y="87" fill="#047857" font-size="10" font-weight="bold" text-anchor="middle">DLC1</text>
+
+              <!-- Timing Cover Front -->
+              <rect x="250" y="70" width="160" height="25" rx="5" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+
+              <!-- INTERACTIVE HOTSPOTS -->
+              <!-- 1. Distribuidor -->
+              <g class="diagram-hotspot" onclick="showComponentDetail('distribuidor')">
+                <circle cx="455" cy="100" r="16" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+                <text x="455" y="105" fill="#ffffff" font-size="12" font-weight="black" text-anchor="middle">1</text>
+              </g>
+
+              <!-- 2. AFM Flujómetro -->
+              <g class="diagram-hotspot" onclick="showComponentDetail('afm')">
+                <circle cx="605" cy="65" r="16" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+                <text x="605" y="70" fill="#ffffff" font-size="12" font-weight="black" text-anchor="middle">2</text>
+              </g>
+
+              <!-- 3. TPS Sensor Posición Mariposa -->
+              <g class="diagram-hotspot" onclick="showComponentDetail('tps')">
+                <circle cx="560" cy="410" r="16" fill="#7c3aed" stroke="#ffffff" stroke-width="2"/>
+                <text x="560" y="415" fill="#ffffff" font-size="12" font-weight="black" text-anchor="middle">3</text>
+              </g>
+
+              <!-- 4. Termostato y Purga -->
+              <g class="diagram-hotspot" onclick="showComponentDetail('termostato')">
+                <circle cx="270" cy="80" r="16" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+                <text x="270" y="85" fill="#ffffff" font-size="12" font-weight="black" text-anchor="middle">4</text>
+              </g>
+
+              <!-- 5. Tapa de Cadena de Distribución -->
+              <g class="diagram-hotspot" onclick="showComponentDetail('cadena')">
+                <circle cx="330" cy="80" r="16" fill="#db2777" stroke="#ffffff" stroke-width="2"/>
+                <text x="330" y="85" fill="#ffffff" font-size="12" font-weight="black" text-anchor="middle">5</text>
+              </g>
+
+              <!-- 6. Caja Diagnóstico DLC1 -->
+              <g class="diagram-hotspot" onclick="showComponentDetail('dlc1')">
+                <circle cx="60" cy="82" r="16" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+                <text x="60" y="87" fill="#ffffff" font-size="12" font-weight="black" text-anchor="middle">6</text>
+              </g>
+
+              <!-- 7. Válvula de Aire Auxiliar / IACV -->
+              <g class="diagram-hotspot" onclick="showComponentDetail('iacv')">
+                <circle cx="530" cy="320" r="16" fill="#0891b2" stroke="#ffffff" stroke-width="2"/>
+                <text x="530" y="325" fill="#ffffff" font-size="12" font-weight="black" text-anchor="middle">7</text>
+              </g>
+
+              <!-- 8. Inyectores y Riel de Combustible -->
+              <g class="diagram-hotspot" onclick="showComponentDetail('inyectores')">
+                <circle cx="430" cy="245" r="16" fill="#ca8a04" stroke="#ffffff" stroke-width="2"/>
+                <text x="430" y="250" fill="#ffffff" font-size="12" font-weight="black" text-anchor="middle">8</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Component Details Display Card (Light) -->
+          <div class="lg:col-span-5 bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-sm flex flex-col justify-between min-h-[380px]">
+            <div id="compInfoCard">
+              <div class="flex items-center gap-2 mb-2">
+                <span id="compBadge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-700 border border-red-200">Punto 1</span>
+                <h4 id="compTitle" class="text-base font-bold text-slate-900">Distribuidor de Encendido</h4>
+              </div>
+              <p id="compDescription" class="text-xs text-slate-600 leading-relaxed mt-2">
+                Reparte la chispa de alto voltaje generada por la bobina a cada una de las 4 bujías en el orden exacto 1-3-4-2. En el 22RE del 95 contiene además la bobina captadora interna (señales Ne/G) que le indican a la computadora en qué posición está el motor.
+              </p>
+
+              <div class="mt-4 p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs">
+                <div><strong class="text-slate-700">¿Cómo falla?:</strong> <span id="compFail" class="text-slate-600">El motor tiembla, falla bajo aceleración o no enciende por humedad interna, carbón desgastado en la tapa o retén de aceite roto que baña el interior de aceite.</span></div>
+                <div><strong class="text-slate-700">Tip para Novatos:</strong> <span id="compTip" class="text-amber-800 font-medium">Antes de sacarlo, haz una marca con un punzón o marcador entre la base del distribuidor y la culata para no perder el tiempo de encendido al volver a armar.</span></div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
+              <span>Toca otro número en el motor para inspeccionar</span>
+              <button onclick="setTab('obd1')" class="text-red-600 hover:text-red-700 font-semibold underline">Ir al simulador de diagnóstico →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIAGRAM 2: DISTRIBUIDOR Y ORDEN DE ENCENDIDO (LIGHT) -->
+      <div id="diag-distribuidor" class="diagram-panel hidden bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+          <div>
+            <h3 class="text-lg font-bold text-slate-900">Orden de Encendido y Conexión de Cables de Bujía</h3>
+            <p class="text-xs text-slate-500">Si conectas los cables en el orden incorrecto, el motor no arrancará y hará explosiones por el escape o admisión</p>
+          </div>
+          <span class="px-3 py-1 bg-amber-100 text-amber-800 border border-amber-200 rounded-lg text-xs font-bold">1 - 3 - 4 - 2 (Horario)</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 items-center">
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center">
+            <svg viewBox="0 0 320 320" class="w-64 h-64 select-none">
+              <!-- Distributor Cap Outer -->
+              <circle cx="160" cy="160" r="130" fill="#f8fafc" stroke="#94a3b8" stroke-width="4"/>
+              <circle cx="160" cy="160" r="100" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+              <!-- Center Terminal (Coil wire) -->
+              <circle cx="160" cy="160" r="16" fill="#2563eb" stroke="#bfdbfe" stroke-width="2"/>
+              <text x="160" y="164" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">BOBINA</text>
+
+              <!-- Rotation Arrow (Clockwise) -->
+              <path d="M125,75 A95,95 0 0,1 195,75" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="6,4"/>
+              <polygon points="195,70 205,75 195,82" fill="#dc2626"/>
+              <text x="160" y="98" fill="#dc2626" font-size="10" font-weight="bold" text-anchor="middle">GIRO HORARIO</text>
+
+              <!-- Terminal 1 (Top Left / approx 10:30-11:00) -->
+              <circle cx="105" cy="105" r="22" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+              <text x="105" y="112" fill="#ffffff" font-size="16" font-weight="black" text-anchor="middle">1</text>
+              <text x="75" y="90" fill="#dc2626" font-size="11" font-weight="bold">Cilindro 1</text>
+
+              <!-- Terminal 3 (Top Right / approx 1:30-2:00) -->
+              <circle cx="215" cy="105" r="22" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+              <text x="215" y="112" fill="#ffffff" font-size="16" font-weight="black" text-anchor="middle">3</text>
+              <text x="245" y="90" fill="#2563eb" font-size="11" font-weight="bold">Cilindro 3</text>
+
+              <!-- Terminal 4 (Bottom Right / approx 4:30-5:00) -->
+              <circle cx="215" cy="215" r="22" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+              <text x="215" y="222" fill="#ffffff" font-size="16" font-weight="black" text-anchor="middle">4</text>
+              <text x="245" y="235" fill="#059669" font-size="11" font-weight="bold">Cilindro 4</text>
+
+              <!-- Terminal 2 (Bottom Left / approx 7:30-8:00) -->
+              <circle cx="105" cy="215" r="22" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+              <text x="105" y="222" fill="#ffffff" font-size="16" font-weight="black" text-anchor="middle">2</text>
+              <text x="75" y="235" fill="#d97706" font-size="11" font-weight="bold">Cilindro 2</text>
+            </svg>
+            <p class="text-xs text-slate-500 mt-2 text-center">Frente del motor mirando desde la parrilla delantera</p>
+          </div>
+
+          <div class="space-y-4 text-xs sm:text-sm text-slate-700">
+            <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+              <h4 class="font-bold text-slate-900 text-base mb-1">Identificación de Cilindros:</h4>
+              <p class="text-slate-500">Párate frente al parachoques mirando hacia el parabrisas:</p>
+              <ul class="mt-2 space-y-1 list-disc list-inside text-slate-700">
+                <li><strong>Cilindro #1:</strong> El más cercano a ti (al frente, pegado al radiador).</li>
+                <li><strong>Cilindro #2:</strong> El segundo.</li>
+                <li><strong>Cilindro #3:</strong> El tercero.</li>
+                <li><strong>Cilindro #4:</strong> El del fondo (pegado a la cabina / cortafuegos).</li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 shadow-sm">
+              <strong class="font-bold text-amber-800 block mb-1">⚠️ El Gran Error del Principiante al Instalar el Distribuidor:</strong>
+              Es muy común instalar el distribuidor desfasado 180 grados. En el motor 22RE de 4 tiempos, el pistón sube dos veces: una en carrera de compresión y otra en escape. El rotor del distribuidor debe apuntar a la torre <strong>#1</strong> únicamente cuando el cilindro 1 está en <strong>PMS (Punto Muerto Superior) de COMPRESIÓN</strong> (ambas válvulas cerradas y con holgura).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIAGRAM 3: CADENA DE TIEMPO Y GUÍAS (LIGHT) -->
+      <div id="diag-cadena-tiempo" class="diagram-panel hidden bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+          <div>
+            <h3 class="text-lg font-bold text-red-600">⚠️ La Muerte Silenciosa del 22RE: Guía de Cadena de Plástico</h3>
+            <p class="text-xs text-slate-500">Aprende por qué el 90% de los 22RE sin restaurar terminan con agua en el aceite</p>
+          </div>
+          <span class="px-3 py-1 bg-red-100 text-red-700 border border-red-200 rounded-lg text-xs font-bold">¡Revisión Obligatoria!</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6 items-center">
+          <!-- Timing Cover SVG Diagram (Light) -->
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center">
+            <svg viewBox="0 0 320 400" class="w-full max-h-[360px] select-none">
+              <!-- Cam Gear Top -->
+              <circle cx="160" cy="80" r="50" fill="#f1f5f9" stroke="#64748b" stroke-width="3"/>
+              <circle cx="160" cy="80" r="10" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+              <line x1="160" y1="30" x2="160" y2="45" stroke="#dc2626" stroke-width="4"/>
+              <text x="160" y="24" fill="#dc2626" font-size="11" font-weight="bold" text-anchor="middle">PUNTO PMS (12:00)</text>
+
+              <!-- Crank Gear Bottom -->
+              <circle cx="160" cy="320" r="28" fill="#f1f5f9" stroke="#64748b" stroke-width="3"/>
+              <circle cx="160" cy="320" r="8" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+
+              <!-- Timing Chain Loop -->
+              <path d="M110,80 L132,320 M210,80 L188,320" stroke="#64748b" stroke-width="8" stroke-dasharray="10,5"/>
+
+              <!-- Tensioner Side (Right) -->
+              <rect x="195" y="160" width="16" height="90" rx="6" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+              <text x="245" y="210" fill="#059669" font-size="11" font-weight="bold">Tensor Hidráulico</text>
+
+              <!-- Slack Side / Plastic Guide (Left - The Broken One!) -->
+              <rect x="109" y="150" width="14" height="100" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="2" stroke-dasharray="6,3"/>
+              <text x="50" y="180" fill="#dc2626" font-size="11" font-weight="bold" text-anchor="middle">Guía Izquierda</text>
+              <text x="50" y="196" fill="#b91c1c" font-size="9" text-anchor="middle">(Plástico OEM se rompe)</text>
+
+              <!-- Water passage behind the chain -->
+              <circle cx="100" cy="225" r="12" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+              <text x="45" y="235" fill="#0284c7" font-size="10" font-weight="bold" text-anchor="middle">Paso de Agua</text>
+
+              <!-- Chain rubbing warning -->
+              <path d="M118,225 L108,225" stroke="#d97706" stroke-width="3"/>
+              <text x="110" y="260" fill="#d97706" font-size="11" font-weight="bold" text-anchor="middle">¡ROCE CON ALUMINIO!</text>
+            </svg>
+          </div>
+
+          <div class="space-y-4 text-xs sm:text-sm text-slate-700">
+            <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+              <h4 class="font-bold text-slate-900 text-base mb-2">¿Qué sucede exactamente?</h4>
+              <p class="leading-relaxed text-slate-600">
+                La guía izquierda original de fábrica es de plástico quebradizo. Después de 120,000–150,000 km (o 25 años de calor), el plástico se cristaliza y se parte en pedazos que caen al cárter.
+              </p>
+              <p class="leading-relaxed text-slate-600 mt-2">
+                Sin esa guía, la cadena de metal empieza a azotar contra la pared interna de aluminio de la tapa de distribución (haciendo un cascabeleo metálico característico entre 1,500 y 2,500 RPM). Con el tiempo, <strong>la cadena desgasta el aluminio hasta perforar la galería del refrigerante</strong>.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 shadow-sm">
+              <strong class="font-bold text-emerald-800 block mb-1">🛡️ La Solución Definitiva en la Restauración:</strong>
+              Al hacer el motor, instala un kit de cadena con <strong>guías reforzadas con respaldo de acero</strong> (marcas reconocidas como <em>OSK Japón</em> o <em>LCE Performance</em>). Estas guías nunca se parten y resuelven el problema para siempre.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIAGRAM 4: TORQUE Y SECUENCIA DE CULATA (LIGHT) -->
+      <div id="diag-torque-culata" class="diagram-panel hidden bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+          <div>
+            <h3 class="text-lg font-bold text-slate-900">Secuencia Oficial de Apriete de Culata (Toyota FSM)</h3>
+            <p class="text-xs text-slate-500">Los 10 pernos principales deben apretarse en 3 pasadas progresivas desde el centro hacia afuera en espiral</p>
+          </div>
+          <span class="px-3 py-1 bg-red-100 text-red-700 border border-red-200 rounded-lg text-xs font-bold">Torque Final: 62 ft-lbs (84 Nm)</span>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-8 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+            <div class="text-center text-xs font-bold text-slate-500 mb-3 uppercase tracking-wider">
+              ← Frente del Motor (Radiador) &nbsp;&nbsp;|&nbsp;&nbsp; Posterior (Transmisión / Cabina) →
+            </div>
+
+            <div class="grid grid-cols-5 gap-3 max-w-2xl mx-auto py-4">
+              <!-- Row 1: Intake side (bolts 8, 4, 1, 5, 9) -->
+              <div class="flex flex-col items-center p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[10px] text-slate-500">Lado Admisión</span>
+                <span class="w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-black text-base flex items-center justify-center border-2 border-blue-400 my-1">#8</span>
+                <span class="text-[11px] font-bold text-slate-700">Perno 8</span>
+              </div>
+              <div class="flex flex-col items-center p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[10px] text-slate-500">Lado Admisión</span>
+                <span class="w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-black text-base flex items-center justify-center border-2 border-blue-400 my-1">#4</span>
+                <span class="text-[11px] font-bold text-slate-700">Perno 4</span>
+              </div>
+              <div class="flex flex-col items-center p-3 rounded-xl bg-emerald-50 border-2 border-emerald-400">
+                <span class="text-[10px] text-emerald-700 font-bold">¡EL PRIMERO!</span>
+                <span class="w-10 h-10 rounded-full bg-emerald-600 text-white font-black text-base flex items-center justify-center shadow-md my-1">#1</span>
+                <span class="text-[11px] font-bold text-emerald-800">Perno 1 (Centro)</span>
+              </div>
+              <div class="flex flex-col items-center p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[10px] text-slate-500">Lado Admisión</span>
+                <span class="w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-black text-base flex items-center justify-center border-2 border-blue-400 my-1">#5</span>
+                <span class="text-[11px] font-bold text-slate-700">Perno 5</span>
+              </div>
+              <div class="flex flex-col items-center p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[10px] text-slate-500">Lado Admisión</span>
+                <span class="w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-black text-base flex items-center justify-center border-2 border-blue-400 my-1">#9</span>
+                <span class="text-[11px] font-bold text-slate-700">Perno 9</span>
+              </div>
+
+              <!-- Row 2: Exhaust side (bolts 10, 6, 2, 3, 7) -->
+              <div class="flex flex-col items-center p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[10px] text-slate-500">Lado Escape</span>
+                <span class="w-10 h-10 rounded-full bg-amber-100 text-amber-800 font-black text-base flex items-center justify-center border-2 border-amber-400 my-1">#10</span>
+                <span class="text-[11px] font-bold text-slate-700">Perno 10</span>
+              </div>
+              <div class="flex flex-col items-center p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[10px] text-slate-500">Lado Escape</span>
+                <span class="w-10 h-10 rounded-full bg-amber-100 text-amber-800 font-black text-base flex items-center justify-center border-2 border-amber-400 my-1">#6</span>
+                <span class="text-[11px] font-bold text-slate-700">Perno 6</span>
+              </div>
+              <div class="flex flex-col items-center p-3 rounded-xl bg-emerald-50 border-2 border-emerald-400">
+                <span class="text-[10px] text-emerald-700 font-bold">SEGUNDO</span>
+                <span class="w-10 h-10 rounded-full bg-emerald-600 text-white font-black text-base flex items-center justify-center shadow-md my-1">#2</span>
+                <span class="text-[11px] font-bold text-emerald-800">Perno 2 (Centro)</span>
+              </div>
+              <div class="flex flex-col items-center p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[10px] text-slate-500">Lado Escape</span>
+                <span class="w-10 h-10 rounded-full bg-amber-100 text-amber-800 font-black text-base flex items-center justify-center border-2 border-amber-400 my-1">#3</span>
+                <span class="text-[11px] font-bold text-slate-700">Perno 3</span>
+              </div>
+              <div class="flex flex-col items-center p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[10px] text-slate-500">Lado Escape</span>
+                <span class="w-10 h-10 rounded-full bg-amber-100 text-amber-800 font-black text-base flex items-center justify-center border-2 border-amber-400 my-1">#7</span>
+                <span class="text-[11px] font-bold text-slate-700">Perno 7</span>
+              </div>
+            </div>
+
+            <!-- The sneaky 11th bolt reminder -->
+            <div class="mt-3 p-3.5 rounded-lg bg-red-50 border border-red-200 text-xs text-red-800 flex items-center gap-2">
+              <span class="text-base">🚨</span>
+              <span><strong>¡El perno oculto #11!</strong> Al frente de la culata, escondido dentro del pozo de aceite bajo el engranaje del árbol de levas, hay un perno de 8mm (12mm cabeza). ¡Apriétalo a <strong>9 ft-lbs (13 Nm)</strong>! Si intentas sacar la culata sin retirar este perno, partirás la fundición de aluminio.</span>
+            </div>
+          </div>
+
+          <!-- Torque Steps Breakdown (Light) -->
+          <div class="lg:col-span-4 space-y-3">
+            <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+              <h4 class="font-bold text-slate-900 text-sm mb-2">Procedimiento en 3 Pasos:</h4>
+              <div class="space-y-2 text-xs">
+                <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-200">
+                  <span class="text-slate-600 font-medium">Paso 1 (Asentamiento):</span>
+                  <span class="font-bold text-slate-900">22 ft-lbs (30 Nm)</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-200">
+                  <span class="text-slate-600 font-medium">Paso 2 (Intermedio):</span>
+                  <span class="font-bold text-slate-900">43 ft-lbs (59 Nm)</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-red-50 border border-red-200">
+                  <span class="text-red-700 font-bold">Paso 3 (Final FSM):</span>
+                  <span class="font-bold text-red-700">62 ft-lbs (84 Nm)</span>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-3">
+                *Nota: Lubrica siempre las roscas y las arandelas de los pernos con una ligera capa de aceite limpio de motor antes de enroscar.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIAGRAM 5: CALIBRACIÓN DE VÁLVULAS (LIGHT) -->
+      <div id="diag-valvulas" class="diagram-panel hidden bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+          <div>
+            <h3 class="text-lg font-bold text-slate-900">Procedimiento de Calibración de Válvulas</h3>
+            <p class="text-xs text-slate-500">Elimina el 'taca-taca' metálico en la tapa de balancines y recupera compresión y potencia</p>
+          </div>
+          <span class="px-3 py-1 bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-lg text-xs font-bold">Adm: 0.008" | Esc: 0.012"</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4 text-xs sm:text-sm text-slate-700">
+            <h4 class="font-bold text-slate-900 text-base">Instrucciones Paso a Paso para Principiantes:</h4>
+            
+            <div class="space-y-3">
+              <div class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5 border border-slate-300">1</span>
+                <div>
+                  <strong>Temperatura:</strong> El manual FSM estipula calibrar con el <em>motor caliente a temperatura normal de operación</em>. Si el motor está frío por restauración, calibra a <strong>0.007" (Admisión)</strong> y <strong>0.011" (Escape)</strong> para un preajuste seguro, y recalibra caliente después.
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5 border border-slate-300">2</span>
+                <div>
+                  <strong>Poner Cilindro 1 en PMS de Compresión:</strong> Gira la polea del cigüeñal con dado de 19mm en sentido horario hasta que la marca coincida con 0°. Retira la tapa del distribuidor y verifica que el rotor apunte hacia el cable #1.
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5 border border-slate-300">3</span>
+                <div>
+                  <strong>Primera Tanda (En PMS Cil 1):</strong> Calibra únicamente:
+                  <ul class="list-disc list-inside text-emerald-700 font-medium mt-1 pl-2">
+                    <li>Cilindro 1: Admisión y Escape</li>
+                    <li>Cilindro 2: Admisión</li>
+                    <li>Cilindro 3: Escape</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5 border border-slate-300">4</span>
+                <div>
+                  <strong>Segunda Tanda (Girar cigüeñal 360° exactos):</strong> La polea vuelve a marcar 0°, pero ahora el rotor apunta hacia el cable #4 (Cil 4 en compresión). Calibra:
+                  <ul class="list-disc list-inside text-blue-700 font-medium mt-1 pl-2">
+                    <li>Cilindro 2: Escape</li>
+                    <li>Cilindro 3: Admisión</li>
+                    <li>Cilindro 4: Admisión y Escape</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gauge Simulator (Light) -->
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm mb-2">Simulador de Tacto de la Galga (Feeler Gauge)</h4>
+              <p class="text-xs text-slate-500 mb-4">¿Cómo saber si quedó bien apretado el tornillo de balancín?</p>
+              
+              <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-center">
+                <div class="text-xs text-amber-800 font-medium mb-1">Sensación correcta al deslizar la lámina metálica:</div>
+                <div class="text-base font-bold text-amber-900">"Como sacar una carta de una baraja apretada"</div>
+                <p class="text-xs text-amber-800 mt-2">
+                  Debe haber una ligera resistencia suave (arrastre). Si la lámina se dobla al empujar, está muy apretada. Si se cae sola por gravedad, está muy suelta.
+                </p>
+              </div>
+
+              <!-- Valve Specs Table (Light) -->
+              <div class="mt-4 overflow-hidden rounded-xl border border-slate-200 text-xs">
+                <table class="w-full text-left">
+                  <thead class="bg-slate-100 text-slate-700 font-bold">
+                    <tr>
+                      <th class="p-2.5">Válvula</th>
+                      <th class="p-2.5">Caliente (FSM)</th>
+                      <th class="p-2.5">Frío (Pre-ajuste)</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 bg-white">
+                    <tr>
+                      <td class="p-2.5 font-bold text-slate-800">Admisión (Intake)</td>
+                      <td class="p-2.5 text-emerald-700 font-semibold">0.008 in (0.20 mm)</td>
+                      <td class="p-2.5 text-slate-600">0.007 in (0.18 mm)</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2.5 font-bold text-slate-800">Escape (Exhaust)</td>
+                      <td class="p-2.5 text-amber-700 font-semibold">0.012 in (0.30 mm)</td>
+                      <td class="p-2.5 text-slate-600">0.011 in (0.28 mm)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-600">
+              Tuerca de contratuerca de balancín: <strong>11 ft-lbs (15 Nm)</strong>. Usa destornillador plano para evitar que gire el tornillo mientras aprietas la tuerca.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 3: ASISTENTE DE SÍNTOMAS RÁPIDO    -->
+    <!-- ========================================== -->
+    <div id="section-asistente" class="tab-content hidden space-y-6">
+      
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-5 border-b border-slate-200">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span class="p-2 bg-amber-100 text-amber-800 rounded-xl">🩺</span>
+              Asistente Rápido de Diagnóstico para Principiantes
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">Elige el síntoma exacto que presenta tu Toyota y te guiaremos paso a paso para resolverlo sin cambiar piezas al azar.</p>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white text-slate-700 border border-slate-200 shadow-sm">Árbol de Decisión 22RE</span>
+        </div>
+
+        <!-- Symptom Selector Buttons (Light) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
+          <button onclick="diagnose('no-arranca')" class="symptom-card p-4 rounded-xl bg-white border border-slate-200 hover:border-red-600 hover:shadow-md text-left transition-all group">
+            <span class="text-lg mb-1 block">🔑</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-red-600 block">El motor gira pero no arranca</strong>
+            <span class="text-xs text-slate-500">Hay marcha/arranque pero no prende fuego</span>
+          </button>
+
+          <button onclick="diagnose('ralenti-inestable')" class="symptom-card p-4 rounded-xl bg-white border border-slate-200 hover:border-red-600 hover:shadow-md text-left transition-all group">
+            <span class="text-lg mb-1 block">📈</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-red-600 block">Ralentí sube y baja ("Idle Hunting")</strong>
+            <span class="text-xs text-slate-500">Oscila entre 1,000 y 1,800 RPM solo</span>
+          </button>
+
+          <button onclick="diagnose('humo-cafe-leche')" class="symptom-card p-4 rounded-xl bg-white border border-slate-200 hover:border-red-600 hover:shadow-md text-left transition-all group">
+            <span class="text-lg mb-1 block">☕</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-red-600 block">Aceite color "Café con leche" o humo blanco</strong>
+            <span class="text-xs text-slate-500">Mezcla de refrigerante y aceite</span>
+          </button>
+
+          <button onclick="diagnose('ruido-frente')" class="symptom-card p-4 rounded-xl bg-white border border-slate-200 hover:border-red-600 hover:shadow-md text-left transition-all group">
+            <span class="text-lg mb-1 block">⛓️</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-red-600 block">Cascabeleo / Traqueteo metálico al frente</strong>
+            <span class="text-xs text-slate-500">Suena como cadena arrastrando entre 1,500 y 2,500 RPM</span>
+          </button>
+
+          <button onclick="diagnose('calentamiento')" class="symptom-card p-4 rounded-xl bg-white border border-slate-200 hover:border-red-600 hover:shadow-md text-left transition-all group">
+            <span class="text-lg mb-1 block">🌡️</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-red-600 block">Se calienta / Aguja de temperatura alta</strong>
+            <span class="text-xs text-slate-500">Hierve refrigerante o sube la temperatura al subir cuestas</span>
+          </button>
+
+          <button onclick="diagnose('ahogo-acelerar')" class="symptom-card p-4 rounded-xl bg-white border border-slate-200 hover:border-red-600 hover:shadow-md text-left transition-all group">
+            <span class="text-lg mb-1 block">🛑</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-red-600 block">Se ahoga o tironea al pisar el acelerador</strong>
+            <span class="text-xs text-slate-500">Pierde fuerza o hace explosiones en la admisión</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Diagnosis Result Card (Light) -->
+        <div id="diagnosisResultBox" class="mt-8 bg-white border border-slate-200 rounded-xl p-6 hidden shadow-sm">
+          <!-- Injected via JS -->
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 4: ESCÁNER CON CLIP OBD1 (DLC1)     -->
+    <!-- ========================================== -->
+    <div id="section-obd1" class="tab-content hidden space-y-6">
+      
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-5 border-b border-slate-200">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span class="p-2 bg-emerald-100 text-emerald-800 rounded-xl">📎</span>
+              Diagnóstico Toyota OBD1 con un Simple Clip
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">Tu Toyota 1995 no usa escáner OBD2 genérico. Usa el puerto DLC1 original puenteando <strong>TE1 y E1</strong>.</p>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-200">Simulador Interactivo</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
+          
+          <!-- Left: DLC1 Interactive Port & Paperclip Switch (Light) -->
+          <div class="lg:col-span-6 bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold uppercase text-slate-500">Caja 'Diagnostic' (Bajo el capó)</span>
+                <span id="jumperStatusText" class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-slate-100 text-slate-600 border border-slate-300">Clip desconectado</span>
+              </div>
+
+              <!-- DLC1 Visual Pinout Box -->
+              <div class="bg-slate-100 border-2 border-slate-300 rounded-xl p-5 relative select-none max-w-sm mx-auto shadow-inner">
+                <div class="text-[11px] text-center font-bold text-slate-600 mb-3 tracking-widest uppercase">DIAGNOSTIC TOYOTA</div>
+                
+                <div class="grid grid-cols-4 gap-2.5 text-center text-[10px] font-mono">
+                  <div class="p-2 rounded bg-white border border-slate-200 text-slate-400">FP</div>
+                  <div class="p-2 rounded bg-white border border-slate-200 text-slate-400">W</div>
+                  <div id="pin-E1" class="p-2 rounded bg-white border-2 border-slate-400 text-slate-700 font-black transition-all">E1 (Tierra)</div>
+                  <div class="p-2 rounded bg-white border border-slate-200 text-slate-400">OX</div>
+
+                  <div class="p-2 rounded bg-white border border-slate-200 text-slate-400">+B</div>
+                  <div class="p-2 rounded bg-white border border-slate-200 text-slate-400">VF</div>
+                  <div id="pin-TE1" class="p-2 rounded bg-white border-2 border-slate-400 text-slate-700 font-black transition-all">TE1 (Prueba)</div>
+                  <div class="p-2 rounded bg-white border border-slate-200 text-slate-400">CC2</div>
+                </div>
+
+                <!-- Virtual Paperclip SVG overlay -->
+                <svg id="paperclipSVG" class="hidden absolute top-[48px] right-[65px] w-24 h-16 pointer-events-none" viewBox="0 0 100 60">
+                  <path d="M20,15 C45,15 65,15 75,15 C85,15 85,45 75,45 C65,45 35,45 25,45" fill="none" stroke="#d97706" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <!-- Jumper Action Button -->
+              <div class="mt-6 flex flex-col gap-2">
+                <button id="toggleJumperBtn" onclick="togglePaperclip()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-3 px-4 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2">
+                  <span>📎 Insertar Clip entre TE1 y E1</span>
+                </button>
+                <p class="text-[11px] text-slate-500 text-center">Con la llave en posición ON (sin encender motor)</p>
+              </div>
+            </div>
+
+            <!-- Instrument Cluster CEL Simulation (Light) -->
+            <div class="mt-6 pt-5 border-t border-slate-200">
+              <div class="text-xs font-bold text-slate-600 mb-2">Tablero de Instrumentos:</div>
+              <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex items-center justify-around">
+                <div class="text-center">
+                  <div id="celLight" class="w-14 h-14 rounded-full bg-slate-200 border-2 border-slate-300 flex flex-col items-center justify-center text-slate-500 transition-all">
+                    <span class="text-xs font-black">CHECK</span>
+                    <span class="text-[9px] font-bold">ENGINE</span>
+                  </div>
+                  <span id="celStatusDesc" class="text-[11px] text-slate-600 block mt-2">Apagado</span>
+                </div>
+
+                <div class="text-xs space-y-1 text-slate-600">
+                  <div><strong>Destello Rápido Continuo:</strong> Sistema OK (Sin fallas)</div>
+                  <div><strong>Pausa de 1.5 seg:</strong> Separa decenas de unidades</div>
+                  <div><strong>Pausa de 2.5 seg:</strong> Separa un código del siguiente</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Code Tester & Code Database (Light) -->
+          <div class="lg:col-span-6 bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-sm font-bold text-slate-900">Simulador de Códigos de Falla</h3>
+                <span class="text-xs text-slate-500">Haz clic para ver cómo parpadea</span>
+              </div>
+
+              <!-- Code Picker Buttons -->
+              <div class="grid grid-cols-4 sm:grid-cols-6 gap-1.5 text-xs">
+                <button onclick="simulateCode(0)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-emerald-700 font-bold" data-code="0">Normal</button>
+                <button onclick="simulateCode(12)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold" data-code="12">Cod 12</button>
+                <button onclick="simulateCode(14)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold" data-code="14">Cod 14</button>
+                <button onclick="simulateCode(21)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold" data-code="21">Cod 21</button>
+                <button onclick="simulateCode(22)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold" data-code="22">Cod 22</button>
+                <button onclick="simulateCode(24)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold" data-code="24">Cod 24</button>
+                <button onclick="simulateCode(25)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold" data-code="25">Cod 25</button>
+                <button onclick="simulateCode(26)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold" data-code="26">Cod 26</button>
+                <button onclick="simulateCode(31)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold" data-code="31">Cod 31</button>
+                <button onclick="simulateCode(41)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold" data-code="41">Cod 41</button>
+                <button onclick="simulateCode(51)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold" data-code="51">Cod 51</button>
+                <button onclick="simulateCode(71)" class="code-btn p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold" data-code="71">Cod 71</button>
+              </div>
+
+              <!-- Selected Code Explanation Card -->
+              <div id="codeDetailCard" class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span id="codeTitle" class="text-sm font-bold text-emerald-800">Sistema Normal (Sin Códigos)</span>
+                  <span id="codePattern" class="font-mono text-slate-500">2 parpadeos / seg continuo</span>
+                </div>
+                <p id="codeMeaning" class="text-slate-600">
+                  La ECU no detecta fallas en ninguno de los circuitos monitoreados.
+                </p>
+                <div class="pt-2 border-t border-slate-200">
+                  <strong class="text-slate-700 block mb-1">Causas Comunes y Qué Revisar:</strong>
+                  <p id="codeFix" class="text-slate-600">Si el auto falla pero da código normal, el problema es mecánico: presión de gasolina baja, filtro tapado, chispa débil o fuga de vacío.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- How to Reset Codes -->
+            <div class="mt-4 pt-3 border-t border-slate-200 text-xs text-slate-500">
+              <strong class="text-slate-800 block mb-0.5">¿Cómo borrar la memoria de fallas tras reparar?</strong>
+              Retira el <strong>fusible EFI (15A)</strong> de la fusilera del motor durante 30 segundos (o desconecta el borne negativo de la batería). Vuelve a conectar y listo.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 5: TORQUES Y AJUSTES (FSM 1995)    -->
+    <!-- ========================================== -->
+    <div id="section-especificaciones" class="tab-content hidden space-y-6">
+      
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-5 border-b border-slate-200">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span class="p-2 bg-blue-100 text-blue-800 rounded-xl">🔧</span>
+              Manual de Pares de Apriete (Torques) Oficial Toyota
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">Valores exactos del Toyota Factory Service Manual (FSM) 1995. Nunca aprietes tornillos en aluminio sin torquímetro.</p>
+          </div>
+          
+          <!-- Unit Converter Widget (Light) -->
+          <div class="flex items-center gap-2 bg-white p-2 rounded-xl border border-slate-300 text-xs shadow-sm">
+            <input type="number" id="convertInput" value="62" class="w-16 bg-slate-50 border border-slate-300 rounded px-2 py-1 text-slate-900 font-bold" oninput="convertUnits()">
+            <select id="convertFrom" class="bg-slate-50 border border-slate-300 rounded px-1.5 py-1 text-slate-700 text-xs" onchange="convertUnits()">
+              <option value="ftlb">ft-lbs</option>
+              <option value="nm">Nm</option>
+              <option value="kgm">kg-m</option>
+            </select>
+            <span class="text-slate-500">=</span>
+            <span id="convertResult" class="font-bold text-emerald-700 px-1 text-sm">84.1 Nm</span>
+          </div>
+        </div>
+
+        <!-- Filter Torques Table (Light) -->
+        <div class="mt-4 flex gap-2 overflow-x-auto pb-2">
+          <button onclick="filterTorques('todos')" class="torque-filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-600 text-white" data-category="todos">Todos</button>
+          <button onclick="filterTorques('motor')" class="torque-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 hover:bg-slate-200 border border-slate-200" data-category="motor">Motor Interno</button>
+          <button onclick="filterTorques('distribucion')" class="torque-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 hover:bg-slate-200 border border-slate-200" data-category="distribucion">Cadena y Culata</button>
+          <button onclick="filterTorques('externos')" class="torque-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 hover:bg-slate-200 border border-slate-200" data-category="externos">Múltiples y Accesorios</button>
+          <button onclick="filterTorques('fluidos')" class="torque-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 hover:bg-slate-200 border border-slate-200" data-category="fluidos">Tapones y Fluidos</button>
+        </div>
+
+        <!-- Torque Table (Light) -->
+        <div class="mt-4 overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-100 text-slate-700 uppercase text-[11px] font-bold">
+              <tr>
+                <th class="p-3.5">Componente / Perno</th>
+                <th class="p-3.5">ft-lbs</th>
+                <th class="p-3.5">Nm</th>
+                <th class="p-3.5 hidden md:table-cell">Notas de Montaje</th>
+              </tr>
+            </thead>
+            <tbody id="torqueTableBody" class="divide-y divide-slate-200 bg-white text-slate-800">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 6: FASES DE RESTAURACIÓN            -->
+    <!-- ========================================== -->
+    <div id="section-fases" class="tab-content hidden space-y-6">
+      
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="pb-5 border-b border-slate-200">
+          <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+            <span class="p-2 bg-red-100 text-red-700 rounded-xl">📖</span>
+            Guía de Restauración Paso a Paso para Principiantes
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">Sigue este orden estricto. Si te saltas fases, gastarás el triple de dinero y arriesgarás romper el motor.</p>
+        </div>
+
+        <div class="mt-6 space-y-6">
+
+          <!-- Fase 1 -->
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-full bg-red-600 text-white font-black text-xs">FASE 1</span>
+              <h3 class="text-base font-bold text-slate-900">Inspección de Resurrección (¡No des arranque todavía!)</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600">
+              Si la camioneta ha estado parada por meses o años:
+            </p>
+            <ul class="text-xs sm:text-sm text-slate-700 space-y-2 list-disc list-inside pl-2">
+              <li><strong>Vacía el tanque de combustible:</strong> La gasolina de más de 6 meses huele a barniz rancio. Si intentas prenderla, tapará los 4 inyectores y quemará la bomba sumergida.</li>
+              <li><strong>Retira las 4 bujías:</strong> Mira su color (negras de carbón, mojadas de aceite o blancas). Vierte una cucharadita de lubricante ligero en cada hueco de bujía para ablandar los aros.</li>
+              <li><strong>Gira el motor a mano:</strong> Pon un dado de 19mm con palanca en el perno de la polea del cigüeñal y gira 2 vueltas completas en sentido horario. Debe sentirse suave y con resistencia uniforme. Si se traba, ¡no fuerces!</li>
+            </ul>
+          </div>
+
+          <!-- Fase 2 (Cadena) -->
+          <div id="fase-cadena" class="p-5 rounded-2xl bg-amber-50/50 border border-amber-200 shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-full bg-amber-500 text-slate-900 font-black text-xs">FASE 2</span>
+              <h3 class="text-base font-bold text-amber-900">El Talón de Aquiles: Cadena de Tiempo y Tapa de Válvulas</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-700">
+              Antes de arrancar formalmente, retira los 4 pernos de la tapa de válvulas (cubierta de balancines):
+            </p>
+            <ul class="text-xs sm:text-sm text-slate-700 space-y-2 list-disc list-inside pl-2">
+              <li>Usa una linterna e ilumina el lado del conductor (izquierdo) de la cadena de distribución.</li>
+              <li>Busca la <strong>guía plástica</strong>. Si ves fragmentos rotos o si la cadena está suelta y puedes moverla con la mano, <strong>NO prendas el motor</strong>.</li>
+              <li>Reemplaza el kit de distribución por uno de guías metálicas de acero (marca OSK o LCE).</li>
+            </ul>
+          </div>
+
+          <!-- Fase 3 -->
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-full bg-blue-600 text-white font-black text-xs">FASE 3</span>
+              <h3 class="text-base font-bold text-slate-900">Sistema de Combustible y EFI (Inyección)</h3>
+            </div>
+            <ul class="text-xs sm:text-sm text-slate-700 space-y-2 list-disc list-inside pl-2">
+              <li><strong>Filtro de Gasolina:</strong> Está ubicado en el bloque del motor bajo el múltiple de admisión. Es incómodo de cambiar, pero vital si la camioneta estuvo parada.</li>
+              <li><strong>Inyector de Arranque en Frío (Cold Start Injector):</strong> Ubicado en medio del plénum de admisión. Si el motor no arranca por las mañanas, este inyector suele estar tapado o su interruptor térmico sucio.</li>
+              <li><strong>Prueba de la bomba con puente Fp a +B:</strong> En la caja DLC1 puedes puentear los pines <strong>FP</strong> y <strong>+B</strong> con la llave en ON para obligar a la bomba de gasolina a encender de continuo y escuchar si zumba en el tanque sin dar marcha.</li>
+            </ul>
+          </div>
+
+          <!-- Fase 4 -->
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-full bg-emerald-600 text-white font-black text-xs">FASE 4</span>
+              <h3 class="text-base font-bold text-slate-900">El Secreto de la Purga del Refrigerante (Evitar Ralentí Loco)</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600">
+              El 22RE tiene la válvula de ralentí térmico (IACV) alimentada con mangueras de agua en la parte alta del motor. Si queda una sola burbuja de aire atrapada:
+            </p>
+            <ul class="text-xs sm:text-sm text-slate-700 space-y-2 list-disc list-inside pl-2">
+              <li>El motor empezará a acelerar y desacelerar rítmicamente en semáforos (entre 1000 y 1800 RPM).</li>
+              <li><strong>Cómo purgar bien:</strong> Estaciona la camioneta con la trompa apuntando hacia arriba en una rampa empinada. Abre la calefacción de la cabina al máximo (Hot). Llena el radiador usando un embudo sin derrames (tipo embudo amarillo de purga) y deja que el motor caliente hasta que el termostato abra 2 veces.</li>
+            </ul>
+          </div>
+
+          <!-- Fase 5 -->
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-full bg-purple-600 text-white font-black text-xs">FASE 5</span>
+              <h3 class="text-base font-bold text-slate-900">Afinamiento Final y Tiempo de Ignición (10° BTDC)</h3>
+            </div>
+            <ul class="text-xs sm:text-sm text-slate-700 space-y-2 list-disc list-inside pl-2">
+              <li>Con el motor caliente a 800 RPM, <strong>puentea TE1 y E1 en la cajita DLC1</strong>. Sentirás que el motor cambia de sonido (la computadora apaga el avance electrónico).</li>
+              <li>Apunta la lámpara estroboscópica a la polea del cigüeñal: debe marcar exactamente <strong>10° antes del punto muerto superior (10° BTDC)</strong>.</li>
+              <li>Afloja el tornillo del distribuidor (12mm) y gira suavemente el distribuidor hasta centrarlo en 10°. Aprieta el perno y retira el clip. Al retirar el clip, el tiempo saltará automáticamente a ~12°-14° (avance normal).</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 7: GLOSARIO NOVATO                 -->
+    <!-- ========================================== -->
+    <div id="section-glosario" class="tab-content hidden space-y-6">
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="pb-5 border-b border-slate-200">
+          <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+            <span class="p-2 bg-amber-100 text-amber-800 rounded-xl">💡</span>
+            Glosario Mecánico: De Cero a Héroe
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">Los términos raros explicados en lenguaje común para que entiendas cada tutorial de YouTube o manual en inglés.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+            <strong class="text-emerald-800 text-sm block mb-1">TDC / PMS (Punto Muerto Superior)</strong>
+            <p class="text-xs text-slate-600">Es el punto más alto al que puede subir el pistón dentro del cilindro. La marca 0° en la polea indica que el pistón #1 está en el tope de su recorrido.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+            <strong class="text-emerald-800 text-sm block mb-1">BTDC (Before Top Dead Center)</strong>
+            <p class="text-xs text-slate-600">"Antes del Punto Muerto Superior". Significa disparar la chispa de la bujía unos grados antes de que el pistón llegue arriba para que la combustión empuje con máxima fuerza.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+            <strong class="text-emerald-800 text-sm block mb-1">Torquímetro / Llave Dinamométrica</strong>
+            <p class="text-xs text-slate-600">Herramienta con un mecanismo que hace "click" cuando alcanzas exactamente la fuerza requerida. Evita romper tornillos o deformar metales de aluminio.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+            <strong class="text-emerald-800 text-sm block mb-1">Galga de Espesores (Feeler Gauge)</strong>
+            <p class="text-xs text-slate-600">Un abanico de laminitas de acero de espesores ultra precisos (medidos en milésimas de pulgada o milímetros) que sirven para calibrar la distancia entre el balancín y la válvula.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+            <strong class="text-emerald-800 text-sm block mb-1">AFM (Air Flow Meter / Flujómetro)</strong>
+            <p class="text-xs text-slate-600">La caja de metal cuadrada sobre el filtro de aire. Adentro tiene una compuerta con resorte que se abre con el viento que chupa el motor. ¡Nunca fuerces la tapita de plástico negra a menos que sepas calibrar el engranaje!</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+            <strong class="text-emerald-800 text-sm block mb-1">TPS (Throttle Position Sensor)</strong>
+            <p class="text-xs text-slate-600">El sensor negro atornillado a un lado de la mariposa del acelerador. Le informa a la computadora si tienes el pie soltado (modo ralentí) o si estás acelerando a fondo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 8: CHECKLIST PROYECTO              -->
+    <!-- ========================================== -->
+    <div id="section-checklist" class="tab-content hidden space-y-6">
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-5 border-b border-slate-200">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span class="p-2 bg-emerald-100 text-emerald-800 rounded-xl">✅</span>
+              Mi Hoja de Ruta de Restauración (Checklist)
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">Marca cada tarea completada. Tu avance se guarda automáticamente en tu navegador.</p>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <div class="text-right">
+              <div class="text-xs text-slate-500">Progreso Total</div>
+              <div id="progressPercent" class="text-lg font-black text-emerald-700">0%</div>
+            </div>
+            <div class="w-24 bg-slate-200 rounded-full h-3 overflow-hidden border border-slate-300">
+              <div id="progressBar" class="bg-emerald-600 h-full w-0 transition-all duration-300"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checklist categories (Light) -->
+        <div id="checklistContainer" class="mt-6 space-y-6">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-200 flex justify-between items-center">
+          <button onclick="resetChecklist()" class="text-xs text-slate-500 hover:text-red-600 underline">Reiniciar progreso</button>
+          <span class="text-xs text-slate-400 font-medium">Toyota 22R-E RestoLog</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER (LIGHT) -->
+  <footer class="mt-16 border-t border-slate-200 bg-slate-50 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <p class="font-semibold text-slate-700">Manual Interactivo de Restauración Toyota 22R-E (1985–1995)</p>
+      <p>Diseñado con especificaciones originales de fábrica (Toyota FSM) para entusiastas y restauradores principiantes.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // DATA: TORQUES
+    const torqueData = [
+      { category: 'distribucion', part: 'Pernos de Culata (Cylinder Head)', ftlb: '62', nm: '84', notes: 'En 3 pasos (22 -> 43 -> 62 ft-lbs) en espiral desde el centro hacia afuera' },
+      { category: 'distribucion', part: 'Perno Oculto de Culata #11 (8mm)', ftlb: '9', nm: '13', notes: 'Frente de culata bajo engranaje del árbol de levas. ¡No olvidar!' },
+      { category: 'motor', part: 'Bancadas de Cigüeñal (Main Bearings)', ftlb: '76', nm: '103', notes: 'Aceitar roscas y asentar parejo' },
+      { category: 'motor', part: 'Tapas de Biela (Rod Bearing Caps)', ftlb: '46', nm: '62', notes: 'Usar tuercas originales en buen estado' },
+      { category: 'motor', part: 'Volante de Inercia / Flywheel', ftlb: '80', nm: '108', notes: 'Usar trabarroscas azul/rojo según manual' },
+      { category: 'distribucion', part: 'Polea de Cigüeñal (Harmonic Balancer)', ftlb: '116', nm: '157', notes: 'Tornillo de 19mm frontal. Requiere trabar volante' },
+      { category: 'distribucion', part: 'Engranaje Árbol de Levas (Cam Gear)', ftlb: '58', nm: '78', notes: 'Perno central con arandela' },
+      { category: 'distribucion', part: 'Tapa de Cadena (Timing Cover 8mm)', ftlb: '9', nm: '13', notes: 'Pernos delgados roscados en aluminio' },
+      { category: 'distribucion', part: 'Tapa de Cadena (Timing Cover 10mm)', ftlb: '29', nm: '39', notes: 'Pernos más gruesos' },
+      { category: 'externos', part: 'Múltiple de Admisión (Intake Manifold)', ftlb: '14', nm: '19', notes: 'Pernos y tuercas a la culata' },
+      { category: 'externos', part: 'Múltiple de Escape (Exhaust Manifold)', ftlb: '33', nm: '44', notes: 'Tuercas de cobre / alta temperatura' },
+      { category: 'externos', part: 'Bujías (Spark Plugs)', ftlb: '13', nm: '18', notes: 'Calibración electrodos: 0.031" (0.8 mm)' },
+      { category: 'externos', part: 'Perno fijación de Distribuidor', ftlb: '13', nm: '18', notes: 'Perno de 12mm' },
+      { category: 'distribucion', part: 'Contratuercas de Balancines (Válvulas)', ftlb: '11', nm: '15', notes: 'Apretar manteniendo el destornillador firme' },
+      { category: 'fluidos', part: 'Tapón de drenaje de Aceite Cárter', ftlb: '27', nm: '37', notes: 'Usar golilla / arandela nueva de compresión' },
+      { category: 'fluidos', part: 'Tapones de Caja y Diferencial', ftlb: '27 - 36', nm: '37 - 49', notes: 'Limpiar imán del tapón' },
+    ];
+
+    // DATA: COMPONENT HOTSPOTS
+    const componentsInfo = {
+      distribuidor: {
+        badge: 'Punto 1',
+        title: 'Distribuidor de Encendido',
+        desc: 'Reparte la chispa de alto voltaje generada por la bobina a cada una de las 4 bujías en el orden exacto 1-3-4-2. En el 22RE del 95 contiene además la bobina captadora interna (señales Ne/G) que le indican a la computadora en qué posición está el motor.',
+        fail: 'El motor tiembla, falla bajo aceleración o no enciende por humedad interna, carbón desgastado en la tapa o retén de aceite roto que baña el interior de aceite.',
+        tip: 'Antes de sacarlo, haz una marca con un punzón o marcador entre la base del distribuidor y la culata para no perder el tiempo de encendido al volver a armar.'
+      },
+      afm: {
+        badge: 'Punto 2',
+        title: 'Flujómetro de Paleta (AFM - Air Flow Meter)',
+        desc: 'Mide la cantidad exacta de aire que ingresa al motor mediante una compuerta móvil con un resorte calibrado. Además, tiene un interruptor interno de seguridad que enciende la bomba de gasolina en cuanto el motor empieza a succionar aire.',
+        fail: 'El auto arranca 1 segundo y se apaga de inmediato (interruptor de bomba dentro del AFM roto), o tironea violentamente al acelerar por pistas de grafito desgastadas.',
+        tip: '¡NUNCA limpies el interior del AFM con limpiador de carburador agresivo! Podrías derretir los circuitos plásticos y el sensor de temperatura de aire integrado.'
+      },
+      tps: {
+        badge: 'Punto 3',
+        title: 'Sensor de Posición de Mariposa (TPS)',
+        desc: 'Avisa a la computadora en qué ángulo está pisado el pedal del acelerador y si está totalmente cerrado (contacto de ralentí IDL).',
+        fail: 'Ralentí acelerado a 1,500 RPM o que sube y baja solo. También causa falta de respuesta inmediata al dar el pisotón al acelerador.',
+        tip: 'El TPS requiere calibrarse con un multímetro en escala de ohmios (resistencia) y una galga de 0.57mm entre el tope de mariposa y el tornillo.'
+      },
+      termostato: {
+        badge: 'Punto 4',
+        title: 'Caja del Termostato y Purga',
+        desc: 'Regula el flujo de refrigerante hacia el radiador para mantener el motor entre 82°C y 88°C. Está ubicado en la parte frontal izquierda de la culata.',
+        fail: 'Si se traba cerrado, el motor se sobrecalienta en 5 minutos. Si se traba abierto, el motor nunca calienta, gasta gasolina de más y echa humo negro.',
+        tip: 'Instala siempre el termostato original Toyota de 82°C (180°F) con la pequeña válvula de balín (jiggle valve) apuntando hacia arriba (las 12:00) para permitir el escape de aire.'
+      },
+      cadena: {
+        badge: 'Punto 5',
+        title: 'Tapa de Cadena de Distribución (Peligro de Fuga)',
+        desc: 'Aloja la cadena de tiempo, bomba de agua y bomba de aceite. Es de aluminio fundido y se ubica en el frente del motor.',
+        fail: 'Desgaste por fricción de la cadena cuando se rompe la guía plástica. Produce perforación hacia el paso de agua y empañamiento del aceite (aspecto mayonesa/café con leche).',
+        tip: 'Si cambias la bomba de agua o cadena, compra siempre el kit de guías de acero para blindar el motor de por vida.'
+      },
+      dlc1: {
+        badge: 'Punto 6',
+        title: 'Puerto de Diagnóstico DLC1',
+        desc: 'Caja pequeña de plástico negro montada cerca del guardabarros del conductor con la inscripción "DIAGNOSTIC".',
+        fail: 'Terminales sulfatados u oxidados que impiden leer códigos o regular el tiempo de ignición.',
+        tip: 'Usa un clip de oficina limpio para unir TE1 y E1 para modo diagnóstico o FP y +B para probar la bomba de gasolina.'
+      },
+      iacv: {
+        badge: 'Punto 7',
+        title: 'Válvula de Aire Auxiliar / IACV',
+        desc: 'Permite el paso de aire adicional cuando el motor está frío para elevar las RPM a unas 1,200–1,400 RPM y luego baja suavemente a 800 RPM a medida que calienta el refrigerante.',
+        fail: 'Se tapa con sarro de refrigerante viejo o carbón, dejando el ralentí trabado alto o haciendo que el auto se apague en frío.',
+        tip: 'Desmontar los 4 tornillos bajo el cuerpo de aceleración y limpiar con limpiador de frenos o desengrasante.'
+      },
+      inyectores: {
+        badge: 'Punto 8',
+        title: 'Riel e Inyectores de Combustible',
+        desc: 'Los 4 inyectores pulverizan gasolina a unas 38-44 PSI directamente en los puertos de admisión de cada cilindro.',
+        fail: 'O-rings (sellos de goma) resecos que causan fugas peligrosas de gasolina con olor en la cabina o inyectores goteando que ahogan el motor.',
+        tip: 'Si vas a restaurar, envía los 4 inyectores a un laboratorio para ultrasonido y cambio de microfiltros y gomas.'
+      }
+    };
+
+    // DATA: CHECKLIST ITEMS
+    const checklistData = [
+      {
+        category: 'Fase 0: Seguridad y Desarme Previo',
+        items: [
+          { id: 'c1', text: 'Desconectar la batería (borne negativo primero)' },
+          { id: 'c2', text: 'Tomar fotos de todas las mangueras de vacío y conectores eléctricos' },
+          { id: 'c3', text: 'Drenar el aceite y refrigerante en recipientes limpios para inspeccionar metales o sarro' }
+        ]
+      },
+      {
+        category: 'Fase 1: Motor y Distribución',
+        items: [
+          { id: 'c4', text: 'Girar motor a mano con dado de 19mm en cigüeñal (verificar que no esté trabado)' },
+          { id: 'c5', text: 'Retirar tapa de válvulas e inspeccionar estado de guías de cadena' },
+          { id: 'c6', text: 'Instalar kit de cadena con guías de acero (OSK / LCE) si hay desgaste' },
+          { id: 'c7', text: 'Calibrar holgura de válvulas (Admisión: 0.008" / Escape: 0.012")' },
+          { id: 'c8', text: 'Instalar empaquetadura de tapa de balancines con medias lunas nuevas' }
+        ]
+      },
+      {
+        category: 'Fase 2: Sistema de Combustible',
+        items: [
+          { id: 'c9', text: 'Drenar e inspeccionar tanque de gasolina por óxido o barniz' },
+          { id: 'c10', text: 'Reemplazar filtro de combustible' },
+          { id: 'c11', text: 'Cambiar sellos (O-rings y arandelas) de los 4 inyectores' },
+          { id: 'c12', text: 'Verificar funcionamiento de bomba de combustible (puente FP y +B en DLC1)' }
+        ]
+      },
+      {
+        category: 'Fase 3: Refrigeración y Encendido',
+        items: [
+          { id: 'c13', text: 'Instalar termostato original Toyota (82°C / 180°F) con jiggle valve hacia arriba' },
+          { id: 'c14', text: 'Purgar refrigerante con calefacción abierta y trompa levantada' },
+          { id: 'c15', text: 'Bujías nuevas calibradas a 0.031" (0.8mm) y cables de encendido en orden 1-3-4-2' },
+          { id: 'c16', text: 'Ajustar tiempo de ignición a 10° BTDC con clip puenteando TE1 y E1' }
+        ]
+      }
+    ];
+
+    // DATA: OBD1 CODES
+    const obd1Codes = {
+      0: { title: 'Sistema Normal (Sin Códigos)', pattern: 'Destello continuo (~2 por segundo)', meaning: 'La computadora no registra fallas activas en la memoria.', fix: 'Si el motor falla, la causa es mecánica: presión de gasolina baja, chispa débil, compresión o fuga de vacío.' },
+      12: { title: 'Código 12: Señal de RPM (Distribuidor)', pattern: '1 destello ... pausa 1.5s ... 2 destellos', meaning: 'La ECU no recibe señal Ne/G del distribuidor mientras el motor da marcha.', fix: 'Revisa el conector del distribuidor, el cableado hacia la ECU o la bobina captadora interna del distribuidor.' },
+      14: { title: 'Código 14: Señal de Ignición (IGF / Igniter)', pattern: '1 destello ... pausa 1.5s ... 4 destellos', meaning: 'El módulo de encendido (Igniter) no confirma a la computadora que la chispa se produjo.', fix: 'Causa número 1 de "el motor no prende". Revisa masa del igniter en el guardabarros, la bobina de encendido o el módulo igniter.' },
+      21: { title: 'Código 21: Sensor de Oxígeno (O2)', pattern: '2 destellos ... pausa 1.5s ... 1 destello', meaning: 'Señal del sensor de oxígeno del escape ausente o calefactor abierto.', fix: 'Revisa cable del sensor de O2 (suele quemarse contra el tubo de escape) o cambia el sensor por uno Denso OEM.' },
+      22: { title: 'Código 22: Sensor de Temp. de Refrigerante (ECT)', pattern: '2 destellos ... pausa 1.5s ... 2 destellos', meaning: 'Circuito del sensor verde de 2 pines bajo el múltiple de admisión abierto o en corto.', fix: 'Hace que el auto consuma gasolina como loco y eche humo negro. Revisa el conector verde de 2 pines (no confundir con el sensor de la aguja del tablero de 1 pin).' },
+      24: { title: 'Código 24: Sensor de Temp. de Aire de Admisión', pattern: '2 destellos ... pausa 1.5s ... 4 destellos', meaning: 'Falla en el sensor integrado dentro del Flujómetro (AFM).', fix: 'Limpia el conector grande del flujómetro de aire.' },
+      25: { title: 'Código 25: Mezcla Demasiado Pobre (Lean)', pattern: '2 destellos ... pausa 1.5s ... 5 destellos', meaning: 'Demasiado aire o muy poca gasolina en la combustión.', fix: 'Causas: Fuga masiva de vacío (manguera rajada o fuelle de admisión roto), presión de gasolina baja o inyectores tapados.' },
+      26: { title: 'Código 26: Mezcla Demasiado Rica (Rich)', pattern: '2 destellos ... pausa 1.5s ... 6 destellos', meaning: 'Demasiada gasolina o falta de aire.', fix: 'Inyector de arranque en frío goteando, regulador de presión de combustible perforado o sensor de temperatura dañado.' },
+      31: { title: 'Código 31: Sensor de Flujo de Aire (AFM)', pattern: '3 destellos ... pausa 1.5s ... 1 destello', meaning: 'Circuito del AFM desconectado o compuerta mecánica atascada.', fix: 'Verifica que la compuerta del AFM se mueva libremente con la mano y que el enchufe esté firmemente asegurado con su alambre.' },
+      41: { title: 'Código 41: Sensor de Posición de Mariposa (TPS)', pattern: '4 destellos ... pausa 1.5s ... 1 destello', meaning: 'Señal del potenciómetro TPS fuera de rango.', fix: 'Calibra el TPS con galgas o reemplázalo si tiene pistas internas gastadas.' },
+      51: { title: 'Código 51: Señal de Interruptor (IDL o A/C)', pattern: '5 destellos ... pausa 1.5s ... 1 destello', meaning: 'El aire acondicionado está encendido o el contacto de ralentí del TPS no cierra al soltar el acelerador.', fix: 'Apaga el A/C durante la prueba. Si persiste, el cable del acelerador está muy tenso o el TPS mal calibrado.' },
+      71: { title: 'Código 71: Sistema EGR (Recirculación de Gases)', pattern: '7 destellos ... pausa 1.5s ... 1 destello', meaning: 'Sensor de temperatura del gas de EGR no detecta paso de calor al abrirse.', fix: 'Pasajes de la válvula EGR tapados con carbón duro. Desmontar la válvula EGR y raspar los conductos.' }
+    };
+
+    // SEARCH INDEX
+    const searchIndex = [
+      { title: 'Calibración de Válvulas', section: 'diagramas', sub: 'valvulas', keywords: 'valvulas balancines holgura taca taca ruido de punterias caliente frio 0.008 0.012 feeler gauge galga' },
+      { title: 'Cadena de Distribución y Guías de Acero', section: 'diagramas', sub: 'cadena-tiempo', keywords: 'cadena tiempo timing chain plastico rota rota perforacion aluminio aceite mayonesa cafe con leche osk lce' },
+      { title: 'Torque de Pernos de Culata', section: 'diagramas', sub: 'torque-culata', keywords: 'culata torque cabeza tornillos secuencia espiral 62 ft-lb perno 11 oculto' },
+      { title: 'Orden de Encendido y Cables', section: 'diagramas', sub: 'distribuidor', keywords: 'cables distribuidor orden encendido 1-3-4-2 rotor chispa compresion pms' },
+      { title: 'Escáner con Clip OBD1 (Puerto DLC1)', section: 'obd1', sub: null, keywords: 'escaner clip te1 e1 dlc1 codigos fallas check engine parpadeo destellos' },
+      { title: 'Código 14: Falla de Igniter / Encendido', section: 'obd1', sub: '14', keywords: 'codigo 14 chispa bobina igniter modulo no prende no enciende marcha igf' },
+      { title: 'Código 25: Mezcla Pobre / Fuga de Vacío', section: 'obd1', sub: '25', keywords: 'codigo 25 lean mezcla pobre manguera vacio aire chupando tironeo' },
+      { title: 'Ralentí Inestable / Idle Hunting', section: 'asistente', sub: 'ralenti-inestable', keywords: 'ralenti sube baja oscila acelera solo iacv purga aire refrigerante tps' },
+      { title: 'El motor no arranca', section: 'asistente', sub: 'no-arranca', keywords: 'no prende no arranca gira pero nada chispa gasolina rele efi fusible' },
+      { title: 'Humo café con leche / Agua en aceite', section: 'asistente', sub: 'humo-cafe-leche', keywords: 'aceite blanco cafe con leche mayonesa agua se pasa junta de culata empaque rota' },
+      { title: 'Sobrecalentamiento y Purga', section: 'asistente', sub: 'calentamiento', keywords: 'temperatura calienta hierve termostato jiggle valve purga rampa burbujas' },
+      { title: 'Tabla Completa de Torques', section: 'especificaciones', sub: null, keywords: 'torques libras pie nm bielas bancadas volante cigueñal bujias polea' },
+      { title: 'Checklist de Restauración', section: 'checklist', sub: null, keywords: 'checklist tareas progreso restauracion pasos guardar' }
+    ];
+
+    // INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      populateTorqueTable('todos');
+      initChecklist();
+      showComponentDetail('distribuidor');
+    });
+
+    // NAVIGATION TAB SWITCHING
+    function setTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('block'));
+      
+      const target = document.getElementById(`section-${tabId}`);
+      if (target) {
+        target.classList.remove('hidden');
+        target.classList.add('block');
+      }
+
+      document.querySelectorAll('.nav-tab').forEach(b => {
+        if (b.dataset.tab === tabId) {
+          b.classList.add('bg-red-600', 'text-white', 'font-bold', 'shadow-sm');
+          b.classList.remove('text-slate-600');
+        } else {
+          b.classList.remove('bg-red-600', 'text-white', 'font-bold', 'shadow-sm');
+          b.classList.add('text-slate-600');
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function scrollToSection(id) {
+      setTab(id);
+    }
+
+    // DIAGRAM SWITCHING
+    function switchDiagram(diagId) {
+      document.querySelectorAll('.diagram-panel').forEach(p => p.classList.add('hidden'));
+      document.querySelectorAll('.diagram-panel').forEach(p => p.classList.remove('block'));
+
+      const target = document.getElementById(`diag-${diagId}`);
+      if (target) {
+        target.classList.remove('hidden');
+        target.classList.add('block');
+      }
+
+      document.querySelectorAll('.diagram-btn').forEach(btn => {
+        if (btn.dataset.diag === diagId) {
+          btn.classList.add('bg-red-600', 'text-white', 'shadow-sm');
+          btn.classList.remove('bg-slate-100', 'text-slate-700');
+        } else {
+          btn.classList.remove('bg-red-600', 'text-white', 'shadow-sm');
+          btn.classList.add('bg-slate-100', 'text-slate-700');
+        }
+      });
+    }
+
+    // COMPONENT DETAIL CARD
+    function showComponentDetail(key) {
+      const info = componentsInfo[key];
+      if (!info) return;
+
+      document.getElementById('compBadge').textContent = info.badge;
+      document.getElementById('compTitle').textContent = info.title;
+      document.getElementById('compDescription').textContent = info.desc;
+      document.getElementById('compFail').textContent = info.fail;
+      document.getElementById('compTip').textContent = info.tip;
+    }
+
+    // DIAGNOSIS ASSISTANT
+    function diagnose(symptomKey) {
+      const box = document.getElementById('diagnosisResultBox');
+      box.classList.remove('hidden');
+
+      let html = '';
+      if (symptomKey === 'no-arranca') {
+        html = `
+          <div class="space-y-4">
+            <div class="flex items-center gap-2 text-red-600 font-bold text-base">
+              <span>🔑 El motor gira pero no enciende: Procedimiento de descarte</span>
+            </div>
+            <p class="text-xs text-slate-600">Un motor a gasolina solo necesita 3 cosas para arrancar: <strong>Chispa</strong>, <strong>Gasolina</strong> y <strong>Compresión</strong> con tiempo sincronizado.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
+                <strong class="text-blue-700 block mb-1">1. Prueba de Chispa</strong>
+                <p class="text-slate-600">Saca el cable de la bujía #1, pon una bujía de repuesto tocando el metal del motor y da marcha. ¿Ves chispa azul? Si NO hay chispa, revisa el <strong>fusible EFI de 15A</strong> y el <strong>Código 14 (Igniter)</strong>.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
+                <strong class="text-amber-800 block mb-1">2. Prueba de Gasolina</strong>
+                <p class="text-slate-600">Rocía un disparo de arrancador (éter o limpiador de carburador) directo en el cuerpo de aceleración y da marcha. Si arranca 2 segundos y se apaga, tu problema es combustible (bomba, relé COR o filtro).</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
+                <strong class="text-emerald-800 block mb-1">3. Distribuidor a 180°</strong>
+                <p class="text-slate-600">Si se desarmó el motor recientemente, es 99% probable que el distribuidor esté desfasado 180 grados. Asegúrate de colocarlo con el Cilindro 1 en carrera de compresión.</p>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (symptomKey === 'ralenti-inestable') {
+        html = `
+          <div class="space-y-4">
+            <div class="flex items-center gap-2 text-amber-800 font-bold text-base">
+              <span>📈 Ralentí Sube y Baja en Ondas ("Idle Surging")</span>
+            </div>
+            <p class="text-xs text-slate-600">En el motor 22RE este es el fallo más clásico y casi siempre tiene 2 responsables:</p>
+            <div class="space-y-2 text-xs">
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <strong class="text-slate-900">Causa #1: Burbujas de aire en el refrigerante</strong>
+                <p class="text-slate-600 mt-0.5">La válvula IACV (bajo la mariposa) se calienta con agua. Si una bolsa de aire pasa por ahí, la válvula se enfría y cree que el motor está frío, abriendo aire. La ECU detecta RPM altas con mariposa cerrada y corta inyección ("Fuel Cut") creando el ciclo de sube y baja. <strong>Solución:</strong> Purga el refrigerante con la trompa levantada.</p>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <strong class="text-slate-900">Causa #2: Sensor TPS descalibrado</strong>
+                <p class="text-slate-600 mt-0.5">Si el interruptor IDL interno del TPS no hace contacto cuando sueltas el acelerador, la computadora no sabe que estás en ralentí. Ajusta el tornillo del TPS hasta que marque continuidad en IDL.</p>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (symptomKey === 'humo-cafe-leche') {
+        html = `
+          <div class="space-y-4">
+            <div class="flex items-center gap-2 text-red-600 font-bold text-base">
+              <span>☕ Aceite con aspecto de café con leche / Fuga de Agua al Cárter</span>
+            </div>
+            <div class="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-800">
+              <strong>¡ALERTA CRÍTICA!</strong> No hagas girar el motor. El refrigerante destruye la película lubricante y derretirá los metales de biela y bancada en minutos.
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+              <div class="p-3 rounded bg-slate-50 border border-slate-200">
+                <strong class="text-slate-900">¿Es la Junta de Culata? (Head Gasket)</strong>
+                <p class="text-slate-600 mt-1">Ocurre si el motor sufrió una calentada severa. Suele ir acompañado de presión desmedida en las mangueras de agua y burbujeo en el radiador.</p>
+              </div>
+              <div class="p-3 rounded bg-slate-50 border border-slate-200">
+                <strong class="text-slate-900">¿O la Tapa de Cadena Perforada? (El caso típico 22RE)</strong>
+                <p class="text-slate-600 mt-1">La guía de plástico izquierda se partió y la cadena desgastó la pared de aluminio detrás de la bomba de agua. <strong>Solución:</strong> Cambiar tapa de distribución, kit de cadena con guías de acero y lavar el cárter.</p>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (symptomKey === 'ruido-frente') {
+        html = `
+          <div class="space-y-4">
+            <div class="flex items-center gap-2 text-amber-700 font-bold text-base">
+              <span>⛓️ Traqueteo / Cascabeleo al frente del motor</span>
+            </div>
+            <p class="text-xs text-slate-600">Si escuchas un ruido metálico como cadena floja azotando contra metal especialmente entre 1,500 y 2,500 RPM:</p>
+            <div class="p-3 rounded bg-slate-50 border border-slate-200 text-xs">
+              <strong class="text-amber-800">Diagnóstico:</strong> La guía de la cadena se rompió o el tensor hidráulico perdió presión. Retira la tapa de balancines de inmediato e inspecciona con linterna la cadena del lado del conductor.
+            </div>
+          </div>
+        `;
+      } else if (symptomKey === 'calentamiento') {
+        html = `
+          <div class="space-y-4">
+            <div class="flex items-center gap-2 text-red-600 font-bold text-base">
+              <span>🌡️ Se calienta / Temperatura alta</span>
+            </div>
+            <ul class="space-y-2 text-xs text-slate-700 list-disc list-inside">
+              <li><strong>Fan Clutch (Embrague viscoso del ventilador):</strong> Con el motor apagado pero muy caliente, intenta girar el aspa del ventilador con la mano. Debe tener gran resistencia. Si gira libre como molinillo de viento, el silicona interna se secó y el ventilador no enfría en tráfico.</li>
+              <li><strong>Termostato al revés o sin balín:</strong> Debe colocarse con el resorte hacia el motor y la pequeña válvula balín ("jiggle valve") hacia arriba a las 12 en punto.</li>
+              <li><strong>Radiador tapado:</strong> Los radiadores de cobre/aluminio de 1995 se llenan de sarro mineral. Toca el radiador de arriba a abajo: si la parte inferior está fría y la superior hirviendo, los tubos internos están obstruidos.</li>
+            </ul>
+          </div>
+        `;
+      } else if (symptomKey === 'ahogo-acelerar') {
+        html = `
+          <div class="space-y-4">
+            <div class="flex items-center gap-2 text-blue-700 font-bold text-base">
+              <span>🛑 Se ahoga o tironea al acelerar a fondo</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+              <div class="p-3 rounded bg-slate-50 border border-slate-200">
+                <strong class="text-slate-900">Fuelle de Admisión Agrietado</strong>
+                <p class="text-slate-600 mt-1">La manguera de hule grande entre el flujómetro (AFM) y la mariposa suele rajarse por debajo en los pliegues. Al acelerar, el motor se inclina sobre sus soportes, abre la grieta, chupa aire no medido y el motor se ahoga.</p>
+              </div>
+              <div class="p-3 rounded bg-slate-50 border border-slate-200">
+                <strong class="text-slate-900">Filtro de Gasolina Obstruido</strong>
+                <p class="text-slate-600 mt-1">En ralentí funciona bien porque demanda poco caudal, pero al pedir potencia no entrega los litros por minuto requeridos.</p>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      box.innerHTML = html;
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // OBD1 PAPERCLIP SIMULATOR
+    let isJumpered = false;
+    let blinkInterval = null;
+
+    function togglePaperclip() {
+      isJumpered = !isJumpered;
+      const btn = document.getElementById('toggleJumperBtn');
+      const statusText = document.getElementById('jumperStatusText');
+      const svg = document.getElementById('paperclipSVG');
+      const pinTE1 = document.getElementById('pin-TE1');
+      const pinE1 = document.getElementById('pin-E1');
+
+      if (isJumpered) {
+        btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+        btn.classList.add('bg-red-600', 'hover:bg-red-700');
+        btn.innerHTML = '<span>❌ Retirar Clip (Modo Normal)</span>';
+        statusText.textContent = 'Puenteado TE1 + E1';
+        statusText.className = 'text-xs px-2.5 py-0.5 rounded-full font-bold bg-amber-100 text-amber-800 border border-amber-300';
+        svg.classList.remove('hidden');
+        pinTE1.classList.add('border-amber-500', 'text-amber-800', 'bg-amber-50');
+        pinE1.classList.add('border-amber-500', 'text-amber-800', 'bg-amber-50');
+        simulateCode(0);
+      } else {
+        btn.classList.remove('bg-red-600', 'hover:bg-red-700');
+        btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+        btn.innerHTML = '<span>📎 Insertar Clip entre TE1 y E1</span>';
+        statusText.textContent = 'Clip desconectado';
+        statusText.className = 'text-xs px-2.5 py-0.5 rounded-full font-bold bg-slate-100 text-slate-600 border border-slate-300';
+        svg.classList.add('hidden');
+        pinTE1.classList.remove('border-amber-500', 'text-amber-800', 'bg-amber-50');
+        pinE1.classList.remove('border-amber-500', 'text-amber-800', 'bg-amber-50');
+        stopBlinking();
+      }
+    }
+
+    function simulateCode(code) {
+      if (!isJumpered) {
+        togglePaperclip();
+      }
+
+      document.querySelectorAll('.code-btn').forEach(b => {
+        if (parseInt(b.dataset.code) === code) {
+          b.classList.add('bg-red-600', 'text-white', 'shadow-sm');
+          b.classList.remove('bg-slate-50', 'text-slate-700', 'text-emerald-700');
+        } else {
+          b.classList.remove('bg-red-600', 'text-white', 'shadow-sm');
+          b.classList.add('bg-slate-50', 'text-slate-700');
+        }
+      });
+
+      const info = obd1Codes[code];
+      if (info) {
+        document.getElementById('codeTitle').textContent = info.title;
+        document.getElementById('codePattern').textContent = info.pattern;
+        document.getElementById('codeMeaning').textContent = info.meaning;
+        document.getElementById('codeFix').textContent = info.fix;
+      }
+
+      runCelAnimation(code);
+    }
+
+    function stopBlinking() {
+      if (blinkInterval) clearInterval(blinkInterval);
+      const cel = document.getElementById('celLight');
+      const desc = document.getElementById('celStatusDesc');
+      cel.className = 'w-14 h-14 rounded-full bg-slate-200 border-2 border-slate-300 flex flex-col items-center justify-center text-slate-500 transition-all';
+      desc.textContent = 'Apagado';
+    }
+
+    function runCelAnimation(code) {
+      stopBlinking();
+      const cel = document.getElementById('celLight');
+      const desc = document.getElementById('celStatusDesc');
+
+      if (code === 0) {
+        cel.className = 'w-14 h-14 rounded-full bg-amber-400 text-slate-900 font-black border-2 border-amber-500 shadow-md shadow-amber-400/50 flex flex-col items-center justify-center cel-blinking';
+        desc.textContent = 'Parpadeo Rápido Continuo (OK)';
+        return;
+      }
+
+      const tens = Math.floor(code / 10);
+      const ones = code % 10;
+      desc.textContent = `Reproduciendo Código ${code} (${tens} y ${ones})`;
+
+      let timeline = [];
+      for (let i = 0; i < tens; i++) {
+        timeline.push(1);
+        timeline.push(0);
+      }
+      timeline.push(0);
+      timeline.push(0);
+      for (let i = 0; i < ones; i++) {
+        timeline.push(1);
+        timeline.push(0);
+      }
+      timeline.push(0);
+      timeline.push(0);
+      timeline.push(0);
+      timeline.push(0);
+
+      let idx = 0;
+      blinkInterval = setInterval(() => {
+        const val = timeline[idx];
+        if (val === 1) {
+          cel.className = 'w-14 h-14 rounded-full bg-amber-400 text-slate-900 font-black border-2 border-amber-500 shadow-md flex flex-col items-center justify-center';
+        } else {
+          cel.className = 'w-14 h-14 rounded-full bg-slate-200 text-slate-500 border-2 border-slate-300 flex flex-col items-center justify-center';
+        }
+        idx = (idx + 1) % timeline.length;
+      }, 400);
+    }
+
+    // TORQUE TABLE POPULATION & FILTER
+    function populateTorqueTable(cat) {
+      const tbody = document.getElementById('torqueTableBody');
+      const filtered = cat === 'todos' ? torqueData : torqueData.filter(i => i.category === cat);
+
+      tbody.innerHTML = filtered.map(item => `
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="p-3.5 font-bold text-slate-900">${item.part}</td>
+          <td class="p-3.5 font-black text-amber-700">${item.ftlb}</td>
+          <td class="p-3.5 font-semibold text-emerald-700">${item.nm}</td>
+          <td class="p-3.5 text-xs text-slate-500 hidden md:table-cell">${item.notes}</td>
+        </tr>
+      `).join('');
+    }
+
+    function filterTorques(cat) {
+      document.querySelectorAll('.torque-filter-btn').forEach(btn => {
+        if (btn.dataset.category === cat) {
+          btn.classList.add('bg-red-600', 'text-white', 'shadow-sm');
+          btn.classList.remove('bg-white', 'text-slate-700');
+        } else {
+          btn.classList.remove('bg-red-600', 'text-white', 'shadow-sm');
+          btn.classList.add('bg-white', 'text-slate-700');
+        }
+      });
+      populateTorqueTable(cat);
+    }
+
+    // UNIT CONVERTER
+    function convertUnits() {
+      const val = parseFloat(document.getElementById('convertInput').value) || 0;
+      const type = document.getElementById('convertFrom').value;
+      const res = document.getElementById('convertResult');
+
+      if (type === 'ftlb') {
+        const nm = (val * 1.35582).toFixed(1);
+        res.textContent = `${nm} Nm`;
+      } else if (type === 'nm') {
+        const ft = (val * 0.737562).toFixed(1);
+        res.textContent = `${ft} ft-lbs`;
+      } else if (type === 'kgm') {
+        const ft = (val * 7.233).toFixed(1);
+        res.textContent = `${ft} ft-lbs`;
+      }
+    }
+
+    // CHECKLIST LOGIC WITH LOCALSTORAGE
+    function initChecklist() {
+      const container = document.getElementById('checklistContainer');
+      const saved = JSON.parse(localStorage.getItem('toyota22re_checklist') || '{}');
+
+      container.innerHTML = checklistData.map((cat, catIdx) => `
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+          <h4 class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-600"></span>
+            ${cat.category}
+          </h4>
+          <div class="space-y-2.5">
+            ${cat.items.map(it => {
+              const isChecked = !!saved[it.id];
+              return `
+                <label class="flex items-start gap-3 text-xs sm:text-sm text-slate-700 cursor-pointer hover:text-slate-900 p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                  <input type="checkbox" id="${it.id}" onchange="toggleCheckItem('${it.id}')" ${isChecked ? 'checked' : ''} class="mt-0.5 w-4 h-4 rounded border-slate-300 bg-white text-red-600 focus:ring-red-500">
+                  <span class="${isChecked ? 'line-through text-slate-400' : ''}">${it.text}</span>
+                </label>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      updateProgress();
+    }
+
+    function toggleCheckItem(id) {
+      const saved = JSON.parse(localStorage.getItem('toyota22re_checklist') || '{}');
+      const checkbox = document.getElementById(id);
+      saved[id] = checkbox.checked;
+      localStorage.setItem('toyota22re_checklist', JSON.stringify(saved));
+      initChecklist();
+    }
+
+    function updateProgress() {
+      const saved = JSON.parse(localStorage.getItem('toyota22re_checklist') || '{}');
+      let total = 0;
+      let completed = 0;
+      checklistData.forEach(c => {
+        c.items.forEach(i => {
+          total++;
+          if (saved[i.id]) completed++;
+        });
+      });
+
+      const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+      document.getElementById('progressPercent').textContent = `${pct}%`;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+    }
+
+    function resetChecklist() {
+      if (confirm('¿Deseas reiniciar la lista de chequeo de restauración a 0?')) {
+        localStorage.removeItem('toyota22re_checklist');
+        initChecklist();
+      }
+    }
+
+    // SEARCH ENGINE
+    function handleSearch(query) {
+      const overlay = document.getElementById('searchResultsOverlay');
+      const list = document.getElementById('searchResultsList');
+      const count = document.getElementById('searchResultCount');
+      const clearBtn = document.getElementById('clearSearchBtn');
+
+      if (!query || query.trim().length < 2) {
+        overlay.classList.add('hidden');
+        if (clearBtn) clearBtn.classList.add('hidden');
+        return;
+      }
+
+      if (clearBtn) clearBtn.classList.remove('hidden');
+
+      const q = query.toLowerCase().trim();
+      const results = searchIndex.filter(item => {
+        return item.title.toLowerCase().includes(q) || item.keywords.toLowerCase().includes(q);
+      });
+
+      count.textContent = results.length;
+      list.innerHTML = results.length ? results.map(r => `
+        <div onclick="jumpToSearchResult('${r.section}', '${r.sub}')" class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-red-600 hover:bg-white cursor-pointer transition-all shadow-sm">
+          <div class="text-sm font-bold text-slate-900 hover:text-red-600">${r.title}</div>
+          <div class="text-xs text-slate-500 mt-1">Sección: <span class="text-slate-700 capitalize font-medium">${r.section}</span></div>
+        </div>
+      `).join('') : `
+        <div class="p-6 text-center text-xs text-slate-500">
+          No se encontraron resultados para "${query}". Intenta con términos como 'válvulas', 'bujías', 'cadena', 'humo', o 'torque'.
+        </div>
+      `;
+
+      overlay.classList.remove('hidden');
+    }
+
+    function jumpToSearchResult(section, sub) {
+      closeSearchResults();
+      setTab(section);
+      if (section === 'diagramas' && sub) {
+        switchDiagram(sub);
+      } else if (section === 'asistente' && sub) {
+        diagnose(sub);
+      } else if (section === 'obd1' && sub) {
+        simulateCode(parseInt(sub));
+      }
+    }
+
+    function closeSearchResults() {
+      document.getElementById('searchResultsOverlay').classList.add('hidden');
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('globalSearchInput');
+      if (input) input.value = '';
+      closeSearchResults();
+    }
+  </script>
+</body>
+</html>
