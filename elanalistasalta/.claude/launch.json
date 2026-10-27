@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "flyers",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["C:\\Users\\Usuario\\AppData\\Local\\Temp\\claude\\C--Users-Usuario-Documents-Webs-elanalistasalta-com-ar\\ac53549a-6ae5-4935-aefd-44f6c5e49e96\\scratchpad\\server.js", "C:\\Users\\Usuario\\Documents\\Webs\\elanalistasalta.com.ar"],
+      "port": 5178
+    }
+  ]
+}
