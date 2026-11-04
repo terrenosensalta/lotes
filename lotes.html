@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Recorré los lotes disponibles desde el aire | Terrenos en Salta</title>
+<meta name="description" content="Volá sobre los 14 lotes disponibles en Aldea Vaquereña, Cerro Varnet y Puma Piedra, en Salta. Mirá dónde está cada uno, su superficie y consultá por WhatsApp.">
+<link rel="canonical" href="https://terrenosensalta.ar/lotes.html">
+<meta name="theme-color" content="#dde5da">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Recorré los lotes disponibles desde el aire">
+<meta property="og:description" content="Aldea Vaquereña, Cerro Varnet y Puma Piedra: dónde está cada lote disponible en Salta.">
+<meta property="og:url" content="https://terrenosensalta.ar/lotes.html">
+<meta property="og:image" content="https://terrenosensalta.ar/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="lotes-img/aldea.jpg">
+<style>
+:root{color-scheme:light;--mist:#dde5da;--forest:#1f3a2d;--forest-2:#2c4c3b;--gold:#e0b84f;--gold-soft:#e3c47a;--paper:#fbfaf6;--nav:48px}
+*{box-sizing:border-box;margin:0}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth;background:var(--mist)}
+body{color:var(--forest);font-family:Inter,system-ui,sans-serif;line-height:1.45;overflow-x:hidden}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+
+.top{position:fixed;inset:0 0 auto;z-index:5;height:var(--nav);display:flex;align-items:center;justify-content:space-between;gap:12px;padding-inline:clamp(12px,3vw,28px);background:var(--mist)}
+.home{font-family:Fraunces,Georgia,serif;font-size:17px;text-decoration:none;white-space:nowrap}
+.jump{display:flex;gap:clamp(12px,2.4vw,26px);list-style:none;padding:0;font-size:13.5px;font-weight:500}
+.jump a{display:block;padding:12px 0;text-decoration:none;white-space:nowrap;opacity:.72}
+.jump a[aria-current=true]{opacity:1;font-weight:700;box-shadow:inset 0 -2px 0 var(--forest)}
+.jump b{font-weight:inherit;font-variant-numeric:tabular-nums}
+
+#stage{position:fixed;inset:0;overflow:hidden;background:var(--mist)}
+.plane{position:absolute;left:0;top:0;width:1406px;height:844px;transform-origin:0 0;visibility:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent),linear-gradient(transparent,#000 15%,#000 85%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent),linear-gradient(transparent,#000 15%,#000 85%,transparent);mask-composite:intersect}
+.plane.on{visibility:visible}
+.plane text{font:600 8.4px Inter,sans-serif;fill:#fff;text-anchor:middle}
+.plane img,.plane svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+#haze{position:absolute;inset:0 0 auto;height:46%;background:linear-gradient(var(--mist) 22%,rgba(221,229,218,0))}
+#over{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#over text{font:700 13px Inter,sans-serif;fill:#fff;paint-order:stroke;stroke:#1f3a2d;stroke-width:3.5px;text-anchor:middle}
+#over text.now{font:500 24px Fraunces,Georgia,serif;stroke-width:5px}
+#veil{position:absolute;inset:0;background:var(--mist);display:grid;place-items:center;padding:24px;opacity:0}
+#veilName{font:500 clamp(46px,10vw,132px)/1 Fraunces,Georgia,serif;text-align:center;text-wrap:balance}
+
+main{position:relative;z-index:2}
+.stop{min-height:100vh;min-height:100svh;margin-bottom:18vh;padding:calc(var(--nav) + 20px) clamp(14px,4vw,56px) clamp(14px,4vw,48px);display:flex;flex-direction:column;justify-content:flex-end;scroll-snap-align:center}
+.plate{width:min(100%,392px);padding:clamp(18px,2.6vw,26px);border-radius:14px;background:var(--forest);color:#fff}
+.plate h2{font:500 clamp(30px,4vw,40px)/1.08 Fraunces,Georgia,serif;color:#fff}
+.plate h3{font:500 21px/1.2 Fraunces,Georgia,serif;color:#fff}
+.m2{font:500 clamp(46px,6vw,60px)/1.05 Fraunces,Georgia,serif;color:var(--gold-soft);font-variant-numeric:tabular-nums;margin-top:2px}
+.where{font-size:14px;color:#dfe6de;margin-top:4px}
+.plate p+p{margin-top:8px}
+.intro{font-size:15px;color:#eef2ec;margin-top:10px}
+.pay{font-size:15px;margin-top:12px;display:grid;gap:3px}
+.pay strong{font-size:17px;color:var(--gold-soft)}
+.btn{display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 18px;border-radius:9px;background:var(--gold);color:var(--forest);font-weight:700;font-size:15.5px;text-decoration:none;text-align:center;margin-top:14px;transition:background-color .15s,transform .15s}
+.btn:active{transform:scale(.98)}
+.alt{display:inline-block;margin-top:10px;padding-block:4px;font-size:14.5px;color:#fff}
+@media (hover:hover){.btn:hover{background:var(--gold-soft)}}
+
+.open,.close{justify-content:center;align-items:flex-start;max-width:900px;margin-inline:auto;width:100%}
+.open h1{font:500 clamp(46px,8.4vw,104px)/1.02 Fraunces,Georgia,serif;text-wrap:balance}
+.open p,.close p{margin-top:18px;font-size:clamp(16px,1.6vw,18px);max-width:52ch}
+.close{margin-bottom:0}
+.close h2{font:500 clamp(40px,6.6vw,80px)/1.04 Fraunces,Georgia,serif;text-wrap:balance}
+.close .btn{min-width:min(100%,300px);padding-inline:28px;margin-top:24px}
+.close .alt{color:var(--forest)}
+.small{font-size:13.5px!important;color:#3f5247}
+
+@media (max-width:760px){
+  .home{display:none}
+  .top{justify-content:center}
+  .jump{font-size:12.5px;gap:14px}
+  .plate{width:100%}
+  .lot .plate{padding:14px 16px;display:grid;grid-template-columns:1fr auto;column-gap:14px;align-items:end}
+  .lot .btn{grid-column:1/-1;margin-top:10px}
+  .lot .where{grid-column:1/-1}
+  .m2{font-size:38px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;scroll-snap-type:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="home" href="/">Terrenos en Salta</a>
+  <nav aria-label="Barrios"><ul class="jump"><li><a href="#aldea-vaquerena" data-b="aldea">Aldea Vaquereña <b>1</b></a></li><li><a href="#cerro-varnet" data-b="cerro">Cerro Varnet <b>9</b></a></li><li><a href="#puma-piedra" data-b="puma">Puma Piedra <b>4</b></a></li></ul></nav>
+</header>
+
+<div id="stage" aria-hidden="true">
+  <div class="plane" data-b="aldea"><img src="lotes-img/aldea.jpg" alt="" width="1406" height="844" decoding="async"><svg viewBox="0 0 703 422"><text x="422" y="44.5">Ingreso</text></svg></div>
+  <div class="plane" data-b="cerro"><img src="lotes-img/cerro.jpg" alt="" width="1406" height="844" decoding="async"><svg viewBox="0 0 703 422"><polyline points="116.9,-320.4 82.4,-370.4 63.4,-406.9 59.7,-430.7 33.0,-441.3 15.1,-464.1 -7.9,-500.1 -10.4,-515.1" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="36.2,-314.1 10.0,-359.4 2.7,-374.9 -9.2,-391.6 -40.2,-422.6 -66.4,-464.3 -69.9,-475.1" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="-359.0,-260.7 -307.2,-238.0 -276.2,-230.3 -267.8,-235.7 -294.7,-283.4 -301.8,-307.2 -306.0,-326.3 -307.2,-338.7 -300.0,-347.7 -294.7,-352.0" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="-294.7,-359.0 -320.9,-369.8 -344.7,-389.5 -359.6,-411.5" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="-244.0,-346.6 -248.2,-307.8 -242.8,-291.1 -226.2,-262.0 -209.5,-237.5" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="-188.0,-388.9 -215.4,-432.9 -234.5,-459.2 -229.2,-513.5" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="399.5,-110.6 373.3,-158.3 354.2,-182.1 347.1,-201.2 322.1,-225.0 330.4,-273.9 349.5,-295.3 339.9,-321.6 296.9,-335.9 256.5,-399.0 204.1,-506.4 145.6,-623.2 138.4,-633.9" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polygon points="390.2,139.7 403.6,132.0 371.4,99.4 359.9,111.2 390.2,139.7" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="378.4,84.2 388.3,75.1 350.3,39.4 341.1,49.7 378.4,84.2" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="379.6,3.3 336.6,-38.8 318.6,-33.2 364.6,13.4 379.6,3.3" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="348.2,25.8 301.4,-25.2 280.4,-17.4 334.1,41.4 348.2,25.8" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="468.8,-2.1 527.5,53.8 539.3,40.1 491.8,-3.6 479.7,-1.0 468.8,-2.1" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="279.1,131.6 227.3,92.8 207.6,118.2 272.6,155.5 279.1,131.6" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="379.6,3.3 394.5,-3.8 355.9,-34.9 336.6,-38.8 379.6,3.3" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="364.6,13.4 318.6,-33.2 301.4,-25.2 348.2,25.8 364.6,13.4" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="147.7,87.0 207.6,118.2 227.3,92.8 183.5,53.0 147.7,87.0" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="380.0,83.9 415.9,120.4 417.8,116.1 428.8,112.6 388.3,75.1 380.0,83.9" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="59.9,-498.2 69.1,-476.0 113.9,-497.7 104.3,-514.8 59.9,-498.2" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="227.2,183.2 176.2,181.9 172.1,200.0 178.8,207.3 187.2,218.5 195.6,237.7 193.3,246.6 204.3,238.5 222.7,212.5 227.2,183.2" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="176.2,181.9 127.2,178.1 125.4,192.3 165.4,193.8 172.1,200.0 176.2,181.9" fill="#7fce6f" fill-opacity=".28" stroke="#a6e39a" stroke-width=".9" stroke-opacity=".85"/><polygon points="98.7,211.2 55.3,172.5 46.8,171.9 42.0,185.7 36.3,201.6 35.0,207.2 33.4,213.3 35.0,220.5 38.0,226.0 41.0,231.4 49.8,234.5 60.6,232.9 85.2,220.8 98.7,211.2" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="10.2,174.6 27.2,190.3 36.3,201.6 46.8,171.9 10.5,169.1 10.2,174.6" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="189.9,262.8 207.7,279.8 221.9,241.4 214.7,239.2 211.9,242.8 199.7,254.9 195.7,255.8 189.9,262.8" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="152.7,266.1 200.3,299.3 207.7,279.8 184.3,258.6 152.7,266.1" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="159.1,237.8 161.8,263.9 184.3,258.6 181.3,248.8 183.7,235.2 159.1,237.8" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="155.6,204.8 134.9,204.0 143.6,268.2 161.8,263.9 155.6,204.8" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="97.5,226.4 77.1,238.6 80.7,275.8 104.2,292.2 97.5,226.4" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="43.2,249.4 80.7,275.8 77.1,238.6 67.7,244.3 43.2,249.4" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="200.3,299.3 152.7,266.1 143.6,268.2 140.5,275.9 194.5,314.9 200.3,299.3" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="188.8,329.5 194.5,314.9 140.5,275.9 134.6,290.2 188.8,329.5" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="155.6,204.8 159.1,237.8 183.7,235.2 180.6,225.6 169.4,213.1 160.4,205.0 155.6,204.8" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="545.2,260.3 581.5,296.0 583.2,287.5 590.1,270.7 554.3,235.3 545.2,260.3" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="572.6,185.2 563.7,209.7 598.4,243.9 600.8,232.4 602.1,225.4 605.7,217.8 572.6,185.2" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="582.6,157.6 619.4,193.8 629.3,172.7 590.9,134.8 582.6,157.6" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="590.9,134.8 629.3,172.7 633.3,163.9 636.6,151.5 598.9,113.1 590.9,134.8" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="598.9,113.1 636.6,151.5 639.8,134.8 640.6,124.4 639.2,115.7 627.8,110.7 614.4,100.3 604.8,96.7 598.9,113.1" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="529.3,175.8 563.7,209.7 572.6,185.2 539.2,152.3 529.3,175.8" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="551.4,126.8 582.6,157.6 590.9,134.8 560.3,104.6 558.4,106.9 554.8,119.9 551.4,126.8" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="560.3,104.6 590.9,134.8 604.8,96.7 588.8,95.2 576.7,95.4 563.6,101.0 560.3,104.6" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="459.5,176.0 508.8,224.5 546.5,134.7 538.6,139.5 523.1,144.4 507.5,140.7 492.8,130.9 481.5,127.1 459.5,176.0" fill="#7fce6f" fill-opacity=".28" stroke="#a6e39a" stroke-width=".9" stroke-opacity=".85"/><polygon points="416.4,133.7 459.5,176.0 467.5,158.2 431.6,122.8 420.9,129.1 416.4,133.7" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="467.5,158.2 481.5,127.1 470.2,120.8 459.3,118.9 445.7,118.3 434.6,121.2 431.6,122.8 467.5,158.2" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="416.4,133.7 393.8,152.8 437.8,196.4 459.5,176.0 416.4,133.7" fill="#7fce6f" fill-opacity=".28" stroke="#a6e39a" stroke-width=".9" stroke-opacity=".85"/><polygon points="416.4,133.7 459.5,176.0 467.5,158.2 431.6,122.8 420.9,129.1 416.4,133.7" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/></svg></div>
+  <div class="plane" data-b="puma"><img src="lotes-img/puma.jpg" alt="" width="1406" height="844" decoding="async"><svg viewBox="0 0 703 422"><polyline points="46.9,126.7 445.0,128.3" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="369.8,243.7 149.4,219.2" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="28.8,181.9 45.6,180.7 58.4,191.5 67.9,195.5 76.6,201.0 87.4,202.8 94.5,204.6 107.1,188.5 116.6,173.3 128.3,157.2 132.5,149.4 135.6,146.8 137.8,148.0 136.8,152.8 129.7,165.5 125.5,181.5 124.6,196.6 127.9,206.8 136.3,212.8 144.3,213.6 155.3,215.4 160.6,215.4 172.1,210.4 187.8,187.3 198.9,175.3 217.0,158.0 225.7,149.4 228.1,152.8 230.5,171.1 236.0,191.5 245.3,201.0 257.9,206.6 282.7,201.8 297.1,199.4 323.8,188.1 345.3,182.9 370.5,182.5 373.2,192.5 383.4,195.3 393.8,192.9" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="455.4,215.6 456.6,217.6 460.7,219.0 466.9,216.8 471.8,211.8 475.3,204.6 485.7,196.4 494.8,195.3 526.0,200.0 567.8,215.6 603.9,221.8 634.2,226.9 666.5,233.5" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="369.8,243.7 640.6,273.8" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="393.8,192.9 430.5,172.1 441.7,163.2 447.3,163.4 451.2,166.3 453.0,173.7 445.1,185.9 442.8,200.4 440.9,214.4 440.8,219.4 447.0,229.5 460.7,234.5 475.1,229.3 483.7,220.2 486.8,214.0 491.3,210.4 494.4,210.0 522.3,214.2 564.0,229.7 601.6,236.1 631.5,241.1 663.6,247.7" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="28.8,166.1 41.6,166.5 53.2,168.7 66.9,179.7 75.3,186.7 81.0,189.9 87.0,192.1 92.7,189.9 97.2,182.7 110.4,167.3 120.2,153.8 127.7,142.2 133.6,134.7 140.1,131.1 146.2,134.1 150.4,138.2 153.5,144.2 148.5,157.6 141.0,167.9 135.8,182.3 135.9,194.3 139.4,201.2 143.6,203.6 154.7,202.2 162.4,198.8 176.5,178.3 188.7,165.0 206.9,147.6 216.2,138.4 222.6,133.5 229.0,130.7 230.7,131.5 237.6,141.0 242.0,147.6 244.5,168.3 248.7,183.7 253.7,188.9 259.5,191.5 280.1,187.5 293.1,185.3 319.2,174.3 343.5,168.5 370.1,167.9 372.9,171.7 393.8,174.5 399.0,173.3 422.5,160.0 436.9,148.6 452.6,149.2 463.8,157.8 468.5,176.3 458.8,191.3 457.0,202.6 455.4,215.8" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="196.4,187.3 221.0,168.3 230.5,171.1 236.0,191.5 245.3,201.0 257.9,206.6 255.3,231.1 161.9,220.4 170.1,215.8 196.4,187.3" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="233.0,127.5 242.0,147.6 250.6,184.1 259.5,191.5 296.7,183.7 296.9,127.7" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="370.1,167.9 370.3,127.9 296.9,127.7 296.7,183.7 319.2,174.3 343.5,168.5" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="336.2,240.1 337.8,240.3" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="408.4,248.1 389.1,245.9" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="401.9,188.3 395.5,246.7 337.1,240.1 343.3,183.5 345.3,182.9 370.5,182.5 373.2,192.5 383.4,195.3 393.8,192.9 401.9,188.3" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="519.6,128.5 445.0,128.3" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="438.6,251.5 395.5,246.7 401.9,188.3 430.5,172.1 441.7,163.2 447.3,163.4 451.2,166.3 453.0,173.7 445.1,185.9 440.9,214.4 438.6,251.3" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="472.2,255.1 475.1,229.3" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="475.1,229.3 483.7,220.2 494.4,210.0 522.3,214.2 552.6,225.4 547.4,263.6 472.2,255.1" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="438.6,251.3 440.8,219.4 447.0,229.5 460.7,234.5 475.1,229.3 472.2,255.1" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="547.4,263.6 552.6,225.4 564.0,229.7 631.5,241.1 648.5,244.5 643.7,274.2" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="687.4,279.0 640.6,273.8" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="644.3,274.4 643.0,274.2" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="370.3,127.9 473.4,128.3 473.2,142.8 463.8,157.8 452.6,149.2 436.9,148.6 422.5,160.0 394.4,171.9 370.1,167.9" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="473.4,128.3 473.2,142.8" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="257.9,206.6 282.7,201.8 297.1,199.4 323.8,188.1 345.3,182.9 370.5,182.5" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polyline points="259.5,191.5 280.1,187.5 293.1,185.3 319.2,174.3 343.5,168.5 370.1,167.9" fill="none" stroke="#efe2bd" stroke-width="1.6" stroke-opacity=".85"/><polygon points="255.3,231.1 337.1,240.1 343.3,183.5 323.8,188.1 297.1,199.4 257.9,206.6 255.3,231.1" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="401.9,188.3 395.5,246.7 438.6,251.5 440.8,219.4 440.9,214.4 445.1,185.9 453.0,173.7 451.2,166.3 447.3,163.4 441.7,163.2 430.5,172.1 401.9,188.3" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="370.3,127.9 332.6,127.8 332.8,170.8 343.5,168.5 370.1,167.9 370.3,127.9" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="332.6,127.8 296.9,127.7 296.7,183.7 319.2,174.3 332.8,170.8 332.6,127.8" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="233.0,127.5 242.0,147.6 250.6,184.1 259.5,191.5 296.7,183.7 296.9,127.7 233.0,127.5" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/><polygon points="343.3,183.5 337.1,240.1 395.5,246.7 401.9,188.3 393.8,192.9 383.4,195.3 373.2,192.5 370.5,182.5 343.3,183.5" fill="#fff" fill-opacity=".2" stroke="#fff" stroke-width=".9" stroke-opacity=".85"/></svg></div>
+  <div id="haze"></div>
+  <svg id="over"></svg>
+  <div id="veil"><p id="veilName"></p></div>
+</div>
+
+<main>
+<section class="stop open" data-kind="open" data-b="aldea" data-name=""><h1>14 lotes disponibles, vistos desde el aire</h1><p>Seguí bajando y recorré cada uno, barrio por barrio.</p><p class="small">Disponibilidad a noviembre 2026, sujeta a confirmación.</p></section>
+<section class="stop" id="aldea-vaquerena" data-kind="barrio" data-b="aldea" data-name="Aldea Vaquereña"><div class="plate"><h2>Aldea Vaquereña</h2><p class="where">1 lote disponible</p><p class="intro">Vaqueros, a unos 20 minutos del centro de Salta. Bosque de nogales y arroyo a metros.</p><div class="pay"><strong>Consultá el valor por WhatsApp</strong></div></div></section>
+<section class="stop lot" id="lote-l7" data-kind="lot" data-b="aldea" data-lot="L7" data-name="Aldea Vaquereña"><div class="plate"><div><h3>Lote L7</h3><p class="where">en Aldea Vaquereña</p></div><p class="m2">1.029 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20L7%20%281.029%20m%C2%B2%29%20de%20Aldea%20Vaquere%C3%B1a." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop" id="cerro-varnet" data-kind="barrio" data-b="cerro" data-name="Cerro Varnet"><div class="plate"><h2>Cerro Varnet</h2><p class="where">9 lotes disponibles</p><p class="intro">Vaqueros, a unos 20 minutos del centro de Salta. Red de agua, calles enripiadas y cámaras de seguridad.</p><div class="pay"><strong>Lotes de 1.000 m² desde USD 17.000</strong><span>Anticipo: desde USD 6.800</span><span>Cuotas: hasta 36, desde USD 284</span></div><a class="alt" href="calculadora.html#cerro-varnet">Calcular mi cuota</a></div></section>
+<section class="stop lot" id="lote-q1" data-kind="lot" data-b="cerro" data-lot="Q1" data-name="Cerro Varnet"><div class="plate"><div><h3>Lote Q1</h3><p class="where">1 de 9 en Cerro Varnet</p></div><p class="m2">1.029 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20Q1%20%281.029%20m%C2%B2%29%20de%20Cerro%20Varnet." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop lot" id="lote-q10" data-kind="lot" data-b="cerro" data-lot="Q10" data-name="Cerro Varnet"><div class="plate"><div><h3>Lote Q10</h3><p class="where">2 de 9 en Cerro Varnet</p></div><p class="m2">1.376 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20Q10%20%281.376%20m%C2%B2%29%20de%20Cerro%20Varnet." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop lot" id="lote-q11" data-kind="lot" data-b="cerro" data-lot="Q11" data-name="Cerro Varnet"><div class="plate"><div><h3>Lote Q11</h3><p class="where">3 de 9 en Cerro Varnet</p></div><p class="m2">1.329 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20Q11%20%281.329%20m%C2%B2%29%20de%20Cerro%20Varnet." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop lot" id="lote-q14" data-kind="lot" data-b="cerro" data-lot="Q14" data-name="Cerro Varnet"><div class="plate"><div><h3>Lote Q14</h3><p class="where">4 de 9 en Cerro Varnet</p></div><p class="m2">1.190 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20Q14%20%281.190%20m%C2%B2%29%20de%20Cerro%20Varnet." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop lot" id="lote-302" data-kind="lot" data-b="cerro" data-lot="302" data-name="Cerro Varnet"><div class="plate"><div><h3>Lote 302</h3><p class="where">5 de 9 en Cerro Varnet</p></div><p class="m2">1.003 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20302%20%281.003%20m%C2%B2%29%20de%20Cerro%20Varnet." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop lot" id="lote-303" data-kind="lot" data-b="cerro" data-lot="303" data-name="Cerro Varnet"><div class="plate"><div><h3>Lote 303</h3><p class="where">6 de 9 en Cerro Varnet</p></div><p class="m2">1.006 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20303%20%281.006%20m%C2%B2%29%20de%20Cerro%20Varnet." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop lot" id="lote-305" data-kind="lot" data-b="cerro" data-lot="305" data-name="Cerro Varnet"><div class="plate"><div><h3>Lote 305</h3><p class="where">7 de 9 en Cerro Varnet</p></div><p class="m2">1.010 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20305%20%281.010%20m%C2%B2%29%20de%20Cerro%20Varnet." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop lot" id="lote-311" data-kind="lot" data-b="cerro" data-lot="311" data-name="Cerro Varnet"><div class="plate"><div><h3>Lote 311</h3><p class="where">8 de 9 en Cerro Varnet</p></div><p class="m2">1.077 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20311%20%281.077%20m%C2%B2%29%20de%20Cerro%20Varnet." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop lot" id="lote-313" data-kind="lot" data-b="cerro" data-lot="313" data-name="Cerro Varnet"><div class="plate"><div><h3>Lote 313</h3><p class="where">9 de 9 en Cerro Varnet</p></div><p class="m2">1.029 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20313%20%281.029%20m%C2%B2%29%20de%20Cerro%20Varnet." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop" id="puma-piedra" data-kind="barrio" data-b="puma" data-name="Puma Piedra"><div class="plate"><h2>Puma Piedra</h2><p class="where">4 lotes disponibles</p><p class="intro">La Caldera, a unos 40 minutos del centro de Salta. Vista panorámica hacia el Dique Campo Alegre.</p><div class="pay"><strong>Lote de 1.000 m²: USD 17.000</strong><span>Anticipo: USD 6.800</span><span>Cuotas: 36 de USD 284</span></div><a class="alt" href="calculadora.html#puma-piedra">Calcular mi cuota</a></div></section>
+<section class="stop lot" id="lote-p1" data-kind="lot" data-b="puma" data-lot="P1" data-name="Puma Piedra"><div class="plate"><div><h3>Lote P1</h3><p class="where">1 de 4 en Puma Piedra</p></div><p class="m2">978 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20P1%20%28978%20m%C2%B2%29%20de%20Puma%20Piedra." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop lot" id="lote-p6" data-kind="lot" data-b="puma" data-lot="P6" data-name="Puma Piedra"><div class="plate"><div><h3>Lote P6</h3><p class="where">2 de 4 en Puma Piedra</p></div><p class="m2">1.001 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20P6%20%281.001%20m%C2%B2%29%20de%20Puma%20Piedra." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop lot" id="lote-p8" data-kind="lot" data-b="puma" data-lot="P8" data-name="Puma Piedra"><div class="plate"><div><h3>Lote P8</h3><p class="where">3 de 4 en Puma Piedra</p></div><p class="m2">1.000 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20P8%20%281.000%20m%C2%B2%29%20de%20Puma%20Piedra." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop lot" id="lote-p9" data-kind="lot" data-b="puma" data-lot="P9" data-name="Puma Piedra"><div class="plate"><div><h3>Lote P9</h3><p class="where">4 de 4 en Puma Piedra</p></div><p class="m2">1.000 m²</p><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20quiero%20consultar%20por%20el%20lote%20P9%20%281.000%20m%C2%B2%29%20de%20Puma%20Piedra." target="_blank" rel="noopener">Consultar por este lote</a></div></section>
+<section class="stop close" data-kind="close" data-b="puma" data-name=""><h2>¿Cuál querés ver en persona?</h2><a class="btn" href="https://wa.me/5493875363429?text=Hola%2C%20recorr%C3%AD%20los%20lotes%20en%20la%20web%20y%20quiero%20coordinar%20una%20visita." target="_blank" rel="noopener">Coordinar visita por WhatsApp</a><a class="alt" href="/">Volver al catálogo de terrenos</a><p class="small">Disponibilidad a noviembre 2026, sujeta a confirmación. Plano relevado sobre imagen satelital; el relieve dorado es solo una animación para ubicar cada lote.</p></section>
+</main>
+
+<script>
+(function () {
+  var DATA = {"aldea":[{"id":"L7","m2":"1.029","pts":[[475.8,303.3],[516.7,309.5],[554.9,348.6],[578.1,410.9],[592.3,437.5],[569.2,489.1],[469.6,456.2]]}],"cerro":[{"id":"Q1","m2":"1.029","pts":[[377.6,659.0],[269.2,580.4],[254.4,616.6],[364.4,694.0]]},{"id":"Q10","m2":"1.376","pts":[[269.8,408.0],[231.4,431.0],[254.4,616.6],[287.2,536.4]]},{"id":"Q11","m2":"1.329","pts":[[195.0,452.8],[208.4,584.4],[254.4,616.6],[231.4,431.0]]},{"id":"Q14","m2":"1.190","pts":[[254.4,356.2],[110.6,345.0],[197.4,422.4],[250.8,384.6]]},{"id":"302","m2":"1.003","pts":[[1017.6,449.0],[1090.4,520.6],[1108.6,470.6],[1037.8,401.0]]},{"id":"303","m2":"1.006","pts":[[1037.8,401.0],[1108.6,470.6],[1127.4,419.4],[1058.6,351.6]]},{"id":"305","m2":"1.010","pts":[[1078.4,304.6],[1145.2,370.4],[1165.2,315.2],[1102.8,253.6],[1095.4,268.0],[1093.0,269.4]]},{"id":"311","m2":"1.077","pts":[[1145.2,370.4],[1211.4,435.6],[1219.0,420.0],[1238.8,387.6],[1165.2,315.2]]},{"id":"313","m2":"1.029","pts":[[1108.6,470.6],[1180.2,541.4],[1191.8,510.2],[1196.8,487.8],[1127.4,419.4]]}],"puma":[{"id":"P1","m2":"978","pts":[[323.8,440.8],[510.6,462.2],[515.8,413.2],[490.6,402.0],[472.0,383.0],[461.0,342.2],[442.0,336.6],[392.8,374.6],[343.8,428.0]]},{"id":"P6","m2":"1.001","pts":[[946.8,256.6],[740.6,255.8],[740.2,335.8],[788.8,343.8],[845.0,320.0],[873.8,297.2],[905.2,298.4],[927.6,315.6],[946.4,285.6]]},{"id":"P8","m2":"1.000","pts":[[944.4,510.2],[1094.8,527.2],[1105.2,450.8],[1044.6,428.4],[988.8,420.0],[967.4,440.4],[950.2,458.6]]},{"id":"P9","m2":"1.000","pts":[[1105.2,450.8],[1094.8,527.2],[1287.4,548.4],[1297.0,489.0],[1128.0,459.4]]}]};
+  var $ = function (id) { return document.getElementById(id); };
+  var stage = $('stage'), over = $('over'), veil = $('veil'), veilName = $('veilName');
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var planes = {}, W = 0, H = 0, D = 1000, keys = [], navLinks = {};
+  var SVG = 'http://www.w3.org/2000/svg';
+  var DEG = Math.PI / 180;
+
+  stage.querySelectorAll('.plane').forEach(function (p) { planes[p.dataset.b] = p; });
+  document.querySelectorAll('.jump a').forEach(function (a) { navLinks[a.dataset.b] = a; });
+
+  function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+  function ease(t) { return t * t * (3 - 2 * t); }
+  function mix(a, b, t) { return a + (b - a) * t; }
+
+  function centroid(pts) {
+    var x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+    pts.forEach(function (p) { x0 = Math.min(x0, p[0]); x1 = Math.max(x1, p[0]); y0 = Math.min(y0, p[1]); y1 = Math.max(y1, p[1]); });
+    return { x: (x0 + x1) / 2, y: (y0 + y1) / 2, size: Math.max(x1 - x0, y1 - y0) };
+  }
+
+  function overviewOf(b) {
+    var all = [];
+    DATA[b].forEach(function (l) { all = all.concat(l.pts); });
+    return centroid(all);
+  }
+
+  function anchor() {
+    return W > 760 ? { x: W * 0.64, y: H * 0.56 } : { x: W * 0.5, y: H * 0.36 };
+  }
+
+  /* Cada parada del recorrido se convierte en una posición de cámara */
+  function buildKeys() {
+    var cover = Math.max(W / 1406, H / 844);
+    keys = [].map.call(document.querySelectorAll('.stop'), function (el, i) {
+      var b = el.dataset.b, id = el.dataset.lot, kind = el.dataset.kind;
+      var c = overviewOf(b), cam;
+      if (kind === 'lot') {
+        var lot = DATA[b].filter(function (l) { return l.id === id; })[0];
+        var box = centroid(lot.pts);
+        var fit = Math.min(W > 760 ? W * 0.5 : W, H * 0.62) * 0.56 / box.size;
+        cam = { x: box.x, y: box.y, z: clamp(fit, 0.9, 2.4), tilt: 58, yaw: i % 2 ? 8 : -8 };
+      } else if (kind === 'barrio') {
+        cam = { x: c.x, y: c.y, z: clamp(Math.max(cover * 1.05, Math.min(W, H) * 0.78 / c.size), 0.5, 1.6), tilt: 50, yaw: -5 };
+      } else {
+        cam = { x: c.x, y: c.y, z: cover * 0.8, tilt: 18, yaw: -12 };
+      }
+      return { el: el, b: b, id: id, kind: kind, cam: cam, fog: kind === 'open' || kind === 'close' ? 1 : 0, mid: el.offsetTop + el.offsetHeight / 2 };
+    });
+  }
+
+  function high(c) { return { x: c.x, y: c.y, z: c.z * 0.62, tilt: 22, yaw: c.yaw - 10 }; }
+  function lerpCam(a, b, t) {
+    return { x: mix(a.x, b.x, t), y: mix(a.y, b.y, t), z: Math.exp(mix(Math.log(a.z), Math.log(b.z), t)), tilt: mix(a.tilt, b.tilt, t), yaw: mix(a.yaw, b.yaw, t) };
+  }
+
+  /* Pasa un punto del terreno a la pantalla, igual que la transformación 3D del plano */
+  function project(c, a, x, y, h) {
+    var qx = (x - c.x) * c.z, qy = (y - c.y) * c.z, qz = h * c.z;
+    var cy = Math.cos(c.yaw * DEG), sy = Math.sin(c.yaw * DEG);
+    var rx = qx * cy - qy * sy, ry = qx * sy + qy * cy;
+    var ct = Math.cos(c.tilt * DEG), st = Math.sin(c.tilt * DEG);
+    var Y = ry * ct - qz * st, Z = ry * st + qz * ct;
+    var s = D / Math.max(D - Z, 40);
+    var ox = W / 2, oy = H * 0.4;
+    return [ox + (rx + a.x - ox) * s, oy + (Y + a.y - oy) * s];
+  }
+
+  function pathOf(p) {
+    var d = 'M' + p[0][0].toFixed(1) + ' ' + p[0][1].toFixed(1);
+    for (var i = 1; i < p.length; i++) d += 'L' + p[i][0].toFixed(1) + ' ' + p[i][1].toFixed(1);
+    return d + 'Z';
+  }
+  function area(p) {
+    var s = 0;
+    for (var i = 0; i < p.length; i++) { var n = p[(i + 1) % p.length]; s += p[i][0] * n[1] - n[0] * p[i][1]; }
+    return s;
+  }
+  function el(name, attrs, parent) {
+    var e = document.createElementNS(SVG, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    parent.appendChild(e);
+    return e;
+  }
+
+  var slabs = [], slabsOf = null, front = null;
+  function buildSlabs(b) {
+    over.textContent = '';
+    slabs = DATA[b].map(function (l) {
+      var g = el('g', {}, over);
+      return {
+        lot: l,
+        shadow: el('path', { fill: '#000', 'fill-opacity': '.32' }, g),
+        walls: l.pts.map(function () { return el('path', {}, g); }),
+        top: el('path', { fill: '#e0b84f', stroke: '#fff', 'stroke-width': '1.4', 'stroke-linejoin': 'round' }, g),
+        label: el('text', {}, g)
+      };
+    });
+    slabsOf = b;
+    front = null;
+  }
+
+  function drawSlabs(cam, a, weights) {
+    var lead = null, best = 0;
+    for (var id in weights) if (weights[id] > best) { best = weights[id]; lead = id; }
+    if (lead && lead !== front) {
+      slabs.forEach(function (s) { if (s.lot.id === lead) over.appendChild(s.top.parentNode); });
+      front = lead;
+    }
+    slabs.forEach(function (s) {
+      var w = weights[s.lot.id] || 0;
+      var h = mix(4, 24, ease(w));
+      var pts = s.lot.pts;
+      var base = pts.map(function (p) { return project(cam, a, p[0], p[1], 0); });
+      var top = pts.map(function (p) { return project(cam, a, p[0], p[1], h); });
+      var sign = area(top);
+      var yaw = cam.yaw * DEG;
+      s.shadow.setAttribute('d', pathOf(pts.map(function (p) { return project(cam, a, p[0] + h * 0.55, p[1] + h * 0.4, 0); })));
+      s.walls.forEach(function (wall, i) {
+        var j = (i + 1) % pts.length;
+        var q = [base[i], base[j], top[j], top[i]];
+        if (area(q) * sign <= 0) { wall.setAttribute('d', ''); return; }
+        var ex = pts[j][0] - pts[i][0], ey = pts[j][1] - pts[i][1], len = Math.hypot(ex, ey) || 1;
+        var lit = 0.5 + 0.5 * Math.abs((ex * Math.cos(yaw) - ey * Math.sin(yaw)) / len);
+        wall.setAttribute('fill', 'rgb(' + Math.round(mix(112, 190, lit)) + ',' + Math.round(mix(84, 148, lit)) + ',' + Math.round(mix(28, 52, lit)) + ')');
+        wall.setAttribute('d', pathOf(q));
+      });
+      s.top.setAttribute('d', pathOf(top));
+      var mx = 0, my = 0;
+      top.forEach(function (p) { mx += p[0]; my += p[1]; });
+      s.label.setAttribute('x', (mx / top.length).toFixed(1));
+      s.label.setAttribute('y', (my / top.length + (w > 0.5 ? 8 : 4)).toFixed(1));
+      s.label.setAttribute('class', w > 0.5 ? 'now' : '');
+      s.label.textContent = s.lot.id;
+    });
+  }
+
+  var shown = null, lastNav = null;
+  function render(y) {
+    if (!keys.length) return;
+    var v = y + innerHeight / 2, i = 0;
+    while (i < keys.length - 2 && keys[i + 1].mid <= v) i++;
+    var A = keys[i], B = keys[i + 1];
+    var raw = clamp((v - A.mid) / (B.mid - A.mid), 0, 1);
+    var t = reduced ? (raw < 0.5 ? 0 : 1) : ease(clamp((raw - 0.14) / 0.72, 0, 1));
+    var cam, plane, fog, weights = {};
+
+    if (A.b !== B.b) {
+      /* Cambio de barrio: subimos a la neblina y bajamos en el siguiente */
+      if (t < 0.5) { plane = A.b; cam = lerpCam(A.cam, high(A.cam), ease(t * 2)); }
+      else { plane = B.b; cam = lerpCam(high(B.cam), B.cam, ease((t - 0.5) * 2)); }
+      fog = clamp(1 - Math.abs(t - 0.5) * 3.2, 0, 1);
+      veilName.textContent = B.el.dataset.name;
+      if (A.kind === 'lot') weights[A.id] = clamp(1 - t * 2.5, 0, 1);
+      if (B.kind === 'lot') weights[B.id] = clamp((t - 0.6) * 2.5, 0, 1);
+    } else {
+      plane = A.b;
+      cam = lerpCam(A.cam, B.cam, t);
+      fog = mix(A.fog, B.fog, t);
+      veilName.textContent = '';
+      if (A.kind === 'lot') weights[A.id] = 1 - t;
+      if (B.kind === 'lot') weights[B.id] = t;
+    }
+
+    if (shown !== plane) {
+      if (shown) planes[shown].classList.remove('on');
+      planes[plane].classList.add('on');
+      shown = plane;
+    }
+    if (slabsOf !== plane) buildSlabs(plane);
+
+    var a = anchor();
+    planes[plane].style.transform = 'translate(' + a.x + 'px,' + a.y + 'px) rotateX(' + cam.tilt + 'deg) rotateZ(' + cam.yaw + 'deg) scale(' + cam.z + ') translate(' + (-cam.x) + 'px,' + (-cam.y) + 'px)';
+    drawSlabs(cam, a, weights);
+    veil.style.opacity = fog.toFixed(3);
+    over.style.visibility = fog > 0.98 ? 'hidden' : 'visible';
+
+    var cur = raw < 0.5 ? A : B;
+    if (lastNav !== cur.b) {
+      for (var k in navLinks) navLinks[k].setAttribute('aria-current', k === cur.b ? 'true' : 'false');
+      lastNav = cur.b;
+    }
+  }
+
+  var smooth = scrollY, ticking = false;
+  function frame() {
+    var target = scrollY;
+    smooth = reduced ? target : smooth + (target - smooth) * 0.14;
+    if (Math.abs(target - smooth) < 0.4) smooth = target;
+    render(smooth);
+    if (smooth !== target) requestAnimationFrame(frame);
+    else ticking = false;
+  }
+  function wake() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(frame);
+  }
+
+  function layout() {
+    W = stage.clientWidth; H = stage.clientHeight;
+    D = Math.max(W, H) * 1.25;
+    stage.style.perspective = D + 'px';
+    stage.style.perspectiveOrigin = '50% 40%';
+    over.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    buildKeys();
+    render(scrollY);
+  }
+
+  addEventListener('scroll', wake, { passive: true });
+  addEventListener('resize', layout);
+  addEventListener('load', layout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+  layout();
+})();
+</script>
+</body>
+</html>
