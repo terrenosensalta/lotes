@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Página no encontrada | Terrenos en Salta</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script>
+(function(){
+  var home="https://terrenosensalta.ar/";
+  var map={
+    "aldea":"#aldea-vaquerena","aldea-vaquerena":"#aldea-vaquerena","aldeavaquerena":"#aldea-vaquerena",
+    "cerrovarnet":"#cerro-varnet","cerro-varnet":"#cerro-varnet","varnet":"#cerro-varnet","cerro":"#cerro-varnet",
+    "pumapiedra":"#puma-piedra","puma-piedra":"#puma-piedra","puma":"#puma-piedra"
+  };
+  var slug=location.pathname.toLowerCase().replace(/^\/+|\/+$/g,"").replace(/\.html?$/,"");
+  if(map[slug]){location.replace(home+map[slug]);return}
+  setTimeout(function(){location.replace(home)},4000);
+})();
+</script>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#1f3a2d;color:#fff;font:16px/1.5 system-ui,sans-serif;text-align:center;padding:24px;box-sizing:border-box}a{color:#e0b84f;font-weight:700}</style>
+</head><body><main><h1>Esta página ya no existe</h1><p>Te llevamos al catálogo de terrenos en unos segundos.</p><p><a href="/">Ver los terrenos en Salta</a></p></main></body></html>
