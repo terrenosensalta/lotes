@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Calculadora de financiación | Terrenos en Salta</title>
+<meta name="description" content="Calculá el anticipo y las cuotas de tu terreno en Salta: financiación propia en USD, hasta 36 cuotas fijas, sin interés y sin banco.">
+<link rel="canonical" href="https://terrenosensalta.ar/calculadora.html">
+<meta name="theme-color" content="#1f3a2d">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--green:#1f3a2d;--green-2:#2c4c3b;--gold:#e0b84f;--gold-soft:#e3c47a;--muted:#4d5c52;--line:#e0dacd;--paper:#fbfaf6}
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;min-height:100svh;background:var(--green);color:var(--green);font-family:Inter,system-ui,sans-serif;line-height:1.45;padding:clamp(20px,5vw,56px) clamp(16px,4vw,32px)}
+.wrap{max-width:980px;margin-inline:auto}
+header{color:#fff;margin-bottom:clamp(20px,4vw,32px)}
+.kicker{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#c8d2c6;font-weight:600}
+h1{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.08;margin-top:8px;text-wrap:balance}
+h1 em{font-style:italic;color:var(--gold-soft)}
+.calc{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);border-radius:12px;overflow:hidden;background:var(--paper)}
+form{padding:clamp(20px,4vw,36px);display:grid;gap:24px;align-content:start}
+.field{display:grid;gap:7px;border:0;padding:0;min-width:0}
+.field>label,.rowLabel{font-size:14px;font-weight:600}
+.rowLabel{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.rowLabel output{font-weight:700;font-size:16px;font-variant-numeric:tabular-nums}
+select,input[type=number]{width:100%;min-height:48px;padding:10px 12px;border:1px solid #9aa89f;border-radius:9px;background:#fff;color:var(--green);font:16px/1.4 Inter,system-ui,sans-serif}
+.money{position:relative}
+.money span{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-weight:600;color:var(--muted);pointer-events:none}
+.money input{padding-left:50px;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;height:32px;accent-color:var(--green);cursor:pointer}
+.scale{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:-4px}
+.hint{font-size:13px;color:var(--muted)}
+select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.result{background:var(--green-2);color:#fff;padding:clamp(20px,4vw,36px);display:flex;flex-direction:column;gap:20px}
+.big{display:grid;gap:2px}
+.big span{font-size:14px;color:#dfe6de}
+.big strong{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(44px,7vw,60px);line-height:1.05;color:var(--gold-soft);font-variant-numeric:tabular-nums}
+.big small{font-size:14px;color:#dfe6de}
+dl{display:grid;gap:10px;border-top:1px solid #4c6456;padding-top:16px}
+dl div{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+dt{font-size:14.5px;color:#dfe6de}
+dd{margin:0;font-weight:700;font-size:16px;font-variant-numeric:tabular-nums;text-align:right}
+.btn{display:flex;align-items:center;justify-content:center;min-height:50px;padding:10px 18px;border-radius:9px;background:var(--gold);color:var(--green);font-weight:700;font-size:15.5px;text-decoration:none;text-align:center;margin-top:auto;transition:background-color .15s,transform .15s}
+.btn:active{transform:scale(.98)}
+.btn[aria-disabled=true]{opacity:.5;pointer-events:none}
+@media (hover:hover){.btn:hover{background:var(--gold-soft)}}
+.note{font-size:12.5px;color:#c8d2c6}
+.back{display:inline-block;margin-top:18px;color:#dfe6de;font-size:14px}
+@media (max-width:760px){.calc{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="kicker">Terrenos en Salta · Financiación propia</p>
+    <h1>Calculá tu <em>cuota</em></h1>
+  </header>
+
+  <main class="calc">
+    <form id="calc" novalidate>
+      <div class="field">
+        <label for="barrio">Barrio</label>
+        <select id="barrio">
+          <option value="15000" data-id="aldea-vaquerena">Aldea Vaquereña</option>
+          <option value="17000" data-id="cerro-varnet">Cerro Varnet</option>
+          <option value="17000" data-id="puma-piedra">Puma Piedra</option>
+          <option value="">Otro valor</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="precio">Precio del lote</label>
+        <div class="money"><span aria-hidden="true">USD</span><input id="precio" type="number" inputmode="numeric" min="1" step="100" value="15000"></div>
+        <p class="hint" id="precioError" role="alert"></p>
+      </div>
+
+      <div class="field">
+        <div class="rowLabel"><label for="anticipo">Anticipo</label><output id="anticipoTxt" for="anticipo"></output></div>
+        <input id="anticipo" type="range" min="40" max="90" step="5" value="40">
+        <div class="scale" aria-hidden="true"><span>40%</span><span>90%</span></div>
+      </div>
+
+      <div class="field">
+        <div class="rowLabel"><label for="cuotas">Cantidad de cuotas</label><output id="cuotasTxt" for="cuotas"></output></div>
+        <input id="cuotas" type="range" min="1" max="36" step="1" value="36">
+        <div class="scale" aria-hidden="true"><span>1</span><span>36</span></div>
+      </div>
+    </form>
+
+    <section class="result" aria-label="Resultado" aria-live="polite">
+      <div class="big">
+        <span>Tu cuota mensual</span>
+        <strong id="cuotaR">—</strong>
+        <small id="cuotaD"></small>
+      </div>
+      <dl>
+        <div><dt>Precio del lote</dt><dd id="precioR">—</dd></div>
+        <div><dt>Anticipo</dt><dd id="anticipoR">—</dd></div>
+        <div><dt>Saldo en cuotas</dt><dd id="saldoR">—</dd></div>
+      </dl>
+      <p class="note">Cuotas fijas en dólares, sin interés y sin banco. Valor de cuota redondeado hacia arriba al dólar. Cálculo orientativo, sujeto a confirmación y disponibilidad.</p>
+      <a class="btn" id="wa" href="https://wa.me/5493875363429" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </section>
+  </main>
+
+  <a class="back" href="/">Volver al catálogo de terrenos</a>
+</div>
+
+<script>
+(function () {
+  var WHATSAPP = '5493875363429';
+  var $ = function (id) { return document.getElementById(id); };
+  var barrio = $('barrio'), precio = $('precio'), anticipo = $('anticipo'), cuotas = $('cuotas');
+
+  function usd(n) { return 'USD ' + Math.round(n).toLocaleString('es-AR'); }
+
+  function nombreBarrio() {
+    return barrio.value ? barrio.options[barrio.selectedIndex].text : '';
+  }
+
+  function calcular() {
+    var valor = Number(precio.value);
+    var valido = isFinite(valor) && valor > 0;
+    var pct = Number(anticipo.value), n = Number(cuotas.value);
+
+    $('anticipoTxt').textContent = pct + '%';
+    $('cuotasTxt').textContent = n === 1 ? '1 cuota' : n + ' cuotas';
+    $('precioError').textContent = valido ? '' : 'Escribí un precio mayor a cero.';
+
+    var boton = $('wa');
+    if (!valido) {
+      ['cuotaR', 'precioR', 'anticipoR', 'saldoR'].forEach(function (id) { $(id).textContent = '—'; });
+      $('cuotaD').textContent = '';
+      boton.setAttribute('aria-disabled', 'true');
+      boton.removeAttribute('href');
+      return;
+    }
+
+    var ant = Math.round(valor * pct / 100);
+    var saldo = valor - ant;
+    var cuota = Math.ceil(saldo / n);
+
+    $('cuotaR').textContent = usd(cuota);
+    $('cuotaD').textContent = n === 1 ? 'en 1 pago' : 'durante ' + n + ' meses';
+    $('precioR').textContent = usd(valor);
+    $('anticipoR').textContent = usd(ant);
+    $('saldoR').textContent = usd(saldo);
+
+    var lugar = nombreBarrio();
+    var texto = 'Hola, quiero consultar por la financiación' + (lugar ? ' de ' + lugar : '') + '.\n\n' +
+      'Precio: ' + usd(valor) + '\n' +
+      'Anticipo: ' + usd(ant) + ' (' + pct + '%)\n' +
+      'Cuotas: ' + n + ' de ' + usd(cuota);
+    boton.removeAttribute('aria-disabled');
+    boton.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto);
+  }
+
+  barrio.addEventListener('change', function () {
+    if (barrio.value) precio.value = barrio.value;
+    else { precio.value = ''; precio.focus(); }
+    calcular();
+  });
+  [precio, anticipo, cuotas].forEach(function (el) { el.addEventListener('input', calcular); });
+
+  var elegido = barrio.querySelector('option[data-id="' + location.hash.slice(1).replace(/[^a-z-]/g, '') + '"]');
+  if (elegido) { barrio.value = elegido.value; elegido.selected = true; precio.value = elegido.value; }
+
+  calcular();
+})();
+</script>
+</body>
+</html>
