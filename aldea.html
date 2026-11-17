@@ -53,6 +53,8 @@
     linear-gradient(180deg,rgba(16,32,25,.55) 0%,rgba(16,32,25,.1) 30%,rgba(16,32,25,.15) 65%,rgba(16,32,25,.75) 100%)}
   .hero-in{position:relative;z-index:1;height:100%;display:grid;grid-template-rows:auto 1fr auto;padding:22px var(--pad) 28px}
   .nav{display:flex;justify-content:space-between;align-items:center;gap:20px}
+  .nav-loc img{display:block;height:30px;width:auto;transition:opacity .2s}
+  .nav-loc:hover img{opacity:.8}
   .nav ul{list-style:none;display:flex;gap:26px}
   .nav ul a{border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .2s}
   .nav ul a:hover{border-color:#fff}
@@ -244,7 +246,7 @@
     .foot-top>*{text-align:center!important}
     .foot-bar .wrap{flex-direction:column}
   }
-  @media (max-width:640px){ .nav ul li:nth-child(2),.nav ul li:nth-child(3){display:none} .nav-loc{display:none} }
+  @media (max-width:640px){ .nav ul li:nth-child(2),.nav ul li:nth-child(3){display:none} .nav-loc img{height:24px} }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 </head>
@@ -262,7 +264,7 @@
   </div>
   <div class="hero-in">
     <nav class="nav micro">
-      <span class="nav-loc">Vaqueros · Salta</span>
+      <a class="nav-loc" href="index.html" aria-label="Terrenos en Salta · volver al inicio"><img src="assets/logo-terrenosensalta.png" alt="Terrenos en Salta" width="695" height="193"></a>
       <ul>
         <li><a href="#lotes">Lotes</a></li>
         <li><a href="#nosotros">El lugar</a></li>
@@ -737,6 +739,28 @@
     const dx = e.changedTouches[0].clientX - x0; x0 = null;
     if (Math.abs(dx) > 50) { go(i + (dx < 0 ? 1 : -1)); restart(); }
   });
+})();
+</script>
+<!-- botones flotantes: volver arriba / inicio -->
+<style>
+  .fab-nav{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:1000;display:flex;flex-direction:column;gap:10px}
+  .fab-nav a,.fab-nav button{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:0;cursor:pointer;background:#1f3a2e;color:#f5f0e6;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:transform .2s,opacity .25s,background .2s;text-decoration:none;-webkit-tap-highlight-color:transparent}
+  .fab-nav a:hover,.fab-nav button:hover{background:#2c4c3b;transform:translateY(-2px)}
+  .fab-nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .fab-nav .fab-top{opacity:0;pointer-events:none;transform:translateY(8px)}
+  .fab-nav .fab-top.on{opacity:1;pointer-events:auto;transform:none}
+  @media print{.fab-nav{display:none}}
+</style>
+<nav class="fab-nav" aria-label="Accesos rápidos">
+  <button type="button" class="fab-top" aria-label="Volver arriba" title="Volver arriba"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+  <a href="index.html" aria-label="Volver al inicio" title="Volver al inicio"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg></a>
+</nav>
+<script>
+(() => {
+  const b = document.querySelector(".fab-nav .fab-top");
+  const upd = () => b.classList.toggle("on", scrollY > 500);
+  addEventListener("scroll", upd, {passive:true}); upd();
+  b.addEventListener("click", () => scrollTo({top:0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}));
 })();
 </script>
 </body>

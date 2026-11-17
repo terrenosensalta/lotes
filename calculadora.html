@@ -172,5 +172,27 @@ dd{margin:0;font-weight:700;font-size:16px;font-variant-numeric:tabular-nums;tex
   calcular();
 })();
 </script>
+<!-- botones flotantes: volver arriba / inicio -->
+<style>
+  .fab-nav{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:1000;display:flex;flex-direction:column;gap:10px}
+  .fab-nav a,.fab-nav button{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:0;cursor:pointer;background:#1f3a2e;color:#f5f0e6;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:transform .2s,opacity .25s,background .2s;text-decoration:none;-webkit-tap-highlight-color:transparent}
+  .fab-nav a:hover,.fab-nav button:hover{background:#2c4c3b;transform:translateY(-2px)}
+  .fab-nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .fab-nav .fab-top{opacity:0;pointer-events:none;transform:translateY(8px)}
+  .fab-nav .fab-top.on{opacity:1;pointer-events:auto;transform:none}
+  @media print{.fab-nav{display:none}}
+</style>
+<nav class="fab-nav" aria-label="Accesos rápidos">
+  <button type="button" class="fab-top" aria-label="Volver arriba" title="Volver arriba"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+  <a href="index.html" aria-label="Volver al inicio" title="Volver al inicio"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg></a>
+</nav>
+<script>
+(() => {
+  const b = document.querySelector(".fab-nav .fab-top");
+  const upd = () => b.classList.toggle("on", scrollY > 500);
+  addEventListener("scroll", upd, {passive:true}); upd();
+  b.addEventListener("click", () => scrollTo({top:0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}));
+})();
+</script>
 </body>
 </html>
