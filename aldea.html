@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aldea Vaquereña · Lotes en el bosque de nogales de Vaqueros, Salta</title>
-<meta name="description" content="Aldea Vaquereña: lotes de 650 a 1.000 m² en un bosque nativo de nogales en Vaqueros, a 20 minutos de Salta Capital. Contado o con financiación propia.">
+<title>Aldea Vaquereña · Lotes desde 500 m² en USD 15.000 · Vaqueros, Salta</title>
+<meta name="description" content="Aldea Vaquereña: lotes desde 500 m² en USD 15.000, en un bosque nativo de nogales en Vaqueros, a 20 minutos de Salta Capital. Contado o con financiación propia.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet">
@@ -278,7 +278,7 @@
         <a class="cta micro" href="#contacto">Coordinar visita
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10 10 2M4 2h6v6"/></svg>
         </a>
-        <span class="price-tag">Lotes de 650 a 1.000 m²</span>
+        <span class="price-tag">Lotes desde 500 m² · USD 15.000</span>
       </div>
     </div>
 
@@ -295,11 +295,11 @@
       <p>Tocá un lote amarillo en el mapa o en la lista para ver su superficie y consultarlo por WhatsApp.</p>
     </div>
     <div class="lotmap rv">
-      <div class="lotmap-map">
+      <div class="lotmap-map is-plano">
         <div id="mapaLotes" role="region" aria-label="Plano interactivo de lotes de Aldea Vaquereña"></div>
         <div class="view-tabs" role="tablist">
-          <button type="button" class="on" data-view="sat">Satélite</button>
-          <button type="button" data-view="plano">Plano</button>
+          <button type="button" class="on" data-view="plano">Plano</button>
+          <button type="button" data-view="sat">Satélite</button>
         </div>
         <div class="plano" id="plano">
           <span class="plano-note">Plano de mensura · Lote C a la derecha, fuera de cuadro</span>
@@ -332,8 +332,7 @@
       <p>Una aldea entre árboles de nogales, con sombra natural y el aire fresco de Vaqueros. Un lugar para construir con materiales nobles, despacio y a tu medida.</p>
       <ul class="facts">
         <li><b>Bosque nativo</b><span>Árboles de nogales</span></li>
-        <li><b>20 min</b><span>de Salta Capital</span></li>
-        <li><b>650 a 1.000 m²</b><span>Lotes amplios</span></li>
+       <li><b>Desde 500 m²</b><span>desde USD 15.000</span></li>
         <li><b>Inmediata</b><span>Posesión</span></li>
       </ul>
       <p class="place-note">Imágenes ilustrativas de inspiración, salvo el bosque de nogales.</p>
@@ -548,7 +547,7 @@
 
   const homeIcon = L.divIcon({className:"", html:'<div class="pin pin-home">A</div>', iconSize:[46,46], iconAnchor:[23,23]});
   L.marker(HOME, {icon:homeIcon, zIndexOffset:1000}).addTo(map)
-    .bindPopup(`<b>Aldea Vaquereña</b><br>Lotes de 650 a 1.000 m²<br><a href="${DIR}${HOME}" target="_blank" rel="noopener">Cómo llegar ↗</a>`);
+    .bindPopup(`<b>Aldea Vaquereña</b><br>Lotes desde 500 m² · USD 15.000<br><a href="${DIR}${HOME}" target="_blank" rel="noopener">Cómo llegar ↗</a>`);
 
   const km = (a, b) => {
     const R = 6371, r = x => x * Math.PI / 180;
