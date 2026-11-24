@@ -1,0 +1,10 @@
+Modelo 3D: Hummingbird
+Autor: huykhoi2407
+Fuente: https://www.cgtrader.com/free-3d-models/animal/bird/hummingbird-e3e7819f-eba9-41df-b776-a09217bd7623
+Licencia: Royalty Free License (no AI)
+Texto de la licencia: https://www.cgtrader.com/pages/terms-and-conditions
+Verificación: Ficha oficial de CGTrader, secciones Created by y Royalty Free License (no AI), consultada 2026-10-29. Condiciones 21A y21B.
+
+Uso en esta web: el modelo está integrado en la página y se sirve cifrado (AES-256-GCM)
+como assets/models/colibri.bin. Solo se descifra en memoria para mostrarlo; no se publica
+el archivo GLB ni los originales (.blend, texturas) y no se ofrece su descarga.
