@@ -67,7 +67,8 @@ dd{margin:0;font-weight:700;font-size:16px;font-variant-numeric:tabular-nums;tex
         <label for="barrio">Barrio</label>
         <select id="barrio">
           <option value="15000" data-id="aldea-vaquerena">Aldea Vaquereña</option>
-          <option value="17000" data-id="cerro-varnet">Cerro Varnet</option>
+          <option value="12500" data-id="cerro-varnet">Cerro Varnet · 500 m²</option>
+          <option value="17000" data-id="cerro-varnet-1000">Cerro Varnet · 1.000 m²</option>
           <option value="17000" data-id="puma-piedra">Puma Piedra</option>
           <option value="">Otro valor</option>
         </select>
@@ -167,7 +168,7 @@ dd{margin:0;font-weight:700;font-size:16px;font-variant-numeric:tabular-nums;tex
   });
   [precio, anticipo, cuotas].forEach(function (el) { el.addEventListener('input', calcular); });
 
-  var elegido = barrio.querySelector('option[data-id="' + location.hash.slice(1).replace(/[^a-z-]/g, '') + '"]');
+  var elegido = barrio.querySelector('option[data-id="' + location.hash.slice(1).replace(/[^a-z0-9-]/g, '') + '"]');
   if (elegido) { barrio.value = elegido.value; elegido.selected = true; precio.value = elegido.value; }
 
   calcular();
