@@ -15,7 +15,7 @@
  */
 (function () {
   var GA_ID = "G-2FVZV0JTJP";
-  var PIXEL_ID = "";
+  var PIXEL_ID = "889512077155435";
 
   window.medir = function () {};
   // Solo en el dominio real: así las pruebas locales no ensucian los datos.
