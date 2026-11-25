@@ -7,9 +7,10 @@
 (function(){
   var home="https://terrenosensalta.ar/";
   var map={
-    "aldea":"#aldea-vaquerena","aldea-vaquerena":"#aldea-vaquerena","aldeavaquerena":"#aldea-vaquerena",
-    "cerrovarnet":"#cerro-varnet","cerro-varnet":"#cerro-varnet","varnet":"#cerro-varnet","cerro":"#cerro-varnet",
-    "pumapiedra":"#puma-piedra","puma-piedra":"#puma-piedra","puma":"#puma-piedra"
+    "aldea":"aldea.html","aldea-vaquerena":"aldea.html","aldeavaquerena":"aldea.html",
+    "cerrovarnet":"cerrovarnet.html","cerro-varnet":"cerrovarnet.html","varnet":"cerrovarnet.html","cerro":"cerrovarnet.html",
+    "pumapiedra":"pumapiedra.html","puma-piedra":"pumapiedra.html","puma":"pumapiedra.html",
+    "calculadora":"calculadora.html","financiacion":"calculadora.html","cuotas":"calculadora.html"
   };
   var slug=location.pathname.toLowerCase().replace(/^\/+|\/+$/g,"").replace(/\.html?$/,"");
   if(map[slug]){location.replace(home+map[slug]);return}
