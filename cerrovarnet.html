@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cerro Varnet · Lotes desde 500 m² en USD 12.500 · Vaqueros, Salta</title>
 <meta name="description" content="Cerro Varnet: lotes desde 500 m² en USD 12.500 en los cerros de Vaqueros, a 20 minutos de Salta Capital. Red de agua, calles enripiadas y cámaras de seguridad. Contado o financiación propia.">
+<script src="assets/analitica.js" defer></script>
 <link rel="canonical" href="https://terrenosensalta.ar/cerrovarnet.html">
 <link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#1f3a2e">
@@ -600,6 +601,7 @@
     btn.disabled = true; ok.textContent = "Enviando…";
     try {
       await fetch(SHEET_URL, {method:"POST", body:data, mode:"no-cors"});
+      window.medir && medir("generate_lead", {barrio: "Cerro Varnet", lote: lotElegido});
       ok.textContent = "¡Gracias! Recibimos tus datos y te contactamos a la brevedad.";
       const wl = document.createElement("a"); wl.className = "form-wa"; wl.href = "https://wa.me/5493875363429?text=Hola%2C%20quiero%20info%20de%20Cerro%20Varnet"; wl.target = "_blank"; wl.rel = "noopener"; wl.textContent = "¿Apurado? Escribinos ahora por WhatsApp"; ok.append(document.createElement("br"), wl);
       form.reset();
