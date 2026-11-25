@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Puma Piedra · Lotes de 1.000 m² en USD 17.000 · La Caldera, Salta</title>
 <meta name="description" content="Puma Piedra: lotes de 1.000 m² en USD 17.000 con vista al Dique Campo Alegre, en La Caldera, Salta. Red de agua, calles internas y acceso privado. Contado o financiación propia.">
+<script src="assets/analitica.js" defer></script>
 <link rel="canonical" href="https://terrenosensalta.ar/pumapiedra.html">
 <link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#1f3a2e">
@@ -599,6 +600,7 @@
     btn.disabled = true; ok.textContent = "Enviando…";
     try {
       await fetch(SHEET_URL, {method:"POST", body:data, mode:"no-cors"});
+      window.medir && medir("generate_lead", {barrio: "Puma Piedra", lote: lotElegido});
       ok.textContent = "¡Gracias! Recibimos tus datos y te contactamos a la brevedad.";
       const wl = document.createElement("a"); wl.className = "form-wa"; wl.href = "https://wa.me/5493875363429?text=Hola%2C%20quiero%20info%20de%20Puma%20Piedra"; wl.target = "_blank"; wl.rel = "noopener"; wl.textContent = "¿Apurado? Escribinos ahora por WhatsApp"; ok.append(document.createElement("br"), wl);
       form.reset();
