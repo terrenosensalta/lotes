@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Terrenos en Salta · Desarrollos</name>
+<Placemark><name>Aldea Vaquereña</name><description>Vaqueros, Salta. https://terrenosensalta.ar/aldea.html</description><Point><coordinates>-65.4270065,-24.6955752,0</coordinates></Point></Placemark>
+<Placemark><name>Cerro Varnet</name><description>Vaqueros, Salta. https://terrenosensalta.ar/cerrovarnet.html</description><Point><coordinates>-65.385376,-24.675689,0</coordinates></Point></Placemark>
+<Placemark><name>Puma Piedra</name><description>La Caldera, Salta. https://terrenosensalta.ar/pumapiedra.html</description><Point><coordinates>-65.363287,-24.5446553,0</coordinates></Point></Placemark>
+</Document></kml>
