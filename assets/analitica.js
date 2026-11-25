@@ -1,8 +1,9 @@
 /* Analítica del sitio (Google Analytics 4).
  *
- * Para activarla: reemplazá G-XXXXXXXXXX por tu ID de medición de GA4
+ * ID de medición de GA4 (propiedad "terrenosensalta.ar", cuenta "Terrenos en Salta").
+ * Para cambiarlo, reemplazá GA_ID por el ID de medición de GA4
  * (Analytics > Administrar > Flujos de datos > Web > "ID de medición").
- * Mientras siga el valor de ejemplo, no se carga nada.
+ * Solo se carga en terrenosensalta.ar (no en pruebas locales).
  *
  * Además de las visitas, mide:
  *   - contacto_whatsapp: clic en cualquier enlace a WhatsApp
@@ -11,7 +12,7 @@
  *   - generate_lead: consulta enviada con el formulario (lo llama cada página)
  */
 (function () {
-  var GA_ID = "G-XXXXXXXXXX";
+  var GA_ID = "G-2FVZV0JTJP";
 
   window.medir = function () {};
   var activo = /^G-[A-Z0-9]{6,}$/.test(GA_ID) && GA_ID !== "G-XXXXXXXXXX";
